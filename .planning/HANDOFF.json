@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "timestamp": "2026-09-08T12:15:25.181Z",
+  "timestamp": "2026-09-08T12:16:45.265Z",
   "source": "auto-postool",
   "partial": false,
   "phase": null,
@@ -18,21 +18,9 @@
   "uncommitted_files": [
     {
       "status": "M",
-      "path": ".planning/HANDOFF.json"
-    },
-    {
-      "status": "M",
       "path": "components/commerce/CardCarousel.tsx"
-    },
-    {
-      "status": "M",
-      "path": "package-lock.json"
-    },
-    {
-      "status": "M",
-      "path": "package.json"
     }
   ],
   "next_action": null,
-  "context_notes": "Recent commits:\n38dac23 Adaptive card rails: cards per view from measured width at optimal card size, arrows/swipe for the rest, last page flush, no scrollbar (related, deals, cart cross-sell, complementary strip)\nfce3892 PDP: compact «Ταιριάζει με αυτό το προϊόν» strip with complementary categories (max 4, light tiles); related rail fits 5 per row\n8438053 PDP: main photo fills the gallery when there is a single image; related capped at 5; accessories rail removed\na5e7cf3 Coolify deploy: Dockerfile (Next standalone, node:24-alpine, non-root, healthcheck), .dockerignore, README deploy notes\nbdfdd81 Smart sticky filters and buy box, full-width deal rails, subtler compare border"
+  "context_notes": "Recent commits:\nfd7fa81 Card rails: arrows move one card at a time (first slides out, next slides in), GSAP power3.out tween, dots per position\n38dac23 Adaptive card rails: cards per view from measured width at optimal card size, arrows/swipe for the rest, last page flush, no scrollbar (related, deals, cart cross-sell, complementary strip)\nfce3892 PDP: compact «Ταιριάζει με αυτό το προϊόν» strip with complementary categories (max 4, light tiles); related rail fits 5 per row\n8438053 PDP: main photo fills the gallery when there is a single image; related capped at 5; accessories rail removed\na5e7cf3 Coolify deploy: Dockerfile (Next standalone, node:24-alpine, non-root, healthcheck), .dockerignore, README deploy notes"
 }

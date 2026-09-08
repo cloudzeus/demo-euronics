@@ -38,6 +38,8 @@ export function CardCarousel({ children, minItem = 240, minItemNarrow = 165, gap
   const cur = Math.min(start, maxStart);
   const cardPx = w ? (w - (per - 1) * gap) / per : 0;
   const go = (d: 1 | -1) => setStart(Math.max(0, Math.min(maxStart, cur + d)));
+  const narrow = !w || w < 700;
+  const arrow = "absolute top-[38%] size-12 rounded-full bg-white border border-eu-line shadow-[var(--shadow-raised)] inline-flex items-center justify-center text-eu-navy hover:bg-eu-navy hover:text-white transition-colors disabled:opacity-0 disabled:pointer-events-none z-10";
 
   // Tween the track to the current position (GSAP, no CSS scroll).
   useLayoutEffect(() => {
@@ -72,10 +74,10 @@ export function CardCarousel({ children, minItem = 240, minItemNarrow = 165, gap
       </div>
       {multi && (
         <>
-          <button type="button" aria-label="Προηγούμενο" disabled={cur === 0} onClick={() => go(-1)} className="absolute left-0 top-[38%] -translate-x-1/2 size-12 rounded-full bg-white border border-eu-line shadow-[var(--shadow-raised)] inline-flex items-center justify-center text-eu-navy hover:bg-eu-navy hover:text-white transition-colors disabled:opacity-0 disabled:pointer-events-none z-10">
+          <button type="button" aria-label="Προηγούμενο" disabled={cur === 0} onClick={() => go(-1)} className={`${arrow} ${narrow ? "left-2" : "left-0 -translate-x-1/2"}`}>
             <ChevronLeft className="size-6" aria-hidden />
           </button>
-          <button type="button" aria-label="Επόμενο" disabled={cur >= maxStart} onClick={() => go(1)} className="absolute right-0 top-[38%] translate-x-1/2 size-12 rounded-full bg-white border border-eu-line shadow-[var(--shadow-raised)] inline-flex items-center justify-center text-eu-navy hover:bg-eu-navy hover:text-white transition-colors disabled:opacity-0 disabled:pointer-events-none z-10">
+          <button type="button" aria-label="Επόμενο" disabled={cur >= maxStart} onClick={() => go(1)} className={`${arrow} ${narrow ? "right-2" : "right-0 translate-x-1/2"}`}>
             <ChevronRight className="size-6" aria-hidden />
           </button>
           {maxStart < 8 && (
