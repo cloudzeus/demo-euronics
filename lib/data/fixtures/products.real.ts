@@ -7,7 +7,7 @@ export const realProducts: Product[] = [
   {
     id: "r-152715", sku: "152715", ean: "8806096775127", slug: "lg-43qned81b6c-tileorasi",
     brand: "LG", brandSlug: "lg",
-    title: "LG 43QNED81B6C 43\" Τηλεόραση",
+    title: "43QNED81B6C 43\" Τηλεόραση",
     category: "eikona-ixos", subcategory: "tileoraseis",
     image: "https://www.euronics.gr/images/thumbs/11781103_480.jpeg", images: ["https://www.euronics.gr/images/thumbs/11781103_480.jpeg", "https://www.euronics.gr/images/thumbs/11781104_480.jpeg", "https://www.euronics.gr/images/thumbs/11781105.jpeg", "https://www.euronics.gr/images/thumbs/11781106.jpeg"],
     price: 549.0,
@@ -21,7 +21,7 @@ export const realProducts: Product[] = [
   {
     id: "r-108803", sku: "108803", ean: "8806091638359", slug: "lg-32lq63006la-tileorasi",
     brand: "LG", brandSlug: "lg",
-    title: "LG 32LQ63006LA 32\" Τηλεόραση",
+    title: "32LQ63006LA 32\" Τηλεόραση",
     category: "eikona-ixos", subcategory: "tileoraseis",
     image: "https://www.euronics.gr/images/thumbs/11694575_480.jpeg", images: ["https://www.euronics.gr/images/thumbs/11694575_480.jpeg"],
     price: 249.0,
@@ -35,7 +35,7 @@ export const realProducts: Product[] = [
   {
     id: "r-142829", sku: "142829", ean: "8806095916934", slug: "samsung-qe55qn70fauxxh-tileorasi",
     brand: "SAMSUNG", brandSlug: "samsung",
-    title: "SAMSUNG Neo QLED 4K QE55QN70FAUXXH Mini LED AI 55\" Τηλεόραση",
+    title: "Neo QLED 4K QE55QN70FAUXXH Mini LED AI 55\" Τηλεόραση",
     category: "eikona-ixos", subcategory: "tileoraseis",
     image: "https://www.euronics.gr/images/thumbs/11809156_480.jpeg", images: ["https://www.euronics.gr/images/thumbs/11809156_480.jpeg"],
     price: 649.0,
@@ -49,7 +49,7 @@ export const realProducts: Product[] = [
   {
     id: "r-154164", sku: "154164", ean: "8806099024260", slug: "samsung-qe65qn70hauxxh-tileorasi",
     brand: "SAMSUNG", brandSlug: "samsung",
-    title: "SAMSUNG Neo QLED 4K QE65QN70HAUXXH 65\" Τηλεόραση",
+    title: "Neo QLED 4K QE65QN70HAUXXH 65\" Τηλεόραση",
     category: "eikona-ixos", subcategory: "tileoraseis",
     image: "https://www.euronics.gr/images/thumbs/11809536_480.jpeg", images: ["https://www.euronics.gr/images/thumbs/11809536_480.jpeg"],
     price: 999.99,
@@ -63,7 +63,7 @@ export const realProducts: Product[] = [
   {
     id: "r-145957", sku: "145957", ean: "4974437872003", slug: "fujitsu-aseg09kpce-aoeg09kpca-klimatistiko",
     brand: "FUJITSU", brandSlug: "fujitsu",
-    title: "FUJITSU ASEG09KPCE/AOEG09KPCA Inverter Κλιματιστικό",
+    title: "ASEG09KPCE/AOEG09KPCA Inverter Κλιματιστικό",
     category: "klimatismos", subcategory: "air-condition",
     image: "https://www.euronics.gr/images/thumbs/11740404_480.jpeg", images: ["https://www.euronics.gr/images/thumbs/11740404_480.jpeg", "https://www.euronics.gr/images/thumbs/11740405_480.jpeg", "https://www.euronics.gr/images/thumbs/11740406.jpeg"],
     price: 579.0,
@@ -77,7 +77,7 @@ export const realProducts: Product[] = [
   {
     id: "r-145807", sku: "145807", ean: "6926597761664", slug: "hisense-kf25yr4bg-as25yr4bw-inverter",
     brand: "HISENSE", brandSlug: "hisense",
-    title: "HISENSE KF25YR4BG/AS25YR4BW Expert Comfort Inverter",
+    title: "KF25YR4BG/AS25YR4BW Expert Comfort Inverter",
     category: "klimatismos", subcategory: "air-condition",
     image: "https://www.euronics.gr/images/thumbs/11807255_480.jpeg", images: ["https://www.euronics.gr/images/thumbs/11807255_480.jpeg"],
     price: 349.0,
@@ -91,7 +91,7 @@ export const realProducts: Product[] = [
   {
     id: "r-152092", sku: "152092", ean: "6430030843379", slug: "inventor-veri-vero-18wfi-klimatistiko",
     brand: "INVENTOR", brandSlug: "inventor",
-    title: "INVENTOR VERI/VERO-18WFI Inverter Κλιματιστικό",
+    title: "VERI/VERO-18WFI Inverter Κλιματιστικό",
     category: "klimatismos", subcategory: "air-condition",
     image: "https://www.euronics.gr/images/thumbs/11781210_480.jpeg", images: ["https://www.euronics.gr/images/thumbs/11781210_480.jpeg"],
     price: 949.0,
@@ -105,7 +105,7 @@ export const realProducts: Product[] = [
   {
     id: "r-112338", sku: "112338", ean: "5207060726085", slug: "midea-aep2-09nxd6-klimatistiko",
     brand: "MIDEA", brandSlug: "midea",
-    title: "MIDEA AEP2-09NXD6 All Easy Pro Inverter Κλιματιστικό",
+    title: "AEP2-09NXD6 All Easy Pro Inverter Κλιματιστικό",
     category: "klimatismos", subcategory: "air-condition",
     image: "https://www.euronics.gr/images/thumbs/11778608_480.jpeg", images: ["https://www.euronics.gr/images/thumbs/11778608_480.jpeg"],
     price: 729.0,
@@ -119,7 +119,7 @@ export const realProducts: Product[] = [
   {
     id: "r-134843", sku: "134843", ean: "8806095539522", slug: "samsung-ww11dg5b25aele-11kg",
     brand: "SAMSUNG", brandSlug: "samsung",
-    title: "SAMSUNG WW11DG5B25AELE Πλυντήριο Ρούχων 11kg",
+    title: "WW11DG5B25AELE Πλυντήριο Ρούχων 11kg",
     category: "leykes-syskeyes", subcategory: "plyntiria",
     image: "https://www.euronics.gr/images/thumbs/11779807_480.jpeg", images: ["https://www.euronics.gr/images/thumbs/11779807_480.jpeg", "https://www.euronics.gr/images/thumbs/11779808_480.jpeg", "https://www.euronics.gr/images/thumbs/11779809.jpeg"],
     price: 649.0,
@@ -133,7 +133,7 @@ export const realProducts: Product[] = [
   {
     id: "r-144730", sku: "144730", ean: "7333394119274", slug: "aeg-lf5z48wg-8kg",
     brand: "AEG", brandSlug: "aeg",
-    title: "AEG LF5Z48WG Πλυντήριο Ρούχων 8kg",
+    title: "LF5Z48WG Πλυντήριο Ρούχων 8kg",
     category: "leykes-syskeyes", subcategory: "plyntiria",
     image: "https://www.euronics.gr/images/thumbs/11809073_480.jpeg", images: ["https://www.euronics.gr/images/thumbs/11809073_480.jpeg"],
     price: 475.0,
@@ -147,7 +147,7 @@ export const realProducts: Product[] = [
   {
     id: "r-148891", sku: "148891", ean: "8059019115856", slug: "candy-gd-48sb6g-s-8kg",
     brand: "CANDY", brandSlug: "candy",
-    title: "CANDY GD 48SB6G-S Πλυντήριο Ρούχων 8kg",
+    title: "GD 48SB6G-S Πλυντήριο Ρούχων 8kg",
     category: "leykes-syskeyes", subcategory: "plyntiria",
     image: "https://www.euronics.gr/images/thumbs/11809496_480.jpeg", images: ["https://www.euronics.gr/images/thumbs/11809496_480.jpeg"],
     price: 459.0,
@@ -161,7 +161,7 @@ export const realProducts: Product[] = [
   {
     id: "r-135731", sku: "135731", ean: "4002516646099", slug: "miele-wwg360-wcs-9kg",
     brand: "MIELE", brandSlug: "miele",
-    title: "MIELE WWG360 WCS Πλυντήριο Ρούχων 9kg",
+    title: "WWG360 WCS Πλυντήριο Ρούχων 9kg",
     category: "leykes-syskeyes", subcategory: "plyntiria",
     image: "https://www.euronics.gr/images/thumbs/11570698_480.jpeg", images: ["https://www.euronics.gr/images/thumbs/11570698_480.jpeg"],
     price: 1399.0,
@@ -175,7 +175,7 @@ export const realProducts: Product[] = [
   {
     id: "r-152124", sku: "152124", ean: "8690842577246", slug: "beko-b1rcna344s-frost",
     brand: "BEKO", brandSlug: "beko",
-    title: "BEKO B1RCNA344S Ψυγειοκαταψύκτης No Frost",
+    title: "B1RCNA344S Ψυγειοκαταψύκτης No Frost",
     category: "leykes-syskeyes", subcategory: "psygeia",
     image: "https://www.euronics.gr/images/thumbs/10898596_480.jpeg", images: ["https://www.euronics.gr/images/thumbs/10898596_480.jpeg", "https://www.euronics.gr/images/thumbs/10898597_480.jpeg", "https://www.euronics.gr/images/thumbs/10898598.jpeg"],
     price: 499.0,
@@ -189,7 +189,7 @@ export const realProducts: Product[] = [
   {
     id: "r-146545", sku: "146545", ean: "8806096589373", slug: "lg-gbbsj20epy-lt",
     brand: "LG", brandSlug: "lg",
-    title: "LG GBBSJ20EPY Ψυγειοκαταψύκτης 375 lt",
+    title: "GBBSJ20EPY Ψυγειοκαταψύκτης 375 lt",
     category: "leykes-syskeyes", subcategory: "psygeia",
     image: "https://www.euronics.gr/images/thumbs/11809191_480.jpeg", images: ["https://www.euronics.gr/images/thumbs/11809191_480.jpeg"],
     price: 599.0,
@@ -203,7 +203,7 @@ export const realProducts: Product[] = [
   {
     id: "r-112041", sku: "112041", ean: "8059019035796", slug: "candy-cce4t620ew-frost",
     brand: "CANDY", brandSlug: "candy",
-    title: "CANDY CCE4T620EW Ψυγειοκαταψύκτης Total No Frost",
+    title: "CCE4T620EW Ψυγειοκαταψύκτης Total No Frost",
     category: "leykes-syskeyes", subcategory: "psygeia",
     image: "https://www.euronics.gr/images/thumbs/9673893_480.jpeg", images: ["https://www.euronics.gr/images/thumbs/9673893_480.jpeg"],
     price: 659.0,
@@ -217,7 +217,7 @@ export const realProducts: Product[] = [
   {
     id: "r-145524", sku: "145524", ean: "6921727076878", slug: "hisense-rt728n4wce1-lt",
     brand: "HISENSE", brandSlug: "hisense",
-    title: "HISENSE RT728N4WCE1 Ψυγειοκαταψύκτης 553 lt",
+    title: "RT728N4WCE1 Ψυγειοκαταψύκτης 553 lt",
     category: "leykes-syskeyes", subcategory: "psygeia",
     image: "https://www.euronics.gr/images/thumbs/11496285_480.jpeg", images: ["https://www.euronics.gr/images/thumbs/11496285_480.jpeg"],
     price: 799.0,
@@ -231,7 +231,7 @@ export const realProducts: Product[] = [
   {
     id: "r-146037", sku: "146037", ean: "195950643909", slug: "apple-iphone-17-256gb-blue",
     brand: "APPLE", brandSlug: "apple",
-    title: "APPLE iPhone 17 256GB Mist Blue",
+    title: "iPhone 17 256GB Mist Blue",
     category: "tilefonia", subcategory: "smartphones",
     image: "https://www.euronics.gr/images/thumbs/11779604_480.jpeg", images: ["https://www.euronics.gr/images/thumbs/11779604_480.jpeg", "https://www.euronics.gr/images/thumbs/11779605_480.jpeg", "https://www.euronics.gr/images/thumbs/11779606.jpeg"],
     price: 979.0,
@@ -245,7 +245,7 @@ export const realProducts: Product[] = [
   {
     id: "r-141249", sku: "141249", ean: "195950051117", slug: "apple-iphone-16e-128gb-mayro",
     brand: "APPLE", brandSlug: "apple",
-    title: "APPLE iPhone 16e 128GB Μαύρο",
+    title: "iPhone 16e 128GB Μαύρο",
     category: "tilefonia", subcategory: "smartphones",
     image: "https://www.euronics.gr/images/thumbs/10812286_apple-iphone-16e-128gb-smartphone_480.jpeg", images: ["https://www.euronics.gr/images/thumbs/10812286_apple-iphone-16e-128gb-smartphone_480.jpeg"],
     price: 599.0,
@@ -259,7 +259,7 @@ export const realProducts: Product[] = [
   {
     id: "r-150601", sku: "150601", ean: "8806097826781", slug: "samsung-galaxy-s26-ultra-mple",
     brand: "SAMSUNG", brandSlug: "samsung",
-    title: "SAMSUNG Galaxy S26 Ultra 12GB/256GB Μπλε",
+    title: "Galaxy S26 Ultra 12GB/256GB Μπλε",
     category: "tilefonia", subcategory: "smartphones",
     image: "https://www.euronics.gr/images/thumbs/11779659_480.jpeg", images: ["https://www.euronics.gr/images/thumbs/11779659_480.jpeg"],
     price: 1499.0,
@@ -273,7 +273,7 @@ export const realProducts: Product[] = [
   {
     id: "r-140515", sku: "140515", ean: "6941764450066", slug: "realme-c75-mayro",
     brand: "REALME", brandSlug: "realme",
-    title: "REALME C75 8GB/128GB Μαύρο",
+    title: "C75 8GB/128GB Μαύρο",
     category: "tilefonia", subcategory: "smartphones",
     image: "https://www.euronics.gr/images/thumbs/8006350_480.jpeg", images: ["https://www.euronics.gr/images/thumbs/8006350_480.jpeg"],
     price: 189.9,
@@ -287,7 +287,7 @@ export const realProducts: Product[] = [
   {
     id: "r-157206", sku: "157206", ean: "195950690101", slug: "apple-mdhe4gr-a-midnight",
     brand: "APPLE", brandSlug: "apple",
-    title: "APPLE MacBook Air 13.6\" M5 16GB/512GB Midnight",
+    title: "MacBook Air 13.6\" M5 16GB/512GB Midnight",
     category: "computing", subcategory: "laptops",
     image: "https://www.euronics.gr/images/thumbs/11789364_480.jpeg", images: ["https://www.euronics.gr/images/thumbs/11789364_480.jpeg", "https://www.euronics.gr/images/thumbs/11789365_480.jpeg", "https://www.euronics.gr/images/thumbs/11789366.jpeg"],
     price: 1299.0, wasPrice: 1449.0, lowest30: 1374, badge: { kind: "discount" },
@@ -301,7 +301,7 @@ export const realProducts: Product[] = [
   {
     id: "r-150983", sku: "150983", ean: "195950853582", slug: "apple-mhfh4gr-a-blush",
     brand: "APPLE", brandSlug: "apple",
-    title: "APPLE MacBook Neo 13\" A18 Pro 8GB/256GB Blush",
+    title: "MacBook Neo 13\" A18 Pro 8GB/256GB Blush",
     category: "computing", subcategory: "laptops",
     image: "https://www.euronics.gr/images/thumbs/11780248_480.jpeg", images: ["https://www.euronics.gr/images/thumbs/11780248_480.jpeg"],
     price: 699.0, wasPrice: 799.0, lowest30: 749, badge: { kind: "discount" },
@@ -315,7 +315,7 @@ export const realProducts: Product[] = [
   {
     id: "r-150980", sku: "150980", ean: "195950852172", slug: "apple-mhfe4gr-a-id",
     brand: "APPLE", brandSlug: "apple",
-    title: "APPLE MacBook Neo 13\" A18 Pro 8GB/512GB Citrus Touch ID",
+    title: "MacBook Neo 13\" A18 Pro 8GB/512GB Citrus Touch ID",
     category: "computing", subcategory: "laptops",
     image: "https://www.euronics.gr/images/thumbs/11326380_480.jpeg", images: ["https://www.euronics.gr/images/thumbs/11326380_480.jpeg"],
     price: 899.0,
@@ -329,7 +329,7 @@ export const realProducts: Product[] = [
   {
     id: "r-157205", sku: "157205", ean: "195950691511", slug: "apple-mdhh4gr-a-blue",
     brand: "APPLE", brandSlug: "apple",
-    title: "APPLE MacBook Air 13.6\" M5 16GB/512GB Sky Blue",
+    title: "MacBook Air 13.6\" M5 16GB/512GB Sky Blue",
     category: "computing", subcategory: "laptops",
     image: "https://www.euronics.gr/images/thumbs/11731869_480.jpeg", images: ["https://www.euronics.gr/images/thumbs/11731869_480.jpeg"],
     price: 1299.0, wasPrice: 1449.0, lowest30: 1374, badge: { kind: "discount" },
@@ -343,7 +343,7 @@ export const realProducts: Product[] = [
   {
     id: "r-71063", sku: "71063", ean: "8004399325067", slug: "delonghi-ecam-22-110-sb-espresso",
     brand: "DELONGHI", brandSlug: "delonghi",
-    title: "DELONGHI ECAM 22.110.SB Μηχανή Espresso",
+    title: "ECAM 22.110.SB Μηχανή Espresso",
     category: "oikiakos-exoplismos", subcategory: "kafes-rofimata",
     image: "https://www.euronics.gr/images/thumbs/11729403_480.jpeg", images: ["https://www.euronics.gr/images/thumbs/11729403_480.jpeg", "https://www.euronics.gr/images/thumbs/11729404_480.jpeg"],
     price: 479.0,
@@ -357,7 +357,7 @@ export const realProducts: Product[] = [
   {
     id: "r-138705", sku: "138705", ean: "8004399327924", slug: "delonghi-en80-b-mayro",
     brand: "DELONGHI", brandSlug: "delonghi",
-    title: "DELONGHI EN80.B Inissia Nespresso Μαύρο",
+    title: "EN80.B Inissia Nespresso Μαύρο",
     category: "oikiakos-exoplismos", subcategory: "kafes-rofimata",
     image: "https://www.euronics.gr/images/thumbs/11730245_480.jpeg", images: ["https://www.euronics.gr/images/thumbs/11730245_480.jpeg"],
     price: 89.0,
@@ -371,7 +371,7 @@ export const realProducts: Product[] = [
   {
     id: "r-130554", sku: "130554", ean: "8720389030291", slug: "philips-ep2334-10-espresso",
     brand: "PHILIPS", brandSlug: "philips",
-    title: "PHILIPS EP2334/10 Αυτόματη Μηχανή Espresso",
+    title: "EP2334/10 Αυτόματη Μηχανή Espresso",
     category: "oikiakos-exoplismos", subcategory: "kafes-rofimata",
     image: "https://www.euronics.gr/images/thumbs/11779077_480.jpeg", images: ["https://www.euronics.gr/images/thumbs/11779077_480.jpeg"],
     price: 499.0,
@@ -385,7 +385,7 @@ export const realProducts: Product[] = [
   {
     id: "r-119009", sku: "119009", ean: "7332543838356", slug: "aeg-ec6-1-6st-espresso",
     brand: "AEG", brandSlug: "aeg",
-    title: "AEG EC6-1-6ST Μηχανή Espresso",
+    title: "EC6-1-6ST Μηχανή Espresso",
     category: "oikiakos-exoplismos", subcategory: "kafes-rofimata",
     image: null, images: [],
     price: 139.0,
@@ -399,7 +399,7 @@ export const realProducts: Product[] = [
   {
     id: "r-150109", sku: "150109", ean: "8720389036651", slug: "philips-fc9555-09-sakoyla",
     brand: "PHILIPS", brandSlug: "philips",
-    title: "PHILIPS FC9555/09 Ηλεκτρική Σκούπα χωρίς σακούλα",
+    title: "FC9555/09 Ηλεκτρική Σκούπα χωρίς σακούλα",
     category: "oikiakos-exoplismos", subcategory: "skoypes",
     image: "https://www.euronics.gr/images/thumbs/11787903_480.jpeg", images: ["https://www.euronics.gr/images/thumbs/11787903_480.jpeg", "https://www.euronics.gr/images/thumbs/11787904_480.jpeg", "https://www.euronics.gr/images/thumbs/11787905.jpeg"],
     price: 199.0,
@@ -413,7 +413,7 @@ export const realProducts: Product[] = [
   {
     id: "r-138544", sku: "138544", ean: "3221614003882", slug: "rowenta-ro3945-sakoyla",
     brand: "ROWENTA", brandSlug: "rowenta",
-    title: "ROWENTA RO3945 Ηλεκτρική Σκούπα με σακούλα",
+    title: "RO3945 Ηλεκτρική Σκούπα με σακούλα",
     category: "oikiakos-exoplismos", subcategory: "skoypes",
     image: "https://www.euronics.gr/images/thumbs/11808689_480.jpeg", images: ["https://www.euronics.gr/images/thumbs/11808689_480.jpeg"],
     price: 109.0,
@@ -427,7 +427,7 @@ export const realProducts: Product[] = [
   {
     id: "r-140497", sku: "140497", ean: "8059019095844", slug: "hoover-he105hm-011-sakoyla",
     brand: "HOOVER", brandSlug: "hoover",
-    title: "HOOVER HE105HM 011 Ηλεκτρική Σκούπα με σακούλα",
+    title: "HE105HM 011 Ηλεκτρική Σκούπα με σακούλα",
     category: "oikiakos-exoplismos", subcategory: "skoypes",
     image: "https://www.euronics.gr/images/thumbs/11808891_480.jpeg", images: ["https://www.euronics.gr/images/thumbs/11808891_480.jpeg"],
     price: 85.9,
@@ -441,7 +441,7 @@ export const realProducts: Product[] = [
   {
     id: "r-134236", sku: "134236", ean: "7333394022116", slug: "aeg-ab51c1db-sakoyla",
     brand: "AEG", brandSlug: "aeg",
-    title: "AEG AB51C1DB Ηλεκτρική Σκούπα με σακούλα",
+    title: "AB51C1DB Ηλεκτρική Σκούπα με σακούλα",
     category: "oikiakos-exoplismos", subcategory: "skoypes",
     image: "https://www.euronics.gr/images/thumbs/11808795_480.jpeg", images: ["https://www.euronics.gr/images/thumbs/11808795_480.jpeg"],
     price: 99.0,

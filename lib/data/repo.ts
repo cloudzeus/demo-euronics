@@ -129,10 +129,12 @@ export async function getRelated(p: Product, limit = 8) {
 }
 export async function getAccessoriesFor(p: Product) {
   const map: Record<string, string[]> = {
-    tileoraseis: ["p-jbl-flip-7"],
-    "air-condition": [],
-    smartphones: ["p-jbl-flip-7"],
-    laptops: ["p-ipad-a16-128"],
+    tileoraseis: ["r-108803", "p-jbl-flip-7"],
+    "air-condition": ["r-145807"],
+    smartphones: ["r-141249", "p-jbl-flip-7"],
+    laptops: ["p-ipad-a16-128", "r-150983"],
+    plyntiria: ["r-144730"],
+    "kafes-rofimata": ["r-138705"],
   };
   return getProductsByIds(map[p.subcategory] ?? []);
 }

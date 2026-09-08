@@ -134,7 +134,8 @@ export async function getHeroSlides(): Promise<HeroSlide[]> {
 export async function getDealOfDay(): Promise<{ product: Product; endsAt: string }> {
   const end = new Date();
   end.setHours(23, 59, 59, 0);
-  return { product: products[1], endsAt: end.toISOString() };
+  const product = products.find((p) => p.id === "p-lg-43nano82") ?? products[0];
+  return { product, endsAt: end.toISOString() };
 }
 export async function getWeeklyDeals(): Promise<{ products: Product[]; endsAt: string; label: string }> {
   // Real expiry: next Sunday 23:59 (Omnibus: no fake countdowns)
@@ -142,5 +143,6 @@ export async function getWeeklyDeals(): Promise<{ products: Product[]; endsAt: s
   end.setDate(end.getDate() + ((7 - end.getDay()) % 7 || 7));
   end.setHours(23, 59, 0, 0);
   const label = new Intl.DateTimeFormat("el-GR", { weekday: "long", day: "numeric", month: "long" }).format(end);
-  return { products, endsAt: end.toISOString(), label: `Λήγουν ${label}` };
+  const deals = products.filter((p) => p.tags?.includes("weekly-deals") || (p.wasPrice && p.image && p.image.startsWith("http")));
+  return { products: deals, endsAt: end.toISOString(), label: `Λήγουν ${label}` };
 }

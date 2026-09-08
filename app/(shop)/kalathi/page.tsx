@@ -6,7 +6,7 @@ import { getProductsByIds, getServicesFull } from "@/lib/data/repo";
 export const metadata: Metadata = { title: "Καλάθι" };
 
 export default async function CartPage() {
-  const [services, crossSell] = await Promise.all([getServicesFull(), getProductsByIds(["p-jbl-flip-7", "p-philips-airfryer", "p-rowenta-iron"])]);
+  const [services, crossSell] = await Promise.all([getServicesFull(), getProductsByIds(["r-138705", "r-140497", "r-138544", "r-119009"])]);
   return (
     <div className="eu-container">
       <Breadcrumbs items={[{ label: "Καλάθι" }]} />
