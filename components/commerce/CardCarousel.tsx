@@ -11,9 +11,9 @@ import { useDevice } from "@/components/fluid/DeviceProvider";
  * cramped. Whatever does not fit is reached with the arrows or a swipe,
  * one card at a time: the first slides out, the next slides in. Motion
  * is tweened with GSAP (power3.out); there is never a scrollbar. With
- * few items it is a plain grid.
+ * few items it is a plain grid. Phones show one card per view.
  */
-export function CardCarousel({ children, minItem = 240, minItemNarrow = 165, gap = 16, label = "Προϊόντα" }: { children: ReactNode; minItem?: number; minItemNarrow?: number; gap?: number; label?: string }) {
+export function CardCarousel({ children, minItem = 240, minItemNarrow = 300, gap = 16, label = "Προϊόντα" }: { children: ReactNode; minItem?: number; minItemNarrow?: number; gap?: number; label?: string }) {
   const items = Children.toArray(children);
   const { device } = useDevice();
   const viewport = useRef<HTMLDivElement>(null);
@@ -31,7 +31,7 @@ export function CardCarousel({ children, minItem = 240, minItemNarrow = 165, gap
   }, []);
 
   const min = w && w < 520 ? minItemNarrow : minItem;
-  const fallback = device === "mobile" ? 2 : device === "tablet" ? 3 : 4;
+  const fallback = device === "mobile" ? 1 : device === "tablet" ? 3 : 4;
   const per = w ? Math.max(1, Math.floor((w + gap) / (min + gap))) : fallback;
   const multi = items.length > per;
   const maxStart = Math.max(0, items.length - per);

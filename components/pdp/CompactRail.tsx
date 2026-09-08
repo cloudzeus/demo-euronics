@@ -15,7 +15,7 @@ export function CompactRail({ title, products }: { title: string; products: Prod
   return (
     <section aria-label={title} className="rounded-2xl bg-eu-surface p-4 @md:p-5">
       <h2 className="m-0 font-heading font-bold text-eu-ink text-[length:var(--fs-19)] mb-3">{title}</h2>
-      <CardCarousel label={title} minItem={260} minItemNarrow={260} gap={12}>
+      <CardCarousel label={title} minItem={260} minItemNarrow={300} gap={12}>
         {products.map((p) => (
           <div key={p.id} className="bg-white rounded-xl border border-eu-line p-3 flex items-center gap-3 min-w-0 h-full">
             <Link href={`/proion/${p.slug}`} className="shrink-0">
