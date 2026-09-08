@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Heart, Plus, Scale } from "lucide-react";
+import { Heart, Plus, Scale, Eye } from "lucide-react";
 import type { Product } from "@/lib/data/types";
 import { discountPct, instalment, priceLong, priceShort, weekday } from "@/lib/format";
 import { useCart } from "./CartProvider";
@@ -23,7 +23,7 @@ import { ProductImage } from "@/components/commerce/ProductImage";
  * Every text ≥ 14px.
  */
 export function ProductCard({ product: p, priority = false }: { product: Product; priority?: boolean }) {
-  const { add, openQuickBuy, wishlist, toggleWishlist, compare, toggleCompare } = useCart();
+  const { add, openQuickBuy, openQuickView, wishlist, toggleWishlist, compare, toggleCompare } = useCart();
   const pct = discountPct(p.price, p.wasPrice);
   const monthly = instalment(p.price);
   const liked = wishlist.includes(p.id);
@@ -59,7 +59,10 @@ export function ProductCard({ product: p, priority = false }: { product: Product
               >
                 <Heart className="size-5" fill={liked ? "currentColor" : "none"} aria-hidden />
               </button>
-              <div className="absolute bottom-2.5 left-4 flex gap-1.5">
+              <button type="button" onClick={() => openQuickView(p)} aria-label="Γρήγορη προβολή" className="absolute bottom-3 right-3 h-10 rounded-full bg-white/95 shadow-[var(--shadow-card)] text-eu-navy font-bold text-[length:var(--fs-14)] inline-flex items-center gap-1.5 px-3 hover:bg-eu-navy hover:text-white">
+                <Eye className="size-4" aria-hidden /> <span className="hidden @md:inline">Γρήγορη προβολή</span>
+              </button>
+              <div className="absolute bottom-3 left-4 flex gap-1.5">
                 {p.energy && <EnergyChip cls={p.energy.cls} fiche={p.energy.fiche} compact={narrow} />}
                 {!p.energy && p.rating && <span className="bg-white border border-eu-line text-eu-ink-2 font-semibold text-[length:var(--fs-14)] px-2 py-1 rounded-md">★ {p.rating.value.toLocaleString("el-GR")} · {p.rating.count}</span>}
               </div>

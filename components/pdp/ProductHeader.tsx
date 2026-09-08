@@ -24,8 +24,8 @@ export function ProductHeader({ product: p, crumbs }: { product: Product; crumbs
   return (
     <header className="bg-eu-blue text-white eu-container">
       <div className="eu-canvas eu-gutter pt-4 pb-6 @lg:pb-8">
-        <nav aria-label="Διαδρομή" className="text-[length:var(--fs-15)] text-eu-on-dark-3 overflow-x-auto eu-scrollbar-none whitespace-nowrap mb-4">
-          <ol className="flex items-center gap-1.5 m-0 p-0 list-none">
+        <nav aria-label="Διαδρομή" className="text-[length:var(--fs-15)] text-eu-on-dark-3 mb-4">
+          <ol className="flex flex-wrap items-center gap-x-1.5 gap-y-0.5 m-0 p-0 list-none">
             <li>
               <Link href="/" className="hover:text-white">
                 Αρχική

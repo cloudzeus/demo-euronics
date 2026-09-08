@@ -1,6 +1,8 @@
 import { CartProvider } from "@/components/commerce/CartProvider";
 import { QuickBuySheet } from "@/components/commerce/QuickBuySheet";
 import { MiniCart } from "@/components/commerce/MiniCart";
+import { QuickViewSheet } from "@/components/commerce/QuickViewSheet";
+import { getProductsByIds } from "@/lib/data/repo";
 import { CompareTray } from "@/components/commerce/CompareTray";
 import { AnnouncementBar } from "@/components/site/AnnouncementBar";
 import { SiteHeader } from "@/components/site/SiteHeader";
@@ -9,7 +11,8 @@ import { SiteFooter } from "@/components/site/SiteFooter";
 import { CookieConsent } from "@/components/site/CookieConsent";
 
 /** Shop frame: terms rail, header, mega nav, page, footer + the three drawers (mini-cart, quick buy, compare). */
-export default function ShopLayout({ children }: LayoutProps<"/">) {
+export default async function ShopLayout({ children }: LayoutProps<"/">) {
+  const suggestions = await getProductsByIds(["p-jbl-flip-7", "r-108803", "r-138705", "r-145807"]);
   return (
     <CartProvider>
       <AnnouncementBar
@@ -24,8 +27,9 @@ export default function ShopLayout({ children }: LayoutProps<"/">) {
         {children}
       </main>
       <SiteFooter />
-      <MiniCart />
+      <MiniCart suggestions={suggestions} />
       <QuickBuySheet />
+      <QuickViewSheet />
       <CompareTray />
       <CookieConsent />
     </CartProvider>

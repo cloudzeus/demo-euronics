@@ -8,6 +8,7 @@ import type { Product } from "@/lib/data/types";
 import { priceShort, instalment, priceLong } from "@/lib/format";
 import { compareRows } from "@/lib/data/attributes";
 import { useCart } from "@/components/commerce/CartProvider";
+import { CompareStacked } from "./CompareStacked";
 import { ProductImage } from "@/components/commerce/ProductImage";
 
 /**
@@ -56,7 +57,10 @@ export function CompareTable({ initial }: { initial: Product[] }) {
           </Link>
         </div>
       </div>
-      <div className="overflow-x-auto rounded-2xl border border-eu-line bg-white">
+      <div className="@3xl:hidden">
+        <CompareStacked products={initial} rows={groups.map(([group, keys]) => ({ group, keys: keys.filter((k) => !onlyDiff || differs(k)) })).filter((g) => g.keys.length)} val={val} />
+      </div>
+      <div className="hidden @3xl:block rounded-2xl border border-eu-line bg-white">
         <table className="w-full table-fixed border-collapse text-[length:var(--fs-16)]" style={{ minWidth: `${180 + initial.length * 220}px` }}>
           <thead>
             <tr className="align-top">

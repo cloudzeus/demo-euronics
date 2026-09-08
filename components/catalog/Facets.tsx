@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ChevronDown, SlidersHorizontal, X } from "lucide-react";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
@@ -84,11 +84,11 @@ export function Facets({ result, showCategories = false }: { result: ListResult;
       </Group>
 
       <Group title="Μάρκα" open count={(sp.get("brand") ?? "").split(",").filter(Boolean).length}>
-        <div className="max-h-[260px] overflow-y-auto pr-1 grid gap-0.5">
+        <Limited>
           {result.brands.map((b) => (
             <Check key={b.slug} label={b.name} count={b.count} checked={has("brand", b.slug)} onChange={() => toggleIn("brand", b.slug)} />
           ))}
-        </div>
+        </Limited>
       </Group>
 
       {result.energies.length > 1 && (
@@ -103,9 +103,11 @@ export function Facets({ result, showCategories = false }: { result: ListResult;
         .filter((a) => a.key !== "Ενεργειακή κλάση")
         .map((a, i) => (
           <Group key={a.key} title={a.key} open={i < 4} count={(sp.get(`f_${a.key}`) ?? "").split("|").filter(Boolean).length}>
-            {a.values.map((v) => (
-              <Check key={v.value} label={v.value} count={v.count} checked={has(`f_${a.key}`, v.value, "|")} onChange={() => toggleIn(`f_${a.key}`, v.value, "|")} />
-            ))}
+            <Limited>
+              {a.values.map((v) => (
+                <Check key={v.value} label={v.value} count={v.count} checked={has(`f_${a.key}`, v.value, "|")} onChange={() => toggleIn(`f_${a.key}`, v.value, "|")} />
+              ))}
+            </Limited>
           </Group>
         ))}
     </div>
@@ -113,7 +115,7 @@ export function Facets({ result, showCategories = false }: { result: ListResult;
 
   return (
     <>
-      <aside className="hidden @3xl:block w-[280px] shrink-0 bg-white rounded-2xl border border-eu-line p-5 @3xl:sticky @3xl:top-16 @3xl:max-h-[calc(100dvh-5rem)] @3xl:overflow-y-auto" aria-label="Φίλτρα">
+      <aside className="hidden @3xl:block w-[280px] shrink-0 self-start bg-white rounded-2xl border border-eu-line p-5" aria-label="Φίλτρα">
         <div className="flex items-center justify-between mb-2">
           <h2 className="m-0 font-extrabold text-eu-ink text-[length:var(--fs-18)]">Φίλτρα</h2>
           {active.length > 0 && <span className="rounded-full bg-eu-navy text-white font-bold text-[length:var(--fs-13)] px-2.5 py-0.5">{active.length}</span>}
@@ -125,7 +127,7 @@ export function Facets({ result, showCategories = false }: { result: ListResult;
           <SheetTrigger className="inline-flex items-center gap-2 rounded-full border-2 border-eu-navy text-eu-navy font-extrabold text-[length:var(--fs-15)] px-5 min-h-12 bg-white">
             <SlidersHorizontal className="size-5" aria-hidden /> Φίλτρα{active.length ? ` · ${active.length}` : ""}
           </SheetTrigger>
-          <SheetContent side="bottom" className="max-h-[88dvh] overflow-y-auto rounded-t-2xl p-5">
+          <SheetContent side="bottom" className="max-h-[92dvh] overflow-y-auto rounded-t-2xl p-5">
             <SheetTitle className="font-extrabold text-eu-ink text-[length:var(--fs-19)] mb-3">Φίλτρα</SheetTitle>
             {body}
             <div className="sticky bottom-0 bg-white pt-3 mt-3 border-t border-eu-line">
@@ -135,6 +137,23 @@ export function Facets({ result, showCategories = false }: { result: ListResult;
         </Sheet>
       </div>
     </>
+  );
+}
+
+/** Shows the first 6 options; the rest open in place — never an inner scrollbar. */
+function Limited({ children, limit = 6 }: { children: React.ReactNode; limit?: number }) {
+  const [all, setAll] = useState(false);
+  const items = React.Children.toArray(children);
+  const shown = all ? items : items.slice(0, limit);
+  return (
+    <div className="grid gap-0.5">
+      {shown}
+      {items.length > limit && (
+        <button type="button" onClick={() => setAll(!all)} className="justify-self-start text-eu-blue font-bold text-[length:var(--fs-14)] min-h-9 hover:underline">
+          {all ? "Λιγότερα" : `+ ${items.length - limit} ακόμη`}
+        </button>
+      )}
+    </div>
   );
 }
 

@@ -22,7 +22,7 @@ export function PolicyPage({ policy, children }: { policy: Policy; children?: Re
       <PageIntro kicker="Εξυπηρέτηση" title={policy.title} lead={policy.intro} />
       <div className="eu-canvas eu-gutter pb-12 grid grid-cols-1 @lg:grid-cols-[220px_minmax(0,1fr)] gap-8 items-start">
         <nav aria-label="Εξυπηρέτηση" className="@lg:sticky @lg:top-4">
-          <ul className="m-0 p-0 list-none flex @lg:flex-col gap-1 overflow-x-auto eu-scrollbar-none">
+          <ul className="m-0 p-0 list-none flex flex-wrap @lg:flex-col gap-1">
             {NAV.map((n) => (
               <li key={n.href} className="shrink-0">
                 <Link href={n.href} aria-current={n.href === `/${policy.slug}` ? "page" : undefined} className={`inline-flex rounded-full @lg:rounded-md px-3.5 py-2.5 min-h-11 items-center font-semibold text-[length:var(--fs-15)] ${n.href === `/${policy.slug}` ? "bg-eu-navy text-white" : "bg-eu-surface @lg:bg-transparent text-eu-ink-2 hover:bg-eu-chip"}`}>

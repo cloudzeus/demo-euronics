@@ -446,7 +446,7 @@ export function Checkout({ stores }: { stores: StoreLite[] }) {
             <h2 className="m-0 font-extrabold text-[length:var(--fs-17)]">Η παραγγελία σου</h2>
             <span className="text-eu-on-dark text-[length:var(--fs-14)]">{lines.reduce((n, l) => n + l.qty, 0)} τεμ.</span>
           </div>
-          <ul className="m-0 p-0 list-none divide-y divide-eu-line-2 max-h-[300px] overflow-y-auto">
+          <ul className="m-0 p-0 list-none divide-y divide-eu-line-2">
             {lines.map((l) => (
               <li key={l.product.id + (l.variant ?? "")} className="flex gap-3 items-start p-4">
                 <div className="relative shrink-0">

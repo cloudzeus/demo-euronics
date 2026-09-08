@@ -33,8 +33,8 @@ export default async function AllProducts({ searchParams }: { searchParams: Prom
       />
 
       <div className="eu-canvas eu-gutter pb-5">
-        <ul className="m-0 p-0 list-none flex gap-2 overflow-x-auto eu-scrollbar-none snap-x pb-1" aria-label="Κατηγορίες">
-          <li className="snap-start shrink-0">
+        <ul className="m-0 p-0 list-none flex flex-wrap gap-2" aria-label="Κατηγορίες">
+          <li>
             <Link href="/proionta" className={`inline-flex items-center rounded-full border-2 px-4 py-2.5 min-h-12 font-bold text-[length:var(--fs-15)] ${!sp.k ? "border-eu-navy bg-eu-navy text-white" : "border-eu-line bg-white text-eu-ink hover:border-eu-blue hover:text-eu-blue"}`}>
               Όλα
             </Link>
@@ -42,7 +42,7 @@ export default async function AllProducts({ searchParams }: { searchParams: Prom
           {tree.map((c) => {
             const on = sp.k === c.slug;
             return (
-              <li key={c.slug} className="snap-start shrink-0">
+              <li key={c.slug}>
                 <Link href={`/proionta?k=${c.slug}`} className={`inline-flex items-center gap-2 rounded-full border-2 px-4 py-2.5 min-h-12 font-bold text-[length:var(--fs-15)] ${on ? "border-eu-navy bg-eu-navy text-white" : "border-eu-line bg-white text-eu-ink hover:border-eu-blue hover:text-eu-blue"}`}>
                   {c.label}
                   <span className={`text-[length:var(--fs-13)] ${on ? "text-eu-yellow" : "text-eu-muted-2"}`}>{result.categories.find((x) => x.slug === c.slug)?.count ?? 0}</span>

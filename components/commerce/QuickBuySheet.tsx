@@ -29,7 +29,8 @@ export function QuickBuySheet() {
     <Sheet open={!!p} onOpenChange={(o) => !o && closeQuickBuy()}>
       <SheetContent
         side={device === "mobile" ? "bottom" : "right"}
-        className="w-full sm:max-w-[440px] p-0 gap-0 rounded-t-2xl sm:rounded-none border-0 shadow-[var(--shadow-overlay)]"
+        className="w-full p-0 gap-0 rounded-t-2xl sm:rounded-none border-0 shadow-[var(--shadow-overlay)]"
+        style={device === "mobile" ? undefined : { maxWidth: "min(100vw, 460px)" }}
         showCloseButton={false}
       >
         {p && (

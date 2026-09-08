@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 const ITEMS = [
   ["overview", "Με μια ματιά"],
   ["description", "Περιγραφή"],
+  ["answers", "Γρήγορες απαντήσεις"],
   ["specs", "Χαρακτηριστικά"],
   ["compare", "Σύγκριση"],
   ["services", "Υπηρεσίες & παράδοση"],
@@ -29,11 +30,11 @@ export function SectionNav({ available }: { available: string[] }) {
     return () => io.disconnect();
   }, [items]);
   return (
-    <nav aria-label="Ενότητες προϊόντος" className="sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-eu-line eu-container">
-      <ul className="eu-canvas eu-gutter m-0 p-0 list-none flex gap-1 overflow-x-auto eu-scrollbar-none">
+    <nav aria-label="Ενότητες προϊόντος" className="static @3xl:sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-eu-line eu-container">
+      <ul className="eu-canvas eu-gutter m-0 p-0 list-none flex flex-wrap gap-x-1">
         {items.map(([id, label]) => (
-          <li key={id} className="shrink-0">
-            <a href={`#${id}`} aria-current={active === id ? "location" : undefined} className={`inline-flex items-center px-3.5 min-h-12 font-bold text-[length:var(--fs-16)] border-b-[3px] -mb-px ${active === id ? "border-eu-yellow text-eu-ink" : "border-transparent text-eu-muted hover:text-eu-ink"}`}>
+          <li key={id}>
+            <a href={`#${id}`} aria-current={active === id ? "location" : undefined} className={`inline-flex items-center px-3 min-h-11 font-bold text-[length:var(--fs-15)] @md:text-[length:var(--fs-16)] border-b-[3px] -mb-px ${active === id ? "border-eu-yellow text-eu-ink" : "border-transparent text-eu-muted hover:text-eu-ink"}`}>
               {label}
             </a>
           </li>

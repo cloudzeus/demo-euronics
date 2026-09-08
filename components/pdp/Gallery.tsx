@@ -13,7 +13,7 @@ export function Gallery({ images, title, badge, energy }: { images: string[]; ti
   return (
     <div className="grid grid-cols-1 @md:grid-cols-[72px_1fr] gap-3">
       {images.length > 1 && (
-        <ul className="m-0 p-0 list-none flex @md:flex-col gap-2 order-2 @md:order-1 overflow-x-auto eu-scrollbar-none">
+        <ul className="m-0 p-0 list-none flex flex-wrap @md:flex-col gap-2 order-2 @md:order-1">
           {images.map((im, k) => (
             <li key={im} className="shrink-0">
               <button type="button" aria-label={`Εικόνα ${k + 1}`} aria-pressed={k === i} onClick={() => setI(k)} className={`block rounded-lg border-2 ${k === i ? "border-eu-blue" : "border-transparent hover:border-eu-line"}`}>

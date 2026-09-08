@@ -3,6 +3,7 @@ import type { Product } from "@/lib/data/types";
 import { priceShort } from "@/lib/format";
 import { CompareCheckbox } from "@/components/commerce/WishlistButton";
 import { attributesOf } from "@/lib/data/attributes";
+import { CompareStacked } from "@/components/catalog/CompareStacked";
 import { ProductImage } from "@/components/commerce/ProductImage";
 
 /**
@@ -30,7 +31,10 @@ export function CompareSimilar({ product: p, similar }: { product: Product; simi
           Πλήρης σύγκριση →
         </Link>
       </div>
-      <div className="overflow-x-auto rounded-xl border border-eu-line">
+      <div className="@3xl:hidden">
+        <CompareStacked products={all} rows={[{ group: "Χαρακτηριστικά", keys }]} val={val} current={p.id} />
+      </div>
+      <div className="hidden @3xl:block rounded-xl border border-eu-line">
         <table className="w-full table-fixed border-collapse text-[length:var(--fs-16)]" style={{ minWidth: `${160 + all.length * 170}px` }}>
           <thead>
             <tr className="align-top">

@@ -15,11 +15,15 @@ import { ProductRail } from "@/components/pdp/ProductRail";
 import { StickyBar } from "@/components/pdp/StickyBar";
 import { RecentlyViewed } from "@/components/pdp/RecentlyViewed";
 import { getAccessoriesFor, getL1, getProductBySlug, getRelated, getServicesFull, getStores } from "@/lib/data/repo";
+import { Answers, SeoPanel } from "@/components/pdp/Answers";
+import { productJsonLd, productMetadata } from "@/lib/seo/product";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const p = await getProductBySlug((await params).slug);
   if (!p) return {};
-  return { title: `${p.brand} ${p.title}`, description: p.description?.slice(0, 160) };
+  const l1 = await getL1(p.category);
+  const l2 = l1?.children.find((c) => c.slug === p.subcategory);
+  return productMetadata(p, [{ label: "Προϊόντα", href: "/proionta" }, ...(l1 ? [{ label: l1.label, href: `/k/${l1.slug}` }] : []), ...(l1 && l2 ? [{ label: l2.name, href: `/k/${l1.slug}/${l2.slug}` }] : []), { label: p.title }]);
 }
 
 /**
@@ -38,20 +42,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const l2 = l1?.children.find((c) => c.slug === p.subcategory);
   const addons = services.filter((s) => s.addonAt?.includes("pdp") && s.slug !== "paradosi-egkatastasi");
   const similar = related.filter((x) => x.subcategory === p.subcategory).slice(0, 3);
-  const sections = ["overview", ...(p.description ? ["description"] : []), ...(p.specs?.length ? ["specs"] : []), ...(similar.length ? ["compare"] : []), "services", "reviews", "qa"];
-  const ld = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: `${p.brand} ${p.title}`,
-    sku: p.sku,
-    gtin13: p.ean,
-    brand: { "@type": "Brand", name: p.brand },
-    image: p.images ?? (p.image ? [p.image] : []),
-    description: p.description,
-    offers: { "@type": "Offer", priceCurrency: "EUR", price: p.price, availability: p.availability.kind === "order" ? "https://schema.org/PreOrder" : "https://schema.org/InStock", url: `https://www.euronics.gr/proion/${p.slug}` },
-    ...(p.rating ? { aggregateRating: { "@type": "AggregateRating", ratingValue: p.rating.value, reviewCount: p.rating.count } } : {}),
-  };
-  const crumbs = [{ label: "Προϊόντα", href: "/proionta" }, ...(l1 ? [{ label: l1.label, href: `/k/${l1.slug}` }] : []), ...(l1 && l2 ? [{ label: l2.name, href: `/k/${l1.slug}/${l2.slug}` }] : []), { label: p.title }];
+  const sections = ["overview", ...(p.description ? ["description"] : []), "answers", ...(p.specs?.length ? ["specs"] : []), ...(similar.length ? ["compare"] : []), "services", "reviews", "qa"];
+  const crumbs: { label: string; href?: string }[] = [{ label: "Προϊόντα", href: "/proionta" }, ...(l1 ? [{ label: l1.label, href: `/k/${l1.slug}` }] : []), ...(l1 && l2 ? [{ label: l2.name, href: `/k/${l1.slug}/${l2.slug}` }] : []), { label: p.title }];
 
   return (
     <div className="eu-container">
@@ -124,6 +116,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           </section>
         )}
 
+        <Answers product={p} />
         {p.specs && p.specs.length > 0 && <SpecsTable specs={p.specs} energy={p.energy} />}
         <CompareSimilar product={p} similar={similar} />
         <ServicesDelivery product={p} services={services} />
@@ -133,9 +126,10 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         {accessories.length > 0 && <ProductRail title="Ταιριάζει με αυτό το προϊόν" products={accessories} />}
         {related.length > 0 && <ProductRail title="Σχετικά προϊόντα" products={related} />}
         <RecentlyViewed current={{ id: p.id, slug: p.slug, title: p.title, brand: p.brand, image: p.image, price: p.price }} />
+        <SeoPanel product={p} crumbs={crumbs} />
       </div>
       <StickyBar product={p} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd(p, crumbs)) }} />
     </div>
   );
 }

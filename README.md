@@ -20,6 +20,16 @@ npm run build
 | `/checkout` | Checkout κατά την πρόταση: express (Apple/Google Pay/IRIS), αριθμημένες ενότητες 1–4 με «Αλλαγή», επιλογή παράδοσης με κόστος/χρόνο, ΑΑΔΕ lookup, δόσεις ως chips, sticky σύνοψη με εικόνες, mobile sticky σύνολο + CTA, inline validation. |
 | `/odigos-agoras` | **Έξυπνοι οδηγοί αγοράς**: `tileoraseis`, `ypologistes`, `klimatistika`. 5–6 ερωτήσεις → βαθμολόγηση κάθε μοντέλου στα πραγματικά χαρακτηριστικά του (`lib/guides/smart.ts`) → «Τι χρειάζεσαι», πρόταση με **αιτιολόγηση** (✓ γιατί / ⚠ τι να έχεις υπόψη), 2 εναλλακτικές, σύγκριση, λίστα με τα φίλτρα του οδηγού. Είσοδοι: αρχική (ζώνη 11), mega menu, σελίδες κατηγορίας, άδειο καλάθι, footer. |
 
+### v3.1 — mini cart, quick view, SEO · AEO · GEO, χωρίς scrollers
+
+| Τι | Πού |
+|---|---|
+| **Mini cart slider** στο επίπεδο του buy box/checkout: navy header, η γραμμή που μόλις προστέθηκε επισημασμένη, μπάρα δωρεάν μεταφορικών, «Ταιριάζει με το καλάθι σου», σύνοψη με μεταφορικά/δόσεις, κίτρινο CTA, trust strip | `components/commerce/MiniCart.tsx` |
+| **Quick view** από κάθε κάρτα (εικονίδιο ματιού): φωτογραφίες, key facts, τιμή + Omnibus, δόσεις, διαθεσιμότητα, ποσότητα, αγορά/καλάθι/λίστα/σύγκριση, σύνδεσμος στη σελίδα | `components/commerce/QuickViewSheet.tsx` |
+| **SEO · AEO · GEO ανά προϊόν**: title/description/canonical/OG/Twitter, JSON-LD graph (Organization, Product+Offer με Omnibus, shipping, return policy, ενεργειακή ετικέτα, BreadcrumbList, FAQPage, WebPage speakable), ορατή ενότητα «Γρήγορες απαντήσεις» (AEO) και σύνοψη οντότητας μιας πρότασης (GEO). Demo panel στο τέλος κάθε PDP δείχνει τα σήματα | `lib/seo/product.ts`, `components/pdp/Answers.tsx` |
+| **Στήλες ανά πλάτος**: `repeat(auto-fill, minmax(220px, 1fr))` — 2 στο κινητό, 3–5 ανάλογα με τον διαθέσιμο χώρο | `ProductGrid`, `ProductRail`, `DealsRail` |
+| **Κανένας εσωτερικός scroller**: φίλτρα με «+ N ακόμη» αντί για scroll, chips/breadcrumbs/thumbs/side nav σε wrap, deals σε grid, buy box χωρίς max-height, πίνακες σύγκρισης → stacked layout σε στενά πλάτη (`CompareStacked`) | παντού |
+
 Τυπογραφία: όλα τα κείμενα ≥ 14px (body 16px), fluid tokens `--fs-*`.
 
 ## Routes

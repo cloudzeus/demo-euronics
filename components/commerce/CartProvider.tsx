@@ -34,6 +34,10 @@ interface CartState {
   quickBuy: Product | null;
   openQuickBuy: (p: Product) => void;
   closeQuickBuy: () => void;
+  /** Quick view modal (card → product summary without leaving the list) */
+  quickView: Product | null;
+  openQuickView: (p: Product) => void;
+  closeQuickView: () => void;
   /** Mini cart drawer */
   miniOpen: boolean;
   setMiniOpen: (o: boolean) => void;
@@ -60,6 +64,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [wishlist, setWishlist] = useState<string[]>([]);
   const [compare, setCompare] = useState<string[]>([]);
   const [quickBuy, setQuickBuy] = useState<Product | null>(null);
+  const [quickView, setQuickView] = useState<Product | null>(null);
   const [miniOpen, setMiniOpen] = useState(false);
   const [lastAdded, setLastAdded] = useState<Product | null>(null);
   const [hydrated, setHydrated] = useState(false);
@@ -134,6 +139,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
       quickBuy,
       openQuickBuy: setQuickBuy,
       closeQuickBuy: () => setQuickBuy(null),
+      quickView,
+      openQuickView: setQuickView,
+      closeQuickView: () => setQuickView(null),
       miniOpen,
       setMiniOpen,
       lastAdded,
@@ -143,7 +151,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       toggleCompare,
       hydrated,
     };
-  }, [lines, quickBuy, miniOpen, lastAdded, wishlist, compare, hydrated, add, remove, setQty, toggleAddon, clear, toggleWishlist, toggleCompare]);
+  }, [lines, quickBuy, quickView, miniOpen, lastAdded, wishlist, compare, hydrated, add, remove, setQty, toggleAddon, clear, toggleWishlist, toggleCompare]);
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }

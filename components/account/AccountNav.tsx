@@ -22,7 +22,7 @@ export function AccountNav() {
         <div className="font-extrabold text-eu-ink text-[length:var(--fs-16)]">Γιάννης Παπαδόπουλος</div>
         <div className="text-eu-muted text-[length:var(--fs-14)]">giannis@example.gr</div>
       </div>
-      <ul className="m-0 p-0 list-none flex @lg:flex-col gap-1 overflow-x-auto eu-scrollbar-none">
+      <ul className="m-0 p-0 list-none flex flex-wrap @lg:flex-col gap-1">
         {items.map((it) => {
           const on = it.href === "/logariasmos" ? path === it.href : path.startsWith(it.href);
           const Icon = it.icon;

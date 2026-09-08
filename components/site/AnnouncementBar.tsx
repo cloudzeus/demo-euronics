@@ -14,9 +14,9 @@ export function AnnouncementBar({ left, right, accent, zoneNo }: Props) {
     <div className="relative bg-eu-navy text-eu-on-dark-2 eu-container">
       <ZoneBadge no={zoneNo} />
       <div className="eu-full eu-gutter-wide flex justify-between items-center gap-4 py-2.5 font-semibold text-[length:var(--fs-13-5)] tracking-wide">
-        <ul className="flex gap-4 @lg:gap-6 m-0 p-0 list-none overflow-x-auto eu-scrollbar-none whitespace-nowrap">
+        <ul className="flex gap-4 @lg:gap-6 m-0 p-0 list-none whitespace-nowrap min-w-0">
           {left.map((t, i) => (
-            <li key={t} className={i === 0 ? "text-white" : ""}>
+            <li key={t} className={`${i === 0 ? "text-white" : ""} ${i >= 1 ? "hidden @sm:block" : ""} ${i >= 2 ? "@sm:hidden @xl:block" : ""}`}>
               {t}
             </li>
           ))}

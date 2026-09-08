@@ -22,9 +22,9 @@ export function DealsRail({ products, endsAt, label, title, zoneNo }: { products
           </div>
           <Countdown endsAt={endsAt} variant="blocks" className="shrink-0" />
         </div>
-        <ul className="m-0 p-0 list-none flex @md:grid @md:grid-cols-2 @xl:grid-cols-4 gap-3.5 overflow-x-auto @md:overflow-visible snap-x snap-mandatory eu-scrollbar-none -mx-[clamp(14px,3vw,26px)] px-[clamp(14px,3vw,26px)] @md:mx-0 @md:px-0">
+        <ul className="m-0 p-0 list-none grid grid-cols-2 @xl:grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-3 @md:gap-4">
           {products.map((p, i) => (
-            <li key={p.id} className="snap-start shrink-0 w-[78%] @sm:w-[60%] @md:w-auto">
+            <li key={p.id}>
               <ProductCard product={p} priority={i < 2} />
             </li>
           ))}

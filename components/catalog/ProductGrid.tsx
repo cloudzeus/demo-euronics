@@ -23,7 +23,7 @@ export function ProductGrid({ products, view = "grid" }: { products: Product[]; 
     );
   }
   return (
-    <ul className="m-0 p-0 list-none grid grid-cols-2 @md:grid-cols-3 @xl:grid-cols-4 gap-3 @md:gap-3.5">
+    <ul className="m-0 p-0 list-none grid grid-cols-2 @xl:grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-3 @md:gap-4">
       {products.map((p, i) => (
         <li key={p.id}>
           <ProductCard product={p} priority={i < 4} />

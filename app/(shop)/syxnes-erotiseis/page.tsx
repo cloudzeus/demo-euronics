@@ -16,7 +16,7 @@ export default async function FaqPage() {
       <PageIntro kicker="Εξυπηρέτηση" title="Συχνές ερωτήσεις" lead="Αν δεν βρεις αυτό που ψάχνεις, κάλεσέ μας στο 210 483 5143 (Δευ–Παρ 9:00–17:00) ή γράψε στο eshop@euronics.gr." />
       <div className="eu-canvas eu-gutter pb-12 grid grid-cols-1 @lg:grid-cols-[220px_minmax(0,1fr)] gap-8 items-start">
         <nav aria-label="Ενότητες" className="@lg:sticky @lg:top-4">
-          <ul className="m-0 p-0 list-none flex @lg:flex-col gap-1 overflow-x-auto eu-scrollbar-none">
+          <ul className="m-0 p-0 list-none flex flex-wrap @lg:flex-col gap-1">
             {groups.map((g) => (
               <li key={g} className="shrink-0">
                 <a href={`#${g}`} className="inline-flex rounded-full @lg:rounded-md px-3.5 py-2.5 min-h-11 items-center font-semibold text-[length:var(--fs-15)] bg-eu-surface @lg:bg-transparent text-eu-ink-2 hover:bg-eu-chip">

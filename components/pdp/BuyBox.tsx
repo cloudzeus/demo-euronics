@@ -56,7 +56,7 @@ export function BuyBox({ product: p, addons, stores, accessory }: { product: Pro
 
   const box = "rounded-xl border-2 p-3.5 cursor-pointer";
   return (
-    <aside className="min-w-0 w-full @lg:sticky @lg:top-16 @lg:max-h-[calc(100dvh-5rem)] @lg:overflow-y-auto bg-white rounded-2xl border border-eu-line shadow-[var(--shadow-raised)] p-5 @lg:p-6 grid gap-5" aria-label="Αγορά">
+    <aside className="min-w-0 w-full bg-white rounded-2xl border border-eu-line shadow-[var(--shadow-raised)] p-5 @lg:p-6 grid gap-5" aria-label="Αγορά">
       <div>
         <div className="flex items-end gap-3 flex-wrap">
           <span className="font-extrabold text-eu-ink text-[length:var(--fs-44)] leading-none tracking-[-0.02em]">{priceShort(price)}</span>

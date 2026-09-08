@@ -15,8 +15,8 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
     itemListElement: all.map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.label, ...(c.href ? { item: `https://www.euronics.gr${c.href}` } : {}) })),
   };
   return (
-    <nav aria-label="Διαδρομή" className="eu-canvas eu-gutter py-3 text-[length:var(--fs-14)] text-eu-muted overflow-x-auto eu-scrollbar-none whitespace-nowrap">
-      <ol className="flex items-center gap-1 m-0 p-0 list-none">
+    <nav aria-label="Διαδρομή" className="eu-canvas eu-gutter py-3 text-[length:var(--fs-14)] text-eu-muted">
+      <ol className="flex flex-wrap items-center gap-x-1 gap-y-0.5 m-0 p-0 list-none">
         {all.map((c, i) => (
           <li key={i} className="flex items-center gap-1">
             {i > 0 && <ChevronRight className="size-3 text-eu-muted-3" aria-hidden />}

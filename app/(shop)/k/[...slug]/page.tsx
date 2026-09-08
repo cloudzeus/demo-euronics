@@ -44,9 +44,9 @@ export default async function CategoryPage({ params, searchParams }: { params: P
 
       {!l2 && (
         <div className="eu-canvas eu-gutter pb-6">
-          <ul className="m-0 p-0 list-none flex gap-2 overflow-x-auto eu-scrollbar-none snap-x">
+          <ul className="m-0 p-0 list-none flex flex-wrap gap-2">
             {l1.children.map((ch) => (
-              <li key={ch.slug} className="snap-start shrink-0">
+              <li key={ch.slug}>
                 <Link href={`/k/${l1.slug}/${ch.slug}`} className="inline-flex items-center rounded-full border border-eu-line bg-white px-4 py-2.5 min-h-11 font-semibold text-eu-ink text-[length:var(--fs-15)] hover:border-eu-blue hover:text-eu-blue">
                   {ch.name}
                 </Link>

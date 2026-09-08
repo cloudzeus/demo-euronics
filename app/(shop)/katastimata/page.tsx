@@ -45,7 +45,7 @@ export default async function StoresPage({ searchParams }: { searchParams: Promi
             <div className="text-eu-muted text-[length:var(--fs-15)] mb-2">
               <strong className="text-eu-ink">{stores.length}</strong> καταστήματα · ταξινόμηση κατά απόσταση
             </div>
-            <ul className="m-0 p-0 list-none grid gap-3 max-h-[70vh] overflow-y-auto pr-1">
+            <ul className="m-0 p-0 list-none grid gap-3">
               {stores.map((s) => (
                 <li key={s.id} className="bg-white rounded-xl border border-eu-line p-4 text-[length:var(--fs-15)]">
                   <div className="flex justify-between gap-2">

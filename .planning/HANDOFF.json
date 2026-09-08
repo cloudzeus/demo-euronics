@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "timestamp": "2026-09-08T10:57:34.452Z",
+  "timestamp": "2026-09-08T11:08:27.380Z",
   "source": "auto-postool",
   "partial": false,
   "phase": null,
@@ -22,11 +22,43 @@
     },
     {
       "status": "M",
-      "path": "components/account/OrderTimeline.tsx"
+      "path": "app/(shop)/k/[...slug]/page.tsx"
+    },
+    {
+      "status": "M",
+      "path": "app/(shop)/katastimata/page.tsx"
+    },
+    {
+      "status": "M",
+      "path": "app/(shop)/layout.tsx"
+    },
+    {
+      "status": "M",
+      "path": "app/(shop)/proion/[slug]/page.tsx"
+    },
+    {
+      "status": "M",
+      "path": "app/(shop)/proionta/page.tsx"
+    },
+    {
+      "status": "M",
+      "path": "app/(shop)/syxnes-erotiseis/page.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/account/AccountNav.tsx"
     },
     {
       "status": "M",
       "path": "components/catalog/CompareTable.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/catalog/Facets.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/catalog/ProductGrid.tsx"
     },
     {
       "status": "M",
@@ -38,6 +70,10 @@
     },
     {
       "status": "M",
+      "path": "components/commerce/CartProvider.tsx"
+    },
+    {
+      "status": "M",
       "path": "components/commerce/MiniCart.tsx"
     },
     {
@@ -46,15 +82,7 @@
     },
     {
       "status": "M",
-      "path": "components/commerce/ProductRow.tsx"
-    },
-    {
-      "status": "M",
       "path": "components/commerce/QuickBuySheet.tsx"
-    },
-    {
-      "status": "M",
-      "path": "components/guides/SmartGuide.tsx"
     },
     {
       "status": "M",
@@ -70,245 +98,49 @@
     },
     {
       "status": "M",
-      "path": "components/pdp/RecentlyViewed.tsx"
+      "path": "components/pdp/ProductHeader.tsx"
     },
     {
       "status": "M",
-      "path": "components/widgets/DealOfDayTile.tsx"
+      "path": "components/pdp/ProductRail.tsx"
     },
     {
       "status": "M",
-      "path": "lib/data/fixtures/products.real.ts"
+      "path": "components/pdp/SectionNav.tsx"
     },
     {
       "status": "M",
-      "path": "lib/data/fixtures/products.ts"
+      "path": "components/site/AnnouncementBar.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/site/Breadcrumbs.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/site/PolicyPage.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/widgets/DealsRail.tsx"
     },
     {
       "status": "??",
-      "path": "components/commerce/ProductImage.tsx"
+      "path": "components/catalog/CompareStacked.tsx"
     },
     {
       "status": "??",
-      "path": "public/img/products/r-108803-0.jpg"
+      "path": "components/commerce/QuickViewSheet.tsx"
     },
     {
       "status": "??",
-      "path": "public/img/products/r-112041-0.jpg"
+      "path": "components/pdp/Answers.tsx"
     },
     {
       "status": "??",
-      "path": "public/img/products/r-112338-0.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-130554-0.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-134236-0.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-134236-1.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-134843-0.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-134843-1.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-135731-0.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-138544-0.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-138544-1.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-138705-0.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-140497-0.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-140497-1.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-140515-0.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-141249-0.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-142829-0.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-142829-1.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-144730-0.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-144730-1.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-145524-0.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-145807-0.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-145957-0.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-145957-1.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-145957-2.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-146037-0.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-146037-1.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-146037-2.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-146545-0.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-146545-1.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-148891-0.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-148891-1.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-150109-0.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-150109-1.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-150109-2.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-150601-0.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-150980-0.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-150983-0.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-150983-1.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-152092-0.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-152124-0.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-152124-1.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-152124-2.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-152715-0.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-152715-1.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-152715-2.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-152715-3.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-154164-0.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-154164-1.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-157205-0.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-157206-0.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-157206-1.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-157206-2.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-71063-0.jpg"
-    },
-    {
-      "status": "??",
-      "path": "public/img/products/r-71063-1.jpg"
+      "path": "lib/seo/"
     }
   ],
   "next_action": null,
-  "context_notes": "Recent commits:\ndecdc65 v3: full product list with characteristic facets, attribute-based compare, PDP overhaul, cart + checkout redesign, smart buying guides, readable type\nbf49fbd Real product titles, verified images, merchandising picks, README with routes\n6e750d7 Full shop: catalog, listing with URL facets, PDP, cart, 3-step checkout with payment & SCA, confirmation, tracking, account, stores, services, guides, policies, FAQ, contact, gift cards; full-width header/hero; Manrope for Greek weights\n4f1f581 Real euronics.gr products/stores fixtures, cart v2 with persistence, mini-cart, compare tray, cookie consent, shop layout\n72edf3a Fix nested anchor in product card, AC product photo, dense proposal tables, README"
+  "context_notes": "Recent commits:\nadf4ea5 Fixed product-image frame everywhere; all product photos served locally\ndecdc65 v3: full product list with characteristic facets, attribute-based compare, PDP overhaul, cart + checkout redesign, smart buying guides, readable type\nbf49fbd Real product titles, verified images, merchandising picks, README with routes\n6e750d7 Full shop: catalog, listing with URL facets, PDP, cart, 3-step checkout with payment & SCA, confirmation, tracking, account, stores, services, guides, policies, FAQ, contact, gift cards; full-width header/hero; Manrope for Greek weights\n4f1f581 Real euronics.gr products/stores fixtures, cart v2 with persistence, mini-cart, compare tray, cookie consent, shop layout"
 }
