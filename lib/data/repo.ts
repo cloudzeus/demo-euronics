@@ -163,16 +163,25 @@ export async function getProductsByIds(ids: string[]) {
 export async function getRelated(p: Product, limit = 8) {
   return products.filter((x) => x.id !== p.id && (x.subcategory === p.subcategory || x.category === p.category)).slice(0, limit);
 }
-export async function getAccessoriesFor(p: Product) {
-  const map: Record<string, string[]> = {
-    tileoraseis: ["r-108803", "p-jbl-flip-7"],
-    "air-condition": ["r-145807"],
-    smartphones: ["r-141249", "p-jbl-flip-7"],
-    laptops: ["p-ipad-a16-128", "r-150983"],
-    plyntiria: ["r-144730"],
-    "kafes-rofimata": ["r-138705"],
+/** Complementary products («Ταιριάζει με αυτό το προϊόν»): other subcategories that go with this one, never the same kind. Max 4. */
+export async function getAccessoriesFor(p: Product, limit = 4) {
+  const complements: Record<string, string[]> = {
+    tileoraseis: ["foritos-ichos", "icheia", "home-cinema"],
+    smartphones: ["foritos-ichos", "tablets"],
+    laptops: ["tablets", "foritos-ichos"],
+    tablets: ["foritos-ichos", "smartphones"],
+    plyntiria: ["sideroma"],
+    skoypes: ["sideroma"],
+    sideroma: ["plyntiria"],
+    "kafes-rofimata": ["mageiriki"],
+    mageiriki: ["kafes-rofimata"],
+    psygeia: ["koyzines"],
+    koyzines: ["psygeia"],
   };
-  return getProductsByIds(map[p.subcategory] ?? []);
+  const subs = complements[p.subcategory] ?? [];
+  const list = products.filter((x) => x.id !== p.id && subs.includes(x.subcategory) && x.image);
+  list.sort((a, b) => subs.indexOf(a.subcategory) - subs.indexOf(b.subcategory) || (b.rating?.count ?? 0) - (a.rating?.count ?? 0));
+  return list.slice(0, limit);
 }
 export async function searchSuggest(q: string) {
   const n = norm(q);
