@@ -45,7 +45,7 @@ export function ProductHeader({ product: p, crumbs }: { product: Product; crumbs
             ))}
           </ol>
         </nav>
-        <div className="grid grid-cols-1 @lg:grid-cols-[minmax(0,1fr)_auto] gap-5 items-end">
+        <div className="grid grid-cols-1 @3xl:grid-cols-[minmax(0,1fr)_minmax(320px,42%)] gap-5 items-end">
           <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-2 mb-2">
               <Link href={`/brands/${p.brandSlug}`} className="rounded-full bg-white/15 hover:bg-white/25 text-white font-extrabold text-[length:var(--fs-15)] px-3 py-1.5 tracking-wide">
@@ -75,7 +75,7 @@ export function ProductHeader({ product: p, crumbs }: { product: Product; crumbs
             </div>
           </div>
           {facts.length > 0 && (
-            <dl className="m-0 grid grid-cols-2 @sm:grid-cols-4 @lg:grid-cols-2 @xl:grid-cols-4 gap-2 @lg:min-w-[420px]">
+            <dl className={`m-0 grid gap-2 min-w-0 ${facts.length >= 4 ? "grid-cols-2 @xl:grid-cols-4" : facts.length === 3 ? "grid-cols-3" : "grid-cols-2"}`}>
               {facts.map((f) => (
                 <div key={f.k} className="rounded-lg bg-white/10 px-3.5 py-3 min-w-0">
                   <dt className="text-eu-on-dark-3 text-[length:var(--fs-14)] truncate">{f.k}</dt>

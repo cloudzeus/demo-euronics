@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "timestamp": "2026-09-08T12:19:04.712Z",
+  "timestamp": "2026-09-08T12:20:52.374Z",
   "source": "auto-postool",
   "partial": false,
   "phase": null,
@@ -15,16 +15,7 @@
   "blockers": [],
   "human_actions_pending": [],
   "decisions": [],
-  "uncommitted_files": [
-    {
-      "status": "M",
-      "path": "components/commerce/CardCarousel.tsx"
-    },
-    {
-      "status": "M",
-      "path": "components/pdp/CompactRail.tsx"
-    }
-  ],
+  "uncommitted_files": [],
   "next_action": null,
-  "context_notes": "Recent commits:\nd38aeaa Carousel arrows stay inside the rail on narrow widths (no horizontal overflow on phones)\nfd7fa81 Card rails: arrows move one card at a time (first slides out, next slides in), GSAP power3.out tween, dots per position\n38dac23 Adaptive card rails: cards per view from measured width at optimal card size, arrows/swipe for the rest, last page flush, no scrollbar (related, deals, cart cross-sell, complementary strip)\nfce3892 PDP: compact «Ταιριάζει με αυτό το προϊόν» strip with complementary categories (max 4, light tiles); related rail fits 5 per row\n8438053 PDP: main photo fills the gallery when there is a single image; related capped at 5; accessories rail removed"
+  "context_notes": "Recent commits:\nf38163c Card rails: one card per view on phones\nd38aeaa Carousel arrows stay inside the rail on narrow widths (no horizontal overflow on phones)\nfd7fa81 Card rails: arrows move one card at a time (first slides out, next slides in), GSAP power3.out tween, dots per position\n38dac23 Adaptive card rails: cards per view from measured width at optimal card size, arrows/swipe for the rest, last page flush, no scrollbar (related, deals, cart cross-sell, complementary strip)\nfce3892 PDP: compact «Ταιριάζει με αυτό το προϊόν» strip with complementary categories (max 4, light tiles); related rail fits 5 per row"
 }

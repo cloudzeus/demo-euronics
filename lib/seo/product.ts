@@ -34,10 +34,12 @@ const availText = (p: Product) => {
 };
 const topAttrs = (p: Product, n = 4) => attributesOf(p).filter((a) => !["Μάρκα", "Χρώμα", "Κατάσταση"].includes(a.key)).slice(0, n);
 const name = (p: Product) => `${p.brand} ${p.title}`;
+/** Lower-case only the first letter, so abbreviations like BTU / RAM / Wi-Fi keep their case. */
+const lc = (k: string) => k.charAt(0).toLowerCase() + k.slice(1);
 
 /** GEO: one citable sentence with the entities a generative engine needs. */
 export function geoSummary(p: Product) {
-  const attrs = topAttrs(p, 3).map((a) => `${a.key.toLowerCase()} ${a.value}`);
+  const attrs = topAttrs(p, 3).map((a) => `${lc(a.key)} ${a.value}`);
   return `${name(p)}${attrs.length ? ` με ${attrs.join(", ")}` : ""}, ${priceLong(p.price)}${p.wasPrice ? ` (από ${priceLong(p.wasPrice)})` : ""}, ${availText(p)} από τη Euronics, με εγγύηση 2 ετών και παραλαβή από 350 καταστήματα.`;
 }
 
@@ -49,7 +51,7 @@ export function answersFor(p: Product): QA[] {
   return [
     {
       q: `Για ποιον είναι το ${n};`,
-      a: hl.length ? `Το ${n} ταιριάζει σε όσους ζητούν ${hl.map((h) => h.replace(/\.$/, "").toLowerCase()).join(", ")}. ${attrs.length ? `Ξεχωρίζει για ${attrs.slice(0, 3).map((a) => `${a.key.toLowerCase()} ${a.value}`).join(", ")}.` : ""}` : `Το ${n} απευθύνεται σε όσους θέλουν ${attrs.slice(0, 3).map((a) => `${a.key.toLowerCase()} ${a.value}`).join(", ")}${p.rating ? `, με αξιολόγηση ${p.rating.value.toLocaleString("el-GR")}/5 από ${p.rating.count} αγοραστές` : ""}.`,
+      a: hl.length ? `Το ${n} ταιριάζει σε όσους ζητούν ${hl.map((h) => h.replace(/\.$/, "").toLowerCase()).join(", ")}. ${attrs.length ? `Ξεχωρίζει για ${attrs.slice(0, 3).map((a) => `${lc(a.key)} ${a.value}`).join(", ")}.` : ""}` : `Το ${n} απευθύνεται σε όσους θέλουν ${attrs.slice(0, 3).map((a) => `${lc(a.key)} ${a.value}`).join(", ")}${p.rating ? `, με αξιολόγηση ${p.rating.value.toLocaleString("el-GR")}/5 από ${p.rating.count} αγοραστές` : ""}.`,
     },
     {
       q: `Πόσο κοστίζει το ${p.title} και με ποιες δόσεις;`,
