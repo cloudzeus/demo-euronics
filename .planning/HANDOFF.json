@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "timestamp": "2026-09-08T11:08:27.380Z",
+  "timestamp": "2026-09-08T11:48:39.006Z",
   "source": "auto-postool",
   "partial": false,
   "phase": null,
@@ -26,14 +26,6 @@
     },
     {
       "status": "M",
-      "path": "app/(shop)/katastimata/page.tsx"
-    },
-    {
-      "status": "M",
-      "path": "app/(shop)/layout.tsx"
-    },
-    {
-      "status": "M",
       "path": "app/(shop)/proion/[slug]/page.tsx"
     },
     {
@@ -42,23 +34,7 @@
     },
     {
       "status": "M",
-      "path": "app/(shop)/syxnes-erotiseis/page.tsx"
-    },
-    {
-      "status": "M",
-      "path": "components/account/AccountNav.tsx"
-    },
-    {
-      "status": "M",
-      "path": "components/catalog/CompareTable.tsx"
-    },
-    {
-      "status": "M",
       "path": "components/catalog/Facets.tsx"
-    },
-    {
-      "status": "M",
-      "path": "components/catalog/ProductGrid.tsx"
     },
     {
       "status": "M",
@@ -66,39 +42,7 @@
     },
     {
       "status": "M",
-      "path": "components/checkout/Checkout.tsx"
-    },
-    {
-      "status": "M",
-      "path": "components/commerce/CartProvider.tsx"
-    },
-    {
-      "status": "M",
-      "path": "components/commerce/MiniCart.tsx"
-    },
-    {
-      "status": "M",
       "path": "components/commerce/ProductCard.tsx"
-    },
-    {
-      "status": "M",
-      "path": "components/commerce/QuickBuySheet.tsx"
-    },
-    {
-      "status": "M",
-      "path": "components/pdp/BuyBox.tsx"
-    },
-    {
-      "status": "M",
-      "path": "components/pdp/CompareSimilar.tsx"
-    },
-    {
-      "status": "M",
-      "path": "components/pdp/Gallery.tsx"
-    },
-    {
-      "status": "M",
-      "path": "components/pdp/ProductHeader.tsx"
     },
     {
       "status": "M",
@@ -106,41 +50,13 @@
     },
     {
       "status": "M",
-      "path": "components/pdp/SectionNav.tsx"
-    },
-    {
-      "status": "M",
-      "path": "components/site/AnnouncementBar.tsx"
-    },
-    {
-      "status": "M",
-      "path": "components/site/Breadcrumbs.tsx"
-    },
-    {
-      "status": "M",
-      "path": "components/site/PolicyPage.tsx"
-    },
-    {
-      "status": "M",
       "path": "components/widgets/DealsRail.tsx"
     },
     {
       "status": "??",
-      "path": "components/catalog/CompareStacked.tsx"
-    },
-    {
-      "status": "??",
-      "path": "components/commerce/QuickViewSheet.tsx"
-    },
-    {
-      "status": "??",
-      "path": "components/pdp/Answers.tsx"
-    },
-    {
-      "status": "??",
-      "path": "lib/seo/"
+      "path": "components/fluid/StickySidebar.tsx"
     }
   ],
   "next_action": null,
-  "context_notes": "Recent commits:\nadf4ea5 Fixed product-image frame everywhere; all product photos served locally\ndecdc65 v3: full product list with characteristic facets, attribute-based compare, PDP overhaul, cart + checkout redesign, smart buying guides, readable type\nbf49fbd Real product titles, verified images, merchandising picks, README with routes\n6e750d7 Full shop: catalog, listing with URL facets, PDP, cart, 3-step checkout with payment & SCA, confirmation, tracking, account, stores, services, guides, policies, FAQ, contact, gift cards; full-width header/hero; Manrope for Greek weights\n4f1f581 Real euronics.gr products/stores fixtures, cart v2 with persistence, mini-cart, compare tray, cookie consent, shop layout"
+  "context_notes": "Recent commits:\n8225424 Mini cart redesign, quick view, per-product SEO/AEO/GEO, width-adaptive columns, no inner scrollers\nadf4ea5 Fixed product-image frame everywhere; all product photos served locally\ndecdc65 v3: full product list with characteristic facets, attribute-based compare, PDP overhaul, cart + checkout redesign, smart buying guides, readable type\nbf49fbd Real product titles, verified images, merchandising picks, README with routes\n6e750d7 Full shop: catalog, listing with URL facets, PDP, cart, 3-step checkout with payment & SCA, confirmation, tracking, account, stores, services, guides, policies, FAQ, contact, gift cards; full-width header/hero; Manrope for Greek weights"
 }

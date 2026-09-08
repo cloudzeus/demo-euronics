@@ -41,7 +41,7 @@ export function ProductCard({ product: p, priority = false }: { product: Product
       {({ size }) => {
         const narrow = size === "xs" || size === "sm";
         return (
-          <article className={`bg-white rounded-2xl overflow-hidden flex flex-col h-full border transition-shadow hover:shadow-[var(--shadow-raised)] ${compared ? "border-eu-blue shadow-[0_0_0_2px_var(--eu-blue)]" : "border-eu-line shadow-[var(--shadow-card)]"}`}>
+          <article className={`bg-white rounded-2xl overflow-hidden flex flex-col h-full border transition-shadow hover:shadow-[var(--shadow-raised)] ${compared ? "border-eu-blue/50 shadow-[var(--shadow-card)]" : "border-eu-line shadow-[var(--shadow-card)]"}`}>
             <div className="relative bg-eu-surface-2 p-3">
               <Link href={`/proion/${p.slug}`} className="block" aria-label={`${p.brand} ${p.title}`}>
                 <ProductImage src={p.image} sizes="(max-width: 640px) 50vw, 320px" priority={priority} />

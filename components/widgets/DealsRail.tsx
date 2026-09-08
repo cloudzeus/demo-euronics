@@ -22,7 +22,7 @@ export function DealsRail({ products, endsAt, label, title, zoneNo }: { products
           </div>
           <Countdown endsAt={endsAt} variant="blocks" className="shrink-0" />
         </div>
-        <ul className="m-0 p-0 list-none grid grid-cols-2 @xl:grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-3 @md:gap-4">
+        <ul className="m-0 p-0 list-none grid grid-cols-2 @xl:grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-3 @md:gap-4">
           {products.map((p, i) => (
             <li key={p.id}>
               <ProductCard product={p} priority={i < 2} />

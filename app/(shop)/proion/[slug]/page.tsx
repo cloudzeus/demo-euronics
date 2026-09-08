@@ -16,6 +16,7 @@ import { StickyBar } from "@/components/pdp/StickyBar";
 import { RecentlyViewed } from "@/components/pdp/RecentlyViewed";
 import { getAccessoriesFor, getL1, getProductBySlug, getRelated, getServicesFull, getStores } from "@/lib/data/repo";
 import { Answers, SeoPanel } from "@/components/pdp/Answers";
+import { StickySidebar } from "@/components/fluid/StickySidebar";
 import { productJsonLd, productMetadata } from "@/lib/seo/product";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -49,8 +50,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     <div className="eu-container">
       <ProductHeader product={p} crumbs={crumbs} />
       <article className="eu-canvas eu-gutter py-6 @lg:py-8">
-        <div className="grid grid-cols-1 @lg:grid-cols-[minmax(0,1fr)_420px] @xl:grid-cols-[minmax(0,1fr)_460px] gap-6 @lg:gap-10 items-start">
-          <div className="min-w-0 grid gap-6">
+        <div className="grid grid-cols-1 @lg:grid-cols-[minmax(0,1fr)_420px] @xl:grid-cols-[minmax(0,1fr)_460px] gap-6 @lg:gap-10 items-stretch">
+          <div className="min-w-0 grid gap-6 content-start">
             <Gallery images={p.images?.length ? p.images : p.image ? [p.image] : []} title={p.title} badge={p.badge} energy={p.energy} />
             {p.tradeIn && (
               <div className="rounded-xl bg-eu-surface p-4 flex items-center gap-3">
@@ -64,9 +65,9 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               </div>
             )}
           </div>
-          <div className="min-w-0">
+          <StickySidebar className="min-w-0">
             <BuyBox product={p} addons={addons} stores={stores.slice(0, 8)} accessory={accessories[0] ?? null} />
-          </div>
+          </StickySidebar>
         </div>
       </article>
 

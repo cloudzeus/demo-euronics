@@ -5,6 +5,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ChevronDown, SlidersHorizontal, X } from "lucide-react";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import type { ListResult } from "@/lib/data/repo";
+import { StickySidebar } from "@/components/fluid/StickySidebar";
 
 /**
  * Facets live in the URL (?k=eikona-ixos&brand=lg,samsung&min=200&max=800
@@ -102,7 +103,7 @@ export function Facets({ result, showCategories = false }: { result: ListResult;
       {result.attributes
         .filter((a) => a.key !== "Ενεργειακή κλάση")
         .map((a, i) => (
-          <Group key={a.key} title={a.key} open={i < 4} count={(sp.get(`f_${a.key}`) ?? "").split("|").filter(Boolean).length}>
+          <Group key={a.key} title={a.key} open={i < 2} count={(sp.get(`f_${a.key}`) ?? "").split("|").filter(Boolean).length}>
             <Limited>
               {a.values.map((v) => (
                 <Check key={v.value} label={v.value} count={v.count} checked={has(`f_${a.key}`, v.value, "|")} onChange={() => toggleIn(`f_${a.key}`, v.value, "|")} />
@@ -115,13 +116,15 @@ export function Facets({ result, showCategories = false }: { result: ListResult;
 
   return (
     <>
-      <aside className="hidden @3xl:block w-[280px] shrink-0 self-start bg-white rounded-2xl border border-eu-line p-5" aria-label="Φίλτρα">
-        <div className="flex items-center justify-between mb-2">
-          <h2 className="m-0 font-extrabold text-eu-ink text-[length:var(--fs-18)]">Φίλτρα</h2>
-          {active.length > 0 && <span className="rounded-full bg-eu-navy text-white font-bold text-[length:var(--fs-13)] px-2.5 py-0.5">{active.length}</span>}
-        </div>
-        {body}
-      </aside>
+      <StickySidebar className="hidden @3xl:block w-[280px] shrink-0">
+        <aside className="bg-white rounded-2xl border border-eu-line p-5" aria-label="Φίλτρα">
+          <div className="flex items-center justify-between mb-2">
+            <h2 className="m-0 font-extrabold text-eu-ink text-[length:var(--fs-18)]">Φίλτρα</h2>
+            {active.length > 0 && <span className="rounded-full bg-eu-navy text-white font-bold text-[length:var(--fs-13)] px-2.5 py-0.5">{active.length}</span>}
+          </div>
+          {body}
+        </aside>
+      </StickySidebar>
       <div className="@3xl:hidden">
         <Sheet>
           <SheetTrigger className="inline-flex items-center gap-2 rounded-full border-2 border-eu-navy text-eu-navy font-extrabold text-[length:var(--fs-15)] px-5 min-h-12 bg-white">

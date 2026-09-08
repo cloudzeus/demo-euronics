@@ -65,7 +65,7 @@ export default async function CategoryPage({ params, searchParams }: { params: P
           </Link>
         </div>
       )}
-      <div className="eu-canvas eu-gutter pb-12 flex flex-col @3xl:flex-row gap-5 @3xl:gap-6 items-stretch @3xl:items-start">
+      <div className="eu-canvas eu-gutter pb-12 flex flex-col @3xl:flex-row gap-5 @3xl:gap-6 items-stretch">
         <Facets result={result} />
         <div className="flex-1 min-w-0 eu-container">
           <SortBar total={result.total} page={result.page} pages={result.pages} />
