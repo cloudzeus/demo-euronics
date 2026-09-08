@@ -32,7 +32,8 @@ export function CardCarousel({ children, minItem = 240, minItemNarrow = 300, gap
 
   const min = w && w < 520 ? minItemNarrow : minItem;
   const fallback = device === "mobile" ? 1 : device === "tablet" ? 3 : 4;
-  const per = w ? Math.max(1, Math.floor((w + gap) / (min + gap))) : fallback;
+  // Cards per view from the width; fewer items than that → they share the full width.
+  const per = Math.max(1, Math.min(items.length, w ? Math.floor((w + gap) / (min + gap)) : fallback));
   const multi = items.length > per;
   const maxStart = Math.max(0, items.length - per);
   const cur = Math.min(start, maxStart);
