@@ -31,7 +31,7 @@ export function CategoryGrid({ categories, featured, zoneNo }: { categories: Cat
             return (
               <li key={c.id} className={dark ? "bg-eu-navy" : "bg-white"}>
                 <Link
-                  href={`/${c.slug}`}
+                  href={`/k/${c.slug}`}
                   className={`flex justify-between items-start gap-3 p-4 @md:p-[20px_22px] h-full group ${dark ? "text-white" : "text-eu-ink"} hover:bg-eu-surface/60 ${dark ? "hover:bg-eu-navy-2" : ""}`}
                 >
                   <div>

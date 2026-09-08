@@ -42,14 +42,14 @@ export function MobileMenu({ categories }: { categories: NavCategory[] }) {
                   {isOpen && (
                     <ul className="m-0 p-0 pb-2 list-none bg-eu-surface">
                       <li>
-                        <Link href={`/${c.slug}`} className="block px-6 py-2.5 min-h-11 font-bold text-eu-blue text-[length:var(--fs-13)]">
+                        <Link href={`/k/${c.slug}`} className="block px-6 py-2.5 min-h-11 font-bold text-eu-blue text-[length:var(--fs-13)]">
                           Όλα · {c.label}
                         </Link>
                       </li>
                       {c.children.map((ch) => (
-                        <li key={ch}>
-                          <Link href={`/${c.slug}/${encodeURIComponent(ch)}`} className="block px-6 py-2.5 min-h-11 text-eu-ink-2 text-[length:var(--fs-13)]">
-                            {ch}
+                        <li key={ch.slug}>
+                          <Link href={`/k/${c.slug}/${ch.slug}`} className="block px-6 py-2.5 min-h-11 text-eu-ink-2 text-[length:var(--fs-13)]">
+                            {ch.name}
                           </Link>
                         </li>
                       ))}

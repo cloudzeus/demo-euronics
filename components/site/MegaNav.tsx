@@ -87,18 +87,18 @@ export function MegaNav() {
               <div>
                 <div className="flex items-baseline justify-between mb-3">
                   <h2 className="m-0 font-extrabold text-eu-ink text-[length:var(--fs-15)]">{active.label}</h2>
-                  <Link href={`/${active.slug}`} className="font-bold text-eu-blue text-[length:var(--fs-12)] hover:underline">
+                  <Link href={`/k/${active.slug}`} className="font-bold text-eu-blue text-[length:var(--fs-12)] hover:underline">
                     Όλα τα {active.count} προϊόντα →
                   </Link>
                 </div>
                 <ul className="grid grid-cols-3 gap-2 m-0 p-0 list-none">
                   {active.children.map((ch) => (
-                    <li key={ch}>
+                    <li key={ch.slug}>
                       <Link
-                        href={`/${active.slug}/${encodeURIComponent(ch)}`}
+                        href={`/k/${active.slug}/${ch.slug}`}
                         className="block border border-eu-line-3 rounded-md px-3 py-2.5 text-eu-ink-2 font-semibold text-[length:var(--fs-12-5)] hover:border-eu-blue hover:text-eu-blue"
                       >
-                        {ch}
+                        {ch.name}
                       </Link>
                     </li>
                   ))}
@@ -109,7 +109,7 @@ export function MegaNav() {
                 <p className="m-0 text-eu-ink-2 text-[length:var(--fs-12-5)] leading-relaxed">
                   Οδηγός αγοράς για {active.label.toLowerCase()} και οι προσφορές της εβδομάδας, με δόσεις χωρίς κάρτα.
                 </p>
-                <Link href={`/odigoi/${active.slug}`} className="inline-block mt-3 font-bold text-eu-blue text-[length:var(--fs-12)] hover:underline">
+                <Link href={`/odigoi`} className="inline-block mt-3 font-bold text-eu-blue text-[length:var(--fs-12)] hover:underline">
                   Διάβασε τον οδηγό →
                 </Link>
               </aside>

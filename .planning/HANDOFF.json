@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "timestamp": "2026-09-08T08:54:33.996Z",
+  "timestamp": "2026-09-08T09:12:02.443Z",
   "source": "auto-postool",
   "partial": false,
   "phase": null,
@@ -19,8 +19,68 @@
     {
       "status": "M",
       "path": ".planning/HANDOFF.json"
+    },
+    {
+      "status": "RM",
+      "path": "app/page.tsx -> app/(shop)/page.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/commerce/CartProvider.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/site/MegaNav.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/site/MobileMenu.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/widgets/CategoryGrid.tsx"
+    },
+    {
+      "status": "M",
+      "path": "lib/data/catalog.ts"
+    },
+    {
+      "status": "M",
+      "path": "lib/data/nav.ts"
+    },
+    {
+      "status": "M",
+      "path": "lib/data/types.ts"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/layout.tsx"
+    },
+    {
+      "status": "??",
+      "path": "components/commerce/CompareTray.tsx"
+    },
+    {
+      "status": "??",
+      "path": "components/commerce/FreeShippingProgress.tsx"
+    },
+    {
+      "status": "??",
+      "path": "components/commerce/MiniCart.tsx"
+    },
+    {
+      "status": "??",
+      "path": "components/site/CookieConsent.tsx"
+    },
+    {
+      "status": "??",
+      "path": "lib/data/fixtures/"
+    },
+    {
+      "status": "??",
+      "path": "lib/data/repo.ts"
     }
   ],
   "next_action": null,
-  "context_notes": "Recent commits:\ndae25e6 Euronics redesign: brand-normalized homepage prototype, 18-page proposal, audits, zones/fluid layer, Prisma schema\nd98819f Initial commit from Create Next App"
+  "context_notes": "Recent commits:\n72edf3a Fix nested anchor in product card, AC product photo, dense proposal tables, README\ndae25e6 Euronics redesign: brand-normalized homepage prototype, 18-page proposal, audits, zones/fluid layer, Prisma schema\nd98819f Initial commit from Create Next App"
 }
