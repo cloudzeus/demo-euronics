@@ -1,13 +1,13 @@
 "use client";
 
 import { useMemo, useState, type ReactNode } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { CreditCard, Landmark, Banknote, Smartphone, Store as StoreIcon, Truck, CalendarClock, ShieldCheck, Lock, RotateCcw, Pencil, Recycle, Check, Tag } from "lucide-react";
 import { instalment, priceLong } from "@/lib/format";
 import { useCart, type Fulfilment } from "@/components/commerce/CartProvider";
 import { Stepper } from "./Stepper";
+import { ProductImage } from "@/components/commerce/ProductImage";
 
 type StoreLite = { id: string; slug: string; name: string; city: string; address: string; zip: string; region: string; distanceKm: number; openUntil: string };
 type Pay = "card" | "no-card" | "iris" | "bank" | "cod" | "store";
@@ -449,8 +449,8 @@ export function Checkout({ stores }: { stores: StoreLite[] }) {
           <ul className="m-0 p-0 list-none divide-y divide-eu-line-2 max-h-[300px] overflow-y-auto">
             {lines.map((l) => (
               <li key={l.product.id + (l.variant ?? "")} className="flex gap-3 items-start p-4">
-                <div className="relative size-16 shrink-0 bg-eu-surface-2 rounded-lg">
-                  {l.product.image && <Image src={l.product.image} alt="" fill sizes="64px" className="object-contain p-1.5" unoptimized={l.product.image.startsWith("http")} />}
+                <div className="relative shrink-0">
+                  <ProductImage src={l.product.image} sizes="64px" className="size-16" rounded="rounded-lg" />
                   <span className="absolute -top-2 -right-2 size-6 rounded-full bg-eu-navy text-white text-[length:var(--fs-13)] font-bold inline-flex items-center justify-center">{l.qty}</span>
                 </div>
                 <div className="min-w-0 flex-1">

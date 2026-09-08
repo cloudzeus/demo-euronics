@@ -1,6 +1,6 @@
-import Image from "next/image";
 import type { Order } from "@/lib/data/types";
 import { priceLong } from "@/lib/format";
+import { ProductImage } from "@/components/commerce/ProductImage";
 
 const STATUS: Record<Order["status"], { label: string; tone: string }> = {
   pending: { label: "Αναμονή πληρωμής", tone: "bg-eu-amber/15 text-eu-amber" },
@@ -63,7 +63,7 @@ export function OrderTimeline({ order: o }: { order: Order }) {
       <ul className="m-0 p-0 list-none divide-y divide-eu-line-2">
         {o.lines.map((l) => (
           <li key={l.productId} className="flex gap-3 py-2.5 items-center text-[length:var(--fs-15)]">
-            <div className="relative size-12 shrink-0 bg-eu-surface-2 rounded-md">{l.image && <Image src={l.image} alt="" fill sizes="48px" className="object-contain p-1" unoptimized={l.image.startsWith("http")} />}</div>
+            <ProductImage src={l.image} sizes="48px" className="size-12" rounded="rounded-md" />
             <div className="flex-1 min-w-0">
               <div className="font-bold text-eu-ink">
                 {l.brand} {l.title}

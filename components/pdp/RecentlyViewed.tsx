@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { priceShort } from "@/lib/format";
+import { ProductImage } from "@/components/commerce/ProductImage";
 
 type Mini = { id: string; slug: string; title: string; brand: string; image: string | null; price: number };
 const KEY = "euronics.recent.v1";
@@ -30,9 +30,9 @@ export function RecentlyViewed({ current }: { current: Mini }) {
         {items.map((x) => (
           <li key={x.id}>
             <Link href={`/proion/${x.slug}`} className="block rounded-lg border border-eu-line p-2 hover:border-eu-blue">
-              <div className="relative aspect-square bg-eu-surface-2 rounded-md mb-2">{x.image && <Image src={x.image} alt="" fill sizes="160px" className="object-contain p-2" unoptimized={x.image.startsWith("http")} />}</div>
+              <ProductImage src={x.image} sizes="160px" className="w-full mb-2" rounded="rounded-md" />
               <div className="text-eu-muted text-[length:var(--fs-14)]">{x.brand}</div>
-              <div className="font-bold text-eu-ink text-[length:var(--fs-15)] line-clamp-2 leading-tight">{x.title}</div>
+              <div className="font-bold text-eu-ink text-[length:var(--fs-15)] line-clamp-2 min-h-[2.6em] leading-tight">{x.title}</div>
               <div className="font-extrabold text-eu-ink text-[length:var(--fs-16)] mt-1">{priceShort(x.price)}</div>
             </Link>
           </li>

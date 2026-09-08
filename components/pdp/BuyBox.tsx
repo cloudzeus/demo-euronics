@@ -2,12 +2,12 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { Minus, Plus, Store as StoreIcon, Truck, CalendarClock, Package } from "lucide-react";
 import type { Product, Service, Store } from "@/lib/data/types";
 import { discountPct, instalment, priceLong, priceShort, weekday } from "@/lib/format";
 import { useCart, type CartAddon } from "@/components/commerce/CartProvider";
 import { WishlistButton, CompareCheckbox } from "@/components/commerce/WishlistButton";
+import { ProductImage } from "@/components/commerce/ProductImage";
 
 /**
  * Sticky buy box. Price + Omnibus 30-day price, instalments with and
@@ -179,7 +179,7 @@ export function BuyBox({ product: p, addons, stores, accessory }: { product: Pro
           {accessory && (
             <label className={`${box} flex items-start gap-2.5 ${withAcc ? "border-eu-blue bg-eu-chip" : "border-eu-line hover:border-eu-blue"}`}>
               <input type="checkbox" checked={withAcc} onChange={() => setWithAcc((v) => !v)} className="mt-1 size-4 accent-eu-blue" />
-              <span className="relative size-12 shrink-0 bg-eu-surface-2 rounded-md">{accessory.image && <Image src={accessory.image} alt="" fill sizes="48px" className="object-contain p-1" unoptimized={accessory.image.startsWith("http")} />}</span>
+              <ProductImage src={accessory.image} sizes="48px" className="size-12" rounded="rounded-md" />
               <span className="flex-1 min-w-0">
                 <span className="flex justify-between gap-2 font-bold text-eu-ink text-[length:var(--fs-15)]">
                   <span className="line-clamp-1 break-all">{accessory.brand} {accessory.title}</span>

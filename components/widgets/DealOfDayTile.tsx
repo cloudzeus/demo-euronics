@@ -1,11 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import { Plus } from "lucide-react";
 import type { Product } from "@/lib/data/types";
 import { discountPct, instalment, priceLong, priceShort } from "@/lib/format";
 import { useCart } from "@/components/commerce/CartProvider";
 import { Countdown } from "@/components/commerce/Countdown";
+import { ProductImage } from "@/components/commerce/ProductImage";
 
 /** Bento tile: deal of the day with a real countdown and Quick buy. */
 export function DealOfDayTile({ product: p, endsAt }: { product: Product; endsAt: string }) {
@@ -18,9 +18,7 @@ export function DealOfDayTile({ product: p, endsAt }: { product: Product; endsAt
         <Countdown endsAt={endsAt} />
       </div>
       <div className="flex gap-3 items-center">
-        <div className="relative size-[88px] shrink-0 bg-eu-surface-2 rounded-md">
-          {p.image && <Image src={p.image} alt="" fill sizes="88px" className="object-contain" unoptimized={p.image.startsWith("http")} />}
-        </div>
+        <ProductImage src={p.image} sizes="88px" className="size-[88px]" rounded="rounded-md" />
         <div className="min-w-0">
           <div className="font-medium text-eu-muted-2 text-[length:var(--fs-13)] mb-0.5">{p.brand}</div>
           <div className="font-bold text-eu-ink text-[length:var(--fs-15)] leading-[1.3]">{p.title}</div>

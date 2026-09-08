@@ -1,11 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import { X } from "lucide-react";
 import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 import { useCart } from "./CartProvider";
 import { instalment, priceLong, weekday } from "@/lib/format";
 import { useDevice } from "@/components/fluid/DeviceProvider";
+import { ProductImage } from "@/components/commerce/ProductImage";
 
 /**
  * Quick buy — «Αγορά με 1 κλικ» never orders silently. Directive
@@ -46,11 +46,7 @@ export function QuickBuySheet() {
             </div>
 
             <div className="flex gap-3 items-center">
-              <div className="size-[52px] bg-eu-surface-2 rounded-md overflow-hidden relative shrink-0">
-                {p.image ? (
-                  <Image src={p.image} alt="" fill sizes="52px" className="object-contain" unoptimized />
-                ) : null}
-              </div>
+              <ProductImage src={p.image} sizes="52px" className="size-[52px]" rounded="rounded-md" />
               <div className="min-w-0">
                 <div className="font-bold text-eu-ink text-[length:var(--fs-15)] leading-tight">
                   {p.brand} {p.title}

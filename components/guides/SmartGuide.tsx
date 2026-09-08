@@ -1,13 +1,13 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Check, AlertTriangle, RotateCcw, Sparkles, Scale, Heart } from "lucide-react";
 import type { Product } from "@/lib/data/types";
 import { GUIDES, evaluate, type Answers, type GuideKind } from "@/lib/guides/smart";
 import { instalment, priceLong, priceShort } from "@/lib/format";
 import { useCart } from "@/components/commerce/CartProvider";
+import { ProductImage } from "@/components/commerce/ProductImage";
 
 /**
  * Smart buying guide wizard: one question per screen, big tappable
@@ -185,12 +185,12 @@ function Pick({ s, rank, noun, compact = false, onAdd, onQuick, onCompare, compa
       </div>
       <div className={`p-5 grid gap-4 ${compact ? "" : "@2xl:grid-cols-[260px_minmax(0,1fr)]"}`}>
         <div className="grid gap-3">
-          <Link href={`/proion/${p.slug}`} className={`relative bg-eu-surface-2 rounded-xl block ${compact ? "aspect-[4/3]" : "aspect-square"}`}>
-            {p.image && <Image src={p.image} alt="" fill sizes="260px" className="object-contain p-3" unoptimized={p.image.startsWith("http")} />}
+          <Link href={`/proion/${p.slug}`} className="block">
+            <ProductImage src={p.image} sizes="260px" />
           </Link>
           <div>
             <div className="font-bold text-eu-muted-2 text-[length:var(--fs-13)] uppercase tracking-wide">{p.brand}</div>
-            <Link href={`/proion/${p.slug}`} className="font-bold text-eu-ink text-[length:var(--fs-18)] leading-tight hover:text-eu-blue">
+            <Link href={`/proion/${p.slug}`} className="block font-bold text-eu-ink text-[length:var(--fs-18)] leading-tight hover:text-eu-blue line-clamp-2 min-h-[2.4em]">
               {p.title}
             </Link>
             <div className="flex items-baseline gap-2 mt-2">

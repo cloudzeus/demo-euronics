@@ -1,9 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { Product } from "@/lib/data/types";
 import { priceShort } from "@/lib/format";
 import { CompareCheckbox } from "@/components/commerce/WishlistButton";
 import { attributesOf } from "@/lib/data/attributes";
+import { ProductImage } from "@/components/commerce/ProductImage";
 
 /**
  * In-page comparison: this product against up to three similar ones,
@@ -31,16 +31,16 @@ export function CompareSimilar({ product: p, similar }: { product: Product; simi
         </Link>
       </div>
       <div className="overflow-x-auto rounded-xl border border-eu-line">
-        <table className="w-full border-collapse text-[length:var(--fs-16)] min-w-[640px]">
+        <table className="w-full table-fixed border-collapse text-[length:var(--fs-16)]" style={{ minWidth: `${160 + all.length * 170}px` }}>
           <thead>
             <tr className="align-top">
-              <th className="text-left p-3 w-[160px] bg-eu-surface" />
+              <th className="text-left p-3 w-[160px] bg-eu-surface sticky left-0 z-10" />
               {all.map((x, i) => (
                 <th key={x.id} className={`text-left p-3 font-normal ${i === 0 ? "bg-eu-chip" : "bg-eu-surface"}`}>
-                  <div className="relative aspect-square bg-white rounded-md mb-2 max-w-[140px]">{x.image && <Image src={x.image} alt="" fill sizes="140px" className="object-contain p-2" unoptimized={x.image.startsWith("http")} />}</div>
-                  <div className="text-eu-muted text-[length:var(--fs-14)]">{x.brand}</div>
-                  {i === 0 ? <div className="font-bold text-eu-ink">{x.title}</div> : <Link href={`/proion/${x.slug}`} className="font-bold text-eu-ink hover:text-eu-blue">{x.title}</Link>}
-                  <div className="font-extrabold text-eu-ink text-[length:var(--fs-19)] mt-1">{priceShort(x.price)}</div>
+                  <ProductImage src={x.image} sizes="140px" className="w-full max-w-[140px] mb-2" rounded="rounded-lg" />
+                  <div className="text-eu-muted text-[length:var(--fs-14)] truncate">{x.brand}</div>
+                  {i === 0 ? <div className="font-bold text-eu-ink line-clamp-2 min-h-[2.6em] leading-tight">{x.title}</div> : <Link href={`/proion/${x.slug}`} className="block font-bold text-eu-ink hover:text-eu-blue line-clamp-2 min-h-[2.6em] leading-tight">{x.title}</Link>}
+                  <div className="font-extrabold text-eu-ink text-[length:var(--fs-19)] mt-1 min-h-[1.3em]">{priceShort(x.price)}</div>
                   {i === 0 ? <div className="mt-1 inline-block rounded-full bg-eu-navy text-white font-bold text-[length:var(--fs-13-5)] px-2 py-0.5">Αυτό το προϊόν</div> : <div className="mt-1"><CompareCheckbox id={x.id} /></div>}
                 </th>
               ))}

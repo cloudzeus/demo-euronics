@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { Minus, Plus, Trash2, Heart, ShieldCheck, Truck, RotateCcw, Store as StoreIcon, Sparkles, Tag, Check, ChevronRight } from "lucide-react";
 import type { Product, Service } from "@/lib/data/types";
@@ -9,6 +8,7 @@ import { instalment, priceLong, priceShort, weekday } from "@/lib/format";
 import { useCart } from "@/components/commerce/CartProvider";
 import { Stepper } from "./Stepper";
 import { ProductCard } from "@/components/commerce/ProductCard";
+import { ProductImage } from "@/components/commerce/ProductImage";
 
 /**
  * Cart. One card per line with a large image, availability with date,
@@ -120,9 +120,8 @@ export function CartView({ services, crossSell }: { services: Service[]; crossSe
               const liked = wishlist.includes(p.id);
               return (
                 <li key={p.id + (l.variant ?? "")} className="min-w-0 bg-white rounded-2xl border border-eu-line shadow-[var(--shadow-card)] p-4 @md:p-5 grid grid-cols-[96px_minmax(0,1fr)] @md:grid-cols-[140px_minmax(0,1fr)_auto] gap-4 @md:gap-5">
-                  <Link href={`/proion/${p.slug}`} className="relative aspect-square bg-eu-surface-2 rounded-xl block self-start">
-                    {p.image && <Image src={p.image} alt="" fill sizes="140px" className="object-contain p-2" unoptimized={p.image.startsWith("http")} />}
-                    {p.wasPrice && <span className="absolute top-0 left-0 bg-eu-red text-white font-extrabold text-[length:var(--fs-13)] px-2 py-1 rounded-br-lg rounded-tl-xl">−{Math.round((1 - p.price / p.wasPrice) * 100)}%</span>}
+                  <Link href={`/proion/${p.slug}`} className="block self-start">
+                    <ProductImage src={p.image} sizes="140px">{p.wasPrice && <span className="absolute top-0 left-0 bg-eu-red text-white font-extrabold text-[length:var(--fs-13)] px-2 py-1 rounded-br-lg rounded-tl-xl">−{Math.round((1 - p.price / p.wasPrice) * 100)}%</span>}</ProductImage>
                   </Link>
                   <div className="min-w-0 grid gap-2 content-start">
                     <div>

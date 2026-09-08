@@ -1,12 +1,12 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import type { Product } from "@/lib/data/types";
 import { discountPct, instalment, priceLong, priceShort } from "@/lib/format";
 import { useCart } from "./CartProvider";
 import { EnergyChip } from "./EnergyChip";
 import { WishlistButton } from "./WishlistButton";
+import { ProductImage } from "@/components/commerce/ProductImage";
 
 /** List view row: image, key specs, price block and actions in one line. */
 export function ProductRow({ product: p }: { product: Product }) {
@@ -15,9 +15,10 @@ export function ProductRow({ product: p }: { product: Product }) {
   const keySpecs = (p.specs ?? []).slice(0, 4);
   return (
     <article className="bg-white rounded-lg shadow-[var(--shadow-card)] p-3.5 grid grid-cols-[96px_1fr] @md:grid-cols-[140px_1fr_220px] gap-4 items-start">
-      <Link href={`/proion/${p.slug}`} className="relative aspect-square bg-eu-surface-2 rounded-md block">
-        {p.image && <Image src={p.image} alt="" fill sizes="140px" className="object-contain p-2" unoptimized={p.image.startsWith("http")} />}
+      <Link href={`/proion/${p.slug}`} className="block">
+        <ProductImage src={p.image} sizes="140px" rounded="rounded-lg">
         {pct !== null && <span className="absolute top-0 left-0 bg-eu-red text-white font-extrabold text-[length:var(--fs-13)] px-2 py-1 rounded-br-md rounded-tl-md">−{pct}%</span>}
+        </ProductImage>
       </Link>
       <div className="min-w-0">
         <div className="font-semibold text-eu-muted-2 text-[length:var(--fs-13)] tracking-wide">{p.brand}</div>

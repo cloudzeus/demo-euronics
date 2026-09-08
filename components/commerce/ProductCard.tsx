@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { Heart, Plus, Scale } from "lucide-react";
 import type { Product } from "@/lib/data/types";
@@ -8,6 +7,7 @@ import { discountPct, instalment, priceLong, priceShort, weekday } from "@/lib/f
 import { useCart } from "./CartProvider";
 import { EnergyChip } from "./EnergyChip";
 import { FluidContent } from "@/components/fluid/Fluid";
+import { ProductImage } from "@/components/commerce/ProductImage";
 
 /**
  * The product card: nine facts at one glance.
@@ -42,15 +42,9 @@ export function ProductCard({ product: p, priority = false }: { product: Product
         const narrow = size === "xs" || size === "sm";
         return (
           <article className={`bg-white rounded-2xl overflow-hidden flex flex-col h-full border transition-shadow hover:shadow-[var(--shadow-raised)] ${compared ? "border-eu-blue shadow-[0_0_0_2px_var(--eu-blue)]" : "border-eu-line shadow-[var(--shadow-card)]"}`}>
-            <div className="relative bg-eu-surface-2 p-4">
+            <div className="relative bg-eu-surface-2 p-3">
               <Link href={`/proion/${p.slug}`} className="block" aria-label={`${p.brand} ${p.title}`}>
-                <div className="relative aspect-square">
-                  {p.image ? (
-                    <Image src={p.image} alt="" fill sizes="(max-width: 640px) 50vw, 320px" className="object-contain" priority={priority} unoptimized={p.image.startsWith("http")} />
-                  ) : (
-                    <div className="absolute inset-0 bg-eu-placeholder text-eu-placeholder-ink font-semibold text-[length:var(--fs-14)] flex items-center justify-center text-center rounded-md">φωτογραφία προϊόντος</div>
-                  )}
-                </div>
+                <ProductImage src={p.image} sizes="(max-width: 640px) 50vw, 320px" priority={priority} />
               </Link>
               {p.badge?.kind === "discount" && pct !== null && <span className="absolute top-0 left-0 bg-eu-red text-white font-extrabold text-[length:var(--fs-15)] px-3 py-1.5 rounded-br-xl pointer-events-none">−{pct}%</span>}
               {p.badge?.kind === "gift" && <span className="absolute top-0 left-0 bg-eu-blue text-white font-extrabold text-[length:var(--fs-15)] px-3 py-1.5 rounded-br-xl pointer-events-none">Δώρο</span>}

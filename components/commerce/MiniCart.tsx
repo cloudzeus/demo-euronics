@@ -1,12 +1,12 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { Minus, Plus, Trash2, X } from "lucide-react";
 import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 import { useCart } from "./CartProvider";
 import { priceLong } from "@/lib/format";
 import { FreeShippingProgress } from "./FreeShippingProgress";
+import { ProductImage } from "@/components/commerce/ProductImage";
 
 /** Mini-cart drawer: opens on add-to-cart, shows lines, free-shipping progress and the two exits. */
 export function MiniCart() {
@@ -30,9 +30,7 @@ export function MiniCart() {
               <ul className="m-0 p-0 list-none divide-y divide-eu-line-2">
                 {lines.map((l) => (
                   <li key={l.product.id + (l.variant ?? "")} className="flex gap-3 py-3">
-                    <div className="relative size-16 shrink-0 bg-eu-surface-2 rounded-md">
-                      {l.product.image && <Image src={l.product.image} alt="" fill sizes="64px" className="object-contain" unoptimized={l.product.image.startsWith("http")} />}
-                    </div>
+                    <ProductImage src={l.product.image} sizes="64px" className="size-16" rounded="rounded-md" />
                     <div className="min-w-0 flex-1">
                       <div className="font-semibold text-eu-muted-2 text-[length:var(--fs-13)]">{l.product.brand}</div>
                       <Link href={`/proion/${l.product.slug}`} className="font-bold text-eu-ink text-[length:var(--fs-15)] leading-[1.3] line-clamp-2 hover:text-eu-blue">
