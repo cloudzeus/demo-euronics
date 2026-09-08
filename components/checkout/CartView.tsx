@@ -8,6 +8,7 @@ import { instalment, priceLong, priceShort, weekday } from "@/lib/format";
 import { useCart } from "@/components/commerce/CartProvider";
 import { Stepper } from "./Stepper";
 import { ProductCard } from "@/components/commerce/ProductCard";
+import { CardCarousel } from "@/components/commerce/CardCarousel";
 import { ProductImage } from "@/components/commerce/ProductImage";
 
 /**
@@ -71,13 +72,11 @@ export function CartView({ services, crossSell }: { services: Service[]; crossSe
         {crossSell.length > 0 && (
           <section className="mt-10" aria-label="Δημοφιλή">
             <h2 className="m-0 font-heading font-bold text-eu-ink text-[length:var(--fs-22)] mb-4">Δημοφιλή αυτή την εβδομάδα</h2>
-            <ul className="m-0 p-0 list-none grid grid-cols-2 @xl:grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-3 @md:gap-4">
+            <CardCarousel label="Δημοφιλή">
               {crossSell.map((p) => (
-                <li key={p.id}>
-                  <ProductCard product={p} />
-                </li>
+                <ProductCard key={p.id} product={p} />
               ))}
-            </ul>
+            </CardCarousel>
           </section>
         )}
       </div>
@@ -270,13 +269,11 @@ export function CartView({ services, crossSell }: { services: Service[]; crossSe
             <h2 className="m-0 font-heading font-bold text-eu-ink text-[length:var(--fs-24)]">Ταιριάζουν με το καλάθι σου</h2>
           </div>
         </div>
-        <ul className="m-0 p-0 list-none grid grid-cols-2 @xl:grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-3 @md:gap-4">
+        <CardCarousel label="Ταιριάζουν με το καλάθι σου">
           {crossSell.map((p) => (
-            <li key={p.id}>
-              <ProductCard product={p} />
-            </li>
+            <ProductCard key={p.id} product={p} />
           ))}
-        </ul>
+        </CardCarousel>
       </section>
     </div>
   );

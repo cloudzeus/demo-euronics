@@ -3,6 +3,7 @@ import type { Product } from "@/lib/data/types";
 import { priceShort } from "@/lib/format";
 import { ProductImage } from "@/components/commerce/ProductImage";
 import { AddButton } from "@/components/commerce/AddButton";
+import { CardCarousel } from "@/components/commerce/CardCarousel";
 
 /**
  * Light «Ταιριάζει με αυτό το προϊόν» strip: up to four compact tiles
@@ -14,9 +15,9 @@ export function CompactRail({ title, products }: { title: string; products: Prod
   return (
     <section aria-label={title} className="rounded-2xl bg-eu-surface p-4 @md:p-5">
       <h2 className="m-0 font-heading font-bold text-eu-ink text-[length:var(--fs-19)] mb-3">{title}</h2>
-      <ul className="m-0 p-0 list-none grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-3">
+      <CardCarousel label={title} minItem={260} minItemNarrow={260} gap={12}>
         {products.map((p) => (
-          <li key={p.id} className="bg-white rounded-xl border border-eu-line p-3 flex items-center gap-3 min-w-0">
+          <div key={p.id} className="bg-white rounded-xl border border-eu-line p-3 flex items-center gap-3 min-w-0 h-full">
             <Link href={`/proion/${p.slug}`} className="shrink-0">
               <ProductImage src={p.image} sizes="72px" className="size-[72px]" rounded="rounded-lg" />
             </Link>
@@ -30,9 +31,9 @@ export function CompactRail({ title, products }: { title: string; products: Prod
                 <AddButton product={p} label="Προσθήκη" />
               </div>
             </div>
-          </li>
+          </div>
         ))}
-      </ul>
+      </CardCarousel>
     </section>
   );
 }

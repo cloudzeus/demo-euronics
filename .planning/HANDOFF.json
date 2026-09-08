@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "timestamp": "2026-09-08T12:07:37.772Z",
+  "timestamp": "2026-09-08T12:13:11.586Z",
   "source": "auto-postool",
   "partial": false,
   "phase": null,
@@ -19,8 +19,28 @@
     {
       "status": "M",
       "path": ".planning/HANDOFF.json"
+    },
+    {
+      "status": "M",
+      "path": "components/checkout/CartView.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/pdp/CompactRail.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/pdp/ProductRail.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/widgets/DealsRail.tsx"
+    },
+    {
+      "status": "??",
+      "path": "components/commerce/CardCarousel.tsx"
     }
   ],
   "next_action": null,
-  "context_notes": "Recent commits:\n8438053 PDP: main photo fills the gallery when there is a single image; related capped at 5; accessories rail removed\na5e7cf3 Coolify deploy: Dockerfile (Next standalone, node:24-alpine, non-root, healthcheck), .dockerignore, README deploy notes\nbdfdd81 Smart sticky filters and buy box, full-width deal rails, subtler compare border\n8225424 Mini cart redesign, quick view, per-product SEO/AEO/GEO, width-adaptive columns, no inner scrollers\nadf4ea5 Fixed product-image frame everywhere; all product photos served locally"
+  "context_notes": "Recent commits:\nfce3892 PDP: compact «Ταιριάζει με αυτό το προϊόν» strip with complementary categories (max 4, light tiles); related rail fits 5 per row\n8438053 PDP: main photo fills the gallery when there is a single image; related capped at 5; accessories rail removed\na5e7cf3 Coolify deploy: Dockerfile (Next standalone, node:24-alpine, non-root, healthcheck), .dockerignore, README deploy notes\nbdfdd81 Smart sticky filters and buy box, full-width deal rails, subtler compare border\n8225424 Mini cart redesign, quick view, per-product SEO/AEO/GEO, width-adaptive columns, no inner scrollers"
 }

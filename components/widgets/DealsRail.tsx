@@ -1,5 +1,6 @@
 import type { Product } from "@/lib/data/types";
 import { ProductCard } from "@/components/commerce/ProductCard";
+import { CardCarousel } from "@/components/commerce/CardCarousel";
 import { Countdown } from "@/components/commerce/Countdown";
 import { ZoneBadge } from "@/components/site/ZoneBadge";
 
@@ -22,13 +23,11 @@ export function DealsRail({ products, endsAt, label, title, zoneNo }: { products
           </div>
           <Countdown endsAt={endsAt} variant="blocks" className="shrink-0" />
         </div>
-        <ul className="m-0 p-0 list-none grid grid-cols-2 @xl:grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-3 @md:gap-4">
+        <CardCarousel label={title}>
           {products.map((p, i) => (
-            <li key={p.id}>
-              <ProductCard product={p} priority={i < 2} />
-            </li>
+            <ProductCard key={p.id} product={p} priority={i < 2} />
           ))}
-        </ul>
+        </CardCarousel>
       </div>
     </section>
   );
