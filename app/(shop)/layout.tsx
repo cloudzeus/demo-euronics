@@ -6,6 +6,7 @@ import { getMegaMenuData, getProductsByIds } from "@/lib/data/repo";
 import { CompareTray } from "@/components/commerce/CompareTray";
 import { AnnouncementBar } from "@/components/site/AnnouncementBar";
 import { SiteHeader } from "@/components/site/SiteHeader";
+import { StickyHeader } from "@/components/site/StickyHeader";
 import { MegaNav } from "@/components/site/MegaNav";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { CookieConsent } from "@/components/site/CookieConsent";
@@ -21,8 +22,10 @@ export default async function ShopLayout({ children }: LayoutProps<"/">) {
         right={["14 ημέρες υπαναχώρηση"]}
         accent={{ label: "Παρακολούθηση παραγγελίας", href: "/entopismos" }}
       />
-      <SiteHeader />
-      <MegaNav data={menu} />
+      <StickyHeader>
+        <SiteHeader />
+        <MegaNav data={menu} />
+      </StickyHeader>
       <main id="main" className="flex-1 bg-white">
         {children}
       </main>

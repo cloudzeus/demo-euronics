@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const ITEMS = [
   ["overview", "Με μια ματιά"],
@@ -17,6 +17,18 @@ const ITEMS = [
 export function SectionNav({ available }: { available: string[] }) {
   const items = ITEMS.filter(([id]) => available.includes(id));
   const [active, setActive] = useState(items[0]?.[0] ?? "overview");
+  const ref = useRef<HTMLElement>(null);
+  // Publish own height so anchored sections land below header + this bar.
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const ro = new ResizeObserver((e) => document.documentElement.style.setProperty("--eu-subnav-h", `${Math.round(e[0].contentRect.height)}px`));
+    ro.observe(el);
+    return () => {
+      ro.disconnect();
+      document.documentElement.style.removeProperty("--eu-subnav-h");
+    };
+  }, []);
   useEffect(() => {
     const els = items.map(([id]) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
     const io = new IntersectionObserver(
@@ -30,7 +42,7 @@ export function SectionNav({ available }: { available: string[] }) {
     return () => io.disconnect();
   }, [items]);
   return (
-    <nav aria-label="Ενότητες προϊόντος" className="static @3xl:sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-eu-line eu-container">
+    <nav ref={ref} aria-label="Ενότητες προϊόντος" className="static @3xl:sticky top-[var(--eu-header-h,0px)] z-30 bg-white/95 backdrop-blur border-b border-eu-line eu-container">
       <ul className="eu-canvas eu-gutter m-0 p-0 list-none flex flex-wrap gap-x-1">
         {items.map(([id, label]) => (
           <li key={id}>

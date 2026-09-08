@@ -292,6 +292,10 @@
 body {
   container-type: inline-size;
 }
+/* Anchored sections land below the pinned header + section nav */
+[id].scroll-mt-24 {
+  scroll-margin-top: calc(var(--eu-header-h, 0px) + var(--eu-subnav-h, 0px) + 12px);
+}
 @utility eu-canvas {
   width: 100%;
   max-width: var(--eu-canvas);

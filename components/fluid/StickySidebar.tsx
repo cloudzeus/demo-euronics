@@ -11,20 +11,23 @@ import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 
  *    and re-pins to the top when its top comes into view.
  * Parent must be the full-height column (flex item with items-stretch).
  */
-export function StickySidebar({ children, top = 72, gap = 16, className = "" }: { children: ReactNode; top?: number; gap?: number; className?: string }) {
+export function StickySidebar({ children, top: topProp, gap = 16, className = "" }: { children: ReactNode; top?: number; gap?: number; className?: string }) {
   const col = useRef<HTMLDivElement>(null);
   const box = useRef<HTMLDivElement>(null);
-  const [style, setStyle] = useState<CSSProperties>({ position: "sticky", top });
+  const [style, setStyle] = useState<CSSProperties>({ position: "sticky", top: topProp ?? 16 });
 
   useEffect(() => {
     const c = col.current;
     const b = box.current;
     if (!c || !b) return;
+    /** Offset below the pinned header (`--eu-header-h`) plus a small gap. */
+    const headerH = () => parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--eu-header-h")) || 0;
+    const topNow = () => topProp ?? headerH() + gap;
     let lastY = window.scrollY;
     let state: "top" | "bottom" | "free" = "top";
     let freeOffset = 0;
     const apply = () => {
-      if (state === "top") setStyle({ position: "sticky", top });
+      if (state === "top") setStyle({ position: "sticky", top: topNow() });
       else if (state === "bottom") setStyle({ position: "sticky", top: window.innerHeight - b.offsetHeight - gap });
       else setStyle({ position: "relative", top: freeOffset });
     };
@@ -34,6 +37,7 @@ export function StickySidebar({ children, top = 72, gap = 16, className = "" }: 
       lastY = y;
       const vh = window.innerHeight;
       const h = b.offsetHeight;
+      const top = topNow();
       if (h + top + gap <= vh) {
         if (state !== "top") {
           state = "top";
@@ -80,7 +84,7 @@ export function StickySidebar({ children, top = 72, gap = 16, className = "" }: 
       window.removeEventListener("resize", onResize);
       ro.disconnect();
     };
-  }, [top, gap]);
+  }, [topProp, gap]);
 
   return (
     <div ref={col} className={`self-stretch ${className}`}>

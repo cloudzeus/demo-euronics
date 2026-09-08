@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "timestamp": "2026-09-08T13:53:48.580Z",
+  "timestamp": "2026-09-08T13:54:49.041Z",
   "source": "auto-postool",
   "partial": false,
   "phase": null,
@@ -18,13 +18,25 @@
   "uncommitted_files": [
     {
       "status": "M",
-      "path": ".planning/HANDOFF.json"
+      "path": "app/(shop)/layout.tsx"
     },
     {
       "status": "M",
-      "path": "components/site/MegaNav.tsx"
+      "path": "app/globals.css"
+    },
+    {
+      "status": "M",
+      "path": "components/fluid/StickySidebar.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/pdp/SectionNav.tsx"
+    },
+    {
+      "status": "??",
+      "path": "components/site/StickyHeader.tsx"
     }
   ],
   "next_action": null,
-  "context_notes": "Recent commits:\n01aeb9e Advanced mega menu (sub-categories with counts, top brands, quick filters, smart guide, promoted product with quick buy) and search with live multi-level results (products with photos, categories, brands, guides, recent/popular, promo)\n87c488a Card rails: fewer items than slots share the full width (no empty column on wide screens)\nddf358d News section, full customer account, dynamic-component contract, customer-facing copy\nd0f3a18 Product header: key-facts column bounded so the title keeps its width (long attribute labels no longer squeeze the H1); SEO text keeps abbreviation case\nf38163c Card rails: one card per view on phones"
+  "context_notes": "Recent commits:\ndafb557 Mega menu as tabs with connected panel (no floating rounded plaque, no divider), calmer panel content, priority+ row: categories that don't fit collapse into «Περισσότερα», always one line\n01aeb9e Advanced mega menu (sub-categories with counts, top brands, quick filters, smart guide, promoted product with quick buy) and search with live multi-level results (products with photos, categories, brands, guides, recent/popular, promo)\n87c488a Card rails: fewer items than slots share the full width (no empty column on wide screens)\nddf358d News section, full customer account, dynamic-component contract, customer-facing copy\nd0f3a18 Product header: key-facts column bounded so the title keeps its width (long attribute labels no longer squeeze the H1); SEO text keeps abbreviation case"
 }
