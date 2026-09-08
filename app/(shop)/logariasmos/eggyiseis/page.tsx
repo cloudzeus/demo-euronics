@@ -17,7 +17,7 @@ export default async function WarrantiesPage() {
     }),
   );
   return (
-    <div className="grid gap-4">
+    <div className="grid grid-cols-1 gap-4">
       <h1 className="m-0 font-heading font-bold text-eu-ink text-[length:var(--fs-24)]">Εγγυήσεις & service</h1>
       <ul className="m-0 p-0 list-none grid gap-3">
         {rows.map((r) => (

@@ -30,7 +30,7 @@ const services: Service[] = [
   { no: "03", slug: "paralavi-2-ores", title: "Παραλαβή σε 2 ώρες", blurb: "Σε 350 σημεία · χωρίς κόστος" },
   { no: "04", slug: "anakyklosi-aiie", title: "Ανακύκλωση ΑΗΗΕ", blurb: "Δωρεάν παραλαβή της παλιάς συσκευής" },
   { no: "05", slug: "dorean-fylaxi", title: "Δωρεάν φύλαξη", blurb: "Έως 6 μήνες, μέχρι να ετοιμαστεί ο χώρος" },
-  { no: "06", slug: "service", title: "Δικό μας service", blurb: "Συντήρηση & επισκευή, με ανταλλακτικά αντιπροσωπείας" },
+  { no: "06", slug: "syntirisi-episkeyi", title: "Δικό μας service", blurb: "Συντήρηση & επισκευή, με ανταλλακτικά αντιπροσωπείας" },
   { no: "07", slug: "e-support", title: "E-Support", blurb: "Απομακρυσμένη υποστήριξη συσκευών υψηλής τεχνολογίας" },
   { no: "08", slug: "eggyisi-xamiloteris-timis", title: "Εγγύηση χαμηλότερης τιμής", blurb: "Διαφορά τιμής πίσω, με απλή απόδειξη" },
   { no: "09", slug: "eggyisi-allagis", title: "Εγγύηση αλλαγής", blurb: "Αλλαγή προϊόντος εντός 14 ημερών" },

@@ -22,7 +22,7 @@ export function CategoryGrid({ categories, featured, zoneNo }: { categories: Cat
         <SectionHead
           id="cat-grid-title"
           kicker="Κατάλογος"
-          title={["Εννέα κατηγορίες.", "Χωρίς εικονίδια, με νούμερα."]}
+          title={["Ό,τι χρειάζεται το σπίτι σου,", "σε εννέα κατηγορίες."]}
           link={{ label: "Όλος ο κατάλογος →", href: "/proionta" }}
         />
         <ul className="grid grid-cols-1 @sm:grid-cols-2 @lg:grid-cols-3 gap-px bg-eu-line border border-eu-line rounded-lg overflow-hidden m-0 p-0 list-none">

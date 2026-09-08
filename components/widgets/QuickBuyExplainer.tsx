@@ -10,12 +10,12 @@ export function QuickBuyExplainer({ product: p, zoneNo }: { product: Product; zo
       <ZoneBadge no={zoneNo} />
       <div className="eu-canvas eu-gutter py-8 grid grid-cols-1 @lg:grid-cols-[1fr_420px] gap-6 @lg:gap-[30px] items-center">
         <div>
-          <div className="font-extrabold text-eu-red text-[length:var(--fs-13)] tracking-wide mb-2.5">Τι συμβαίνει όταν πατηθεί «Αγορά με 1 κλικ»</div>
+          <div className="font-extrabold text-eu-red text-[length:var(--fs-13)] tracking-wide mb-2.5">Αγορά με 1 κλικ</div>
           <h2 id="qb-title" className="m-0 font-heading font-bold text-eu-ink text-[length:var(--fs-26)] leading-[1.15] tracking-[-0.02em] mb-3">
-            Ένα φύλλο, τρία πεδία, καμία ανακατεύθυνση
+            Διεύθυνση, πληρωμή και δόσεις, σε ένα βήμα
           </h2>
           <p className="m-0 text-eu-ink-2 text-[length:var(--fs-15)] leading-[1.6] max-w-[44em]">
-            Το Quick buy δεν παραγγέλνει αμέσως — ανοίγει ένα φύλλο πάνω από τη σελίδα με προεπιλεγμένα τα στοιχεία του λογαριασμού, το συνολικό κόστος <strong>με</strong> μεταφορικά και ΦΠΑ, και ένα κουμπί με τη διατύπωση που απαιτεί η Οδηγία 2011/83/ΕΕ. Ο χρήστης δεν φεύγει από την αρχική, αλλά ούτε δεσμεύεται χωρίς να δει τι πληρώνει.
+            Με λογαριασμό Euronics, το «Αγορά με 1 κλικ» ανοίγει ένα φύλλο με τη διεύθυνση, την κάρτα και τις δόσεις σου προσυμπληρωμένες. Βλέπεις το τελικό ποσό με μεταφορικά και ΦΠΑ, επιβεβαιώνεις με 3D Secure και τελείωσες. Διατηρείς το δικαίωμα υπαναχώρησης 14 ημερών.<strong>με</strong> μεταφορικά και ΦΠΑ, και ένα κουμπί με τη διατύπωση που απαιτεί η Οδηγία 2011/83/ΕΕ. Ο χρήστης δεν φεύγει από την αρχική, αλλά ούτε δεσμεύεται χωρίς να δει τι πληρώνει.
           </p>
         </div>
         <div className="bg-white rounded-xl p-5 shadow-[var(--shadow-raised)]">

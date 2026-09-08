@@ -82,7 +82,7 @@ export async function getHomeLayout(): Promise<PageLayout> {
             id: "weekly-deals",
             type: "deals-rail",
             zoneNo: 7,
-            props: { title: "Προσφορές με πραγματική λήξη" },
+            props: { title: "Προσφορές της εβδομάδας" },
             query: { kind: "tag", value: "weekly-deals", limit: 4, pin: ["p-inventor-ikura"] },
           },
           {
@@ -116,10 +116,16 @@ export async function getHomeLayout(): Promise<PageLayout> {
         ],
       },
       {
+        id: "news",
+        label: "Νέα & ανακοινώσεις",
+        slot: "main",
+        widgets: [{ id: "news-3", type: "news-band", zoneNo: 12, props: { limit: 3 } }],
+      },
+      {
         id: "newsletter",
         label: "Newsletter",
         slot: "pre-footer",
-        widgets: [{ id: "newsletter", type: "newsletter", zoneNo: 12, props: {} }],
+        widgets: [{ id: "newsletter", type: "newsletter", zoneNo: 13, props: {} }],
       },
     ],
   };

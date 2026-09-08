@@ -11,7 +11,7 @@ export default async function OrderDetail({ params }: { params: Promise<{ no: st
   const o = await getOrder(no);
   if (!o) notFound();
   return (
-    <div className="grid gap-4">
+    <div className="grid grid-cols-1 gap-4">
       <Link href="/logariasmos/paraggelies" className="font-bold text-eu-blue text-[length:var(--fs-15)] hover:underline">
         ← Όλες οι παραγγελίες
       </Link>

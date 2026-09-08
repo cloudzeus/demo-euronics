@@ -13,7 +13,7 @@ export function ServicesBand({ services, zoneNo }: { services: Service[]; zoneNo
     <section className="relative bg-eu-navy text-white eu-container" aria-labelledby="services-title">
       <ZoneBadge no={zoneNo} />
       <div className="eu-canvas eu-gutter pt-8 @lg:pt-[38px] pb-8">
-        <SectionHead id="services-title" tone="dark" kicker="Δώδεκα υπηρεσίες, καθεμία με τιμή" title={["Γιατί από euronics", "και όχι από marketplace"]} link={{ label: "Όλες οι υπηρεσίες →", href: "/ypiresies" }} />
+        <SectionHead id="services-title" tone="dark" kicker="Υπηρεσίες Euronics" title={["Πριν, κατά και μετά την αγορά,", "είμαστε δίπλα σου"]} link={{ label: "Όλες οι υπηρεσίες →", href: "/ypiresies" }} />
         <ul className="grid grid-cols-1 @sm:grid-cols-2 @lg:grid-cols-3 gap-px bg-eu-navy-line border border-eu-navy-line rounded-lg overflow-hidden m-0 p-0 list-none">
           {services.map((s) => (
             <li key={s.slug} className="bg-eu-navy">

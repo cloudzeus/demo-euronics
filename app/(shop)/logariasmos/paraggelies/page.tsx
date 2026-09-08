@@ -9,7 +9,7 @@ export const metadata: Metadata = { title: "Οι παραγγελίες μου" 
 export default async function OrdersPage() {
   const orders = await getOrders();
   return (
-    <div className="grid gap-4">
+    <div className="grid grid-cols-1 gap-4">
       <h1 className="m-0 font-heading font-bold text-eu-ink text-[length:var(--fs-24)]">Παραγγελίες</h1>
       <ul className="m-0 p-0 list-none grid gap-3">
         {orders.map((o) => (

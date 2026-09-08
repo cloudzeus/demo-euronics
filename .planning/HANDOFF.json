@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "timestamp": "2026-09-08T12:20:52.374Z",
+  "timestamp": "2026-09-08T13:28:09.865Z",
   "source": "auto-postool",
   "partial": false,
   "phase": null,
@@ -15,7 +15,144 @@
   "blockers": [],
   "human_actions_pending": [],
   "decisions": [],
-  "uncommitted_files": [],
+  "uncommitted_files": [
+    {
+      "status": "M",
+      "path": ".planning/HANDOFF.json"
+    },
+    {
+      "status": "M",
+      "path": "README.md"
+    },
+    {
+      "status": "M",
+      "path": "app/(shop)/logariasmos/dieythynseis/page.tsx"
+    },
+    {
+      "status": "M",
+      "path": "app/(shop)/logariasmos/eggyiseis/page.tsx"
+    },
+    {
+      "status": "M",
+      "path": "app/(shop)/logariasmos/epistrofes/page.tsx"
+    },
+    {
+      "status": "M",
+      "path": "app/(shop)/logariasmos/layout.tsx"
+    },
+    {
+      "status": "M",
+      "path": "app/(shop)/logariasmos/page.tsx"
+    },
+    {
+      "status": "M",
+      "path": "app/(shop)/logariasmos/paraggelies/[no]/page.tsx"
+    },
+    {
+      "status": "M",
+      "path": "app/(shop)/logariasmos/paraggelies/page.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/account/AccountNav.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/site/SiteFooter.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/widgets/CategoryGrid.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/widgets/QuickBuyExplainer.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/widgets/ServicesBand.tsx"
+    },
+    {
+      "status": "M",
+      "path": "lib/cms/home.layout.ts"
+    },
+    {
+      "status": "M",
+      "path": "lib/cms/render.tsx"
+    },
+    {
+      "status": "M",
+      "path": "lib/cms/zones.ts"
+    },
+    {
+      "status": "M",
+      "path": "lib/data/catalog.ts"
+    },
+    {
+      "status": "M",
+      "path": "lib/data/fixtures/orders.ts"
+    },
+    {
+      "status": "M",
+      "path": "lib/data/repo.ts"
+    },
+    {
+      "status": "M",
+      "path": "lib/data/types.ts"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/logariasmos/eidopoiiseis/"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/logariasmos/pliromes/"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/logariasmos/rantevou/"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/logariasmos/stoixeia/"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/nea/"
+    },
+    {
+      "status": "??",
+      "path": "components/account/ConsentsForm.tsx"
+    },
+    {
+      "status": "??",
+      "path": "components/account/ProfileForm.tsx"
+    },
+    {
+      "status": "??",
+      "path": "components/news/"
+    },
+    {
+      "status": "??",
+      "path": "components/widgets/NewsBand.tsx"
+    },
+    {
+      "status": "??",
+      "path": "docs/design-notes-client.md"
+    },
+    {
+      "status": "??",
+      "path": "docs/dynamic-components.md"
+    },
+    {
+      "status": "??",
+      "path": "lib/data/fixtures/account.ts"
+    },
+    {
+      "status": "??",
+      "path": "lib/data/fixtures/news.ts"
+    }
+  ],
   "next_action": null,
-  "context_notes": "Recent commits:\nf38163c Card rails: one card per view on phones\nd38aeaa Carousel arrows stay inside the rail on narrow widths (no horizontal overflow on phones)\nfd7fa81 Card rails: arrows move one card at a time (first slides out, next slides in), GSAP power3.out tween, dots per position\n38dac23 Adaptive card rails: cards per view from measured width at optimal card size, arrows/swipe for the rest, last page flush, no scrollbar (related, deals, cart cross-sell, complementary strip)\nfce3892 PDP: compact «Ταιριάζει με αυτό το προϊόν» strip with complementary categories (max 4, light tiles); related rail fits 5 per row"
+  "context_notes": "Recent commits:\nd0f3a18 Product header: key-facts column bounded so the title keeps its width (long attribute labels no longer squeeze the H1); SEO text keeps abbreviation case\nf38163c Card rails: one card per view on phones\nd38aeaa Carousel arrows stay inside the rail on narrow widths (no horizontal overflow on phones)\nfd7fa81 Card rails: arrows move one card at a time (first slides out, next slides in), GSAP power3.out tween, dots per position\n38dac23 Adaptive card rails: cards per view from measured width at optimal card size, arrows/swipe for the rest, last page flush, no scrollbar (related, deals, cart cross-sell, complementary strip)"
 }

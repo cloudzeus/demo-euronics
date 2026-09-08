@@ -224,3 +224,84 @@ export interface Policy {
   sourceUrl?: string;
   updated?: string;
 }
+
+/* ---------------- Dynamic content (CMS) ---------------- */
+
+/** @dynamic Νέα & ανακοινώσεις — source: CMS (headless, π.χ. Strapi/Payload) ή SoftOne «Ανακοινώσεις». One record per item. */
+export interface NewsItem {
+  slug: string;
+  title: string;
+  excerpt: string;
+  /** ISO date */
+  date: string;
+  category: "prosfores" | "katastimata" | "etaireia" | "proionta" | "ekdiloseis";
+  image?: string;
+  body?: string[];
+  cta?: { label: string; href: string };
+  /** Where the record comes from — drives the byline and the cache TTL. */
+  source?: "cms" | "erp" | "social";
+  featured?: boolean;
+}
+
+/* ---------------- Account (ERP-bound) ---------------- */
+
+/** @dynamic Πελάτης — source: SoftOne CUSTOMER (TRDR) + e-shop auth provider. */
+export interface Customer {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  birthday?: string;
+  vat?: string;
+  memberSince: string;
+  loyaltyPoints?: number;
+  twoFactor?: boolean;
+}
+
+/** @dynamic Αποθηκευμένος τρόπος πληρωμής — source: PSP token vault (ποτέ αριθμοί καρτών στη Euronics). */
+export interface PaymentMethod {
+  id: string;
+  kind: "card" | "iris" | "bank";
+  label: string;
+  last4?: string;
+  brand?: "visa" | "mastercard" | "amex";
+  expires?: string;
+  isDefault?: boolean;
+}
+
+/** @dynamic Πρόγραμμα δόσεων — source: SoftOne FINDOC / Eurobank consumer-credit API. */
+export interface InstalmentPlan {
+  id: string;
+  orderNumber: string;
+  title: string;
+  provider: "card" | "eurobank";
+  months: number;
+  paid: number;
+  monthly: number;
+  nextDate: string;
+}
+
+/** @dynamic Ραντεβού υπηρεσίας — source: SoftOne Service module (SRVJOB) ή σύστημα ραντεβού καταστήματος. */
+export interface Appointment {
+  id: string;
+  kind: "installation" | "service" | "delivery" | "pickup";
+  title: string;
+  productTitle?: string;
+  orderNumber?: string;
+  store: string;
+  technician?: string;
+  date: string;
+  slot: string;
+  status: "scheduled" | "confirmed" | "done" | "cancelled";
+  notes?: string;
+}
+
+/** @dynamic Συγκατάθεση επικοινωνίας — source: consent ledger (GDPR άρθρο 7) — κάθε αλλαγή καταγράφεται με χρόνο & πηγή. */
+export interface ConsentPref {
+  topic: "orders" | "offers" | "price-drop" | "back-in-stock" | "newsletter" | "service";
+  label: string;
+  help: string;
+  channels: { email: boolean; sms: boolean; push: boolean; viber: boolean };
+  updated: string;
+}

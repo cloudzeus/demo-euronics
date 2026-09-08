@@ -6,7 +6,7 @@ export const metadata: Metadata = { title: "Οι διευθύνσεις μου" 
 export default function AddressesPage() {
   const a = demoAddress;
   return (
-    <div className="grid gap-4">
+    <div className="grid grid-cols-1 gap-4">
       <div className="flex items-center justify-between">
         <h1 className="m-0 font-heading font-bold text-eu-ink text-[length:var(--fs-24)]">Διευθύνσεις</h1>
         <button type="button" className="rounded-full bg-eu-navy text-white font-extrabold text-[length:var(--fs-14)] px-4 min-h-10 hover:bg-eu-blue">

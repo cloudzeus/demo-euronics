@@ -1,6 +1,6 @@
 import { attributeFacets, matchesAttrs, type AttrFacet } from "./attributes";
 import "server-only";
-import type { Brand, Faq, Guide, Order, Policy, Product, Service, Store } from "./types";
+import type { Appointment, Brand, ConsentPref, Customer, Faq, Guide, InstalmentPlan, NewsItem, Order, PaymentMethod, Policy, Product, Service, Store } from "./types";
 import { navCategories, type NavCategory } from "./nav";
 import { products } from "./fixtures/products";
 import { stores } from "./fixtures/stores";
@@ -8,6 +8,8 @@ import { services } from "./fixtures/services";
 import { guides } from "./fixtures/guides";
 import { faqs, policies } from "./fixtures/content";
 import { orders } from "./fixtures/orders";
+import { news, NEWS_CATEGORIES } from "./fixtures/news";
+import { appointments, consents, customer, instalmentPlans, paymentMethods } from "./fixtures/account";
 
 /**
  * Repository — the only module pages read data from. Today: typed
@@ -249,4 +251,36 @@ export async function getOrders(): Promise<Order[]> {
 }
 export async function getOrder(no: string): Promise<Order | null> {
   return orders.find((o) => o.number.toLowerCase() === no.trim().toLowerCase()) ?? null;
+}
+
+/* ---------------- Dynamic content: news ---------------- */
+/** @dynamic CMS → `GET /news?sort=-date&category=…` with ISR (revalidate 300s). Same signature, same page. */
+export async function getNews(opts: { category?: NewsItem["category"]; limit?: number } = {}): Promise<NewsItem[]> {
+  let list = [...news].sort((a, b) => b.date.localeCompare(a.date));
+  if (opts.category) list = list.filter((n) => n.category === opts.category);
+  return opts.limit ? list.slice(0, opts.limit) : list;
+}
+export async function getNewsItem(slug: string): Promise<NewsItem | null> {
+  return news.find((n) => n.slug === slug) ?? null;
+}
+export function getNewsCategories() {
+  return NEWS_CATEGORIES;
+}
+
+/* ---------------- Account (session-scoped, ERP-bound) ---------------- */
+/** @dynamic Every function below takes the session customer id in production; here the demo customer. */
+export async function getCustomer(): Promise<Customer> {
+  return customer;
+}
+export async function getPaymentMethods(): Promise<PaymentMethod[]> {
+  return paymentMethods;
+}
+export async function getInstalmentPlans(): Promise<InstalmentPlan[]> {
+  return instalmentPlans;
+}
+export async function getAppointments(): Promise<Appointment[]> {
+  return [...appointments].sort((a, b) => b.date.localeCompare(a.date));
+}
+export async function getConsents(): Promise<ConsentPref[]> {
+  return consents;
 }

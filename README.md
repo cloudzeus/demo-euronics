@@ -30,6 +30,15 @@ npm run build
 | **Στήλες ανά πλάτος**: `repeat(auto-fill, minmax(220px, 1fr))` — 2 στο κινητό, 3–5 ανάλογα με τον διαθέσιμο χώρο | `ProductGrid`, `ProductRail`, `DealsRail` |
 | **Κανένας εσωτερικός scroller**: φίλτρα με «+ N ακόμη» αντί για scroll, chips/breadcrumbs/thumbs/side nav σε wrap, deals σε grid, buy box χωρίς max-height, πίνακες σύγκρισης → stacked layout σε στενά πλάτη (`CompareStacked`) | παντού |
 
+### v3.2 — Νέα, πλήρης λογαριασμός, δυναμικά components
+
+| Τι | Πού |
+|---|---|
+| **Νέα & ανακοινώσεις**: `/nea` (φίλτρο κατηγορίας στο URL, featured + grid), `/nea/[slug]` (NewsArticle JSON-LD, CTA, σχετικά), ζώνη 12 στην αρχική, footer | `lib/data/fixtures/news.ts`, `components/news`, `components/widgets/NewsBand.tsx` |
+| **Λογαριασμός**: Επισκόπηση με 6 πλακίδια + live timeline, Τα στοιχεία μου (προφίλ, κωδικός, 2FA, GDPR), Παραγγελίες & παρακολούθηση, Πληρωμές & δόσεις (masked κάρτες, προγράμματα δόσεων), Ραντεβού & service, Ειδοποιήσεις & συγκαταθέσεις (matrix θέμα × κανάλι) | `app/(shop)/logariasmos/*`, `components/account/*`, `lib/data/fixtures/account.ts` |
+| **Data contract** για κάθε δυναμικό component (πηγή ERP/CMS, repository, cache) | [`docs/dynamic-components.md`](docs/dynamic-components.md) — κάθε component έχει σχόλιο `@dynamic` |
+| **Σημειώσεις σχεδιασμού για τον πελάτη** (η αιτιολόγηση έφυγε από τα labels του site) | [`docs/design-notes-client.md`](docs/design-notes-client.md) |
+
 Τυπογραφία: όλα τα κείμενα ≥ 14px (body 16px), fluid tokens `--fs-*`.
 
 ## Routes
