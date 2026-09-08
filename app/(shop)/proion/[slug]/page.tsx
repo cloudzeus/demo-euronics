@@ -1,14 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Breadcrumbs } from "@/components/site/Breadcrumbs";
+import { Recycle } from "lucide-react";
+import { ProductHeader } from "@/components/pdp/ProductHeader";
+import { SectionNav } from "@/components/pdp/SectionNav";
 import { Gallery } from "@/components/pdp/Gallery";
 import { BuyBox } from "@/components/pdp/BuyBox";
 import { SpecsTable } from "@/components/pdp/SpecsTable";
+import { CompareSimilar } from "@/components/pdp/CompareSimilar";
+import { ServicesDelivery } from "@/components/pdp/ServicesDelivery";
 import { Reviews } from "@/components/pdp/Reviews";
 import { Questions } from "@/components/pdp/Questions";
 import { ProductRail } from "@/components/pdp/ProductRail";
 import { StickyBar } from "@/components/pdp/StickyBar";
+import { RecentlyViewed } from "@/components/pdp/RecentlyViewed";
 import { getAccessoriesFor, getL1, getProductBySlug, getRelated, getServicesFull, getStores } from "@/lib/data/repo";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -18,9 +23,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 /**
- * Product page: gallery · sticky buy box (variants, instalments, store
- * selector with stock, add-ons with price, Quick buy) · highlights ·
- * grouped specs · reviews · Q&A · accessories · related.
+ * Product page as specified in the proposal (p.6 «Πριν → Μετά · Προϊόν»):
+ * header band with key facts · gallery · sticky buy box with delivery
+ * choice, store stock and «Ολοκληρωμένη λύση» · sticky section nav ·
+ * highlights · description · specs as a grouped grid · in-page comparison
+ * with similar products · services & delivery with prices · reviews ·
+ * Q&A · accessories · related · recently viewed. Text sizes ≥ 13px.
  */
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -28,7 +36,9 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   if (!p) notFound();
   const [l1, related, accessories, services, stores] = await Promise.all([getL1(p.category), getRelated(p, 8), getAccessoriesFor(p), getServicesFull(), getStores()]);
   const l2 = l1?.children.find((c) => c.slug === p.subcategory);
-  const addons = services.filter((s) => s.addonAt?.includes("pdp") && (s.slug !== "paradosi-egkatastasi" || p.installation));
+  const addons = services.filter((s) => s.addonAt?.includes("pdp") && s.slug !== "paradosi-egkatastasi");
+  const similar = related.filter((x) => x.subcategory === p.subcategory).slice(0, 3);
+  const sections = ["overview", ...(p.description ? ["description"] : []), ...(p.specs?.length ? ["specs"] : []), ...(similar.length ? ["compare"] : []), "services", "reviews", "qa"];
   const ld = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -41,70 +51,89 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     offers: { "@type": "Offer", priceCurrency: "EUR", price: p.price, availability: p.availability.kind === "order" ? "https://schema.org/PreOrder" : "https://schema.org/InStock", url: `https://www.euronics.gr/proion/${p.slug}` },
     ...(p.rating ? { aggregateRating: { "@type": "AggregateRating", ratingValue: p.rating.value, reviewCount: p.rating.count } } : {}),
   };
+  const crumbs = [{ label: "Προϊόντα", href: "/proionta" }, ...(l1 ? [{ label: l1.label, href: `/k/${l1.slug}` }] : []), ...(l1 && l2 ? [{ label: l2.name, href: `/k/${l1.slug}/${l2.slug}` }] : []), { label: p.title }];
 
   return (
     <div className="eu-container">
-      <Breadcrumbs items={[{ label: "Προϊόντα", href: "/proionta" }, ...(l1 ? [{ label: l1.label, href: `/k/${l1.slug}` }] : []), ...(l1 && l2 ? [{ label: l2.name, href: `/k/${l1.slug}/${l2.slug}` }] : []), { label: p.title }]} />
-      <article className="eu-canvas eu-gutter pb-12">
-        <div className="grid grid-cols-1 @lg:grid-cols-[minmax(0,1fr)_400px] @xl:grid-cols-[minmax(0,1fr)_440px] gap-6 @lg:gap-10 items-start [grid-template-areas:'gallery'_'buy'_'content'] @lg:[grid-template-areas:'gallery_buy'_'content_buy']">
-          <div className="min-w-0 [grid-area:gallery]">
+      <ProductHeader product={p} crumbs={crumbs} />
+      <article className="eu-canvas eu-gutter py-6 @lg:py-8">
+        <div className="grid grid-cols-1 @lg:grid-cols-[minmax(0,1fr)_420px] @xl:grid-cols-[minmax(0,1fr)_460px] gap-6 @lg:gap-10 items-start">
+          <div className="min-w-0 grid gap-6">
             <Gallery images={p.images?.length ? p.images : p.image ? [p.image] : []} title={p.title} badge={p.badge} energy={p.energy} />
-          </div>
-          <div className="min-w-0 [grid-area:content]">
-            {p.highlights && (
-              <section className="mt-6" aria-labelledby="hl">
-                <h2 id="hl" className="m-0 font-heading font-bold text-eu-ink text-[length:var(--fs-19)] mb-3">
-                  Με μια ματιά
-                </h2>
-                <ul className="m-0 p-0 list-none grid grid-cols-1 @sm:grid-cols-2 gap-2">
-                  {p.highlights.map((h) => (
-                    <li key={h} className="flex gap-2 rounded-md bg-eu-surface px-3 py-2.5 text-eu-ink-2 text-[length:var(--fs-12-5)]">
-                      <span className="text-eu-green font-extrabold" aria-hidden>
-                        ✓
-                      </span>
-                      {h}
-                    </li>
-                  ))}
-                </ul>
-              </section>
+            {p.tradeIn && (
+              <div className="rounded-xl bg-eu-surface p-4 flex items-center gap-3">
+                <Recycle className="size-8 text-eu-green shrink-0" aria-hidden />
+                <div className="text-[length:var(--fs-16)] text-eu-ink-2">
+                  <strong className="text-eu-ink">Έχεις παλιά συσκευή;</strong> Την παραλαμβάνουμε δωρεάν για ανακύκλωση κατά την παράδοση — επίλεξέ το στο checkout.{" "}
+                  <Link href="/ypiresies/anakyklosi-aiie" className="text-eu-blue underline">
+                    Μάθε περισσότερα
+                  </Link>
+                </div>
+              </div>
             )}
-            {p.description && (
-              <section className="mt-6" aria-labelledby="desc">
-                <h2 id="desc" className="m-0 font-heading font-bold text-eu-ink text-[length:var(--fs-19)] mb-2">
-                  Περιγραφή
-                </h2>
-                <p className="m-0 text-eu-ink-2 text-[length:var(--fs-13-5)] leading-relaxed">{p.description}</p>
-                {p.sourceUrl && (
-                  <p className="m-0 mt-2 text-eu-muted-2 text-[length:var(--fs-10-5)]">
-                    Στοιχεία από το euronics.gr ·{" "}
-                    <a href={p.sourceUrl} className="underline" rel="noreferrer" target="_blank">
-                      πηγή
-                    </a>
-                  </p>
-                )}
-              </section>
-            )}
-            {p.specs && p.specs.length > 0 && <SpecsTable specs={p.specs} energy={p.energy} />}
-            <Reviews product={p} />
-            <Questions product={p} />
           </div>
-          <div className="[grid-area:buy] min-w-0">
-            <BuyBox product={p} addons={addons} stores={stores.slice(0, 8)} />
+          <div className="min-w-0">
+            <BuyBox product={p} addons={addons} stores={stores.slice(0, 8)} accessory={accessories[0] ?? null} />
           </div>
-        </div>
-        {accessories.length > 0 && <ProductRail title="Ταιριάζει με" products={accessories} />}
-        {related.length > 0 && <ProductRail title="Σχετικά προϊόντα" products={related} />}
-        <div className="mt-8 text-[length:var(--fs-12)] text-eu-muted flex flex-wrap gap-x-4 gap-y-1">
-          <span>Κωδικός: {p.sku}</span>
-          {p.ean && <span>EAN: {p.ean}</span>}
-          <Link href="/epistrofes" className="text-eu-blue underline">
-            14 ημέρες υπαναχώρηση
-          </Link>
-          <Link href="/tropoi-pliromis" className="text-eu-blue underline">
-            Τρόποι πληρωμής
-          </Link>
         </div>
       </article>
+
+      <SectionNav available={sections} />
+
+      <div className="eu-canvas eu-gutter py-8 @lg:py-10 grid grid-cols-1 gap-12 @lg:gap-16 [&>*]:min-w-0">
+        <section id="overview" className="scroll-mt-24" aria-labelledby="ov-title">
+          <div className="font-extrabold text-eu-blue text-[length:var(--fs-14)] tracking-wide mb-1">Με μια ματιά</div>
+          <h2 id="ov-title" className="m-0 font-heading font-bold text-eu-ink text-[length:var(--fs-26)] leading-tight mb-4">
+            Γιατί να το επιλέξεις
+          </h2>
+          <ul className="m-0 p-0 list-none grid grid-cols-1 @sm:grid-cols-2 @xl:grid-cols-4 gap-3">
+            {(p.highlights ?? (p.specs ?? []).slice(0, 4).map((s) => `${s.key}: ${s.value}`)).map((h, i) => (
+              <li key={h} className="rounded-xl border border-eu-line p-4 flex gap-3">
+                <span className="size-8 shrink-0 rounded-full bg-eu-yellow text-eu-navy font-extrabold inline-flex items-center justify-center text-[length:var(--fs-15)]">{i + 1}</span>
+                <span className="text-eu-ink text-[length:var(--fs-17)] leading-snug font-semibold">{h}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        {p.description && (
+          <section id="description" className="scroll-mt-24 grid grid-cols-1 @lg:grid-cols-[minmax(0,1fr)_320px] gap-8" aria-labelledby="desc-title">
+            <div>
+              <div className="font-extrabold text-eu-blue text-[length:var(--fs-14)] tracking-wide mb-1">Περιγραφή</div>
+              <h2 id="desc-title" className="m-0 font-heading font-bold text-eu-ink text-[length:var(--fs-26)] leading-tight mb-4">
+                {p.brand} {p.title}
+              </h2>
+              <p className="m-0 text-eu-ink-2 text-[length:var(--fs-16)] leading-[1.75] max-w-[68ch]">{p.description}</p>
+              {p.sourceUrl && (
+                <p className="m-0 mt-3 text-eu-muted text-[length:var(--fs-15)]">
+                  Στοιχεία προϊόντος από το euronics.gr ·{" "}
+                  <a href={p.sourceUrl} className="underline" rel="noreferrer" target="_blank">
+                    πηγή
+                  </a>
+                </p>
+              )}
+            </div>
+            <aside className="rounded-xl bg-eu-navy text-white p-5 grid gap-3 self-start">
+              <div className="font-extrabold text-eu-yellow text-[length:var(--fs-14)] tracking-wide">Γιατί από Euronics</div>
+              {["Επίσημη εγγύηση αντιπροσωπείας 2 έτη", "Service με γνήσια ανταλλακτικά", "Παραλαβή σε 2 ώρες από 350 καταστήματα", "Δόσεις με ή χωρίς κάρτα έως 24 μήνες", "14 ημέρες υπαναχώρηση"].map((t) => (
+                <div key={t} className="flex gap-2 text-[length:var(--fs-16)]">
+                  <span className="text-eu-yellow font-extrabold">✓</span> {t}
+                </div>
+              ))}
+            </aside>
+          </section>
+        )}
+
+        {p.specs && p.specs.length > 0 && <SpecsTable specs={p.specs} energy={p.energy} />}
+        <CompareSimilar product={p} similar={similar} />
+        <ServicesDelivery product={p} services={services} />
+        <Reviews product={p} />
+        <Questions product={p} />
+
+        {accessories.length > 0 && <ProductRail title="Ταιριάζει με αυτό το προϊόν" products={accessories} />}
+        {related.length > 0 && <ProductRail title="Σχετικά προϊόντα" products={related} />}
+        <RecentlyViewed current={{ id: p.id, slug: p.slug, title: p.title, brand: p.brand, image: p.image, price: p.price }} />
+      </div>
       <StickyBar product={p} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
     </div>

@@ -25,7 +25,7 @@ export function PolicyPage({ policy, children }: { policy: Policy; children?: Re
           <ul className="m-0 p-0 list-none flex @lg:flex-col gap-1 overflow-x-auto eu-scrollbar-none">
             {NAV.map((n) => (
               <li key={n.href} className="shrink-0">
-                <Link href={n.href} aria-current={n.href === `/${policy.slug}` ? "page" : undefined} className={`inline-flex rounded-full @lg:rounded-md px-3.5 py-2.5 min-h-11 items-center font-semibold text-[length:var(--fs-12-5)] ${n.href === `/${policy.slug}` ? "bg-eu-navy text-white" : "bg-eu-surface @lg:bg-transparent text-eu-ink-2 hover:bg-eu-chip"}`}>
+                <Link href={n.href} aria-current={n.href === `/${policy.slug}` ? "page" : undefined} className={`inline-flex rounded-full @lg:rounded-md px-3.5 py-2.5 min-h-11 items-center font-semibold text-[length:var(--fs-15)] ${n.href === `/${policy.slug}` ? "bg-eu-navy text-white" : "bg-eu-surface @lg:bg-transparent text-eu-ink-2 hover:bg-eu-chip"}`}>
                   {n.label}
                 </Link>
               </li>
@@ -37,7 +37,7 @@ export function PolicyPage({ policy, children }: { policy: Policy; children?: Re
             <section key={s.title}>
               <h2 className="m-0 font-heading font-bold text-eu-ink text-[length:var(--fs-19)] mb-2">{s.title}</h2>
               {s.body.map((p, i) => (
-                <p key={i} className="m-0 mb-2 text-eu-ink-2 text-[length:var(--fs-13-5)] leading-relaxed">
+                <p key={i} className="m-0 mb-2 text-eu-ink-2 text-[length:var(--fs-16)] leading-relaxed">
                   {p}
                 </p>
               ))}
@@ -45,7 +45,7 @@ export function PolicyPage({ policy, children }: { policy: Policy; children?: Re
           ))}
           {children}
           {policy.sourceUrl && (
-            <p className="m-0 text-eu-muted-2 text-[length:var(--fs-11)] border-t border-eu-line pt-3">
+            <p className="m-0 text-eu-muted-2 text-[length:var(--fs-13-5)] border-t border-eu-line pt-3">
               Κείμενο συμπυκνωμένο από την τρέχουσα σελίδα του euronics.gr ·{" "}
               <a href={policy.sourceUrl} className="underline" rel="noreferrer" target="_blank">
                 πηγή

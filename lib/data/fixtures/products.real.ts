@@ -387,7 +387,7 @@ export const realProducts: Product[] = [
     brand: "AEG", brandSlug: "aeg",
     title: "EC6-1-6ST Μηχανή Espresso",
     category: "oikiakos-exoplismos", subcategory: "kafes-rofimata",
-    image: null, images: [],
+    image: "/img/products/lever-espresso.jpg", images: ["/img/products/lever-espresso.jpg"],
     price: 139.0,
      rating: { value: 4.8, count: 22 }, storeStock: 28,
     availability: { kind: "in-stock", deliveryDate: d(2) },

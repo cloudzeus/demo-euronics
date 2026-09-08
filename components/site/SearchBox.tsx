@@ -19,13 +19,13 @@ export function SearchBox({ compact = false }: { compact?: boolean }) {
       <label htmlFor={`${id}-scope`} className="sr-only">
         Κατηγορία αναζήτησης
       </label>
-      <div className={`relative shrink-0 bg-eu-chip text-eu-ink-3 font-semibold text-[length:var(--fs-12-5)] ${compact ? "hidden" : "flex"} items-center`}>
+      <div className={`relative shrink-0 bg-eu-chip text-eu-ink-3 font-semibold text-[length:var(--fs-15)] ${compact ? "hidden" : "flex"} items-center`}>
         <select
           id={`${id}-scope`}
           name="cat"
           value={scope}
           onChange={(e) => setScope(e.target.value)}
-          className="appearance-none bg-transparent pl-4 pr-8 h-full min-h-11 outline-none cursor-pointer text-[length:var(--fs-12-5)]"
+          className="appearance-none bg-transparent pl-3.5 pr-7 h-full min-h-11 outline-none cursor-pointer text-[length:var(--fs-15)]"
         >
           <option value="all">Κατηγορία</option>
           {navCategories.map((c) => (
@@ -45,14 +45,14 @@ export function SearchBox({ compact = false }: { compact?: boolean }) {
         type="search"
         autoComplete="off"
         placeholder={compact ? PLACEHOLDER_SHORT : PLACEHOLDER_FULL}
-        className="flex-1 min-w-0 px-4 py-3 text-eu-ink placeholder:text-eu-muted-2 text-[length:var(--fs-14)] outline-none bg-transparent"
+        className="flex-1 min-w-0 px-4 py-3 text-eu-ink placeholder:text-eu-muted-2 text-[length:var(--fs-16)] outline-none bg-transparent"
       />
       <button
         type="submit"
-        className="shrink-0 bg-eu-yellow text-eu-navy font-extrabold text-[length:var(--fs-13)] px-4 @md:px-[22px] flex items-center gap-2 hover:bg-eu-yellow-dark transition-colors min-h-11"
+        className="shrink-0 bg-eu-yellow text-eu-navy font-extrabold text-[length:var(--fs-15)] px-4 @md:px-[22px] flex items-center gap-2 hover:bg-eu-yellow-dark transition-colors min-h-11"
       >
         <Search className="size-4" aria-hidden />
-        <span className={compact ? "sr-only" : ""}>Αναζήτηση</span>
+        <span className={compact ? "sr-only" : "hidden @5xl:inline"}>Αναζήτηση</span>
       </button>
     </form>
   );

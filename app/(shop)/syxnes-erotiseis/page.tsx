@@ -19,7 +19,7 @@ export default async function FaqPage() {
           <ul className="m-0 p-0 list-none flex @lg:flex-col gap-1 overflow-x-auto eu-scrollbar-none">
             {groups.map((g) => (
               <li key={g} className="shrink-0">
-                <a href={`#${g}`} className="inline-flex rounded-full @lg:rounded-md px-3.5 py-2.5 min-h-11 items-center font-semibold text-[length:var(--fs-12-5)] bg-eu-surface @lg:bg-transparent text-eu-ink-2 hover:bg-eu-chip">
+                <a href={`#${g}`} className="inline-flex rounded-full @lg:rounded-md px-3.5 py-2.5 min-h-11 items-center font-semibold text-[length:var(--fs-15)] bg-eu-surface @lg:bg-transparent text-eu-ink-2 hover:bg-eu-chip">
                   {g}
                 </a>
               </li>
@@ -33,11 +33,11 @@ export default async function FaqPage() {
               <div className="grid gap-2">
                 {faqs.filter((f) => f.group === g).map((f) => (
                   <details key={f.q} className="group rounded-lg border border-eu-line bg-white px-4">
-                    <summary className="cursor-pointer list-none flex justify-between items-center gap-3 py-3 font-bold text-eu-ink text-[length:var(--fs-13)] min-h-11">
+                    <summary className="cursor-pointer list-none flex justify-between items-center gap-3 py-3 font-bold text-eu-ink text-[length:var(--fs-15)] min-h-11">
                       {f.q}
                       <span className="text-eu-blue group-open:rotate-45 transition-transform text-[length:var(--fs-19)] leading-none shrink-0">+</span>
                     </summary>
-                    <p className="m-0 pb-3 text-eu-ink-2 text-[length:var(--fs-12-5)] leading-relaxed">{f.a}</p>
+                    <p className="m-0 pb-3 text-eu-ink-2 text-[length:var(--fs-15)] leading-relaxed">{f.a}</p>
                   </details>
                 ))}
               </div>

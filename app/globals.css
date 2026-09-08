@@ -244,8 +244,8 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-size: var(--fs-14);
-    line-height: 1.5;
+    font-size: var(--fs-16);
+    line-height: 1.55;
   }
   h1,
   h2,
@@ -267,6 +267,10 @@
     [data-touch-target] {
       min-height: 44px;
     }
+  }
+  select {
+    max-width: 100%;
+    min-width: 0;
   }
   :focus-visible {
     outline: 3px solid var(--eu-blue);
@@ -315,6 +319,10 @@
 }
 
 /* Ticker — moves slowly, pauses on hover, off under reduced motion */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
 @keyframes eu-marquee {
   from {
     transform: translateX(0);

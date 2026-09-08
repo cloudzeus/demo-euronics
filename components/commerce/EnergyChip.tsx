@@ -18,14 +18,14 @@ export function EnergyChip({ cls, fiche, compact = false }: { cls: EnergyClass; 
   return (
     <>
       <span
-        className="text-white font-extrabold text-[length:var(--fs-10)] px-1.5 py-1 rounded-sm"
+        className="text-white font-extrabold text-[length:var(--fs-13)] px-1.5 py-1 rounded-sm"
         style={{ background: COLORS[cls] ?? "#4f9a2f", color: cls === "D" ? "#1a1a1a" : "#fff" }}
         aria-label={`Ενεργειακή κλάση ${cls}`}
       >
         {cls}
       </span>
       {!compact && (
-        <a href={fiche} className="bg-white border border-eu-line text-eu-muted font-semibold text-[length:var(--fs-9-5)] px-1.5 py-1 rounded-sm hover:text-eu-blue">
+        <a href={fiche} className="bg-white border border-eu-line text-eu-muted font-semibold text-[length:var(--fs-12)] px-1.5 py-1 rounded-sm hover:text-eu-blue">
           Δελτίο προϊόντος
         </a>
       )}

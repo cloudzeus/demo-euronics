@@ -11,11 +11,11 @@ export default function LoginPage() {
         <AuthForm mode="login" />
         <aside className="bg-eu-surface rounded-xl p-6">
           <h2 className="m-0 font-heading font-bold text-eu-ink text-[length:var(--fs-19)] mb-2">Δεν έχεις λογαριασμό;</h2>
-          <p className="m-0 text-eu-ink-2 text-[length:var(--fs-13)] leading-relaxed">Παρακολούθηση παραγγελιών, εγγυήσεις, επιστροφές και λίστα σε όλες τις συσκευές. Η αγορά ως επισκέπτης παραμένει διαθέσιμη.</p>
-          <Link href="/eggrafi" className="inline-flex mt-4 rounded-full bg-eu-navy text-white font-extrabold text-[length:var(--fs-13)] px-5 min-h-11 items-center hover:bg-eu-blue">
+          <p className="m-0 text-eu-ink-2 text-[length:var(--fs-15)] leading-relaxed">Παρακολούθηση παραγγελιών, εγγυήσεις, επιστροφές και λίστα σε όλες τις συσκευές. Η αγορά ως επισκέπτης παραμένει διαθέσιμη.</p>
+          <Link href="/eggrafi" className="inline-flex mt-4 rounded-full bg-eu-navy text-white font-extrabold text-[length:var(--fs-15)] px-5 min-h-11 items-center hover:bg-eu-blue">
             Δημιουργία λογαριασμού
           </Link>
-          <p className="m-0 mt-5 text-eu-muted text-[length:var(--fs-12)]">
+          <p className="m-0 mt-5 text-eu-muted text-[length:var(--fs-14)]">
             Έχεις παραγγελία ως επισκέπτης;{" "}
             <Link href="/entopismos" className="text-eu-blue underline">
               Παρακολούθησέ την εδώ

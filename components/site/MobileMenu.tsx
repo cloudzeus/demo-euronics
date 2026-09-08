@@ -20,7 +20,7 @@ export function MobileMenu({ categories }: { categories: NavCategory[] }) {
       </SheetTrigger>
       <SheetContent side="left" className="w-[88vw] max-w-[380px] p-0 gap-0 bg-white">
         <div className="p-4 border-b border-eu-line">
-          <SheetTitle className="font-extrabold text-eu-ink text-[length:var(--fs-15)]">Κατηγορίες</SheetTitle>
+          <SheetTitle className="font-extrabold text-eu-ink text-[length:var(--fs-17)]">Κατηγορίες</SheetTitle>
         </div>
         <nav aria-label="Κατηγορίες" className="overflow-y-auto">
           <ul className="m-0 p-0 list-none">
@@ -32,23 +32,23 @@ export function MobileMenu({ categories }: { categories: NavCategory[] }) {
                     type="button"
                     aria-expanded={isOpen}
                     onClick={() => setOpen(isOpen ? null : c.slug)}
-                    className="w-full flex items-center justify-between px-4 py-3 min-h-12 font-semibold text-eu-ink text-[length:var(--fs-14)]"
+                    className="w-full flex items-center justify-between px-4 py-3 min-h-12 font-semibold text-eu-ink text-[length:var(--fs-16)]"
                   >
                     <span>
-                      {c.label} <span className="text-eu-muted-2 font-normal text-[length:var(--fs-11-5)]">· {c.count}</span>
+                      {c.label} <span className="text-eu-muted-2 font-normal text-[length:var(--fs-14)]">· {c.count}</span>
                     </span>
                     <ChevronDown className={`size-4 transition-transform ${isOpen ? "rotate-180" : ""}`} aria-hidden />
                   </button>
                   {isOpen && (
                     <ul className="m-0 p-0 pb-2 list-none bg-eu-surface">
                       <li>
-                        <Link href={`/k/${c.slug}`} className="block px-6 py-2.5 min-h-11 font-bold text-eu-blue text-[length:var(--fs-13)]">
+                        <Link href={`/k/${c.slug}`} className="block px-6 py-2.5 min-h-11 font-bold text-eu-blue text-[length:var(--fs-15)]">
                           Όλα · {c.label}
                         </Link>
                       </li>
                       {c.children.map((ch) => (
                         <li key={ch.slug}>
-                          <Link href={`/k/${c.slug}/${ch.slug}`} className="block px-6 py-2.5 min-h-11 text-eu-ink-2 text-[length:var(--fs-13)]">
+                          <Link href={`/k/${c.slug}/${ch.slug}`} className="block px-6 py-2.5 min-h-11 text-eu-ink-2 text-[length:var(--fs-15)]">
                             {ch.name}
                           </Link>
                         </li>
@@ -62,7 +62,7 @@ export function MobileMenu({ categories }: { categories: NavCategory[] }) {
               <li key={u.slug} className="border-b border-eu-line-2">
                 <Link
                   href={`/${u.slug}`}
-                  className={`block px-4 py-3 min-h-12 font-bold text-[length:var(--fs-14)] ${u.tone === "offer" ? "text-eu-red" : "text-eu-ink"}`}
+                  className={`block px-4 py-3 min-h-12 font-bold text-[length:var(--fs-16)] ${u.tone === "offer" ? "text-eu-red" : "text-eu-ink"}`}
                 >
                   {u.label}
                 </Link>

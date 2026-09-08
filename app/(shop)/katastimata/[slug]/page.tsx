@@ -39,18 +39,18 @@ export default async function StorePage({ params }: { params: Promise<{ slug: st
             <Image src="/img/store-front.jpg" alt="" fill sizes="900px" className="object-cover" priority />
           </div>
           <div>
-            <div className="font-extrabold text-eu-blue text-[length:var(--fs-10-5)] tracking-wide mb-1">Κατάστημα-μέλος Euronics · {s.region}</div>
+            <div className="font-extrabold text-eu-blue text-[length:var(--fs-13)] tracking-wide mb-1">Κατάστημα-μέλος Euronics · {s.region}</div>
             <h1 className="m-0 font-heading font-bold text-eu-ink text-[length:var(--fs-28)] leading-[1.1]">
               Euronics {s.city} — {s.name}
             </h1>
-            <p className="m-0 mt-2 text-eu-ink-2 text-[length:var(--fs-13-5)]">
+            <p className="m-0 mt-2 text-eu-ink-2 text-[length:var(--fs-16)]">
               {s.address}, {s.zip} {s.city} · {s.distanceKm.toLocaleString("el-GR")} km από το κέντρο
             </p>
           </div>
           <section className="grid grid-cols-1 @md:grid-cols-2 gap-4">
             <div className="bg-white rounded-xl border border-eu-line p-4">
-              <h2 className="m-0 font-bold text-eu-ink text-[length:var(--fs-14)] mb-2">Ωράριο</h2>
-              <table className="w-full text-[length:var(--fs-12-5)]">
+              <h2 className="m-0 font-bold text-eu-ink text-[length:var(--fs-16)] mb-2">Ωράριο</h2>
+              <table className="w-full text-[length:var(--fs-15)]">
                 <tbody>
                   {s.hours.map((h) => (
                     <tr key={h.day}>
@@ -62,8 +62,8 @@ export default async function StorePage({ params }: { params: Promise<{ slug: st
               </table>
             </div>
             <div className="bg-white rounded-xl border border-eu-line p-4">
-              <h2 className="m-0 font-bold text-eu-ink text-[length:var(--fs-14)] mb-2">Υπηρεσίες στο κατάστημα</h2>
-              <ul className="m-0 p-0 list-none grid gap-1 text-[length:var(--fs-12-5)] text-eu-ink-2">
+              <h2 className="m-0 font-bold text-eu-ink text-[length:var(--fs-16)] mb-2">Υπηρεσίες στο κατάστημα</h2>
+              <ul className="m-0 p-0 list-none grid gap-1 text-[length:var(--fs-15)] text-eu-ink-2">
                 {s.services.map((sv) => (
                   <li key={sv} className="flex gap-2">
                     <span className="text-eu-green font-extrabold">✓</span> {SERVICE_LABEL[sv]}
@@ -74,13 +74,13 @@ export default async function StorePage({ params }: { params: Promise<{ slug: st
           </section>
           <section className="bg-eu-surface rounded-xl p-5">
             <h2 className="m-0 font-heading font-bold text-eu-ink text-[length:var(--fs-19)] mb-1">Παράγγειλε online, παράλαβε εδώ σε 2 ώρες</h2>
-            <p className="m-0 text-eu-ink-2 text-[length:var(--fs-13)]">Στο checkout επίλεξε «Παραλαβή από κατάστημα» και αυτό το κατάστημα. Όταν το προϊόν υπάρχει στο απόθεμα, είναι έτοιμο σε 2 ώρες.</p>
+            <p className="m-0 text-eu-ink-2 text-[length:var(--fs-15)]">Στο checkout επίλεξε «Παραλαβή από κατάστημα» και αυτό το κατάστημα. Όταν το προϊόν υπάρχει στο απόθεμα, είναι έτοιμο σε 2 ώρες.</p>
           </section>
           <ProductRail title="Προσφορές διαθέσιμες στο κατάστημα" products={deals.items} />
         </div>
         <aside className="grid gap-3 @lg:sticky @lg:top-4">
-          <div className="bg-eu-navy text-white rounded-xl p-5 grid gap-2 text-[length:var(--fs-13)]">
-            <div className="font-extrabold text-eu-yellow text-[length:var(--fs-10-5)] tracking-wide">Επικοινωνία</div>
+          <div className="bg-eu-navy text-white rounded-xl p-5 grid gap-2 text-[length:var(--fs-15)]">
+            <div className="font-extrabold text-eu-yellow text-[length:var(--fs-13)] tracking-wide">Επικοινωνία</div>
             {s.phone && (
               <a href={`tel:${s.phone}`} className="font-bold text-[length:var(--fs-16)] hover:text-eu-yellow">
                 {s.phone}
@@ -91,13 +91,13 @@ export default async function StorePage({ params }: { params: Promise<{ slug: st
                 {s.email}
               </a>
             )}
-            <a href={`https://maps.google.com/?q=${s.lat},${s.lng}`} target="_blank" rel="noreferrer" className="mt-2 rounded-full bg-eu-yellow text-eu-navy text-center font-extrabold text-[length:var(--fs-12-5)] py-3 min-h-11 inline-flex items-center justify-center hover:bg-eu-yellow-dark">
+            <a href={`https://maps.google.com/?q=${s.lat},${s.lng}`} target="_blank" rel="noreferrer" className="mt-2 rounded-full bg-eu-yellow text-eu-navy text-center font-extrabold text-[length:var(--fs-15)] py-3 min-h-11 inline-flex items-center justify-center hover:bg-eu-yellow-dark">
               Οδηγίες στο Google Maps
             </a>
           </div>
           <div className="bg-white rounded-xl border border-eu-line p-4">
-            <h2 className="m-0 font-bold text-eu-ink text-[length:var(--fs-13-5)] mb-2">Κοντινά καταστήματα · {s.region}</h2>
-            <ul className="m-0 p-0 list-none grid gap-1.5 text-[length:var(--fs-12-5)]">
+            <h2 className="m-0 font-bold text-eu-ink text-[length:var(--fs-16)] mb-2">Κοντινά καταστήματα · {s.region}</h2>
+            <ul className="m-0 p-0 list-none grid gap-1.5 text-[length:var(--fs-15)]">
               {nearby.filter((n) => n.id !== s.id).slice(0, 5).map((n) => (
                 <li key={n.id}>
                   <Link href={`/katastimata/${n.slug}`} className="text-eu-ink-2 hover:text-eu-blue">

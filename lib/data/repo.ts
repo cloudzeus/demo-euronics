@@ -1,3 +1,4 @@
+import { attributeFacets, matchesAttrs, type AttrFacet } from "./attributes";
 import "server-only";
 import type { Brand, Faq, Guide, Order, Policy, Product, Service, Store } from "./types";
 import { navCategories, type NavCategory } from "./nav";
@@ -26,6 +27,8 @@ export interface ListFilter {
   renew?: boolean;
   energy?: string[];
   sort?: "relevance" | "price-asc" | "price-desc" | "rating" | "newest" | "discount";
+  /** Characteristic facets: canonical key → accepted values (see lib/data/attributes). */
+  attrs?: Record<string, string[]>;
   page?: number;
   perPage?: number;
 }
@@ -38,6 +41,34 @@ export interface ListResult {
   brands: { slug: string; name: string; count: number }[];
   energies: { cls: string; count: number }[];
   priceRange: [number, number];
+  /** Characteristic facets computed from the (category-scoped) set. */
+  attributes: AttrFacet[];
+  /** L1 categories with counts — only for the all-products list. */
+  categories: { slug: string; label: string; count: number }[];
+}
+
+/** Parse listing search params (shared by /proionta, /k/…, /prosfores, /anazitisi). Attribute facets travel as `f_<key>=v1|v2`. */
+export function filterFromParams(sp: Record<string, string | undefined>, base: Partial<ListFilter> = {}): ListFilter {
+  const attrs: Record<string, string[]> = {};
+  for (const [k, v] of Object.entries(sp)) {
+    if (k.startsWith("f_") && v) attrs[k.slice(2)] = v.split("|").filter(Boolean);
+  }
+  return {
+    ...base,
+    l1: base.l1 ?? sp.k ?? undefined,
+    brand: sp.brand?.split(",").filter(Boolean),
+    energy: sp.energy?.split(",").filter(Boolean),
+    minPrice: sp.min ? Number(sp.min) : undefined,
+    maxPrice: sp.max ? Number(sp.max) : undefined,
+    avail: sp.avail === "in-stock" ? "in-stock" : undefined,
+    sale: sp.sale === "1" || base.sale,
+    renew: base.renew,
+    q: sp.q ?? base.q,
+    sort: (sp.sort as ListFilter["sort"]) ?? "relevance",
+    attrs: Object.keys(attrs).length ? attrs : undefined,
+    page: sp.page ? Number(sp.page) : 1,
+    perPage: base.perPage ?? 24,
+  };
 }
 
 const norm = (s: string) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
@@ -66,6 +97,7 @@ function applyFilter(f: ListFilter) {
   if (f.avail === "in-stock") list = list.filter((p) => p.availability.kind === "in-stock");
   if (f.sale) list = list.filter((p) => p.wasPrice && p.wasPrice > p.price);
   if (f.energy?.length) list = list.filter((p) => p.energy && f.energy!.includes(p.energy.cls));
+  if (f.attrs) list = list.filter((p) => matchesAttrs(p, f.attrs));
   if (f.q) {
     const q = norm(f.q);
     list = list.filter((p) => norm(`${p.brand} ${p.title} ${p.sku} ${p.ean ?? ""} ${p.subcategory}`).includes(q));
@@ -74,7 +106,9 @@ function applyFilter(f: ListFilter) {
 }
 
 export async function listProducts(f: ListFilter = {}): Promise<ListResult> {
-  const base = applyFilter({ ...f, brand: undefined, energy: undefined, minPrice: undefined, maxPrice: undefined, avail: undefined, sale: undefined });
+  const base = applyFilter({ ...f, brand: undefined, energy: undefined, minPrice: undefined, maxPrice: undefined, avail: undefined, sale: undefined, attrs: undefined });
+  const catMap = new Map<string, number>();
+  if (!f.l1) for (const p of applyFilter({ ...f, l1: undefined, l2: undefined, brand: undefined, energy: undefined, minPrice: undefined, maxPrice: undefined, avail: undefined, sale: undefined, attrs: undefined })) catMap.set(p.category, (catMap.get(p.category) ?? 0) + 1);
   const brandsMap = new Map<string, { slug: string; name: string; count: number }>();
   const energyMap = new Map<string, number>();
   for (const p of base) {
@@ -115,6 +149,8 @@ export async function listProducts(f: ListFilter = {}): Promise<ListResult> {
     brands: [...brandsMap.values()].sort((a, b) => b.count - a.count),
     energies: [...energyMap.entries()].map(([cls, count]) => ({ cls, count })).sort((a, b) => a.cls.localeCompare(b.cls)),
     priceRange: prices.length ? [Math.min(...prices), Math.max(...prices)] : [0, 0],
+    attributes: attributeFacets(base),
+    categories: navCategories.filter((c) => catMap.has(c.slug)).map((c) => ({ slug: c.slug, label: c.label, count: catMap.get(c.slug)! })),
   };
 }
 

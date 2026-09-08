@@ -14,20 +14,20 @@ export function Pagination({ page, pages, basePath, params }: { page: number; pa
   return (
     <nav aria-label="Σελίδες" className="flex items-center justify-center gap-1 mt-8">
       {page > 1 && (
-        <Link href={href(page - 1)} className="rounded-full border border-eu-line px-3 min-h-10 inline-flex items-center font-semibold text-[length:var(--fs-12-5)] hover:border-eu-blue">
+        <Link href={href(page - 1)} className="rounded-full border border-eu-line px-3 min-h-10 inline-flex items-center font-semibold text-[length:var(--fs-15)] hover:border-eu-blue">
           ‹ Προηγούμενη
         </Link>
       )}
       {nums.map((p, i) => (
         <span key={p} className="flex items-center gap-1">
           {i > 0 && nums[i - 1] !== p - 1 && <span className="text-eu-muted-2 px-1">…</span>}
-          <Link href={href(p)} aria-current={p === page ? "page" : undefined} className={`size-10 inline-flex items-center justify-center rounded-full font-bold text-[length:var(--fs-12-5)] ${p === page ? "bg-eu-navy text-white" : "border border-eu-line hover:border-eu-blue"}`}>
+          <Link href={href(p)} aria-current={p === page ? "page" : undefined} className={`size-10 inline-flex items-center justify-center rounded-full font-bold text-[length:var(--fs-15)] ${p === page ? "bg-eu-navy text-white" : "border border-eu-line hover:border-eu-blue"}`}>
             {p}
           </Link>
         </span>
       ))}
       {page < pages && (
-        <Link href={href(page + 1)} className="rounded-full border border-eu-line px-3 min-h-10 inline-flex items-center font-semibold text-[length:var(--fs-12-5)] hover:border-eu-blue">
+        <Link href={href(page + 1)} className="rounded-full border border-eu-line px-3 min-h-10 inline-flex items-center font-semibold text-[length:var(--fs-15)] hover:border-eu-blue">
           Επόμενη ›
         </Link>
       )}

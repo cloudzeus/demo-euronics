@@ -18,10 +18,10 @@ export function ServicesBand({ services, zoneNo }: { services: Service[]; zoneNo
           {services.map((s) => (
             <li key={s.slug} className="bg-eu-navy">
               <Link href={`/ypiresies/${s.slug}`} className="flex gap-3.5 p-4 @md:p-[18px_20px] h-full hover:bg-eu-navy-2">
-                <span className="font-extrabold text-eu-yellow text-[length:var(--fs-12)] w-[22px] shrink-0 pt-0.5">{s.no}</span>
+                <span className="font-extrabold text-eu-yellow text-[length:var(--fs-14)] w-[22px] shrink-0 pt-0.5">{s.no}</span>
                 <div>
-                  <div className="font-bold text-[length:var(--fs-14)] leading-[1.25]">{s.title}</div>
-                  <div className="text-eu-on-dark-2 text-[length:var(--fs-11-5)] leading-[1.5] mt-1.5">{s.blurb}</div>
+                  <div className="font-bold text-[length:var(--fs-16)] leading-[1.25]">{s.title}</div>
+                  <div className="text-eu-on-dark-2 text-[length:var(--fs-14)] leading-[1.5] mt-1.5">{s.blurb}</div>
                 </div>
               </Link>
             </li>

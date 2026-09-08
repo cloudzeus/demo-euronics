@@ -24,6 +24,7 @@ export type WidgetType =
   | "services-band"
   | "store-finder"
   | "guides"
+  | "smart-guides"
   | "newsletter"
   | "quick-buy-explainer";
 

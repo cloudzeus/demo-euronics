@@ -9,9 +9,9 @@ export function PageIntro({ kicker, title, lead, right, tone = "light" }: { kick
     <header className={`${bg} eu-container`}>
       <div className="eu-canvas eu-gutter py-6 @lg:py-8 flex flex-wrap items-end justify-between gap-4">
         <div className="max-w-[46em]">
-          {kicker && <div className={`font-extrabold text-[length:var(--fs-10-5)] tracking-wide mb-2 ${kick}`}>{kicker}</div>}
+          {kicker && <div className={`font-extrabold text-[length:var(--fs-13)] tracking-wide mb-2 ${kick}`}>{kicker}</div>}
           <h1 className="m-0 font-heading font-bold text-[length:var(--fs-32)] leading-[1.1] tracking-[-0.02em]">{title}</h1>
-          {lead && <p className={`m-0 mt-2 text-[length:var(--fs-13-5)] leading-relaxed ${leadC}`}>{lead}</p>}
+          {lead && <p className={`m-0 mt-2 text-[length:var(--fs-16)] leading-relaxed ${leadC}`}>{lead}</p>}
         </div>
         {right}
       </div>

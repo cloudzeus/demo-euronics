@@ -39,12 +39,12 @@ export function BentoHero({ slides, deal, store, services, intervalMs, zoneNo }:
         <div className="grid grid-rows-2 gap-3 @lg:gap-3.5">
           <form action="/katastimata" className="bg-eu-blue text-white rounded-lg p-4 flex flex-col justify-between">
             <div>
-              <div className="font-extrabold text-eu-yellow text-[length:var(--fs-10-5)] tracking-wide mb-2">Το κατάστημά σου</div>
+              <div className="font-extrabold text-eu-yellow text-[length:var(--fs-13)] tracking-wide mb-2">Το κατάστημά σου</div>
               <div className="font-heading font-bold text-[length:var(--fs-17)] leading-[1.25]">
                 Δες απόθεμα
                 <br className="hidden @lg:block" /> δίπλα σου
               </div>
-              <div className="text-eu-on-dark-3 text-[length:var(--fs-11)] mt-1.5 hidden @lg:block">
+              <div className="text-eu-on-dark-3 text-[length:var(--fs-13-5)] mt-1.5 hidden @lg:block">
                 Πιο κοντά: {store.name.split(" — ")[0]} · {store.distanceKm} km
               </div>
             </div>
@@ -52,8 +52,8 @@ export function BentoHero({ slides, deal, store, services, intervalMs, zoneNo }:
               <label className="sr-only" htmlFor="hero-store-q">
                 Ταχυδρομικός κώδικας ή πόλη
               </label>
-              <input id="hero-store-q" name="q" placeholder="ΤΚ ή πόλη" className="flex-1 min-w-0 rounded-full bg-white text-eu-ink placeholder:text-eu-muted-2 px-3 py-2.5 text-[length:var(--fs-11-5)] outline-none focus-visible:ring-2 ring-eu-yellow" />
-              <button type="submit" className="rounded-full bg-eu-yellow text-eu-navy font-extrabold text-[length:var(--fs-11-5)] px-3.5 min-h-11 hover:bg-eu-yellow-dark">
+              <input id="hero-store-q" name="q" placeholder="ΤΚ ή πόλη" className="flex-1 min-w-0 rounded-full bg-white text-eu-ink placeholder:text-eu-muted-2 px-3 py-2.5 text-[length:var(--fs-14)] outline-none focus-visible:ring-2 ring-eu-yellow" />
+              <button type="submit" className="rounded-full bg-eu-yellow text-eu-navy font-extrabold text-[length:var(--fs-14)] px-3.5 min-h-11 hover:bg-eu-yellow-dark">
                 Βρες
               </button>
             </div>
@@ -61,10 +61,10 @@ export function BentoHero({ slides, deal, store, services, intervalMs, zoneNo }:
 
           <Link href="/ypiresies" className="bg-eu-surface text-eu-ink rounded-lg p-4 flex flex-col justify-between group hover:bg-eu-chip">
             <div>
-              <div className="font-extrabold text-eu-blue text-[length:var(--fs-10-5)] tracking-wide mb-2">Υπηρεσίες</div>
-              <div className="font-semibold text-eu-ink-2 text-[length:var(--fs-12)] leading-[1.55]">{services.join(" · ")}</div>
+              <div className="font-extrabold text-eu-blue text-[length:var(--fs-13)] tracking-wide mb-2">Υπηρεσίες</div>
+              <div className="font-semibold text-eu-ink-2 text-[length:var(--fs-14)] leading-[1.55]">{services.join(" · ")}</div>
             </div>
-            <div className="font-extrabold text-eu-blue text-[length:var(--fs-11-5)] mt-3 flex items-center gap-1">
+            <div className="font-extrabold text-eu-blue text-[length:var(--fs-14)] mt-3 flex items-center gap-1">
               Και άλλες 9 <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" aria-hidden />
             </div>
           </Link>

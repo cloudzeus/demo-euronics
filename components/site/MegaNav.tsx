@@ -49,7 +49,7 @@ export function MegaNav() {
                 onFocus={() => setOpen(c.slug)}
                 onClick={() => setOpen(isOpen ? null : c.slug)}
                 onKeyDown={(e) => e.key === "ArrowDown" && setOpen(c.slug)}
-                className={`font-semibold text-[length:var(--fs-12-5)] px-3 py-[13px] rounded-md transition-colors ${
+                className={`font-semibold text-[length:var(--fs-15)] px-3 py-[13px] rounded-md transition-colors ${
                   isOpen || (i === 0 && !open) ? "bg-eu-navy text-white font-bold" : "text-eu-ink-2 hover:bg-eu-surface"
                 }`}
               >
@@ -63,7 +63,7 @@ export function MegaNav() {
           <li key={u.slug}>
             <Link
               href={`/${u.slug}`}
-              className={`block font-semibold text-[length:var(--fs-12-5)] px-3.5 py-[13px] rounded-md ${
+              className={`block font-semibold text-[length:var(--fs-15)] px-3.5 py-[13px] rounded-md ${
                 u.tone === "offer" ? "bg-eu-red text-white font-extrabold hover:bg-[#c92a1a]" : "text-eu-ink-2 hover:bg-eu-surface"
               }`}
             >
@@ -86,8 +86,8 @@ export function MegaNav() {
             <div className="eu-full eu-gutter-wide py-5 grid grid-cols-[1fr_auto] gap-8">
               <div>
                 <div className="flex items-baseline justify-between mb-3">
-                  <h2 className="m-0 font-extrabold text-eu-ink text-[length:var(--fs-15)]">{active.label}</h2>
-                  <Link href={`/k/${active.slug}`} className="font-bold text-eu-blue text-[length:var(--fs-12)] hover:underline">
+                  <h2 className="m-0 font-extrabold text-eu-ink text-[length:var(--fs-17)]">{active.label}</h2>
+                  <Link href={`/k/${active.slug}`} className="font-bold text-eu-blue text-[length:var(--fs-14)] hover:underline">
                     Όλα τα {active.count} προϊόντα →
                   </Link>
                 </div>
@@ -96,7 +96,7 @@ export function MegaNav() {
                     <li key={ch.slug}>
                       <Link
                         href={`/k/${active.slug}/${ch.slug}`}
-                        className="block border border-eu-line-3 rounded-md px-3 py-2.5 text-eu-ink-2 font-semibold text-[length:var(--fs-12-5)] hover:border-eu-blue hover:text-eu-blue"
+                        className="block border border-eu-line-3 rounded-md px-3 py-2.5 text-eu-ink-2 font-semibold text-[length:var(--fs-15)] hover:border-eu-blue hover:text-eu-blue"
                       >
                         {ch.name}
                       </Link>
@@ -105,12 +105,12 @@ export function MegaNav() {
                 </ul>
               </div>
               <aside className="w-[260px] bg-eu-surface rounded-lg p-4">
-                <div className="font-extrabold text-eu-blue text-[length:var(--fs-10-5)] tracking-wide mb-2">Προτεινόμενο</div>
-                <p className="m-0 text-eu-ink-2 text-[length:var(--fs-12-5)] leading-relaxed">
+                <div className="font-extrabold text-eu-blue text-[length:var(--fs-13)] tracking-wide mb-2">Προτεινόμενο</div>
+                <p className="m-0 text-eu-ink-2 text-[length:var(--fs-15)] leading-relaxed">
                   Οδηγός αγοράς για {active.label.toLowerCase()} και οι προσφορές της εβδομάδας, με δόσεις χωρίς κάρτα.
                 </p>
-                <Link href={`/odigoi`} className="inline-block mt-3 font-bold text-eu-blue text-[length:var(--fs-12)] hover:underline">
-                  Διάβασε τον οδηγό →
+                <Link href={({ "eikona-ixos": "/odigos-agoras/tileoraseis", computing: "/odigos-agoras/ypologistes", klimatismos: "/odigos-agoras/klimatistika" } as Record<string, string>)[active.slug] ?? "/odigoi"} className="inline-block mt-3 font-bold text-eu-blue text-[length:var(--fs-14)] hover:underline">
+                  {["eikona-ixos", "computing", "klimatismos"].includes(active.slug) ? "Έξυπνος οδηγός αγοράς →" : "Διάβασε τον οδηγό →"}
                 </Link>
               </aside>
             </div>

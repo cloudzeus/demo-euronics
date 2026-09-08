@@ -35,11 +35,11 @@ export function QuickBuySheet() {
         {p && (
           <div className="p-5 sm:p-6 flex flex-col gap-4 max-h-[92dvh] overflow-y-auto">
             <div className="flex justify-between items-center border-b border-eu-line-2 pb-3">
-              <SheetTitle className="font-extrabold text-eu-ink text-[length:var(--fs-14)]">Γρήγορη αγορά</SheetTitle>
+              <SheetTitle className="font-extrabold text-eu-ink text-[length:var(--fs-16)]">Γρήγορη αγορά</SheetTitle>
               <button
                 type="button"
                 onClick={closeQuickBuy}
-                className="inline-flex items-center gap-1 text-eu-muted-2 font-semibold text-[length:var(--fs-12)] min-h-11 px-2 rounded-full hover:text-eu-ink"
+                className="inline-flex items-center gap-1 text-eu-muted-2 font-semibold text-[length:var(--fs-14)] min-h-11 px-2 rounded-full hover:text-eu-ink"
               >
                 Κλείσιμο <X className="size-4" aria-hidden />
               </button>
@@ -52,10 +52,10 @@ export function QuickBuySheet() {
                 ) : null}
               </div>
               <div className="min-w-0">
-                <div className="font-bold text-eu-ink text-[length:var(--fs-12-5)] leading-tight">
+                <div className="font-bold text-eu-ink text-[length:var(--fs-15)] leading-tight">
                   {p.brand} {p.title}
                 </div>
-                <div className="font-extrabold text-eu-blue text-[length:var(--fs-13)] mt-1">{priceLong(p.price)}</div>
+                <div className="font-extrabold text-eu-blue text-[length:var(--fs-15)] mt-1">{priceLong(p.price)}</div>
               </div>
             </div>
 
@@ -65,18 +65,18 @@ export function QuickBuySheet() {
               <Row label={`${months} άτοκες δόσεις × ${priceLong(instalment(p.price, months))}`} />
             </div>
 
-            <div className="bg-eu-surface rounded-md p-3 text-eu-ink-2 text-[length:var(--fs-11-5)] leading-relaxed">
+            <div className="bg-eu-surface rounded-md p-3 text-eu-ink-2 text-[length:var(--fs-14)] leading-relaxed">
               Προϊόν {priceLong(p.price)} · Μεταφορικά 0,00 € · ΦΠΑ 24% περιλαμβάνεται
-              <div className="font-extrabold text-eu-ink text-[length:var(--fs-14)] mt-1">Σύνολο {priceLong(p.price)}</div>
+              <div className="font-extrabold text-eu-ink text-[length:var(--fs-16)] mt-1">Σύνολο {priceLong(p.price)}</div>
             </div>
 
             <button
               type="button"
-              className="w-full rounded-full bg-eu-yellow text-eu-navy font-extrabold text-[length:var(--fs-13)] py-4 hover:bg-eu-yellow-dark transition-colors min-h-12"
+              className="w-full rounded-full bg-eu-yellow text-eu-navy font-extrabold text-[length:var(--fs-15)] py-4 hover:bg-eu-yellow-dark transition-colors min-h-12"
             >
               Παραγγελία με υποχρέωση πληρωμής
             </button>
-            <p className="text-eu-muted text-[length:var(--fs-10)] leading-snug m-0">
+            <p className="text-eu-muted text-[length:var(--fs-13)] leading-snug m-0">
               Με την ολοκλήρωση αποδέχεσαι τους όρους. Δικαίωμα υπαναχώρησης 14 ημερών. Η πληρωμή επιβεβαιώνεται με ισχυρή ταυτοποίηση (SCA).
             </p>
           </div>
@@ -90,10 +90,10 @@ function Row({ label }: { label: string }) {
   return (
     <button
       type="button"
-      className="flex justify-between items-center border border-eu-line rounded-md px-3 py-3 text-left font-medium text-eu-ink-2 text-[length:var(--fs-12)] min-h-11 hover:border-eu-blue"
+      className="flex justify-between items-center border border-eu-line rounded-md px-3 py-3 text-left font-medium text-eu-ink-2 text-[length:var(--fs-14)] min-h-11 hover:border-eu-blue"
     >
       <span>{label}</span>
-      <span className="text-eu-muted-2 text-[length:var(--fs-11)]">αλλαγή</span>
+      <span className="text-eu-muted-2 text-[length:var(--fs-13-5)]">αλλαγή</span>
     </button>
   );
 }

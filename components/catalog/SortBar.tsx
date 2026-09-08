@@ -26,14 +26,14 @@ export function SortBar({ total, page, pages }: { total: number; page: number; p
   const view = sp.get("view") ?? "grid";
   return (
     <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-      <div className="text-eu-muted text-[length:var(--fs-12-5)]">
+      <div className="text-eu-muted text-[length:var(--fs-15)]">
         <strong className="text-eu-ink">{total}</strong> προϊόντα{pages > 1 ? ` · σελίδα ${page} από ${pages}` : ""}
       </div>
       <div className="flex items-center gap-2">
         <label htmlFor="sort" className="sr-only">
           Ταξινόμηση
         </label>
-        <select id="sort" value={sp.get("sort") ?? "relevance"} onChange={(e) => setParam("sort", e.target.value === "relevance" ? null : e.target.value)} className="rounded-full border border-eu-line bg-white px-3 py-2 text-[length:var(--fs-12-5)] font-semibold min-h-10">
+        <select id="sort" value={sp.get("sort") ?? "relevance"} onChange={(e) => setParam("sort", e.target.value === "relevance" ? null : e.target.value)} className="rounded-full border border-eu-line bg-white px-3 py-2 text-[length:var(--fs-15)] font-semibold min-h-10">
           {SORTS.map((s) => (
             <option key={s.v} value={s.v}>
               {s.label}

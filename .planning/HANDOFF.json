@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "timestamp": "2026-09-08T09:39:08.133Z",
+  "timestamp": "2026-09-08T10:49:06.706Z",
   "source": "auto-postool",
   "partial": false,
   "phase": null,
@@ -26,11 +26,339 @@
     },
     {
       "status": "M",
-      "path": "app/(shop)/kalathi/page.tsx"
+      "path": "app/(shop)/brands/page.tsx"
     },
     {
       "status": "M",
-      "path": "lib/data/catalog.ts"
+      "path": "app/(shop)/eisodos/page.tsx"
+    },
+    {
+      "status": "M",
+      "path": "app/(shop)/entopismos/page.tsx"
+    },
+    {
+      "status": "M",
+      "path": "app/(shop)/epikoinonia/page.tsx"
+    },
+    {
+      "status": "M",
+      "path": "app/(shop)/k/[...slug]/page.tsx"
+    },
+    {
+      "status": "M",
+      "path": "app/(shop)/katastimata/[slug]/page.tsx"
+    },
+    {
+      "status": "M",
+      "path": "app/(shop)/katastimata/page.tsx"
+    },
+    {
+      "status": "M",
+      "path": "app/(shop)/logariasmos/dieythynseis/page.tsx"
+    },
+    {
+      "status": "M",
+      "path": "app/(shop)/logariasmos/eggyiseis/page.tsx"
+    },
+    {
+      "status": "M",
+      "path": "app/(shop)/logariasmos/epistrofes/page.tsx"
+    },
+    {
+      "status": "M",
+      "path": "app/(shop)/logariasmos/page.tsx"
+    },
+    {
+      "status": "M",
+      "path": "app/(shop)/logariasmos/paraggelies/[no]/page.tsx"
+    },
+    {
+      "status": "M",
+      "path": "app/(shop)/logariasmos/paraggelies/page.tsx"
+    },
+    {
+      "status": "M",
+      "path": "app/(shop)/not-found.tsx"
+    },
+    {
+      "status": "M",
+      "path": "app/(shop)/odigoi/[slug]/page.tsx"
+    },
+    {
+      "status": "M",
+      "path": "app/(shop)/odigoi/page.tsx"
+    },
+    {
+      "status": "M",
+      "path": "app/(shop)/proion/[slug]/page.tsx"
+    },
+    {
+      "status": "M",
+      "path": "app/(shop)/proionta/page.tsx"
+    },
+    {
+      "status": "M",
+      "path": "app/(shop)/renew/page.tsx"
+    },
+    {
+      "status": "M",
+      "path": "app/(shop)/syxnes-erotiseis/page.tsx"
+    },
+    {
+      "status": "M",
+      "path": "app/(shop)/ypiresies/[slug]/page.tsx"
+    },
+    {
+      "status": "M",
+      "path": "app/(shop)/ypiresies/page.tsx"
+    },
+    {
+      "status": "M",
+      "path": "app/globals.css"
+    },
+    {
+      "status": "M",
+      "path": "components/account/AccountNav.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/account/AuthForm.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/account/OrderTimeline.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/account/ReturnForm.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/catalog/CategoryFaq.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/catalog/CompareTable.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/catalog/Facets.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/catalog/Pagination.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/catalog/ProductGrid.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/catalog/SortBar.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/catalog/WishlistGrid.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/checkout/CartView.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/checkout/Checkout.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/checkout/OrderSuccess.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/checkout/Stepper.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/commerce/CompareTray.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/commerce/Countdown.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/commerce/EnergyChip.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/commerce/FreeShippingProgress.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/commerce/GiftCardBuilder.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/commerce/MiniCart.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/commerce/ProductCard.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/commerce/ProductRow.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/commerce/QuickBuySheet.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/commerce/WishlistButton.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/pdp/BuyBox.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/pdp/Gallery.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/pdp/ProductRail.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/pdp/Questions.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/pdp/Reviews.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/pdp/SpecsTable.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/pdp/StickyBar.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/services/ServiceBooking.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/site/AnnouncementBar.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/site/Breadcrumbs.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/site/CartButton.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/site/ContactForm.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/site/CookieConsent.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/site/MegaNav.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/site/MobileMenu.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/site/PageIntro.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/site/PolicyPage.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/site/SearchBox.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/site/SiteFooter.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/site/SiteHeader.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/stores/StoreMap.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/widgets/BentoHero.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/widgets/CategoryGrid.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/widgets/DealOfDayTile.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/widgets/DealsRail.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/widgets/GuidesBand.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/widgets/HeroSlider.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/widgets/NewsletterBand.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/widgets/QuickBuyExplainer.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/widgets/SectionHead.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/widgets/ServicesBand.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/widgets/StoreFinder.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/widgets/Ticker.tsx"
+    },
+    {
+      "status": "M",
+      "path": "lib/cms/home.layout.ts"
+    },
+    {
+      "status": "M",
+      "path": "lib/cms/render.tsx"
+    },
+    {
+      "status": "M",
+      "path": "lib/cms/zones.ts"
     },
     {
       "status": "M",
@@ -38,9 +366,61 @@
     },
     {
       "status": "M",
+      "path": "lib/data/fixtures/products.ts"
+    },
+    {
+      "status": "M",
       "path": "lib/data/repo.ts"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/odigos-agoras/"
+    },
+    {
+      "status": "??",
+      "path": "components/guides/"
+    },
+    {
+      "status": "??",
+      "path": "components/pdp/CompareSimilar.tsx"
+    },
+    {
+      "status": "??",
+      "path": "components/pdp/ProductHeader.tsx"
+    },
+    {
+      "status": "??",
+      "path": "components/pdp/RecentlyViewed.tsx"
+    },
+    {
+      "status": "??",
+      "path": "components/pdp/SectionNav.tsx"
+    },
+    {
+      "status": "??",
+      "path": "components/pdp/ServicesDelivery.tsx"
+    },
+    {
+      "status": "??",
+      "path": "components/widgets/SmartGuidesBand.tsx"
+    },
+    {
+      "status": "??",
+      "path": "lib/data/attributes.ts"
+    },
+    {
+      "status": "??",
+      "path": "lib/guides/"
+    },
+    {
+      "status": "??",
+      "path": "public/img/guide-tv.jpg"
+    },
+    {
+      "status": "??",
+      "path": "public/img/products/"
     }
   ],
   "next_action": null,
-  "context_notes": "Recent commits:\n6e750d7 Full shop: catalog, listing with URL facets, PDP, cart, 3-step checkout with payment & SCA, confirmation, tracking, account, stores, services, guides, policies, FAQ, contact, gift cards; full-width header/hero; Manrope for Greek weights\n4f1f581 Real euronics.gr products/stores fixtures, cart v2 with persistence, mini-cart, compare tray, cookie consent, shop layout\n72edf3a Fix nested anchor in product card, AC product photo, dense proposal tables, README\ndae25e6 Euronics redesign: brand-normalized homepage prototype, 18-page proposal, audits, zones/fluid layer, Prisma schema\nd98819f Initial commit from Create Next App"
+  "context_notes": "Recent commits:\nbf49fbd Real product titles, verified images, merchandising picks, README with routes\n6e750d7 Full shop: catalog, listing with URL facets, PDP, cart, 3-step checkout with payment & SCA, confirmation, tracking, account, stores, services, guides, policies, FAQ, contact, gift cards; full-width header/hero; Manrope for Greek weights\n4f1f581 Real euronics.gr products/stores fixtures, cart v2 with persistence, mini-cart, compare tray, cookie consent, shop layout\n72edf3a Fix nested anchor in product card, AC product photo, dense proposal tables, README\ndae25e6 Euronics redesign: brand-normalized homepage prototype, 18-page proposal, audits, zones/fluid layer, Prisma schema"
 }

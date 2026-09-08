@@ -20,7 +20,7 @@ export function Ticker({ items, zoneNo }: { items: string[]; zoneNo?: number }) 
     </ul>
   );
   return (
-    <div className="relative bg-eu-yellow text-eu-navy font-extrabold text-[length:var(--fs-11-5)] tracking-wide py-3 overflow-hidden eu-container" role="marquee" aria-label="Εμπορικά μηνύματα">
+    <div className="relative bg-eu-yellow text-eu-navy font-extrabold text-[length:var(--fs-14)] tracking-wide py-3 overflow-hidden eu-container" role="marquee" aria-label="Εμπορικά μηνύματα">
       <ZoneBadge no={zoneNo} />
       <div className="eu-marquee">
         {row(false)}

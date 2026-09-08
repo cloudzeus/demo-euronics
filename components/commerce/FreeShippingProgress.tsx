@@ -8,7 +8,7 @@ export function FreeShippingProgress({ subtotal, threshold = 100 }: { subtotal: 
   const pct = Math.min(100, Math.round((subtotal / threshold) * 100));
   return (
     <div>
-      <div className="flex justify-between text-[length:var(--fs-11)] mb-1.5">
+      <div className="flex justify-between text-[length:var(--fs-13-5)] mb-1.5">
         <span className={left === 0 ? "font-bold text-eu-green" : "text-eu-ink-2"}>{left === 0 ? "Δωρεάν μεταφορά ✓" : `Ακόμη ${priceLong(left)} για δωρεάν μεταφορά`}</span>
         <span className="text-eu-muted-2">{pct}%</span>
       </div>

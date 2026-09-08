@@ -23,7 +23,7 @@ export function CompareCheckbox({ id }: { id: string }) {
   const { compare, toggleCompare } = useCart();
   const on = compare.includes(id);
   return (
-    <label className="inline-flex items-center gap-1.5 font-semibold text-eu-muted-2 text-[length:var(--fs-10)] cursor-pointer hover:text-eu-blue min-h-8">
+    <label className="inline-flex items-center gap-1.5 font-semibold text-eu-muted-2 text-[length:var(--fs-13)] cursor-pointer hover:text-eu-blue min-h-8">
       <input type="checkbox" checked={on} onChange={() => toggleCompare(id)} className="size-3.5 accent-eu-blue" />
       Σύγκριση
     </label>

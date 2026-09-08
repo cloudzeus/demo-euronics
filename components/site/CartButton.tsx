@@ -18,8 +18,8 @@ export function CartButton() {
       <ShoppingBag className="size-5" aria-hidden />
       {count > 0 && <span className="@md:hidden absolute -top-1 -right-1 min-w-5 h-5 px-1 rounded-full bg-eu-yellow text-eu-navy font-extrabold text-[11px] leading-5 text-center" aria-hidden>{count}</span>}
       <span className="hidden @md:flex flex-col leading-tight">
-        <span className="font-extrabold text-[length:var(--fs-12)]">Καλάθι · {count}</span>
-        <span className="font-extrabold text-eu-yellow text-[length:var(--fs-13)]">{priceLong(total)}</span>
+        <span className="font-extrabold text-[length:var(--fs-14)]">Καλάθι · {count}</span>
+        <span className="font-extrabold text-eu-yellow text-[length:var(--fs-15)]">{priceLong(total)}</span>
       </span>
     </button>
   );

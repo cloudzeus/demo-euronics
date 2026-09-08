@@ -28,7 +28,7 @@ export function StoreMap({ stores }: { stores: S[] }) {
           </g>
         ))}
       </svg>
-      <div className="absolute bottom-3 left-3 right-3 bg-white rounded-lg shadow-[var(--shadow-raised)] p-3 text-[length:var(--fs-12)]">
+      <div className="absolute bottom-3 left-3 right-3 bg-white rounded-lg shadow-[var(--shadow-raised)] p-3 text-[length:var(--fs-14)]">
         {active ? (
           <div className="flex justify-between items-center gap-2">
             <div className="min-w-0">
@@ -36,7 +36,7 @@ export function StoreMap({ stores }: { stores: S[] }) {
                 {active.city} — {active.name}
               </div>
             </div>
-            <Link href={`/katastimata/${active.slug}`} className="rounded-full bg-eu-navy text-white font-extrabold text-[length:var(--fs-11)] px-3 min-h-9 inline-flex items-center shrink-0">
+            <Link href={`/katastimata/${active.slug}`} className="rounded-full bg-eu-navy text-white font-extrabold text-[length:var(--fs-13-5)] px-3 min-h-9 inline-flex items-center shrink-0">
               Άνοιγμα
             </Link>
           </div>

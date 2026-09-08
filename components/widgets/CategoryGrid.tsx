@@ -35,7 +35,7 @@ export function CategoryGrid({ categories, featured, zoneNo }: { categories: Cat
                   className={`flex justify-between items-start gap-3 p-4 @md:p-[20px_22px] h-full group ${dark ? "text-white" : "text-eu-ink"} hover:bg-eu-surface/60 ${dark ? "hover:bg-eu-navy-2" : ""}`}
                 >
                   <div>
-                    <div className={`font-extrabold text-[length:var(--fs-11)] mb-2 ${dark ? "text-eu-yellow" : "text-eu-muted-3"}`}>{c.no}</div>
+                    <div className={`font-extrabold text-[length:var(--fs-13-5)] mb-2 ${dark ? "text-eu-yellow" : "text-eu-muted-3"}`}>{c.no}</div>
                     <div className="font-bold text-[length:var(--fs-19)] leading-[1.15]">
                       {c.titleBreak ? (
                         <>
@@ -46,7 +46,7 @@ export function CategoryGrid({ categories, featured, zoneNo }: { categories: Cat
                         c.title
                       )}
                     </div>
-                    <div className={`font-medium text-[length:var(--fs-11-5)] mt-2 ${dark ? "text-eu-on-dark-2" : "text-eu-muted-2"}`}>
+                    <div className={`font-medium text-[length:var(--fs-14)] mt-2 ${dark ? "text-eu-on-dark-2" : "text-eu-muted-2"}`}>
                       {c.count} προϊόντα{c.meta ? ` · ${c.meta}` : ""}
                     </div>
                   </div>

@@ -17,7 +17,7 @@ export default async function BrandsPage() {
       <div className="eu-canvas eu-gutter pb-12">
         <div className="flex flex-wrap gap-1.5 mb-6">
           {letters.map((l) => (
-            <a key={l} href={`#b-${l}`} className="size-9 inline-flex items-center justify-center rounded-full bg-eu-surface font-extrabold text-eu-ink text-[length:var(--fs-12-5)] hover:bg-eu-chip">
+            <a key={l} href={`#b-${l}`} className="size-9 inline-flex items-center justify-center rounded-full bg-eu-surface font-extrabold text-eu-ink text-[length:var(--fs-15)] hover:bg-eu-chip">
               {l}
             </a>
           ))}
@@ -27,7 +27,7 @@ export default async function BrandsPage() {
             <li key={b.slug} id={`b-${b.name[0].toUpperCase()}`}>
               <Link href={`/brands/${b.slug}`} className="flex flex-col items-center justify-center gap-1 rounded-lg border border-eu-line bg-white p-5 min-h-[110px] hover:border-eu-blue">
                 <span className="font-extrabold text-eu-ink text-[length:var(--fs-16)] tracking-wide">{b.name}</span>
-                <span className="text-eu-muted-2 text-[length:var(--fs-11-5)]">{b.count} προϊόντα</span>
+                <span className="text-eu-muted-2 text-[length:var(--fs-14)]">{b.count} προϊόντα</span>
               </Link>
             </li>
           ))}

@@ -8,7 +8,10 @@ import { SortBar } from "@/components/catalog/SortBar";
 import { Pagination } from "@/components/catalog/Pagination";
 import { ProductGrid } from "@/components/catalog/ProductGrid";
 import { CategoryFaq } from "@/components/catalog/CategoryFaq";
-import { getL1, getL2, listProducts, type ListFilter } from "@/lib/data/repo";
+import { filterFromParams, getL1, getL2, listProducts } from "@/lib/data/repo";
+import { Sparkles } from "lucide-react";
+
+const GUIDE_FOR: Record<string, { kind: string; t: string }> = { tileoraseis: { kind: "tileoraseis", t: "Ποια τηλεόραση σού ταιριάζει; 5 ερωτήσεις, αιτιολογημένη πρόταση." }, laptops: { kind: "ypologistes", t: "Ποιος υπολογιστής σού ταιριάζει; 5 ερωτήσεις, αιτιολογημένη πρόταση." }, tablets: { kind: "ypologistes", t: "Laptop ή tablet; Ο έξυπνος οδηγός αποφασίζει μαζί σου." }, "air-condition": { kind: "klimatistika", t: "Πόσα BTU χρειάζεσαι; Ο έξυπνος οδηγός τα υπολογίζει από τα τετραγωνικά." } };
 
 type Params = { slug: string[] };
 type SP = Record<string, string | undefined>;
@@ -30,20 +33,7 @@ export default async function CategoryPage({ params, searchParams }: { params: P
   const l2 = slug[1] ? (await getL2(slug[0], slug[1]))?.l2 ?? null : null;
   if (slug[1] && !l2) notFound();
 
-  const filter: ListFilter = {
-    l1: l1.slug,
-    l2: l2?.slug,
-    brand: sp.brand?.split(",").filter(Boolean),
-    energy: sp.energy?.split(",").filter(Boolean),
-    minPrice: sp.min ? Number(sp.min) : undefined,
-    maxPrice: sp.max ? Number(sp.max) : undefined,
-    avail: sp.avail === "in-stock" ? "in-stock" : undefined,
-    sale: sp.sale === "1",
-    sort: (sp.sort as ListFilter["sort"]) ?? "relevance",
-    page: sp.page ? Number(sp.page) : 1,
-    perPage: 24,
-  };
-  const result = await listProducts(filter);
+  const result = await listProducts(filterFromParams(sp, { l1: l1.slug, l2: l2?.slug, perPage: 24 }));
   const basePath = l2 ? `/k/${l1.slug}/${l2.slug}` : `/k/${l1.slug}`;
   const title = l2 ? l2.name : l1.label;
 
@@ -57,7 +47,7 @@ export default async function CategoryPage({ params, searchParams }: { params: P
           <ul className="m-0 p-0 list-none flex gap-2 overflow-x-auto eu-scrollbar-none snap-x">
             {l1.children.map((ch) => (
               <li key={ch.slug} className="snap-start shrink-0">
-                <Link href={`/k/${l1.slug}/${ch.slug}`} className="inline-flex items-center rounded-full border border-eu-line bg-white px-4 py-2.5 min-h-11 font-semibold text-eu-ink text-[length:var(--fs-12-5)] hover:border-eu-blue hover:text-eu-blue">
+                <Link href={`/k/${l1.slug}/${ch.slug}`} className="inline-flex items-center rounded-full border border-eu-line bg-white px-4 py-2.5 min-h-11 font-semibold text-eu-ink text-[length:var(--fs-15)] hover:border-eu-blue hover:text-eu-blue">
                   {ch.name}
                 </Link>
               </li>
@@ -66,12 +56,21 @@ export default async function CategoryPage({ params, searchParams }: { params: P
         </div>
       )}
 
-      <div className="eu-canvas eu-gutter pb-12 flex gap-6 items-start">
+      {l2 && GUIDE_FOR[l2.slug] && (
+        <div className="eu-canvas eu-gutter pb-5">
+          <Link href={`/odigos-agoras/${GUIDE_FOR[l2.slug].kind}`} className="flex flex-wrap items-center gap-3 rounded-2xl bg-eu-navy text-white px-5 py-4 hover:bg-eu-blue transition-colors">
+            <Sparkles className="size-6 text-eu-yellow shrink-0" aria-hidden />
+            <span className="flex-1 min-w-[16em] font-bold text-[length:var(--fs-16)]">{GUIDE_FOR[l2.slug].t}</span>
+            <span className="rounded-full bg-eu-yellow text-eu-navy font-extrabold text-[length:var(--fs-15)] px-5 min-h-11 inline-flex items-center">Έξυπνος οδηγός αγοράς →</span>
+          </Link>
+        </div>
+      )}
+      <div className="eu-canvas eu-gutter pb-12 flex flex-col @3xl:flex-row gap-5 @3xl:gap-6 items-stretch @3xl:items-start">
         <Facets result={result} />
         <div className="flex-1 min-w-0 eu-container">
           <SortBar total={result.total} page={result.page} pages={result.pages} />
           <ProductGrid products={result.items} view={sp.view === "list" ? "list" : "grid"} />
-          <Pagination page={result.page} pages={result.pages} basePath={basePath} params={sp} />
+          <Pagination page={result.page} pages={result.pages} basePath={basePath} params={Object.fromEntries(Object.entries(sp).filter(([, v]) => v != null)) as Record<string, string>} />
           <CategoryFaq name={title} />
         </div>
       </div>

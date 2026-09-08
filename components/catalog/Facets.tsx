@@ -7,98 +7,130 @@ import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/s
 import type { ListResult } from "@/lib/data/repo";
 
 /**
- * Facets live in the URL (?brand=lg,samsung&min=200&max=800&avail=in-stock
- * &sale=1&energy=A,B&sort=price-asc&page=2). Every selection is shareable,
- * bookmarkable and campaign-able — the current site keeps them in a hash.
- * Desktop: sidebar. Phones/tablets: a bottom sheet behind a «Φίλτρα» button.
+ * Facets live in the URL (?k=eikona-ixos&brand=lg,samsung&min=200&max=800
+ * &avail=in-stock&sale=1&energy=A,B&f_Διαγώνιος=55"|65"&sort=price-asc
+ * &page=2). Every selection is shareable, bookmarkable and campaign-able.
+ * Characteristic facets (f_*) are computed from the products in scope
+ * (lib/data/attributes) — the same keys the compare table uses.
+ * Desktop: sidebar. Phones/tablets: a bottom sheet behind «Φίλτρα».
  */
-export function Facets({ result }: { result: ListResult }) {
+export function Facets({ result, showCategories = false }: { result: ListResult; showCategories?: boolean }) {
   const router = useRouter();
   const pathname = usePathname();
   const sp = useSearchParams();
 
-  const set = useCallback(
-    (key: string, value: string | null) => {
+  const apply = useCallback(
+    (mut: (next: URLSearchParams) => void) => {
       const next = new URLSearchParams(sp.toString());
-      if (value === null || value === "") next.delete(key);
-      else next.set(key, value);
+      mut(next);
       next.delete("page");
-      router.push(`${pathname}?${next.toString()}`, { scroll: false });
+      const qs = next.toString();
+      router.push(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
     },
     [router, pathname, sp],
   );
-  const toggleIn = (key: string, v: string) => {
-    const cur = (sp.get(key) ?? "").split(",").filter(Boolean);
-    const next = cur.includes(v) ? cur.filter((x) => x !== v) : [...cur, v];
-    set(key, next.join(","));
-  };
-  const active: { key: string; label: string; value?: string }[] = [];
-  (sp.get("brand") ?? "").split(",").filter(Boolean).forEach((b) => active.push({ key: "brand", label: result.brands.find((x) => x.slug === b)?.name ?? b, value: b }));
-  (sp.get("energy") ?? "").split(",").filter(Boolean).forEach((e) => active.push({ key: "energy", label: `Κλάση ${e}`, value: e }));
-  if (sp.get("avail")) active.push({ key: "avail", label: "Άμεσα διαθέσιμα" });
-  if (sp.get("sale")) active.push({ key: "sale", label: "Σε προσφορά" });
-  if (sp.get("min") || sp.get("max")) active.push({ key: "price", label: `€${sp.get("min") ?? result.priceRange[0]} – €${sp.get("max") ?? result.priceRange[1]}` });
+  const set = (key: string, value: string | null) => apply((n) => (value ? n.set(key, value) : n.delete(key)));
+  const toggleIn = (key: string, v: string, sep = ",") =>
+    apply((n) => {
+      const cur = (n.get(key) ?? "").split(sep).filter(Boolean);
+      const val = cur.includes(v) ? cur.filter((x) => x !== v) : [...cur, v];
+      if (val.length) n.set(key, val.join(sep));
+      else n.delete(key);
+    });
+  const has = (key: string, v: string, sep = ",") => (sp.get(key) ?? "").split(sep).includes(v);
 
+  const active: { label: string; remove: () => void }[] = [];
+  if (sp.get("k")) active.push({ label: result.categories.find((c) => c.slug === sp.get("k"))?.label ?? "Κατηγορία", remove: () => set("k", null) });
+  (sp.get("brand") ?? "").split(",").filter(Boolean).forEach((b) => active.push({ label: result.brands.find((x) => x.slug === b)?.name ?? b, remove: () => toggleIn("brand", b) }));
+  (sp.get("energy") ?? "").split(",").filter(Boolean).forEach((e) => active.push({ label: `Κλάση ${e}`, remove: () => toggleIn("energy", e) }));
+  if (sp.get("avail")) active.push({ label: "Άμεσα διαθέσιμα", remove: () => set("avail", null) });
+  if (sp.get("sale")) active.push({ label: "Σε προσφορά", remove: () => set("sale", null) });
+  if (sp.get("min") || sp.get("max")) active.push({ label: `${sp.get("min") ?? result.priceRange[0]} – ${sp.get("max") ?? result.priceRange[1]} €`, remove: () => apply((n) => (n.delete("min"), n.delete("max"))) });
+  for (const [k, v] of sp.entries()) {
+    if (k.startsWith("f_")) v.split("|").filter(Boolean).forEach((val) => active.push({ label: `${k.slice(2)}: ${val}`, remove: () => toggleIn(k, val, "|") }));
+  }
   const clearAll = () => router.push(pathname, { scroll: false });
 
   const body = (
-    <div className="grid gap-5">
+    <div className="grid gap-1">
       {active.length > 0 && (
-        <div className="flex flex-wrap gap-1.5">
+        <div className="flex flex-wrap gap-1.5 pb-4 border-b border-eu-line-2 mb-2">
           {active.map((a, i) => (
-            <button
-              key={i}
-              type="button"
-              onClick={() => (a.key === "price" ? (set("min", null), set("max", null)) : a.value ? toggleIn(a.key, a.value) : set(a.key, null))}
-              className="inline-flex items-center gap-1 rounded-full bg-eu-chip text-eu-blue font-semibold text-[length:var(--fs-11)] px-2.5 py-1.5 hover:bg-eu-blue hover:text-white"
-            >
-              {a.label} <X className="size-3" aria-hidden />
+            <button key={i} type="button" onClick={a.remove} className="inline-flex items-center gap-1 rounded-full bg-eu-chip text-eu-blue font-semibold text-[length:var(--fs-14)] px-3 py-1.5 min-h-9 hover:bg-eu-blue hover:text-white">
+              {a.label} <X className="size-3.5" aria-hidden />
             </button>
           ))}
-          <button type="button" onClick={clearAll} className="text-eu-muted font-semibold text-[length:var(--fs-11)] px-2 hover:text-eu-red">
+          <button type="button" onClick={clearAll} className="text-eu-muted font-semibold text-[length:var(--fs-14)] px-2 min-h-9 hover:text-eu-red">
             Καθαρισμός όλων
           </button>
         </div>
       )}
 
-      <Group title="Διαθεσιμότητα" open>
+      {showCategories && result.categories.length > 0 && (
+        <Group title="Κατηγορία" open>
+          {result.categories.map((c) => (
+            <Radio key={c.slug} label={c.label} count={c.count} checked={sp.get("k") === c.slug} onChange={() => set("k", sp.get("k") === c.slug ? null : c.slug)} />
+          ))}
+        </Group>
+      )}
+
+      <Group title="Διαθεσιμότητα & προσφορές" open>
         <Check label="Άμεσα διαθέσιμα" checked={!!sp.get("avail")} onChange={() => set("avail", sp.get("avail") ? null : "in-stock")} />
         <Check label="Σε προσφορά" checked={!!sp.get("sale")} onChange={() => set("sale", sp.get("sale") ? null : "1")} />
       </Group>
 
-      <Group title="Μάρκα" open>
-        {result.brands.map((b) => (
-          <Check key={b.slug} label={b.name} count={b.count} checked={(sp.get("brand") ?? "").split(",").includes(b.slug)} onChange={() => toggleIn("brand", b.slug)} />
-        ))}
-      </Group>
-
       <Group title="Τιμή" open>
-        <PriceRange min={result.priceRange[0]} max={result.priceRange[1]} curMin={sp.get("min")} curMax={sp.get("max")} onApply={(a, b) => { set("min", a); set("max", b); }} />
+        <PriceRange min={result.priceRange[0]} max={result.priceRange[1]} curMin={sp.get("min")} curMax={sp.get("max")} onApply={(a, b) => apply((n) => (a ? n.set("min", a) : n.delete("min"), b ? n.set("max", b) : n.delete("max")))} />
       </Group>
 
-      {result.energies.length > 0 && (
-        <Group title="Ενεργειακή κλάση">
+      <Group title="Μάρκα" open count={(sp.get("brand") ?? "").split(",").filter(Boolean).length}>
+        <div className="max-h-[260px] overflow-y-auto pr-1 grid gap-0.5">
+          {result.brands.map((b) => (
+            <Check key={b.slug} label={b.name} count={b.count} checked={has("brand", b.slug)} onChange={() => toggleIn("brand", b.slug)} />
+          ))}
+        </div>
+      </Group>
+
+      {result.energies.length > 1 && (
+        <Group title="Ενεργειακή κλάση" open count={(sp.get("energy") ?? "").split(",").filter(Boolean).length}>
           {result.energies.map((e) => (
-            <Check key={e.cls} label={`Κλάση ${e.cls}`} count={e.count} checked={(sp.get("energy") ?? "").split(",").includes(e.cls)} onChange={() => toggleIn("energy", e.cls)} />
+            <Check key={e.cls} label={`Κλάση ${e.cls}`} count={e.count} checked={has("energy", e.cls)} onChange={() => toggleIn("energy", e.cls)} />
           ))}
         </Group>
       )}
+
+      {result.attributes
+        .filter((a) => a.key !== "Ενεργειακή κλάση")
+        .map((a, i) => (
+          <Group key={a.key} title={a.key} open={i < 4} count={(sp.get(`f_${a.key}`) ?? "").split("|").filter(Boolean).length}>
+            {a.values.map((v) => (
+              <Check key={v.value} label={v.value} count={v.count} checked={has(`f_${a.key}`, v.value, "|")} onChange={() => toggleIn(`f_${a.key}`, v.value, "|")} />
+            ))}
+          </Group>
+        ))}
     </div>
   );
 
   return (
     <>
-      <aside className="hidden @lg:block w-[250px] shrink-0" aria-label="Φίλτρα">
+      <aside className="hidden @3xl:block w-[280px] shrink-0 bg-white rounded-2xl border border-eu-line p-5 @3xl:sticky @3xl:top-16 @3xl:max-h-[calc(100dvh-5rem)] @3xl:overflow-y-auto" aria-label="Φίλτρα">
+        <div className="flex items-center justify-between mb-2">
+          <h2 className="m-0 font-extrabold text-eu-ink text-[length:var(--fs-18)]">Φίλτρα</h2>
+          {active.length > 0 && <span className="rounded-full bg-eu-navy text-white font-bold text-[length:var(--fs-13)] px-2.5 py-0.5">{active.length}</span>}
+        </div>
         {body}
       </aside>
-      <div className="@lg:hidden">
+      <div className="@3xl:hidden">
         <Sheet>
-          <SheetTrigger className="inline-flex items-center gap-2 rounded-full border-2 border-eu-navy text-eu-navy font-extrabold text-[length:var(--fs-12-5)] px-4 min-h-11">
-            <SlidersHorizontal className="size-4" aria-hidden /> Φίλτρα{active.length ? ` · ${active.length}` : ""}
+          <SheetTrigger className="inline-flex items-center gap-2 rounded-full border-2 border-eu-navy text-eu-navy font-extrabold text-[length:var(--fs-15)] px-5 min-h-12 bg-white">
+            <SlidersHorizontal className="size-5" aria-hidden /> Φίλτρα{active.length ? ` · ${active.length}` : ""}
           </SheetTrigger>
-          <SheetContent side="bottom" className="max-h-[85dvh] overflow-y-auto rounded-t-2xl p-5">
-            <SheetTitle className="font-extrabold text-eu-ink text-[length:var(--fs-15)] mb-4">Φίλτρα</SheetTitle>
+          <SheetContent side="bottom" className="max-h-[88dvh] overflow-y-auto rounded-t-2xl p-5">
+            <SheetTitle className="font-extrabold text-eu-ink text-[length:var(--fs-19)] mb-3">Φίλτρα</SheetTitle>
             {body}
+            <div className="sticky bottom-0 bg-white pt-3 mt-3 border-t border-eu-line">
+              <div className="rounded-full bg-eu-navy text-white font-extrabold text-[length:var(--fs-16)] py-3.5 min-h-12 text-center">Δες {result.total} προϊόντα</div>
+            </div>
           </SheetContent>
         </Sheet>
       </div>
@@ -106,25 +138,38 @@ export function Facets({ result }: { result: ListResult }) {
   );
 }
 
-function Group({ title, open = false, children }: { title: string; open?: boolean; children: React.ReactNode }) {
+function Group({ title, open = false, count = 0, children }: { title: string; open?: boolean; count?: number; children: React.ReactNode }) {
   const [o, setO] = useState(open);
   return (
-    <div className="border-b border-eu-line-2 pb-3">
-      <button type="button" aria-expanded={o} onClick={() => setO(!o)} className="w-full flex justify-between items-center font-extrabold text-eu-ink text-[length:var(--fs-12-5)] min-h-10">
-        {title}
-        <ChevronDown className={`size-4 transition-transform ${o ? "rotate-180" : ""}`} aria-hidden />
+    <div className="border-b border-eu-line-2 py-1 last:border-0">
+      <button type="button" aria-expanded={o} onClick={() => setO(!o)} className="w-full flex justify-between items-center gap-2 font-extrabold text-eu-ink text-[length:var(--fs-15)] min-h-11 text-left">
+        <span className="flex items-center gap-2">
+          {title}
+          {count > 0 && <span className="rounded-full bg-eu-chip text-eu-blue text-[length:var(--fs-13)] px-2 py-0.5">{count}</span>}
+        </span>
+        <ChevronDown className={`size-5 text-eu-muted transition-transform shrink-0 ${o ? "rotate-180" : ""}`} aria-hidden />
       </button>
-      {o && <div className="grid gap-1 mt-1">{children}</div>}
+      {o && <div className="grid gap-0.5 pb-2">{children}</div>}
     </div>
   );
 }
 
 function Check({ label, count, checked, onChange }: { label: string; count?: number; checked: boolean; onChange: () => void }) {
   return (
-    <label className="flex items-center gap-2 text-eu-ink-2 text-[length:var(--fs-12-5)] min-h-9 cursor-pointer">
-      <input type="checkbox" checked={checked} onChange={onChange} className="size-4 accent-eu-blue" />
+    <label className={`flex items-center gap-2.5 text-[length:var(--fs-15)] min-h-10 cursor-pointer rounded-md px-1 -mx-1 hover:bg-eu-surface ${checked ? "text-eu-ink font-semibold" : "text-eu-ink-2"}`}>
+      <input type="checkbox" checked={checked} onChange={onChange} className="size-[18px] accent-eu-blue" />
       <span className="flex-1">{label}</span>
-      {count != null && <span className="text-eu-muted-2 text-[length:var(--fs-11)]">{count}</span>}
+      {count != null && <span className="text-eu-muted-2 text-[length:var(--fs-13)] tabular-nums">{count}</span>}
+    </label>
+  );
+}
+
+function Radio({ label, count, checked, onChange }: { label: string; count?: number; checked: boolean; onChange: () => void }) {
+  return (
+    <label className={`flex items-center gap-2.5 text-[length:var(--fs-15)] min-h-10 cursor-pointer rounded-md px-1 -mx-1 hover:bg-eu-surface ${checked ? "text-eu-blue font-bold" : "text-eu-ink-2"}`}>
+      <input type="checkbox" checked={checked} onChange={onChange} className="size-[18px] accent-eu-blue rounded-full" />
+      <span className="flex-1">{label}</span>
+      {count != null && <span className="text-eu-muted-2 text-[length:var(--fs-13)] tabular-nums">{count}</span>}
     </label>
   );
 }
@@ -132,20 +177,40 @@ function Check({ label, count, checked, onChange }: { label: string; count?: num
 function PriceRange({ min, max, curMin, curMax, onApply }: { min: number; max: number; curMin: string | null; curMax: string | null; onApply: (a: string | null, b: string | null) => void }) {
   const [a, setA] = useState(curMin ?? "");
   const [b, setB] = useState(curMax ?? "");
+  const presets = [
+    [null, 200],
+    [200, 500],
+    [500, 1000],
+    [1000, null],
+  ] as const;
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        onApply(a || null, b || null);
-      }}
-      className="flex items-center gap-1.5"
-    >
-      <input inputMode="numeric" value={a} onChange={(e) => setA(e.target.value)} placeholder={String(Math.floor(min))} aria-label="Ελάχιστη τιμή" className="w-full min-w-0 rounded-md border border-eu-line px-2 py-2 text-[length:var(--fs-12-5)]" />
-      <span className="text-eu-muted-2">–</span>
-      <input inputMode="numeric" value={b} onChange={(e) => setB(e.target.value)} placeholder={String(Math.ceil(max))} aria-label="Μέγιστη τιμή" className="w-full min-w-0 rounded-md border border-eu-line px-2 py-2 text-[length:var(--fs-12-5)]" />
-      <button type="submit" className="rounded-full bg-eu-navy text-white font-bold text-[length:var(--fs-11-5)] px-3 min-h-9 hover:bg-eu-blue">
-        OK
-      </button>
-    </form>
+    <div className="grid gap-2">
+      <div className="flex flex-wrap gap-1.5">
+        {presets
+          .filter(([lo, hi]) => (lo == null || lo < max) && (hi == null || hi > min))
+          .map(([lo, hi]) => {
+            const on = (curMin ?? "") === String(lo ?? "") && (curMax ?? "") === String(hi ?? "");
+            return (
+              <button key={`${lo}-${hi}`} type="button" onClick={() => onApply(lo == null ? null : String(lo), hi == null ? null : String(hi))} className={`rounded-full border px-3 min-h-9 text-[length:var(--fs-14)] font-semibold ${on ? "border-eu-navy bg-eu-navy text-white" : "border-eu-line text-eu-ink-2 hover:border-eu-blue"}`}>
+                {lo == null ? `έως ${hi} €` : hi == null ? `από ${lo} €` : `${lo}–${hi} €`}
+              </button>
+            );
+          })}
+      </div>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          onApply(a || null, b || null);
+        }}
+        className="flex items-center gap-1.5"
+      >
+        <input inputMode="numeric" value={a} onChange={(e) => setA(e.target.value)} placeholder={String(Math.floor(min))} aria-label="Ελάχιστη τιμή" className="w-full min-w-0 rounded-md border border-eu-line px-2.5 min-h-11 text-[length:var(--fs-15)]" />
+        <span className="text-eu-muted-2">–</span>
+        <input inputMode="numeric" value={b} onChange={(e) => setB(e.target.value)} placeholder={String(Math.ceil(max))} aria-label="Μέγιστη τιμή" className="w-full min-w-0 rounded-md border border-eu-line px-2.5 min-h-11 text-[length:var(--fs-15)]" />
+        <button type="submit" className="rounded-full bg-eu-navy text-white font-bold text-[length:var(--fs-14)] px-3.5 min-h-11 hover:bg-eu-blue">
+          OK
+        </button>
+      </form>
+    </div>
   );
 }

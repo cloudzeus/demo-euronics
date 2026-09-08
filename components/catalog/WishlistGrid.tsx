@@ -19,9 +19,9 @@ export function WishlistGrid({ initial }: { initial: Product[] }) {
   if (initial.length === 0)
     return (
       <div className="rounded-lg bg-eu-surface p-8 text-center">
-        <div className="font-bold text-eu-ink text-[length:var(--fs-15)] mb-1">Η λίστα σου είναι άδεια</div>
-        <p className="m-0 text-eu-muted text-[length:var(--fs-13)]">Πάτησε την καρδιά σε ένα προϊόν για να το κρατήσεις εδώ.</p>
-        <Link href="/prosfores" className="inline-flex mt-4 rounded-full bg-eu-navy text-white font-extrabold text-[length:var(--fs-12-5)] px-5 min-h-11 items-center">
+        <div className="font-bold text-eu-ink text-[length:var(--fs-17)] mb-1">Η λίστα σου είναι άδεια</div>
+        <p className="m-0 text-eu-muted text-[length:var(--fs-15)]">Πάτησε την καρδιά σε ένα προϊόν για να το κρατήσεις εδώ.</p>
+        <Link href="/prosfores" className="inline-flex mt-4 rounded-full bg-eu-navy text-white font-extrabold text-[length:var(--fs-15)] px-5 min-h-11 items-center">
           Δες τις προσφορές
         </Link>
       </div>

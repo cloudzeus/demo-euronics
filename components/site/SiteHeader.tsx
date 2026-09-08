@@ -20,7 +20,7 @@ export function SiteHeader() {
   return (
     <header className="relative bg-eu-navy text-white eu-container">
       <ZoneBadge no={2} />
-      <div className="eu-full eu-gutter-wide py-2.5 @lg:py-[18px] grid grid-cols-[auto_1fr_auto] items-center gap-2 @md:gap-3 @lg:gap-6">
+      <div className="eu-full eu-gutter-wide py-2.5 @lg:py-[18px] grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 @md:gap-3 @lg:gap-6">
         <div className="flex items-center gap-2">
           <MobileMenu categories={navCategories} />
           <Link href="/" aria-label="euronics — αρχική σελίδα" className="block shrink-0">
@@ -35,24 +35,24 @@ export function SiteHeader() {
         <div className="flex items-center gap-1.5 @md:gap-3 @lg:gap-[18px] justify-end">
           <a
             href="tel:2104835143"
-            className="hidden @xl:flex flex-col items-center text-white font-semibold text-[length:var(--fs-11)] leading-tight hover:text-eu-yellow"
+            className="hidden @6xl:flex flex-col items-center text-white font-semibold text-[length:var(--fs-13-5)] leading-tight hover:text-eu-yellow"
           >
             <span className="flex items-center gap-1">
               <Phone className="size-3.5" aria-hidden /> 210 483 5143
             </span>
             <span className="text-eu-on-dark-2 font-normal mt-0.5">Τηλ. παραγγελίες</span>
           </a>
-          <span className="hidden @xl:block w-px h-[26px] bg-eu-navy-line" aria-hidden />
+          <span className="hidden @6xl:block w-px h-[26px] bg-eu-navy-line" aria-hidden />
           <Link
             href="/lista"
-            className="hidden @lg:flex flex-col items-center gap-0.5 text-eu-on-dark-2 font-semibold text-[length:var(--fs-11)] hover:text-white min-h-11 justify-center"
+            className="hidden @lg:flex flex-col items-center gap-0.5 text-eu-on-dark-2 font-semibold text-[length:var(--fs-13-5)] hover:text-white min-h-11 justify-center"
           >
             <Heart className="size-4" aria-hidden />
             Λίστα
           </Link>
           <Link
             href="/logariasmos"
-            className="hidden @lg:flex flex-col items-center gap-0.5 text-eu-on-dark-2 font-semibold text-[length:var(--fs-11)] hover:text-white min-h-11 justify-center"
+            className="hidden @lg:flex flex-col items-center gap-0.5 text-eu-on-dark-2 font-semibold text-[length:var(--fs-13-5)] hover:text-white min-h-11 justify-center"
           >
             <User className="size-4" aria-hidden />
             Λογαριασμός

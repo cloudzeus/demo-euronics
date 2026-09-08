@@ -22,12 +22,12 @@ export default async function GuidesPage() {
               <Link href={`/odigoi/${g.slug}`} className="flex flex-col h-full rounded-xl border border-eu-line bg-white overflow-hidden hover:border-eu-blue group">
                 <div className="relative h-[160px] bg-eu-placeholder">{g.image && <Image src={g.image} alt="" fill sizes="400px" className="object-cover" />}</div>
                 <div className="p-4 flex flex-col flex-1">
-                  <div className={`font-extrabold text-[length:var(--fs-10)] tracking-wide mb-2 ${TONE[g.tone]}`}>
+                  <div className={`font-extrabold text-[length:var(--fs-13)] tracking-wide mb-2 ${TONE[g.tone]}`}>
                     {g.kicker} · {g.minutes}′{g.date ? ` · ${new Date(g.date).toLocaleDateString("el-GR", { day: "numeric", month: "short" })}` : ""}
                   </div>
                   <h2 className="m-0 font-heading font-bold text-eu-ink text-[length:var(--fs-17)] leading-[1.22] mb-2 group-hover:text-eu-blue">{g.title}</h2>
-                  <p className="m-0 text-eu-muted text-[length:var(--fs-12)]">{g.excerpt}</p>
-                  <span className="font-extrabold text-eu-blue text-[length:var(--fs-12)] mt-auto pt-3">{g.cta}</span>
+                  <p className="m-0 text-eu-muted text-[length:var(--fs-14)]">{g.excerpt}</p>
+                  <span className="font-extrabold text-eu-blue text-[length:var(--fs-14)] mt-auto pt-3">{g.cta}</span>
                 </div>
               </Link>
             </li>

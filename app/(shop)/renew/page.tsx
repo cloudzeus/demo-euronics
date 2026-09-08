@@ -16,10 +16,10 @@ export default async function RenewPage() {
       <section className="relative bg-eu-navy text-white overflow-hidden">
         <Image src="/img/hero-renew.jpg" alt="" fill className="object-cover opacity-40" sizes="100vw" />
         <div className="relative eu-canvas eu-gutter py-10 @lg:py-14 max-w-[40em]">
-          <div className="font-extrabold text-eu-yellow text-[length:var(--fs-10-5)] tracking-wide mb-2">Euronics Renew</div>
+          <div className="font-extrabold text-eu-yellow text-[length:var(--fs-13)] tracking-wide mb-2">Euronics Renew</div>
           <h1 className="m-0 font-heading font-bold text-[length:var(--fs-38)] leading-[1.05] tracking-[-0.02em] mb-3">Refurbished με 2 χρόνια εγγύηση</h1>
-          <p className="m-0 text-eu-on-dark text-[length:var(--fs-14)] leading-relaxed">Έλεγχος 60 σημείων, μπαταρία τουλάχιστον 85%, σαφής βαθμολόγηση Grade A/B και δικαίωμα υπαναχώρησης 14 ημερών — όπως στο καινούργιο.</p>
-          <Link href="/odigoi/ti-einai-to-renew" className="inline-flex mt-4 rounded-full bg-eu-yellow text-eu-navy font-extrabold text-[length:var(--fs-13)] px-5 py-3 min-h-11 items-center hover:bg-eu-yellow-dark">
+          <p className="m-0 text-eu-on-dark text-[length:var(--fs-16)] leading-relaxed">Έλεγχος 60 σημείων, μπαταρία τουλάχιστον 85%, σαφής βαθμολόγηση Grade A/B και δικαίωμα υπαναχώρησης 14 ημερών — όπως στο καινούργιο.</p>
+          <Link href="/odigoi/ti-einai-to-renew" className="inline-flex mt-4 rounded-full bg-eu-yellow text-eu-navy font-extrabold text-[length:var(--fs-15)] px-5 py-3 min-h-11 items-center hover:bg-eu-yellow-dark">
             Τι σημαίνει Grade A και B
           </Link>
         </div>
@@ -32,8 +32,8 @@ export default async function RenewPage() {
             ["Εγγύηση 2 έτη", "Ίδια με το καινούργιο, από το δίκτυο service της Euronics."],
           ].map(([t, b]) => (
             <div key={t} className="rounded-lg bg-eu-surface p-4">
-              <div className="font-extrabold text-eu-ink text-[length:var(--fs-14)] mb-1">{t}</div>
-              <p className="m-0 text-eu-muted text-[length:var(--fs-12-5)]">{b}</p>
+              <div className="font-extrabold text-eu-ink text-[length:var(--fs-16)] mb-1">{t}</div>
+              <p className="m-0 text-eu-muted text-[length:var(--fs-15)]">{b}</p>
             </div>
           ))}
         </div>

@@ -22,15 +22,15 @@ export function Gallery({ images, title, badge, energy }: { images: string[]; ti
           ))}
         </ul>
       )}
-      <div className="relative aspect-square @md:aspect-[4/3] rounded-lg bg-eu-surface-2 order-1 @md:order-2">
+      <div className="relative aspect-square @md:aspect-[4/3] rounded-2xl bg-eu-surface-2 order-1 @md:order-2 min-w-0">
         {src ? (
           <Image src={src} alt={title} fill priority sizes="(max-width: 1024px) 100vw, 60vw" className="object-contain p-6" unoptimized={src.startsWith("http")} />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center text-eu-placeholder-ink font-semibold">φωτογραφία προϊόντος</div>
         )}
-        {badge?.kind === "discount" && <span className="absolute top-3 left-3 bg-eu-red text-white font-extrabold text-[length:var(--fs-12)] px-3 py-1.5 rounded-md">Προσφορά</span>}
-        {badge?.kind === "new" && <span className="absolute top-3 left-3 bg-eu-blue text-white font-extrabold text-[length:var(--fs-12)] px-3 py-1.5 rounded-md">Νέο</span>}
-        {badge?.kind === "renew" && <span className="absolute top-3 left-3 bg-eu-green text-white font-extrabold text-[length:var(--fs-12)] px-3 py-1.5 rounded-md">Renew · Grade {badge.grade}</span>}
+        {badge?.kind === "discount" && <span className="absolute top-3 left-3 bg-eu-red text-white font-extrabold text-[length:var(--fs-14)] px-3 py-1.5 rounded-md">Προσφορά</span>}
+        {badge?.kind === "new" && <span className="absolute top-3 left-3 bg-eu-blue text-white font-extrabold text-[length:var(--fs-14)] px-3 py-1.5 rounded-md">Νέο</span>}
+        {badge?.kind === "renew" && <span className="absolute top-3 left-3 bg-eu-green text-white font-extrabold text-[length:var(--fs-14)] px-3 py-1.5 rounded-md">Renew · Grade {badge.grade}</span>}
         {energy && (
           <div className="absolute bottom-3 left-3 flex gap-1.5">
             <EnergyChip cls={energy.cls} fiche={energy.fiche} />

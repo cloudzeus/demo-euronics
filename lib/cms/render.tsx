@@ -11,6 +11,7 @@ import { QuickBuyExplainer } from "@/components/widgets/QuickBuyExplainer";
 import { ServicesBand } from "@/components/widgets/ServicesBand";
 import { StoreFinder } from "@/components/widgets/StoreFinder";
 import { GuidesBand } from "@/components/widgets/GuidesBand";
+import { SmartGuidesBand } from "@/components/widgets/SmartGuidesBand";
 import { NewsletterBand } from "@/components/widgets/NewsletterBand";
 import { getCategories, getDealOfDay, getGuides, getHeroSlides, getNearestStore, getProduct, getServices, getWeeklyDeals } from "@/lib/data/catalog";
 
@@ -50,6 +51,7 @@ const registry: Record<string, Renderer> = {
   },
   "services-band": async (w) => <ServicesBand key={w.id} services={await getServices((w.props as { limit?: number }).limit ?? 6)} zoneNo={w.zoneNo} />,
   "store-finder": async (w) => <StoreFinder key={w.id} store={await getNearestStore()} image="/img/store-front.jpg" zoneNo={w.zoneNo} />,
+  "smart-guides": async (w) => <SmartGuidesBand key={w.id} zoneNo={w.zoneNo} />,
   guides: async (w) => <GuidesBand key={w.id} guides={await getGuides()} zoneNo={w.zoneNo} />,
   newsletter: async (w) => <NewsletterBand key={w.id} zoneNo={w.zoneNo} />,
 };

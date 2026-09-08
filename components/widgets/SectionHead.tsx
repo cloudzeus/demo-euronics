@@ -15,7 +15,7 @@ export function SectionHead({ id, kicker, title, link, tone = "light" }: Props) 
   return (
     <div className="flex items-end justify-between gap-4 mb-5">
       <div>
-        <div className={`font-extrabold text-[length:var(--fs-10-5)] tracking-wide mb-2 ${kickerColor}`}>{kicker}</div>
+        <div className={`font-extrabold text-[length:var(--fs-13)] tracking-wide mb-2 ${kickerColor}`}>{kicker}</div>
         <h2 id={id} className={`m-0 font-heading font-bold text-[length:var(--fs-30)] leading-[1.1] tracking-[-0.02em] ${dark ? "text-white" : "text-eu-ink"}`}>
           {Array.isArray(title) ? (
             <>
@@ -30,7 +30,7 @@ export function SectionHead({ id, kicker, title, link, tone = "light" }: Props) 
       {link && (
         <Link
           href={link.href}
-          className={`hidden @sm:block shrink-0 font-extrabold text-[length:var(--fs-12)] border-b-[3px] border-eu-yellow pb-1 hover:text-eu-blue ${dark ? "text-eu-yellow" : "text-eu-ink"}`}
+          className={`hidden @sm:block shrink-0 font-extrabold text-[length:var(--fs-14)] border-b-[3px] border-eu-yellow pb-1 hover:text-eu-blue ${dark ? "text-eu-yellow" : "text-eu-ink"}`}
         >
           {link.label}
         </Link>

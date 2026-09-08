@@ -23,11 +23,11 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
       <Breadcrumbs items={[{ label: "Οδηγοί", href: "/odigoi" }, { label: g.title }]} />
       <article className="eu-canvas eu-gutter pb-12">
         <div className="max-w-[760px] mx-auto">
-          <div className="font-extrabold text-eu-blue text-[length:var(--fs-10-5)] tracking-wide mb-2">
+          <div className="font-extrabold text-eu-blue text-[length:var(--fs-13)] tracking-wide mb-2">
             {g.kicker} · {g.minutes}′ ανάγνωση{g.date ? ` · ${new Date(g.date).toLocaleDateString("el-GR", { day: "numeric", month: "long", year: "numeric" })}` : ""}
           </div>
           <h1 className="m-0 font-heading font-bold text-eu-ink text-[length:var(--fs-34)] leading-[1.1] tracking-[-0.02em]">{g.title}</h1>
-          <p className="m-0 mt-3 text-eu-muted text-[length:var(--fs-15)]">{g.excerpt}</p>
+          <p className="m-0 mt-3 text-eu-muted text-[length:var(--fs-17)]">{g.excerpt}</p>
         </div>
         {g.image && (
           <div className="relative h-[240px] @md:h-[420px] rounded-xl overflow-hidden my-6">
@@ -36,17 +36,17 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
         )}
         <div className="max-w-[760px] mx-auto grid gap-4">
           {g.body?.map((p, i) => (
-            <p key={i} className="m-0 text-eu-ink-2 text-[length:var(--fs-15)] leading-[1.7]">
+            <p key={i} className="m-0 text-eu-ink-2 text-[length:var(--fs-17)] leading-[1.7]">
               {p}
             </p>
           ))}
           {g.ctaHref && (
-            <Link href={g.ctaHref} className="justify-self-start rounded-full bg-eu-yellow text-eu-navy font-extrabold text-[length:var(--fs-13-5)] px-6 py-3.5 min-h-12 inline-flex items-center hover:bg-eu-yellow-dark">
+            <Link href={g.ctaHref} className="justify-self-start rounded-full bg-eu-yellow text-eu-navy font-extrabold text-[length:var(--fs-16)] px-6 py-3.5 min-h-12 inline-flex items-center hover:bg-eu-yellow-dark">
               {g.cta}
             </Link>
           )}
           {g.sourceUrl && (
-            <p className="m-0 text-eu-muted-2 text-[length:var(--fs-11)]">
+            <p className="m-0 text-eu-muted-2 text-[length:var(--fs-13-5)]">
               Θέμα από το blog του euronics.gr ·{" "}
               <a href={g.sourceUrl} className="underline" rel="noreferrer" target="_blank">
                 πηγή
@@ -60,7 +60,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
           <ul className="m-0 p-0 list-none flex flex-wrap gap-2">
             {others.filter((o) => o.slug !== g.slug).map((o) => (
               <li key={o.slug}>
-                <Link href={`/odigoi/${o.slug}`} className="inline-flex rounded-full border border-eu-line bg-white px-4 py-2 min-h-10 items-center font-semibold text-eu-ink-2 text-[length:var(--fs-12-5)] hover:border-eu-blue hover:text-eu-blue">
+                <Link href={`/odigoi/${o.slug}`} className="inline-flex rounded-full border border-eu-line bg-white px-4 py-2 min-h-10 items-center font-semibold text-eu-ink-2 text-[length:var(--fs-15)] hover:border-eu-blue hover:text-eu-blue">
                   {o.title}
                 </Link>
               </li>

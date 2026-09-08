@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Plus } from "lucide-react";
+import { Heart, Plus, Scale } from "lucide-react";
 import type { Product } from "@/lib/data/types";
 import { discountPct, instalment, priceLong, priceShort, weekday } from "@/lib/format";
 import { useCart } from "./CartProvider";
@@ -14,22 +14,26 @@ import { FluidContent } from "@/components/fluid/Fluid";
  *  1 discount %  2 brand apart from title  3 energy class + fiche (EU
  *  2017/1369)  4 price / was-price  5 lowest 30-day price (Omnibus)
  *  6 instalment without card, computed  7 availability with colour AND
- *  date  8 Quick buy as the primary button  9 store stock & compare.
+ *  date  8 Quick buy as the primary button  9 wishlist + compare (live,
+ *  persisted) & store stock.
  *
  * Adaptive content: in a narrow container (<300px, e.g. 2-up on phones)
- * the card drops the compare/stock line, shortens the availability text
- * and stacks the buttons; the primary action never disappears.
+ * the card shortens the availability text and stacks the buttons; the
+ * primary action, the heart and the compare toggle never disappear.
+ * Every text ≥ 14px.
  */
 export function ProductCard({ product: p, priority = false }: { product: Product; priority?: boolean }) {
-  const { add, openQuickBuy } = useCart();
+  const { add, openQuickBuy, wishlist, toggleWishlist, compare, toggleCompare } = useCart();
   const pct = discountPct(p.price, p.wasPrice);
   const monthly = instalment(p.price);
+  const liked = wishlist.includes(p.id);
+  const compared = compare.includes(p.id);
 
   const avail = (() => {
     const a = p.availability;
-    if (a.kind === "in-stock") return { color: "text-eu-green bg-eu-green", text: a.label ?? `Άμεσα · παράδοση ${weekday(new Date(a.deliveryDate))}`, short: "Άμεσα" };
-    if (a.kind === "days") return { color: "text-eu-amber bg-eu-amber", text: `Σε ${a.min}–${a.max} εργάσιμες · ${weekday(new Date(a.deliveryDate))}`, short: `${a.min}–${a.max} εργάσιμες` };
-    return { color: "text-eu-muted bg-eu-muted", text: a.label ?? "Κατόπιν παραγγελίας", short: "Κατ. παραγγελίας" };
+    if (a.kind === "in-stock") return { color: "text-eu-green", dot: "bg-eu-green", text: a.label ?? `Άμεσα · παράδοση ${weekday(new Date(a.deliveryDate))}`, short: `Άμεσα · ${weekday(new Date(a.deliveryDate))}` };
+    if (a.kind === "days") return { color: "text-eu-amber", dot: "bg-eu-amber", text: `Σε ${a.min}–${a.max} εργάσιμες · ${weekday(new Date(a.deliveryDate))}`, short: `${a.min}–${a.max} εργάσιμες` };
+    return { color: "text-eu-muted", dot: "bg-eu-muted", text: a.label ?? "Κατόπιν παραγγελίας", short: "Κατόπιν παραγγελίας" };
   })();
 
   return (
@@ -37,82 +41,69 @@ export function ProductCard({ product: p, priority = false }: { product: Product
       {({ size }) => {
         const narrow = size === "xs" || size === "sm";
         return (
-          <article className="bg-white rounded-lg overflow-hidden flex flex-col h-full shadow-[var(--shadow-card)]">
-            <div className="relative bg-eu-surface-2 p-3.5">
+          <article className={`bg-white rounded-2xl overflow-hidden flex flex-col h-full border transition-shadow hover:shadow-[var(--shadow-raised)] ${compared ? "border-eu-blue shadow-[0_0_0_2px_var(--eu-blue)]" : "border-eu-line shadow-[var(--shadow-card)]"}`}>
+            <div className="relative bg-eu-surface-2 p-4">
               <Link href={`/proion/${p.slug}`} className="block" aria-label={`${p.brand} ${p.title}`}>
                 <div className="relative aspect-square">
                   {p.image ? (
                     <Image src={p.image} alt="" fill sizes="(max-width: 640px) 50vw, 320px" className="object-contain" priority={priority} unoptimized={p.image.startsWith("http")} />
                   ) : (
-                    <div className="absolute inset-0 bg-eu-placeholder text-eu-placeholder-ink font-semibold text-[length:var(--fs-11)] flex items-center justify-center text-center rounded-md">
-                      φωτογραφία
-                      <br />
-                      προϊόντος
-                    </div>
+                    <div className="absolute inset-0 bg-eu-placeholder text-eu-placeholder-ink font-semibold text-[length:var(--fs-14)] flex items-center justify-center text-center rounded-md">φωτογραφία προϊόντος</div>
                   )}
                 </div>
               </Link>
-              {p.badge?.kind === "discount" && pct !== null && (
-                <span className="absolute top-0 left-0 bg-eu-red text-white font-extrabold text-[length:var(--fs-11)] px-2.5 py-1.5 rounded-br-md pointer-events-none">−{pct}%</span>
-              )}
-              {p.badge?.kind === "gift" && (
-                <span className="absolute top-0 left-0 bg-eu-blue text-white font-extrabold text-[length:var(--fs-11)] px-2.5 py-1.5 rounded-br-md pointer-events-none">Δώρο</span>
-              )}
-              <div className="absolute bottom-2.5 left-3.5 flex gap-1.5">
+              {p.badge?.kind === "discount" && pct !== null && <span className="absolute top-0 left-0 bg-eu-red text-white font-extrabold text-[length:var(--fs-15)] px-3 py-1.5 rounded-br-xl pointer-events-none">−{pct}%</span>}
+              {p.badge?.kind === "gift" && <span className="absolute top-0 left-0 bg-eu-blue text-white font-extrabold text-[length:var(--fs-15)] px-3 py-1.5 rounded-br-xl pointer-events-none">Δώρο</span>}
+              {p.badge?.kind === "new" && <span className="absolute top-0 left-0 bg-eu-navy text-white font-extrabold text-[length:var(--fs-15)] px-3 py-1.5 rounded-br-xl pointer-events-none">Νέο</span>}
+              {p.isRenew && !p.badge && <span className="absolute top-0 left-0 bg-eu-green text-white font-extrabold text-[length:var(--fs-15)] px-3 py-1.5 rounded-br-xl pointer-events-none">Renew</span>}
+              <button
+                type="button"
+                aria-pressed={liked}
+                aria-label={liked ? "Αφαίρεση από τη λίστα" : "Προσθήκη στη λίστα"}
+                onClick={() => toggleWishlist(p.id)}
+                className={`absolute top-2 right-2 size-11 rounded-full bg-white shadow-[var(--shadow-card)] inline-flex items-center justify-center ${liked ? "text-eu-red" : "text-eu-muted hover:text-eu-red"}`}
+              >
+                <Heart className="size-5" fill={liked ? "currentColor" : "none"} aria-hidden />
+              </button>
+              <div className="absolute bottom-2.5 left-4 flex gap-1.5">
                 {p.energy && <EnergyChip cls={p.energy.cls} fiche={p.energy.fiche} compact={narrow} />}
-                {!p.energy && p.rating && (
-                  <span className="bg-white border border-eu-line text-eu-muted font-semibold text-[length:var(--fs-9-5)] px-1.5 py-1 rounded-sm">
-                    {p.rating.value.toLocaleString("el-GR")} ★ · {p.rating.count} κριτικές
-                  </span>
-                )}
+                {!p.energy && p.rating && <span className="bg-white border border-eu-line text-eu-ink-2 font-semibold text-[length:var(--fs-14)] px-2 py-1 rounded-md">★ {p.rating.value.toLocaleString("el-GR")} · {p.rating.count}</span>}
               </div>
             </div>
 
-            <div className="p-3.5 flex flex-col flex-1">
-              <div className="font-semibold text-eu-muted-2 text-[length:var(--fs-10)] tracking-wide mb-1">{p.brand}</div>
-              <h3 className="m-0 font-bold text-eu-ink text-[length:var(--fs-13)] leading-[1.3] line-clamp-2 min-h-[2.6em]">
+            <div className="p-4 flex flex-col flex-1">
+              <div className="font-bold text-eu-muted-2 text-[length:var(--fs-14)] tracking-wide mb-1 uppercase">{p.brand}</div>
+              <h3 className="m-0 font-bold text-eu-ink text-[length:var(--fs-17)] leading-[1.3] line-clamp-2 min-h-[2.6em]">
                 <Link href={`/proion/${p.slug}`} className="hover:text-eu-blue">
                   {p.title}
                 </Link>
               </h3>
-              <div className="flex items-baseline gap-1.5 mt-2 mb-0.5">
-                <span className="font-extrabold text-eu-ink text-[length:var(--fs-24)] leading-none tracking-[-0.02em]">{priceShort(p.price)}</span>
-                {p.wasPrice && <s className="font-medium text-eu-muted-2 text-[length:var(--fs-12)]">{priceShort(p.wasPrice)}</s>}
+              <div className="flex items-baseline gap-2 mt-2.5">
+                <span className="font-extrabold text-eu-ink text-[length:var(--fs-27)] leading-none tracking-[-0.02em]">{priceShort(p.price)}</span>
+                {p.wasPrice && <s className="font-medium text-eu-muted-2 text-[length:var(--fs-15)]">{priceShort(p.wasPrice)}</s>}
               </div>
-              <div className="text-eu-muted text-[length:var(--fs-10)] leading-snug">
-                {p.lowest30 ? `Χαμηλότερη τιμή 30 ημερών: ${priceLong(p.lowest30)}` : p.gift ?? " "}
-              </div>
-              <div className="font-bold text-eu-blue text-[length:var(--fs-11-5)] my-2">ή 12 × {priceLong(monthly)} χωρίς κάρτα</div>
-              <div className={`flex items-center gap-1.5 font-bold text-[length:var(--fs-11)] mb-3 ${avail.color.split(" ")[0]}`}>
-                <span className={`size-[7px] rounded-full ${avail.color.split(" ")[1]}`} aria-hidden />
+              <div className="text-eu-muted text-[length:var(--fs-14)] leading-snug mt-1 min-h-[1.4em]">{p.lowest30 ? `Χαμηλότερη 30 ημερών: ${priceLong(p.lowest30)}` : p.gift ?? ""}</div>
+              <div className="font-bold text-eu-blue text-[length:var(--fs-15)] my-2">ή 12 × {priceLong(monthly)} χωρίς κάρτα</div>
+              <div className={`flex items-center gap-1.5 font-bold text-[length:var(--fs-14)] mb-3 ${avail.color}`}>
+                <span className={`size-2 rounded-full ${avail.dot}`} aria-hidden />
                 {narrow ? avail.short : avail.text}
               </div>
-              <div className={`flex gap-1.5 mt-auto ${narrow ? "flex-col" : ""}`}>
-                <button
-                  type="button"
-                  onClick={() => openQuickBuy(p)}
-                  className="flex-1 rounded-full bg-eu-navy text-white font-extrabold text-[length:var(--fs-12-5)] py-3 min-h-11 hover:bg-eu-blue transition-colors"
-                >
+              <div className={`flex gap-2 mt-auto ${narrow ? "flex-col" : ""}`}>
+                <button type="button" onClick={() => openQuickBuy(p)} className="flex-1 rounded-full bg-eu-navy text-white font-extrabold text-[length:var(--fs-15)] py-3 min-h-12 hover:bg-eu-blue transition-colors">
                   Αγορά με 1 κλικ
                 </button>
-                <button
-                  type="button"
-                  onClick={() => add(p)}
-                  aria-label="Προσθήκη στο καλάθι"
-                  className={`rounded-full border-2 border-eu-navy text-eu-navy font-extrabold flex items-center justify-center min-h-11 hover:bg-eu-surface ${narrow ? "w-full" : "w-11 shrink-0"}`}
-                >
-                  <Plus className="size-4" aria-hidden />
-                  {narrow && <span className="ml-1 text-[length:var(--fs-12)]">Στο καλάθι</span>}
+                <button type="button" onClick={() => add(p)} aria-label="Προσθήκη στο καλάθι" className={`rounded-full border-2 border-eu-navy text-eu-navy font-extrabold flex items-center justify-center min-h-12 hover:bg-eu-surface ${narrow ? "w-full" : "w-12 shrink-0"}`}>
+                  <Plus className="size-5" aria-hidden />
+                  {narrow && <span className="ml-1 text-[length:var(--fs-15)]">Στο καλάθι</span>}
                 </button>
               </div>
-              {!narrow && (
-                <div className="flex justify-between font-semibold text-eu-muted-2 text-[length:var(--fs-10)] mt-2.5">
-                  <button type="button" className="hover:text-eu-blue">
-                    Σύγκριση
-                  </button>
-                  <span>{p.tradeIn ? "Παραλαβή παλιάς" : p.storeStock ? `Απόθεμα σε ${p.storeStock} καταστήματα` : ""}</span>
-                </div>
-              )}
+              <div className="flex justify-between items-center gap-2 mt-3 text-[length:var(--fs-14)]">
+                <label className={`inline-flex items-center gap-1.5 font-semibold cursor-pointer min-h-9 ${compared ? "text-eu-blue" : "text-eu-muted-2 hover:text-eu-blue"}`}>
+                  <input type="checkbox" checked={compared} onChange={() => toggleCompare(p.id)} className="size-4 accent-eu-blue" />
+                  <Scale className="size-4" aria-hidden /> Σύγκριση
+                </label>
+                {!narrow && <span className="text-eu-muted-2 truncate">{p.tradeIn ? "Παραλαβή παλιάς" : p.storeStock ? `Σε ${p.storeStock} καταστήματα` : ""}</span>}
+              </div>
             </div>
           </article>
         );

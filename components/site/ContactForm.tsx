@@ -2,14 +2,14 @@
 
 import { useState } from "react";
 
-const input = "rounded-md border border-eu-line bg-white px-3 py-2.5 min-h-11 text-[length:var(--fs-13)] w-full";
-const label = "grid gap-1 text-[length:var(--fs-12)] font-semibold text-eu-ink";
+const input = "rounded-md border border-eu-line bg-white px-3 py-2.5 min-h-11 text-[length:var(--fs-15)] w-full";
+const label = "grid gap-1 text-[length:var(--fs-14)] font-semibold text-eu-ink";
 
 export function ContactForm() {
   const [done, setDone] = useState(false);
   if (done)
     return (
-      <div className="bg-eu-green/10 border border-eu-green/30 rounded-xl p-5 text-[length:var(--fs-13)] text-eu-ink-2">
+      <div className="bg-eu-green/10 border border-eu-green/30 rounded-xl p-5 text-[length:var(--fs-15)] text-eu-ink-2">
         <div className="font-extrabold text-eu-ink text-[length:var(--fs-16)] mb-1">Λάβαμε το μήνυμά σου</div>
         Απαντάμε εντός 1 εργάσιμης ημέρας. Για επείγον, κάλεσε στο 210 483 5143.
       </div>
@@ -48,12 +48,12 @@ export function ContactForm() {
         Αριθμός παραγγελίας (προαιρετικά) <input className={input} placeholder="EUR-…" />
       </label>
       <label className={label}>
-        Μήνυμα <textarea required rows={5} className="rounded-md border border-eu-line bg-white px-3 py-2 text-[length:var(--fs-13)]" />
+        Μήνυμα <textarea required rows={5} className="rounded-md border border-eu-line bg-white px-3 py-2 text-[length:var(--fs-15)]" />
       </label>
-      <label className="flex items-start gap-2 text-[length:var(--fs-12)] text-eu-ink-2 cursor-pointer">
+      <label className="flex items-start gap-2 text-[length:var(--fs-14)] text-eu-ink-2 cursor-pointer">
         <input type="checkbox" required className="mt-0.5 size-4 accent-eu-blue" /> Συμφωνώ με την επεξεργασία των στοιχείων μου για την απάντηση στο αίτημά μου (πολιτική απορρήτου).
       </label>
-      <button type="submit" className="justify-self-start rounded-full bg-eu-navy text-white font-extrabold text-[length:var(--fs-13)] px-6 min-h-11 hover:bg-eu-blue">
+      <button type="submit" className="justify-self-start rounded-full bg-eu-navy text-white font-extrabold text-[length:var(--fs-15)] px-6 min-h-11 hover:bg-eu-blue">
         Αποστολή
       </button>
     </form>

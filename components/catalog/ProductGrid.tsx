@@ -6,8 +6,8 @@ export function ProductGrid({ products, view = "grid" }: { products: Product[]; 
   if (products.length === 0) {
     return (
       <div className="rounded-lg bg-eu-surface p-8 text-center">
-        <div className="font-bold text-eu-ink text-[length:var(--fs-15)] mb-1">Δεν βρέθηκαν προϊόντα</div>
-        <p className="m-0 text-eu-muted text-[length:var(--fs-13)]">Δοκίμασε να αφαιρέσεις κάποιο φίλτρο ή να αλλάξεις τον όρο αναζήτησης.</p>
+        <div className="font-bold text-eu-ink text-[length:var(--fs-17)] mb-1">Δεν βρέθηκαν προϊόντα</div>
+        <p className="m-0 text-eu-muted text-[length:var(--fs-15)]">Δοκίμασε να αφαιρέσεις κάποιο φίλτρο ή να αλλάξεις τον όρο αναζήτησης.</p>
       </div>
     );
   }

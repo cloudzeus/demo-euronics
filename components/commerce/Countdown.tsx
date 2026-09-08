@@ -41,7 +41,7 @@ export function Countdown({ endsAt, variant = "inline", className = "" }: { ends
     );
   }
   return (
-    <span className={`font-extrabold text-eu-ink bg-eu-surface rounded-md px-2 py-1.5 text-[length:var(--fs-11)] tabular-nums ${className}`} role="timer" aria-label={label}>
+    <span className={`font-extrabold text-eu-ink bg-eu-surface rounded-md px-2 py-1.5 text-[length:var(--fs-13-5)] tabular-nums ${className}`} role="timer" aria-label={label}>
       {pad(p.h + p.d * 24)}:{pad(p.m)}:{pad(p.s)}
     </span>
   );

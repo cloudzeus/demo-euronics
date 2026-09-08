@@ -110,7 +110,10 @@ export async function getHomeLayout(): Promise<PageLayout> {
         id: "guides",
         label: "Οδηγοί αγοράς",
         slot: "main",
-        widgets: [{ id: "guides-3", type: "guides", zoneNo: 11, props: {}, visibility: { hideOnSaveData: true } }],
+        widgets: [
+          { id: "smart-guides", type: "smart-guides", zoneNo: 11, props: {} },
+          { id: "guides-3", type: "guides", zoneNo: 11, props: {}, visibility: { hideOnSaveData: true } },
+        ],
       },
       {
         id: "newsletter",

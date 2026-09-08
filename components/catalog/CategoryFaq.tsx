@@ -15,13 +15,13 @@ export function CategoryFaq({ name }: { name: string }) {
       <div className="grid gap-2">
         {qa.map((x) => (
           <details key={x.q} className="group rounded-lg border border-eu-line bg-white px-4">
-            <summary className="cursor-pointer list-none flex justify-between items-center py-3 font-bold text-eu-ink text-[length:var(--fs-13)] min-h-11">
+            <summary className="cursor-pointer list-none flex justify-between items-center py-3 font-bold text-eu-ink text-[length:var(--fs-15)] min-h-11">
               {x.q}
               <span className="text-eu-blue transition-transform group-open:rotate-45 text-[length:var(--fs-19)] leading-none" aria-hidden>
                 +
               </span>
             </summary>
-            <p className="m-0 pb-3 text-eu-ink-2 text-[length:var(--fs-12-5)] leading-relaxed">{x.a}</p>
+            <p className="m-0 pb-3 text-eu-ink-2 text-[length:var(--fs-15)] leading-relaxed">{x.a}</p>
           </details>
         ))}
       </div>
