@@ -1,0 +1,8 @@
+node_modules
+.next
+.git
+.planning
+docs
+*.log
+.env*
+.DS_Store

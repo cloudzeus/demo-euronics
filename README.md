@@ -58,3 +58,13 @@ Demo δεδομένα για tracking/λογαριασμό: παραγγελίε
 - `docs/` — audits euronics.gr / web.kolleris.com / kotsovolos.gr και τα αρχεία Claude Design.
 
 Stack: Next.js 16 · React 19 · Tailwind 4 · shadcn/ui · Motion · Manrope (Greek+Latin) · Prisma/MySQL (schema only).
+
+## Deploy (Coolify)
+
+Το repo έχει `Dockerfile` (Next.js standalone, node:24-alpine, non-root, healthcheck στο `/`). Στο Coolify:
+
+1. New Resource → **Public Repository** → `https://github.com/cloudzeus/demo-euronics`, branch `master`.
+2. Build Pack: **Dockerfile** (αυτόματα εντοπίζεται). Port **3000**. Καμία μεταβλητή περιβάλλοντος δεν χρειάζεται — τα δεδομένα είναι στατικά fixtures και οι εικόνες τοπικές.
+3. Deploy. Το image είναι ~55 MB runtime (standalone) και ξεκινά με `node server.js`.
+
+Εναλλακτικά με Nixpacks: build `npm run build`, start `npm start`, port 3000.

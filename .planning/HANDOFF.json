@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "timestamp": "2026-09-08T11:48:39.006Z",
+  "timestamp": "2026-09-08T11:52:00.337Z",
   "source": "auto-postool",
   "partial": false,
   "phase": null,
@@ -22,41 +22,17 @@
     },
     {
       "status": "M",
-      "path": "app/(shop)/k/[...slug]/page.tsx"
-    },
-    {
-      "status": "M",
-      "path": "app/(shop)/proion/[slug]/page.tsx"
-    },
-    {
-      "status": "M",
-      "path": "app/(shop)/proionta/page.tsx"
-    },
-    {
-      "status": "M",
-      "path": "components/catalog/Facets.tsx"
-    },
-    {
-      "status": "M",
-      "path": "components/checkout/CartView.tsx"
-    },
-    {
-      "status": "M",
-      "path": "components/commerce/ProductCard.tsx"
-    },
-    {
-      "status": "M",
-      "path": "components/pdp/ProductRail.tsx"
-    },
-    {
-      "status": "M",
-      "path": "components/widgets/DealsRail.tsx"
+      "path": "next.config.ts"
     },
     {
       "status": "??",
-      "path": "components/fluid/StickySidebar.tsx"
+      "path": ".dockerignore"
+    },
+    {
+      "status": "??",
+      "path": "Dockerfile"
     }
   ],
   "next_action": null,
-  "context_notes": "Recent commits:\n8225424 Mini cart redesign, quick view, per-product SEO/AEO/GEO, width-adaptive columns, no inner scrollers\nadf4ea5 Fixed product-image frame everywhere; all product photos served locally\ndecdc65 v3: full product list with characteristic facets, attribute-based compare, PDP overhaul, cart + checkout redesign, smart buying guides, readable type\nbf49fbd Real product titles, verified images, merchandising picks, README with routes\n6e750d7 Full shop: catalog, listing with URL facets, PDP, cart, 3-step checkout with payment & SCA, confirmation, tracking, account, stores, services, guides, policies, FAQ, contact, gift cards; full-width header/hero; Manrope for Greek weights"
+  "context_notes": "Recent commits:\nbdfdd81 Smart sticky filters and buy box, full-width deal rails, subtler compare border\n8225424 Mini cart redesign, quick view, per-product SEO/AEO/GEO, width-adaptive columns, no inner scrollers\nadf4ea5 Fixed product-image frame everywhere; all product photos served locally\ndecdc65 v3: full product list with characteristic facets, attribute-based compare, PDP overhaul, cart + checkout redesign, smart buying guides, readable type\nbf49fbd Real product titles, verified images, merchandising picks, README with routes"
 }
