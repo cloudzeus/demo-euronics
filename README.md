@@ -30,6 +30,10 @@ npm run build
 | **Στήλες ανά πλάτος**: `repeat(auto-fill, minmax(220px, 1fr))` — 2 στο κινητό, 3–5 ανάλογα με τον διαθέσιμο χώρο | `ProductGrid`, `ProductRail`, `DealsRail` |
 | **Κανένας εσωτερικός scroller**: φίλτρα με «+ N ακόμη» αντί για scroll, chips/breadcrumbs/thumbs/side nav σε wrap, deals σε grid, buy box χωρίς max-height, πίνακες σύγκρισης → stacked layout σε στενά πλάτη (`CompareStacked`) | παντού |
 
+### v3.5 — Αυτούσιες πολιτικές και footer από το live site
+
+Όροι χρήσης, Πολιτική απορρήτου, Πολιτική cookies, Τρόποι πληρωμής, Τρόποι αποστολής/παράδοσης, Πολιτική επιστροφών και Οικονομικά στοιχεία (ισολογισμοί 2014–2018) αντιγράφηκαν **αυτούσια** από το euronics.gr στις 8/9/2026 (`lib/data/fixtures/policies.live.ts`, σήμα «Κείμενο αυτούσιο από το euronics.gr» με σύνδεσμο πηγής). Ο footer έχει τα «Χρήσιμα links», τα τηλέφωνα, το email και τα social (Facebook, Instagram, YouTube, Google Maps, Euronics International) του live site.
+
 ### v3.3 — Mega menu 3 επιπέδων & αναζήτηση με ζωντανά αποτελέσματα
 
 - **Mega menu**: υποκατηγορίες με πλήθος, δημοφιλείς μάρκες, γρήγορα φίλτρα από τα χαρακτηριστικά, έξυπνος οδηγός και **προωθούμενο προϊόν με φωτογραφία, τιμή και «Αγορά με 1 κλικ»** ανά κατηγορία (`getMegaMenuData`, CMS-ready).

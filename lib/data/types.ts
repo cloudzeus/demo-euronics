@@ -223,6 +223,8 @@ export interface Policy {
   sections: { title: string; body: string[] }[];
   sourceUrl?: string;
   updated?: string;
+  /** Text copied verbatim from the live euronics.gr page (not condensed). */
+  verbatim?: boolean;
 }
 
 /* ---------------- Dynamic content (CMS) ---------------- */

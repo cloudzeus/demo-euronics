@@ -4,8 +4,8 @@ import Link from "next/link";
 const cols: { title: string; links: { label: string; href: string }[] }[] = [
   { title: "Αγορές", links: [{ label: "Τρόποι πληρωμής", href: "/tropoi-pliromis" }, { label: "Τρόποι & χρόνοι αποστολής", href: "/tropoi-apostolis" }, { label: "Δόσεις χωρίς κάρτα", href: "/ypiresies/xrimatodotisi" }, { label: "Παραλαβή σε 2 ώρες", href: "/ypiresies/paralavi-2-ores" }, { label: "Κάρτες δώρου", href: "/kartes-dorou" }, { label: "Euronics Renew", href: "/renew" }] },
   { title: "Εξυπηρέτηση", links: [{ label: "Παρακολούθηση παραγγελίας", href: "/entopismos" }, { label: "Επιστροφές & υπαναχώρηση", href: "/epistrofes" }, { label: "Εγγυήσεις & service", href: "/ypiresies/syntirisi-episkeyi" }, { label: "Ανακύκλωση ΑΗΗΕ", href: "/ypiresies/anakyklosi-aiie" }, { label: "Συχνές ερωτήσεις", href: "/syxnes-erotiseis" }, { label: "Επικοινωνία", href: "/epikoinonia" }] },
-  { title: "Η Euronics", links: [{ label: "Ποιοι είμαστε", href: "/etaireia" }, { label: "Όλες οι υπηρεσίες", href: "/ypiresies" }, { label: "Δίκτυο καταστημάτων", href: "/katastimata" }, { label: "Μάρκες", href: "/brands" }, { label: "Νέα & ανακοινώσεις", href: "/nea" }, { label: "Έξυπνος οδηγός αγοράς", href: "/odigos-agoras" }, { label: "Οδηγοί & blog", href: "/odigoi" }, { label: "Οικονομικά στοιχεία", href: "/etaireia#oikonomika" }] },
-  { title: "Νομικά", links: [{ label: "Όροι χρήσης", href: "/oroi-chrisis" }, { label: "Πολιτική απορρήτου", href: "/aporrito" }, { label: "Ρυθμίσεις cookies", href: "/cookies" }, { label: "Εναλλακτική επίλυση διαφορών", href: "/oroi-chrisis" }, { label: "Πλατφόρμα ΗΕΔ της ΕΕ", href: "https://ec.europa.eu/consumers/odr" }] },
+  { title: "Χρήσιμα links", links: [{ label: "Χάρτης πλοήγησης", href: "/proionta" }, { label: "Δίκτυο καταστημάτων", href: "/katastimata" }, { label: "Οικονομικά στοιχεία", href: "/oikonomika-stoixeia" }, { label: "Οι υπηρεσίες μας", href: "/ypiresies" }, { label: "Τρόποι πληρωμής", href: "/tropoi-pliromis" }, { label: "Τρόποι αποστολής", href: "/tropoi-apostolis" }, { label: "Πολιτική Επιστροφών", href: "/epistrofes" }, { label: "Ποιοι είμαστε", href: "/etaireia" }, { label: "Νέα & ανακοινώσεις", href: "/nea" }, { label: "Έξυπνος οδηγός αγοράς", href: "/odigos-agoras" }, { label: "Οδηγοί & blog", href: "/odigoi" }] },
+  { title: "Νομικά", links: [{ label: "Όροι Χρήσης", href: "/oroi-chrisis" }, { label: "Πολιτική Απορρήτου", href: "/aporrito" }, { label: "Πολιτική Cookies", href: "/cookies" }, { label: "Εναλλακτική επίλυση διαφορών", href: "/oroi-chrisis" }, { label: "Πλατφόρμα ΗΕΔ της ΕΕ", href: "https://ec.europa.eu/consumers/odr" }] },
 ];
 
 /** DSA trader details, WEEE registry and ADR reachable on every page. */
@@ -31,14 +31,21 @@ export function SiteFooter() {
           <div>
             <h2 className="m-0 mb-2.5 font-extrabold text-white text-[length:var(--fs-13-5)] tracking-wide">Επικοινωνία</h2>
             <address className="not-italic">
-              Δαμάσκου Σταμάτη 12, Αχαρνές
+              Δαμάσκου Σταμάτη 12, 136 71 Αχαρνές
               <br />
-              <a href="tel:2104835143" className="hover:text-white">210 483 5143</a>
+              <a href="tel:00302104835143" className="hover:text-white">+30 210 4835143 - 6</a>
+              <br />
+              <a href="tel:00302104835190" className="hover:text-white">+30 210 4835190</a>
               <br />
               <a href="mailto:info@euronics.gr" className="hover:text-white">info@euronics.gr</a>
-              <br />
-              <span className="text-white">Facebook · Instagram · YouTube</span>
             </address>
+            <div className="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-white">
+              <a href="https://www.facebook.com/euronics.gr/" target="_blank" rel="noreferrer" className="hover:text-eu-yellow">Facebook</a>
+              <a href="https://www.instagram.com/euronics.gr/" target="_blank" rel="noreferrer" className="hover:text-eu-yellow">Instagram</a>
+              <a href="https://www.youtube.com/euronicsgreece" target="_blank" rel="noreferrer" className="hover:text-eu-yellow">YouTube</a>
+              <a href="https://www.google.com/maps/place/Euronics+Greece+(Mega+Electrics+AEBE)/@38.0778184,23.7510866,15z" target="_blank" rel="noreferrer" className="hover:text-eu-yellow">Google Maps</a>
+              <a href="https://www.euronics.com/" target="_blank" rel="noreferrer" className="hover:text-eu-yellow">Euronics International</a>
+            </div>
           </div>
         </div>
         <div className="border-t border-eu-navy-line pt-4 flex flex-wrap justify-between items-center gap-4 text-[length:var(--fs-13-5)] leading-relaxed">

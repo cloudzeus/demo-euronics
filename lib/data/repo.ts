@@ -7,6 +7,7 @@ import { stores } from "./fixtures/stores";
 import { services } from "./fixtures/services";
 import { guides } from "./fixtures/guides";
 import { faqs, policies } from "./fixtures/content";
+import { livePolicies } from "./fixtures/policies.live";
 import { orders } from "./fixtures/orders";
 import { news, NEWS_CATEGORIES } from "./fixtures/news";
 import { appointments, consents, customer, instalmentPlans, paymentMethods } from "./fixtures/account";
@@ -285,7 +286,8 @@ export async function getFaqs(): Promise<Faq[]> {
   return faqs;
 }
 export async function getPolicy(slug: string): Promise<Policy | null> {
-  return policies.find((p) => p.slug === slug) ?? null;
+  // Live (verbatim) texts win over the condensed demo copies.
+  return livePolicies.find((p) => p.slug === slug) ?? policies.find((p) => p.slug === slug) ?? null;
 }
 export async function getOrders(): Promise<Order[]> {
   return orders;
