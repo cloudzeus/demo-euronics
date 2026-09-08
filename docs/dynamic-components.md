@@ -10,6 +10,8 @@
 | `ProductCard`, `ProductGrid`, `Facets` | `listProducts(filter)` | SoftOne MTRL + χαρακτηριστικά (CCCSUBGROUP2 / extra fields) → `lib/data/attributes` | ISR 60s, facets από search index |
 | `ProductHeader`, `BuyBox`, `SpecsTable`, `CompareSimilar` | `getProductBySlug`, `getRelated`, `getAccessoriesFor` | SoftOne MTRL, απόθεμα ανά κατάστημα (MTRSTORE), σχετικά/συμπληρωματικά από ITEGROUP mapping | ISR 60s· απόθεμα live (no-store) |
 | `SmartGuide` | `listProducts({l1,l2})` + `lib/guides/smart.ts` | Ίδια χαρακτηριστικά· τα βάρη των κριτηρίων στο CMS | ISR 60s |
+| `SearchBox` (autosuggest 4 ομάδων) + `/api/search` | `searchSuggest(q, cat)` | Meilisearch index (typo tolerance, synonyms, Greeklish) — ίδιο JSON | edge cache 30s |
+| `MegaNav` (3 επίπεδα: υποκατηγορίες, μάρκες/γρήγορα φίλτρα/οδηγός, προωθούμενο προϊόν) | `getMegaMenuData()` | CMS ζώνη «menu» ανά κατηγορία με fallback από τον κατάλογο | ISR 300s |
 | `StoreFinder`, `/katastimata` | `getStores(q)` | SoftOne BRANCH/κατάστημα μέλους + ωράρια από CMS | ISR 3600s |
 | `ServicesBand`, `/ypiresies` | `getServicesFull()` | CMS υπηρεσίες με τιμές (τιμές από SoftOne SRV items) | ISR 3600s |
 | Λογαριασμός — Επισκόπηση | `getCustomer`, `getOrders`, `getInstalmentPlans`, `getAppointments` | SoftOne CUSTOMER (TRDR), SALDOC, FINDOC, SRVJOB | no-store (session) |

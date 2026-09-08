@@ -288,6 +288,10 @@
 @utility eu-container {
   container-type: inline-size;
 }
+/* The page itself is the outermost container, so top-level frames (mega menu, header rows) can use @lg:… on themselves. */
+body {
+  container-type: inline-size;
+}
 @utility eu-canvas {
   width: 100%;
   max-width: var(--eu-canvas);

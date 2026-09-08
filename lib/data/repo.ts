@@ -185,17 +185,58 @@ export async function getAccessoriesFor(p: Product, limit = 4) {
   list.sort((a, b) => subs.indexOf(a.subcategory) - subs.indexOf(b.subcategory) || (b.rating?.count ?? 0) - (a.rating?.count ?? 0));
   return list.slice(0, limit);
 }
-export async function searchSuggest(q: string) {
-  const n = norm(q);
-  if (n.length < 2) return { products: [], categories: [], brands: [] };
-  const prods = products.filter((p) => norm(`${p.brand} ${p.title} ${p.sku}`).includes(n)).slice(0, 5);
-  const cats: { name: string; href: string }[] = [];
+/* ---------------- Search (autosuggest, four groups) ---------------- */
+/** Accent-insensitive, token-based match; also matches the Latin slug so Greeklish («plyntirio») works. @dynamic → Meilisearch index with typo tolerance. */
+const tokens = (q: string) => norm(q).split(/\s+/).filter(Boolean);
+const hay = (p: Product) => norm(`${p.brand} ${p.title} ${p.sku} ${p.ean ?? ""} ${p.slug.replace(/-/g, " ")} ${p.subcategory.replace(/-/g, " ")} ${(p.specs ?? []).map((s) => s.value).join(" ")}`);
+export interface SuggestResult {
+  q: string;
+  total: number;
+  products: { id: string; slug: string; brand: string; title: string; price: number; wasPrice?: number; image: string | null; avail: "in-stock" | "days" | "order"; path: string }[];
+  categories: { name: string; parent?: string; href: string; count: number }[];
+  brands: { slug: string; name: string; count: number }[];
+  guides: { slug: string; title: string; image?: string; kicker: string }[];
+  popular: string[];
+  promo: { slug: string; brand: string; title: string; price: number; wasPrice?: number; image: string | null } | null;
+}
+export const POPULAR_SEARCHES = ["κλιματιστικό 12000 btu", "πλυντήριο 9kg", "iPhone 17", "OLED 55", "airfryer", "espresso", "laptop φοιτητή", "ψυγείο no frost"];
+
+export async function searchSuggest(q: string, cat?: string): Promise<SuggestResult> {
+  const t = tokens(q);
+  const promoP = products.find((p) => p.id === "p-lg-43nano82") ?? products[0];
+  const promo = { slug: promoP.slug, brand: promoP.brand, title: promoP.title, price: promoP.price, wasPrice: promoP.wasPrice, image: promoP.image };
+  if (t.length === 0 || t.join("").length < 2) return { q, total: 0, products: [], categories: [], brands: [], guides: [], popular: POPULAR_SEARCHES, promo };
+  const match = (text: string) => t.every((x) => text.includes(x));
+  const scope = cat && cat !== "all" ? products.filter((p) => p.category === cat) : products;
+  const hits = scope.filter((p) => match(hay(p)));
+  // Rank: brand/title hits first, then by rating count.
+  hits.sort((a, b) => Number(match(norm(`${b.brand} ${b.title}`))) - Number(match(norm(`${a.brand} ${a.title}`))) || (b.rating?.count ?? 0) - (a.rating?.count ?? 0));
+  const catCounts = new Map<string, number>();
+  for (const p of hits) catCounts.set(`${p.category}/${p.subcategory}`, (catCounts.get(`${p.category}/${p.subcategory}`) ?? 0) + 1);
+  const categories: SuggestResult["categories"] = [];
   for (const c of navCategories) {
-    if (norm(c.label).includes(n)) cats.push({ name: c.label, href: `/k/${c.slug}` });
-    for (const ch of c.children) if (norm(ch.name).includes(n)) cats.push({ name: `${ch.name} · ${c.label}`, href: `/k/${c.slug}/${ch.slug}` });
+    if (match(norm(c.label))) categories.push({ name: c.label, href: `/k/${c.slug}`, count: products.filter((p) => p.category === c.slug).length });
+    for (const ch of c.children) {
+      const cnt = catCounts.get(`${c.slug}/${ch.slug}`) ?? 0;
+      if (match(norm(`${ch.name} ${ch.slug.replace(/-/g, " ")}`)) || cnt > 0) categories.push({ name: ch.name, parent: c.label, href: `/k/${c.slug}/${ch.slug}`, count: cnt || products.filter((p) => p.subcategory === ch.slug).length });
+    }
   }
-  const brands = (await getBrands()).filter((b) => norm(b.name).includes(n)).slice(0, 4);
-  return { products: prods, categories: cats.slice(0, 4), brands };
+  categories.sort((a, b) => b.count - a.count);
+  const brandMap = new Map<string, { slug: string; name: string; count: number }>();
+  for (const p of hits) brandMap.set(p.brandSlug, { slug: p.brandSlug, name: p.brand, count: (brandMap.get(p.brandSlug)?.count ?? 0) + 1 });
+  for (const b of await getBrands()) if (match(norm(b.name)) && !brandMap.has(b.slug)) brandMap.set(b.slug, { slug: b.slug, name: b.name, count: b.count });
+  const guidesHit = guides.filter((g) => match(norm(`${g.title} ${g.excerpt} ${g.kicker}`))).slice(0, 3);
+  const av = (p: Product) => p.availability.kind;
+  return {
+    q,
+    total: hits.length,
+    products: hits.slice(0, 6).map((p) => ({ id: p.id, slug: p.slug, brand: p.brand, title: p.title, price: p.price, wasPrice: p.wasPrice, image: p.image, avail: av(p), path: navCategories.find((c) => c.slug === p.category)?.children.find((x) => x.slug === p.subcategory)?.name ?? p.subcategory })),
+    categories: categories.slice(0, 5),
+    brands: [...brandMap.values()].sort((a, b) => b.count - a.count).slice(0, 5),
+    guides: guidesHit.map((g) => ({ slug: g.slug, title: g.title, image: g.image, kicker: g.kicker })),
+    popular: POPULAR_SEARCHES,
+    promo,
+  };
 }
 
 export async function getBrands(): Promise<Brand[]> {
@@ -283,4 +324,41 @@ export async function getAppointments(): Promise<Appointment[]> {
 }
 export async function getConsents(): Promise<ConsentPref[]> {
   return consents;
+}
+
+/* ---------------- Mega menu data ---------------- */
+export interface MegaMenuEntry {
+  slug: string;
+  subCounts: Record<string, number>;
+  brands: { slug: string; name: string; count: number }[];
+  quick: { label: string; href: string }[];
+  promo: Product | null;
+  guide: { title: string; href: string; image?: string } | null;
+}
+/** @dynamic Per-category menu content (promo product, top brands, quick filters, guide) — from the CMS «menu» zone with fallbacks computed from the catalogue. Cached 5 min. */
+export async function getMegaMenuData(): Promise<MegaMenuEntry[]> {
+  const smart: Record<string, { title: string; href: string; image?: string }> = {
+    "eikona-ixos": { title: "Ποια τηλεόραση σού ταιριάζει;", href: "/odigos-agoras/tileoraseis", image: "/img/guide-tv.jpg" },
+    computing: { title: "Ποιος υπολογιστής σού ταιριάζει;", href: "/odigos-agoras/ypologistes", image: "/img/hero-laptop.jpg" },
+    klimatismos: { title: "Ποιο κλιματιστικό σού ταιριάζει;", href: "/odigos-agoras/klimatistika", image: "/img/guide-ac.jpg" },
+  };
+  return Promise.all(
+    navCategories.map(async (c) => {
+      const r = await listProducts({ l1: c.slug, perPage: 60 });
+      const subCounts: Record<string, number> = {};
+      for (const p of r.items) subCounts[p.subcategory] = (subCounts[p.subcategory] ?? 0) + 1;
+      const promoP = [...r.items].sort((a, b) => ((b.wasPrice ?? b.price) - b.price) / (b.wasPrice ?? b.price) - ((a.wasPrice ?? a.price) - a.price) / (a.wasPrice ?? a.price) || (b.rating?.count ?? 0) - (a.rating?.count ?? 0))[0];
+      const facet = r.attributes.find((a) => !["Ενεργειακή κλάση", "Χρώμα"].includes(a.key));
+      const quick = facet ? facet.values.slice(0, 4).map((v) => ({ label: `${facet.key} ${v.value}`, href: `/proionta?k=${c.slug}&${encodeURIComponent(`f_${facet.key}`)}=${encodeURIComponent(v.value)}` })) : [];
+      const g = smart[c.slug] ?? (guides.find((x) => x.ctaHref?.includes(`/k/${c.slug}`)) ? { title: guides.find((x) => x.ctaHref?.includes(`/k/${c.slug}`))!.title, href: `/odigoi/${guides.find((x) => x.ctaHref?.includes(`/k/${c.slug}`))!.slug}`, image: guides.find((x) => x.ctaHref?.includes(`/k/${c.slug}`))!.image } : null);
+      return {
+        slug: c.slug,
+        subCounts,
+        brands: r.brands.slice(0, 6),
+        quick,
+        promo: promoP ?? null,
+        guide: g,
+      };
+    }),
+  );
 }

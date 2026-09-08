@@ -2,7 +2,7 @@ import { CartProvider } from "@/components/commerce/CartProvider";
 import { QuickBuySheet } from "@/components/commerce/QuickBuySheet";
 import { MiniCart } from "@/components/commerce/MiniCart";
 import { QuickViewSheet } from "@/components/commerce/QuickViewSheet";
-import { getProductsByIds } from "@/lib/data/repo";
+import { getMegaMenuData, getProductsByIds } from "@/lib/data/repo";
 import { CompareTray } from "@/components/commerce/CompareTray";
 import { AnnouncementBar } from "@/components/site/AnnouncementBar";
 import { SiteHeader } from "@/components/site/SiteHeader";
@@ -12,7 +12,7 @@ import { CookieConsent } from "@/components/site/CookieConsent";
 
 /** Shop frame: terms rail, header, mega nav, page, footer + the three drawers (mini-cart, quick buy, compare). */
 export default async function ShopLayout({ children }: LayoutProps<"/">) {
-  const suggestions = await getProductsByIds(["p-jbl-flip-7", "r-108803", "r-138705", "r-145807"]);
+  const [suggestions, menu] = await Promise.all([getProductsByIds(["p-jbl-flip-7", "r-108803", "r-138705", "r-145807"]), getMegaMenuData()]);
   return (
     <CartProvider>
       <AnnouncementBar
@@ -22,7 +22,7 @@ export default async function ShopLayout({ children }: LayoutProps<"/">) {
         accent={{ label: "Παρακολούθηση παραγγελίας", href: "/entopismos" }}
       />
       <SiteHeader />
-      <MegaNav />
+      <MegaNav data={menu} />
       <main id="main" className="flex-1 bg-white">
         {children}
       </main>

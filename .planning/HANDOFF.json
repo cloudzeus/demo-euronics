@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "timestamp": "2026-09-08T13:38:00.083Z",
+  "timestamp": "2026-09-08T13:47:37.298Z",
   "source": "auto-postool",
   "partial": false,
   "phase": null,
@@ -18,9 +18,41 @@
   "uncommitted_files": [
     {
       "status": "M",
-      "path": "components/commerce/CardCarousel.tsx"
+      "path": ".planning/HANDOFF.json"
+    },
+    {
+      "status": "M",
+      "path": "README.md"
+    },
+    {
+      "status": "M",
+      "path": "app/(shop)/layout.tsx"
+    },
+    {
+      "status": "M",
+      "path": "app/globals.css"
+    },
+    {
+      "status": "M",
+      "path": "components/site/MegaNav.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/site/SearchBox.tsx"
+    },
+    {
+      "status": "M",
+      "path": "docs/dynamic-components.md"
+    },
+    {
+      "status": "M",
+      "path": "lib/data/repo.ts"
+    },
+    {
+      "status": "??",
+      "path": "app/api/"
     }
   ],
   "next_action": null,
-  "context_notes": "Recent commits:\nddf358d News section, full customer account, dynamic-component contract, customer-facing copy\nd0f3a18 Product header: key-facts column bounded so the title keeps its width (long attribute labels no longer squeeze the H1); SEO text keeps abbreviation case\nf38163c Card rails: one card per view on phones\nd38aeaa Carousel arrows stay inside the rail on narrow widths (no horizontal overflow on phones)\nfd7fa81 Card rails: arrows move one card at a time (first slides out, next slides in), GSAP power3.out tween, dots per position"
+  "context_notes": "Recent commits:\n87c488a Card rails: fewer items than slots share the full width (no empty column on wide screens)\nddf358d News section, full customer account, dynamic-component contract, customer-facing copy\nd0f3a18 Product header: key-facts column bounded so the title keeps its width (long attribute labels no longer squeeze the H1); SEO text keeps abbreviation case\nf38163c Card rails: one card per view on phones\nd38aeaa Carousel arrows stay inside the rail on narrow widths (no horizontal overflow on phones)"
 }
