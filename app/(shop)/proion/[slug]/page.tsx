@@ -14,7 +14,7 @@ import { Questions } from "@/components/pdp/Questions";
 import { ProductRail } from "@/components/pdp/ProductRail";
 import { StickyBar } from "@/components/pdp/StickyBar";
 import { RecentlyViewed } from "@/components/pdp/RecentlyViewed";
-import { getAccessoriesFor, getL1, getProductBySlug, getRelated, getServicesFull, getStores } from "@/lib/data/repo";
+import { getL1, getProductBySlug, getRelated, getServicesFull, getStores } from "@/lib/data/repo";
 import { Answers, SeoPanel } from "@/components/pdp/Answers";
 import { StickySidebar } from "@/components/fluid/StickySidebar";
 import { productJsonLd, productMetadata } from "@/lib/seo/product";
@@ -39,7 +39,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const { slug } = await params;
   const p = await getProductBySlug(slug);
   if (!p) notFound();
-  const [l1, related, accessories, services, stores] = await Promise.all([getL1(p.category), getRelated(p, 8), getAccessoriesFor(p), getServicesFull(), getStores()]);
+  const [l1, related, services, stores] = await Promise.all([getL1(p.category), getRelated(p, 5), getServicesFull(), getStores()]);
   const l2 = l1?.children.find((c) => c.slug === p.subcategory);
   const addons = services.filter((s) => s.addonAt?.includes("pdp") && s.slug !== "paradosi-egkatastasi");
   const similar = related.filter((x) => x.subcategory === p.subcategory).slice(0, 3);
@@ -66,7 +66,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             )}
           </div>
           <StickySidebar className="min-w-0">
-            <BuyBox product={p} addons={addons} stores={stores.slice(0, 8)} accessory={accessories[0] ?? null} />
+            <BuyBox product={p} addons={addons} stores={stores.slice(0, 8)} accessory={null} />
           </StickySidebar>
         </div>
       </article>
@@ -124,7 +124,6 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         <Reviews product={p} />
         <Questions product={p} />
 
-        {accessories.length > 0 && <ProductRail title="Ταιριάζει με αυτό το προϊόν" products={accessories} />}
         {related.length > 0 && <ProductRail title="Σχετικά προϊόντα" products={related} />}
         <RecentlyViewed current={{ id: p.id, slug: p.slug, title: p.title, brand: p.brand, image: p.image, price: p.price }} />
         <SeoPanel product={p} crumbs={crumbs} />

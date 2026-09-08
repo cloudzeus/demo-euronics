@@ -11,7 +11,7 @@ export function Gallery({ images, title, badge, energy }: { images: string[]; ti
   const [i, setI] = useState(0);
   const src = images[i];
   return (
-    <div className="grid grid-cols-1 @md:grid-cols-[72px_1fr] gap-3">
+    <div className={`grid grid-cols-1 gap-3 ${images.length > 1 ? "@md:grid-cols-[72px_minmax(0,1fr)]" : ""}`}>
       {images.length > 1 && (
         <ul className="m-0 p-0 list-none flex flex-wrap @md:flex-col gap-2 order-2 @md:order-1">
           {images.map((im, k) => (
