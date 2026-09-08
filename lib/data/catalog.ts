@@ -8,7 +8,6 @@ import type { Category, Guide, HeroSlide, Product, Service, Store } from "./type
  * the ERP adapter changes nothing in the components.
  */
 
-const IMG = "https://www.euronics.gr/images/thumbs";
 
 import { products } from "./fixtures/products";
 import { stores } from "./fixtures/stores";

@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const cols: { title: string; links: string[] }[] = [
-  { title: "Αγορές", links: ["Τρόποι πληρωμής", "Τρόποι & χρόνοι αποστολής", "Δόσεις χωρίς κάρτα", "Παραλαβή σε 2 ώρες", "Κάρτες δώρου"] },
-  { title: "Εξυπηρέτηση", links: ["Επιστροφές & υπαναχώρηση", "Εγγυήσεις & service", "Ανακύκλωση ΑΗΗΕ", "Συχνές ερωτήσεις", "Επικοινωνία"] },
-  { title: "Η Euronics", links: ["Ποιοι είμαστε", "Αξίες & φιλοσοφία", "Οικονομικά στοιχεία", "Δίκτυο καταστημάτων", "Καριέρα"] },
-  { title: "Νομικά", links: ["Όροι χρήσης", "Πολιτική απορρήτου", "Ρυθμίσεις cookies", "Εναλλακτική επίλυση διαφορών", "Πλατφόρμα ΗΕΔ της ΕΕ"] },
+const cols: { title: string; links: { label: string; href: string }[] }[] = [
+  { title: "Αγορές", links: [{ label: "Τρόποι πληρωμής", href: "/tropoi-pliromis" }, { label: "Τρόποι & χρόνοι αποστολής", href: "/tropoi-apostolis" }, { label: "Δόσεις χωρίς κάρτα", href: "/ypiresies/xrimatodotisi" }, { label: "Παραλαβή σε 2 ώρες", href: "/ypiresies/paralavi-2-ores" }, { label: "Κάρτες δώρου", href: "/kartes-dorou" }, { label: "Euronics Renew", href: "/renew" }] },
+  { title: "Εξυπηρέτηση", links: [{ label: "Παρακολούθηση παραγγελίας", href: "/entopismos" }, { label: "Επιστροφές & υπαναχώρηση", href: "/epistrofes" }, { label: "Εγγυήσεις & service", href: "/ypiresies/syntirisi-episkeyi" }, { label: "Ανακύκλωση ΑΗΗΕ", href: "/ypiresies/anakyklosi-aiie" }, { label: "Συχνές ερωτήσεις", href: "/syxnes-erotiseis" }, { label: "Επικοινωνία", href: "/epikoinonia" }] },
+  { title: "Η Euronics", links: [{ label: "Ποιοι είμαστε", href: "/etaireia" }, { label: "Όλες οι υπηρεσίες", href: "/ypiresies" }, { label: "Δίκτυο καταστημάτων", href: "/katastimata" }, { label: "Μάρκες", href: "/brands" }, { label: "Οδηγοί & blog", href: "/odigoi" }, { label: "Οικονομικά στοιχεία", href: "/etaireia#oikonomika" }] },
+  { title: "Νομικά", links: [{ label: "Όροι χρήσης", href: "/oroi-chrisis" }, { label: "Πολιτική απορρήτου", href: "/aporrito" }, { label: "Ρυθμίσεις cookies", href: "/cookies" }, { label: "Εναλλακτική επίλυση διαφορών", href: "/oroi-chrisis" }, { label: "Πλατφόρμα ΗΕΔ της ΕΕ", href: "https://ec.europa.eu/consumers/odr" }] },
 ];
 
 /** DSA trader details, WEEE registry and ADR reachable on every page. */
@@ -19,9 +19,9 @@ export function SiteFooter() {
               <h2 className="m-0 mb-2.5 font-extrabold text-white text-[length:var(--fs-11)] tracking-wide">{c.title}</h2>
               <ul className="m-0 p-0 list-none">
                 {c.links.map((l) => (
-                  <li key={l}>
-                    <Link href="#" className="hover:text-white">
-                      {l}
+                  <li key={l.label}>
+                    <Link href={l.href} className="hover:text-white">
+                      {l.label}
                     </Link>
                   </li>
                 ))}
@@ -43,7 +43,7 @@ export function SiteFooter() {
         </div>
         <div className="border-t border-eu-navy-line pt-4 flex flex-wrap justify-between items-center gap-4 text-[length:var(--fs-11)] leading-relaxed">
           <p className="m-0">
-            © euronics 2026 · MEGA ELECTRICS ΑΕΒΕ · ΑΦΜ 998182322 · ΓΕΜΗ — · Αρ. μητρώου ΑΗΗΕ —
+            © euronics 2026 · MEGA ELECTRICS ΑΕΒΕ · ΑΦΜ 998182322 · ΔΟΥ ΦΑΕ Αθηνών · Αρ. μητρώου ΑΗΗΕ —
             <br />
             Οι τιμές περιλαμβάνουν ΦΠΑ 24%. Τα μεταφορικά υπολογίζονται πριν την οριστικοποίηση της παραγγελίας.
           </p>

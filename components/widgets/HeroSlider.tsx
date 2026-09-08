@@ -33,7 +33,7 @@ export function HeroSlider({ slides, intervalMs = 6000 }: { slides: HeroSlide[];
   const s = slides[i];
 
   return (
-    <FluidContent className="relative overflow-hidden rounded-lg bg-eu-navy-2 min-h-[300px] @md:min-h-[360px] @lg:min-h-[430px] h-full" fallback="xl">
+    <FluidContent className="relative overflow-hidden rounded-lg bg-eu-navy-2 min-h-[300px] @md:min-h-[360px] @lg:min-h-[460px] @xl:min-h-[520px] h-full" fallback="xl">
       {({ size }) => (
         <div className="absolute inset-0" aria-roledescription="carousel" aria-label="Καμπάνιες">
           <AnimatePresence initial={false}>
@@ -52,7 +52,7 @@ export function HeroSlider({ slides, intervalMs = 6000 }: { slides: HeroSlide[];
                 alt={s.alt}
                 fill
                 priority={i === 0}
-                sizes="(max-width: 1024px) 100vw, 880px"
+                sizes="(max-width: 1024px) 100vw, 66vw"
                 className="object-cover"
                 unoptimized={s.image.startsWith("http")}
               />

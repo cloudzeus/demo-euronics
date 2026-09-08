@@ -83,7 +83,7 @@ export async function listProducts(f: ListFilter = {}): Promise<ListResult> {
     brandsMap.set(p.brandSlug, b);
     if (p.energy) energyMap.set(p.energy.cls, (energyMap.get(p.energy.cls) ?? 0) + 1);
   }
-  let list = applyFilter(f);
+  const list = applyFilter(f);
   const sort = f.sort ?? "relevance";
   const score = (p: Product) => (p.rating?.count ?? 0) + (p.tags?.length ?? 0) * 10 + (p.badge ? 5 : 0);
   list.sort((a, b) => {

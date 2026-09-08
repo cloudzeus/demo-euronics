@@ -12,13 +12,14 @@ export function CartButton() {
     <button
       type="button"
       onClick={() => setMiniOpen(true)}
-      className="flex items-center gap-2 bg-eu-blue text-white rounded-full pl-3 pr-4 py-2 min-h-11 hover:bg-eu-blue-light transition-colors"
+      className="relative flex items-center gap-2 bg-eu-blue text-white rounded-full size-11 justify-center @md:size-auto @md:pl-3 @md:pr-4 @md:py-2 min-h-11 hover:bg-eu-blue-light transition-colors"
       aria-label={`Καλάθι, ${count} προϊόντα, σύνολο ${priceLong(total)}`}
     >
       <ShoppingBag className="size-5" aria-hidden />
-      <span className="flex flex-col leading-tight">
+      {count > 0 && <span className="@md:hidden absolute -top-1 -right-1 min-w-5 h-5 px-1 rounded-full bg-eu-yellow text-eu-navy font-extrabold text-[11px] leading-5 text-center" aria-hidden>{count}</span>}
+      <span className="hidden @md:flex flex-col leading-tight">
         <span className="font-extrabold text-[length:var(--fs-12)]">Καλάθι · {count}</span>
-        <span className="font-extrabold text-eu-yellow text-[length:var(--fs-13)] hidden @sm:block">{priceLong(total)}</span>
+        <span className="font-extrabold text-eu-yellow text-[length:var(--fs-13)]">{priceLong(total)}</span>
       </span>
     </button>
   );

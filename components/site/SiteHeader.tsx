@@ -20,11 +20,11 @@ export function SiteHeader() {
   return (
     <header className="relative bg-eu-navy text-white eu-container">
       <ZoneBadge no={2} />
-      <div className="eu-canvas eu-gutter py-3 @lg:py-[18px] grid grid-cols-[auto_1fr_auto] @lg:grid-cols-[auto_1fr_auto] items-center gap-3 @lg:gap-6">
+      <div className="eu-full eu-gutter-wide py-2.5 @lg:py-[18px] grid grid-cols-[auto_1fr_auto] items-center gap-2 @md:gap-3 @lg:gap-6">
         <div className="flex items-center gap-2">
           <MobileMenu categories={navCategories} />
           <Link href="/" aria-label="euronics — αρχική σελίδα" className="block shrink-0">
-            <Image src="/design/logo-on-blue.svg" alt="euronics" width={132} height={34} priority className="h-[26px] @lg:h-[34px] w-auto" />
+            <Image src="/design/logo-on-blue.svg" alt="euronics" width={132} height={34} priority className="h-[22px] @sm:h-[26px] @lg:h-[34px] w-auto" />
           </Link>
         </div>
 
@@ -32,7 +32,7 @@ export function SiteHeader() {
           <SearchBox />
         </div>
 
-        <div className="flex items-center gap-3 @lg:gap-[18px] justify-end">
+        <div className="flex items-center gap-1.5 @md:gap-3 @lg:gap-[18px] justify-end">
           <a
             href="tel:2104835143"
             className="hidden @xl:flex flex-col items-center text-white font-semibold text-[length:var(--fs-11)] leading-tight hover:text-eu-yellow"
@@ -60,7 +60,7 @@ export function SiteHeader() {
           <CartButton />
         </div>
 
-        <div className="col-span-3 @md:hidden">
+        <div className="col-span-3 @md:hidden pt-0.5">
           <SearchBox compact />
         </div>
       </div>

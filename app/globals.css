@@ -201,10 +201,10 @@
   --shadow-raised: var(--shadow-raised);
   --shadow-overlay: var(--shadow-overlay);
 
-  /* Proprietary "Euronics" typeface unavailable → Poppins (latin) + Manrope (greek) per design system caveats */
-  --font-sans: var(--font-poppins), var(--font-manrope), "Century Gothic", Arial, sans-serif;
-  --font-serif: var(--font-poppins), var(--font-manrope), "Century Gothic", Arial, sans-serif;
-  --font-heading: var(--font-poppins), var(--font-manrope), "Century Gothic", Arial, sans-serif;
+  /* Proprietary "Euronics" typeface unavailable → Manrope (variable, Greek+Latin in one family so weights match in both scripts) */
+  --font-sans: var(--font-manrope), "Century Gothic", Arial, sans-serif;
+  --font-serif: var(--font-manrope), "Century Gothic", Arial, sans-serif;
+  --font-heading: var(--font-manrope), "Century Gothic", Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, monospace;
 
   /* Tailwind text-xs … text-7xl mapped onto fluid tokens */
@@ -240,6 +240,7 @@
   html {
     @apply font-sans;
     -webkit-text-size-adjust: 100%;
+    font-synthesis-weight: none; /* never fake-bold: every weight comes from the variable font */
   }
   body {
     @apply bg-background text-foreground;
@@ -290,6 +291,15 @@
 }
 @utility eu-gutter {
   padding-inline: clamp(14px, 3vw, var(--eu-gutter));
+}
+/* Full-bleed frame (header, nav, hero, ticker): no max-width, wider gutters on large screens */
+@utility eu-full {
+  width: 100%;
+  max-width: none;
+  margin-inline: auto;
+}
+@utility eu-gutter-wide {
+  padding-inline: clamp(14px, 2.5vw, 48px);
 }
 
 [data-device="mobile"] .device-hide-mobile,

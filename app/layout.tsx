@@ -1,22 +1,15 @@
 import type { Metadata, Viewport } from "next";
-import { Manrope, Poppins } from "next/font/google";
+import { Manrope } from "next/font/google";
 import { DeviceProvider } from "@/components/fluid/DeviceProvider";
 import { getDevice } from "@/lib/device";
 import "./globals.css";
 
-// Brand typeface "Euronics" is proprietary; Poppins is the design-system
-// substitute (latin) with Manrope covering Greek glyphs.
-const poppins = Poppins({
-  variable: "--font-poppins",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  display: "swap",
-});
-
+// Brand typeface "Euronics" is proprietary. Manrope (variable, Greek +
+// Latin from ONE family) replaces the Poppins+Manrope pair: mixing two
+// families per glyph gave Greek text different weights and metrics.
 const manrope = Manrope({
   variable: "--font-manrope",
   subsets: ["greek", "latin"],
-  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
 
@@ -37,7 +30,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="el"
       data-device={device}
-      className={`${poppins.variable} ${manrope.variable} h-full antialiased`}
+      className={`${manrope.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white text-eu-ink">
         <DeviceProvider initial={{ device, touch, saveData }}>{children}</DeviceProvider>

@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "timestamp": "2026-09-08T09:12:02.443Z",
+  "timestamp": "2026-09-08T09:33:45.417Z",
   "source": "auto-postool",
   "partial": false,
   "phase": null,
@@ -21,12 +21,20 @@
       "path": ".planning/HANDOFF.json"
     },
     {
-      "status": "RM",
-      "path": "app/page.tsx -> app/(shop)/page.tsx"
+      "status": "M",
+      "path": "app/globals.css"
     },
     {
       "status": "M",
-      "path": "components/commerce/CartProvider.tsx"
+      "path": "app/layout.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/site/AnnouncementBar.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/site/CartButton.tsx"
     },
     {
       "status": "M",
@@ -34,11 +42,19 @@
     },
     {
       "status": "M",
-      "path": "components/site/MobileMenu.tsx"
+      "path": "components/site/SiteFooter.tsx"
     },
     {
       "status": "M",
-      "path": "components/widgets/CategoryGrid.tsx"
+      "path": "components/site/SiteHeader.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/widgets/BentoHero.tsx"
+    },
+    {
+      "status": "M",
+      "path": "components/widgets/HeroSlider.tsx"
     },
     {
       "status": "M",
@@ -46,41 +62,181 @@
     },
     {
       "status": "M",
-      "path": "lib/data/nav.ts"
+      "path": "lib/data/fixtures/products.real.ts"
     },
     {
       "status": "M",
-      "path": "lib/data/types.ts"
-    },
-    {
-      "status": "??",
-      "path": "app/(shop)/layout.tsx"
-    },
-    {
-      "status": "??",
-      "path": "components/commerce/CompareTray.tsx"
-    },
-    {
-      "status": "??",
-      "path": "components/commerce/FreeShippingProgress.tsx"
-    },
-    {
-      "status": "??",
-      "path": "components/commerce/MiniCart.tsx"
-    },
-    {
-      "status": "??",
-      "path": "components/site/CookieConsent.tsx"
-    },
-    {
-      "status": "??",
-      "path": "lib/data/fixtures/"
-    },
-    {
-      "status": "??",
       "path": "lib/data/repo.ts"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/anazitisi/"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/aporrito/"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/brands/"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/checkout/"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/cookies/"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/eggrafi/"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/eisodos/"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/entopismos/"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/epikoinonia/"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/epistrofes/"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/etaireia/"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/k/"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/kalathi/"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/kartes-dorou/"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/katastimata/"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/lista/"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/logariasmos/"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/not-found.tsx"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/odigoi/"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/oroi-chrisis/"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/proion/"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/proionta/"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/prosfores/"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/renew/"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/sygkrisi/"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/syxnes-erotiseis/"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/tropoi-apostolis/"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/tropoi-pliromis/"
+    },
+    {
+      "status": "??",
+      "path": "app/(shop)/ypiresies/"
+    },
+    {
+      "status": "??",
+      "path": "components/account/"
+    },
+    {
+      "status": "??",
+      "path": "components/catalog/"
+    },
+    {
+      "status": "??",
+      "path": "components/checkout/"
+    },
+    {
+      "status": "??",
+      "path": "components/commerce/GiftCardBuilder.tsx"
+    },
+    {
+      "status": "??",
+      "path": "components/commerce/ProductRow.tsx"
+    },
+    {
+      "status": "??",
+      "path": "components/commerce/WishlistButton.tsx"
+    },
+    {
+      "status": "??",
+      "path": "components/pdp/"
+    },
+    {
+      "status": "??",
+      "path": "components/services/"
+    },
+    {
+      "status": "??",
+      "path": "components/site/Breadcrumbs.tsx"
+    },
+    {
+      "status": "??",
+      "path": "components/site/ContactForm.tsx"
+    },
+    {
+      "status": "??",
+      "path": "components/site/PageIntro.tsx"
+    },
+    {
+      "status": "??",
+      "path": "components/site/PolicyPage.tsx"
+    },
+    {
+      "status": "??",
+      "path": "components/stores/"
     }
   ],
   "next_action": null,
-  "context_notes": "Recent commits:\n72edf3a Fix nested anchor in product card, AC product photo, dense proposal tables, README\ndae25e6 Euronics redesign: brand-normalized homepage prototype, 18-page proposal, audits, zones/fluid layer, Prisma schema\nd98819f Initial commit from Create Next App"
+  "context_notes": "Recent commits:\n4f1f581 Real euronics.gr products/stores fixtures, cart v2 with persistence, mini-cart, compare tray, cookie consent, shop layout\n72edf3a Fix nested anchor in product card, AC product photo, dense proposal tables, README\ndae25e6 Euronics redesign: brand-normalized homepage prototype, 18-page proposal, audits, zones/fluid layer, Prisma schema\nd98819f Initial commit from Create Next App"
 }

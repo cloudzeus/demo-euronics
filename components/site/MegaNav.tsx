@@ -36,7 +36,7 @@ export function MegaNav() {
   return (
     <nav ref={ref} aria-label="Κατηγορίες προϊόντων" className="relative bg-white border-b border-eu-line eu-container hidden @lg:block" onMouseLeave={() => setOpen(null)}>
       <ZoneBadge no={3} />
-      <ul className="eu-canvas eu-gutter flex items-center gap-1 m-0 p-0 list-none">
+      <ul className="eu-full eu-gutter-wide flex items-center gap-1 m-0 p-0 list-none">
         {navCategories.map((c, i) => {
           const isOpen = open === c.slug;
           return (
@@ -83,7 +83,7 @@ export function MegaNav() {
             transition={{ duration: 0.18, ease: [0.2, 0.7, 0.3, 1] }}
             className="absolute inset-x-0 top-full z-40 bg-white border-b border-eu-line shadow-[var(--shadow-raised)]"
           >
-            <div className="eu-canvas eu-gutter py-5 grid grid-cols-[1fr_auto] gap-8">
+            <div className="eu-full eu-gutter-wide py-5 grid grid-cols-[1fr_auto] gap-8">
               <div>
                 <div className="flex items-baseline justify-between mb-3">
                   <h2 className="m-0 font-extrabold text-eu-ink text-[length:var(--fs-15)]">{active.label}</h2>
