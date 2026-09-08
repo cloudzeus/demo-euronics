@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  body { margin: 0; background: #e7e8ec; }
+  a { color: #143a85; text-decoration: none; }
+  a:hover { color: #0e2a63; }
+</style>
+</helmet>
+
+<div style="max-width:1460px;margin:0 auto;padding:36px 28px 80px;font-family:Commissioner,'Source Sans 3',sans-serif">
+
+  <div style="background:#0b1533;color:#fff;padding:34px 38px;border-top:8px solid #ffd200;margin-bottom:26px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;margin-bottom:16px">
+      <div style="font:800 12px/1 Commissioner,sans-serif;letter-spacing:.18em;color:#ffd200">EURONICS.GR · ΑΡΧΙΚΗ · ΕΚΔΟΣΗ 2</div>
+      <div style="font:500 11.5px/1 Commissioner,sans-serif;letter-spacing:.08em;color:#8e9ab7">v1 = συντηρητική · v2 = αυτή</div>
+    </div>
+    <h1 style="font:700 42px/1.05 'Source Serif 4',serif;margin:0 0 14px;letter-spacing:-.02em">Πιο τολμηρή, πιο σύγχρονη,<br />με αγορά σε ένα βήμα</h1>
+    <p style="font:400 14px/1.65 Commissioner,'Source Sans 3',sans-serif;color:#b3bdd4;margin:0;max-width:48em">Τρεις αλλαγές κατεύθυνσης σε σχέση με την πρώτη πρόταση: <strong style="color:#fff">bento grid</strong> αντί κλασικού hero — η αρχική γίνεται πίνακας ελέγχου προσφορών, καταστήματος και υπηρεσιών· <strong style="color:#fff">καθόλου εικονίδια</strong> στις κατηγορίες, μόνο τυπογραφία και αριθμοί· <strong style="color:#fff">Quick buy</strong> σε κάθε κάρτα, με τη νομική διατύπωση που απαιτεί η ΕΕ.</p>
+  </div>
+
+  <div style="display:flex;gap:9px;flex-wrap:wrap;margin-bottom:18px">
+    <span style="font:700 10px/1 Commissioner,sans-serif;letter-spacing:.07em;background:#143a85;color:#fff;padding:8px 12px">DESKTOP 1360 · ΚΛΕΙΔΩΜΕΝΟ ΠΛΑΤΟΣ</span>
+    <span style="font:700 10px/1 Commissioner,sans-serif;letter-spacing:.07em;background:#0b1533;color:#fff;padding:8px 12px">BENTO GRID · ΓΩΝΙΕΣ 0PX</span>
+    <span style="font:700 10px/1 Commissioner,sans-serif;letter-spacing:.07em;background:#ffd200;color:#0b1533;padding:8px 12px">QUICK BUY</span>
+    <span style="font:700 10px/1 Commissioner,sans-serif;letter-spacing:.07em;background:#1c7a4a;color:#fff;padding:8px 12px">WCAG 2.2 AA · EN 301 549</span>
+  </div>
+
+  <div style="overflow-x:auto;padding:0 0 12px 22px;margin:0 0 40px -22px">
+  <div style="width:1360px;background:#fff;box-shadow:0 4px 28px rgba(11,21,51,.18)">
+
+    <!-- 1 · top rail -->
+    <div style="position:relative;background:#0b1533;color:#8e9ab7;display:flex;justify-content:space-between;padding:10px 26px;font:600 11px/1 Commissioner,sans-serif;letter-spacing:.06em">
+      <div style="display:flex;gap:26px"><span style="color:#fff">350 ΚΑΤΑΣΤΗΜΑΤΑ</span><span>ΔΩΡΕΑΝ ΜΕΤΑΦΟΡΑ &amp; ΦΥΛΑΞΗ</span><span>ΔΟΣΕΙΣ ΜΕ Ή ΧΩΡΙΣ ΚΑΡΤΑ</span></div>
+      <div style="display:flex;gap:22px"><span>14 ΗΜΕΡΕΣ ΥΠΑΝΑΧΩΡΗΣΗ</span><span style="color:#ffd200">ΠΑΡΑΚΟΛΟΥΘΗΣΗ ΠΑΡΑΓΓΕΛΙΑΣ</span></div>
+      <div style="position:absolute;top:5px;left:-13px;width:26px;height:26px;background:#ffd200;border:2px solid #0b1533;font:800 12px/23px Commissioner,sans-serif;color:#0b1533;text-align:center">1</div>
+    </div>
+
+    <!-- 2 · header -->
+    <div style="position:relative;background:#0b1533;padding:18px 26px 20px;display:flex;align-items:center;gap:24px">
+      <img src="https://www.euronics.gr/images/thumbs/0000229_logo.png" alt="euronics — αρχική σελίδα" referrerpolicy="no-referrer" style="height:34px;width:auto;display:block;flex:0 0 auto" />
+      <div style="flex:1;display:flex;background:#fff;min-width:0">
+        <div style="flex:0 0 auto;padding:0 15px;display:flex;align-items:center;font:600 12.5px/1 Commissioner,sans-serif;color:#4b5670;background:#eef0f6">Κατηγορία ▾</div>
+        <div style="flex:1;min-width:0;padding:15px;font:400 14px/1 Commissioner,sans-serif;color:#8a93a3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">κλιματιστικό 12000 btu, πλυντήριο 9kg, LG OLED…</div>
+        <div style="flex:0 0 auto;background:#ffd200;color:#0b1533;padding:0 22px;display:flex;align-items:center;font:800 13px/1 Commissioner,sans-serif;letter-spacing:.03em">ΑΝΑΖΗΤΗΣΗ</div>
+      </div>
+      <div style="display:flex;gap:18px;align-items:center;flex:0 0 auto;font:600 11px/1.3 Commissioner,sans-serif;color:#8e9ab7">
+        <div style="text-align:center;color:#fff">210 483 5143<div style="color:#8e9ab7;font-weight:400;margin-top:3px">Τηλ. παραγγελίες</div></div>
+        <div style="width:1px;height:26px;background:#26314a"></div>
+        <div style="text-align:center">ΛΙΣΤΑ</div>
+        <div style="text-align:center">ΛΟΓΑΡΙΑΣΜΟΣ</div>
+        <div style="background:#143a85;color:#fff;padding:11px 15px;text-align:left"><div style="font:800 12px/1.2 Commissioner,sans-serif">ΚΑΛΑΘΙ · 2</div><div style="font:800 13px/1.2 Commissioner,sans-serif;color:#ffd200;margin-top:3px">748,00 €</div></div>
+      </div>
+      <div style="position:absolute;top:8px;left:-13px;width:26px;height:26px;background:#ffd200;border:2px solid #0b1533;font:800 12px/23px Commissioner,sans-serif;color:#0b1533;text-align:center">2</div>
+    </div>
+
+    <!-- 3 · nav -->
+    <div style="position:relative;background:#fff;border-bottom:1px solid #dfe2ea;padding:0 26px;display:flex;gap:8px;align-items:center">
+      <div style="font:700 12.5px/1 Commissioner,sans-serif;color:#fff;background:#0b1533;padding:13px 14px">Εικόνα &amp; Ήχος</div>
+      <div style="font:600 12.5px/1 Commissioner,sans-serif;color:#2c3550;padding:13px 12px">Τηλεφωνία</div>
+      <div style="font:600 12.5px/1 Commissioner,sans-serif;color:#2c3550;padding:13px 12px">Computing</div>
+      <div style="font:600 12.5px/1 Commissioner,sans-serif;color:#2c3550;padding:13px 12px">Λευκές Συσκευές</div>
+      <div style="font:600 12.5px/1 Commissioner,sans-serif;color:#2c3550;padding:13px 12px">Κλιματισμός</div>
+      <div style="font:600 12.5px/1 Commissioner,sans-serif;color:#2c3550;padding:13px 12px">Οικιακός Εξοπλισμός</div>
+      <div style="font:600 12.5px/1 Commissioner,sans-serif;color:#2c3550;padding:13px 12px">Φροντίδα</div>
+      <div style="font:600 12.5px/1 Commissioner,sans-serif;color:#2c3550;padding:13px 12px">Gaming</div>
+      <div style="flex:1"></div>
+      <div style="font:800 12.5px/1 Commissioner,sans-serif;color:#fff;background:#c0392b;padding:13px 14px">ΠΡΟΣΦΟΡΕΣ</div>
+      <div style="font:600 12.5px/1 Commissioner,sans-serif;color:#2c3550;padding:13px 12px">Υπηρεσίες</div>
+      <div style="font:600 12.5px/1 Commissioner,sans-serif;color:#2c3550;padding:13px 12px">Καταστήματα</div>
+      <div style="position:absolute;top:8px;left:-13px;width:26px;height:26px;background:#ffd200;border:2px solid #0b1533;font:800 12px/23px Commissioner,sans-serif;color:#0b1533;text-align:center">3</div>
+    </div>
+
+    <!-- 4 · bento hero -->
+    <div style="position:relative;background:#0b1533;padding:14px;display:grid;grid-template-columns:2fr 1fr;grid-template-rows:auto auto;gap:14px">
+      <div style="grid-row:span 2;position:relative;overflow:hidden;min-height:430px">
+        <img src="https://www.euronics.gr/images/thumbs/11354351_26-00522-SUM26-S_SiteHeader-1920x400.jpeg" alt="Προσφορές κλιματισμού euronics" referrerpolicy="no-referrer" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block" />
+        <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,21,51,.92) 0%,rgba(11,21,51,.7) 46%,rgba(11,21,51,.05) 100%)"></div>
+        <div style="position:relative;padding:38px 34px;color:#fff;max-width:32em">
+          <div style="display:inline-block;background:#ffd200;color:#0b1533;font:800 10.5px/1 Commissioner,sans-serif;letter-spacing:.12em;padding:7px 10px;margin-bottom:18px">ΚΑΛΟΚΑΙΡΙ 2026 · ΚΛΙΜΑΤΙΣΜΟΣ</div>
+          <div style="font:700 50px/1.02 'Source Serif 4',serif;letter-spacing:-.028em;margin-bottom:16px">Δροσιά<br />που δεν καίει<br />ρεύμα</div>
+          <div style="font:400 15px/1.55 Commissioner,sans-serif;color:#c7cfe2;margin-bottom:24px;max-width:26em">Inverter έως A+++, τοποθέτηση από πιστοποιημένο τεχνικό του καταστήματος της γειτονιάς σου, δόσεις χωρίς κάρτα.</div>
+          <div style="display:flex;gap:10px;margin-bottom:26px">
+            <div style="background:#ffd200;color:#0b1533;padding:15px 24px;font:800 13.5px/1 Commissioner,sans-serif;letter-spacing:.03em">ΔΕΣ ΤΑ 186 ΜΟΝΤΕΛΑ</div>
+            <div style="border:2px solid rgba(255,255,255,.5);color:#fff;padding:13px 22px;font:700 13.5px/1 Commissioner,sans-serif">Υπολόγισε BTU</div>
+          </div>
+          <div style="display:flex;gap:22px;font:600 11.5px/1 Commissioner,sans-serif;color:#fff;border-top:1px solid rgba(255,255,255,.22);padding-top:16px">
+            <span>Δωρεάν μεταφορά</span><span style="color:#ffd200">·</span><span>Εγκατάσταση</span><span style="color:#ffd200">·</span><span>Εγγύηση έως 5 έτη</span>
+          </div>
+        </div>
+        <div style="position:absolute;bottom:20px;right:22px;display:flex;gap:8px;align-items:center">
+          <span style="background:rgba(11,21,51,.75);color:#fff;font:600 10.5px/1 Commissioner,sans-serif;padding:7px 9px">ΠΑΥΣΗ</span>
+          <span style="width:26px;height:3px;background:#ffd200;display:block"></span>
+          <span style="width:26px;height:3px;background:rgba(255,255,255,.45);display:block"></span>
+          <span style="width:26px;height:3px;background:rgba(255,255,255,.45);display:block"></span>
+        </div>
+      </div>
+
+      <div style="background:#fff;padding:16px;display:flex;flex-direction:column">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:11px">
+          <span style="font:800 10.5px/1 Commissioner,sans-serif;letter-spacing:.1em;color:#c0392b">ΠΡΟΣΦΟΡΑ ΗΜΕΡΑΣ</span>
+          <span style="font:800 11px/1 Commissioner,sans-serif;color:#0b1533;background:#f0f2f7;padding:5px 7px">14:38:02</span>
+        </div>
+        <div style="display:flex;gap:12px;align-items:center">
+          <img src="https://www.euronics.gr/images/thumbs/11004601_480.jpeg" alt="LG 43NANO82T6B NanoCell 43 ιντσών τηλεόραση" referrerpolicy="no-referrer" style="width:88px;height:88px;object-fit:contain;display:block;flex:0 0 88px;background:#f7f8fa" />
+          <div style="min-width:0">
+            <div style="font:500 10px/1 Commissioner,sans-serif;color:#8a93a3;margin-bottom:3px">LG</div>
+            <div style="font:700 12.5px/1.3 Commissioner,sans-serif;color:#0b1533">43NANO82T6B NanoCell 43" 4K</div>
+            <div style="display:flex;align-items:baseline;gap:6px;margin-top:6px"><span style="font:800 19px/1 Commissioner,sans-serif;color:#0b1533">349 €</span><span style="font:500 11px/1 Commissioner,sans-serif;color:#8a93a3;text-decoration:line-through">429 €</span><span style="background:#c0392b;color:#fff;font:800 10px/1 Commissioner,sans-serif;padding:3px 5px">−18%</span></div>
+          </div>
+        </div>
+        <div style="font:400 10px/1.4 Commissioner,sans-serif;color:#5b6577;margin:9px 0 11px">Χαμηλότερη τιμή 30 ημερών: 379,00 € · ή 12 × 29,08 € χωρίς κάρτα</div>
+        <div style="display:flex;gap:7px;margin-top:auto">
+          <div style="flex:1;background:#0b1533;color:#fff;text-align:center;padding:13px;font:800 12.5px/1 Commissioner,sans-serif;letter-spacing:.03em">ΑΓΟΡΑ ΜΕ 1 ΚΛΙΚ</div>
+          <div style="flex:0 0 46px;border:2px solid #0b1533;color:#0b1533;text-align:center;padding:11px 0;font:800 13px/1 Commissioner,sans-serif">+</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-rows:1fr 1fr;gap:14px">
+        <div style="background:#143a85;color:#fff;padding:16px;display:flex;flex-direction:column;justify-content:space-between">
+          <div>
+            <div style="font:800 10.5px/1 Commissioner,sans-serif;letter-spacing:.1em;color:#ffd200;margin-bottom:9px">ΤΟ ΚΑΤΑΣΤΗΜΑ ΣΟΥ</div>
+            <div style="font:700 17px/1.25 'Source Serif 4',serif">Δες απόθεμα<br />δίπλα σου</div>
+          </div>
+          <div style="display:flex;gap:6px;margin-top:12px">
+            <div style="flex:1;background:#fff;color:#8a93a3;padding:10px;font:400 11.5px/1 Commissioner,sans-serif">ΤΚ ή πόλη</div>
+            <div style="background:#ffd200;color:#0b1533;padding:10px 12px;font:800 11.5px/1 Commissioner,sans-serif">ΒΡΕΣ</div>
+          </div>
+        </div>
+        <div style="background:#f0f2f7;padding:16px;display:flex;flex-direction:column;justify-content:space-between">
+          <div>
+            <div style="font:800 10.5px/1 Commissioner,sans-serif;letter-spacing:.1em;color:#143a85;margin-bottom:9px">ΥΠΗΡΕΣΙΕΣ</div>
+            <div style="font:600 12px/1.55 Commissioner,sans-serif;color:#2c3550">Παραλαβή σε 2 ώρες · Εγκατάσταση με ραντεβού · Ανακύκλωση ΑΗΗΕ δωρεάν</div>
+          </div>
+          <div style="font:800 11.5px/1 Commissioner,sans-serif;color:#143a85;margin-top:12px">ΚΑΙ ΑΛΛΕΣ 9 →</div>
+        </div>
+      </div>
+      <div style="position:absolute;top:8px;left:-13px;width:26px;height:26px;background:#ffd200;border:2px solid #0b1533;font:800 12px/23px Commissioner,sans-serif;color:#0b1533;text-align:center">4</div>
+    </div>
+
+    <!-- 5 · ticker -->
+    <div style="position:relative;background:#ffd200;color:#0b1533;padding:12px 26px;display:flex;gap:34px;font:800 11.5px/1 Commissioner,sans-serif;letter-spacing:.07em;overflow:hidden;white-space:nowrap">
+      <span>ΔΩΡΕΑΝ ΜΕΤΑΦΟΡΑ ΣΕ ΟΛΗ ΤΗΝ ΕΛΛΑΔΑ</span><span>—</span><span>ΔΟΣΕΙΣ ΧΩΡΙΣ ΚΑΡΤΑ ΕΩΣ 24 ΜΗΝΕΣ</span><span>—</span><span>ΕΠΙΣΗΜΗ ΕΓΓΥΗΣΗ ΑΝΤΙΠΡΟΣΩΠΕΙΑΣ</span><span>—</span><span>ΔΩΡΕΑΝ ΦΥΛΑΞΗ ΕΩΣ 6 ΜΗΝΕΣ</span><span>—</span><span>ΠΑΡΑΛΑΒΗ ΣΕ 2 ΩΡΕΣ</span>
+      <div style="position:absolute;top:6px;left:-13px;width:26px;height:26px;background:#0b1533;border:2px solid #ffd200;font:800 12px/23px Commissioner,sans-serif;color:#ffd200;text-align:center">5</div>
+    </div>
+
+    <!-- 6 · typographic categories -->
+    <div style="position:relative;padding:38px 26px 34px">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:20px">
+        <div>
+          <div style="font:800 10.5px/1 Commissioner,sans-serif;letter-spacing:.12em;color:#143a85;margin-bottom:8px">ΚΑΤΑΛΟΓΟΣ</div>
+          <div style="font:700 30px/1.1 'Source Serif 4',serif;color:#0b1533;letter-spacing:-.02em">Εννέα κατηγορίες.<br />Χωρίς εικονίδια, με νούμερα.</div>
+        </div>
+        <div style="font:800 12px/1 Commissioner,sans-serif;color:#0b1533;border-bottom:3px solid #ffd200;padding-bottom:5px">ΟΛΟΣ Ο ΚΑΤΑΛΟΓΟΣ →</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#dfe2ea;border:1px solid #dfe2ea">
+        <div style="background:#fff;padding:20px 22px;display:flex;justify-content:space-between;align-items:flex-start"><div><div style="font:800 11px/1 Commissioner,sans-serif;color:#b8c0d0;margin-bottom:9px">01</div><div style="font:700 19px/1.15 Commissioner,sans-serif;color:#0b1533">Τηλεοράσεις<br />&amp; Ήχος</div><div style="font:500 11.5px/1 Commissioner,sans-serif;color:#8a93a3;margin-top:9px">214 προϊόντα · 7 μάρκες</div></div><div style="font:800 15px/1 Commissioner,sans-serif;color:#143a85">→</div></div>
+        <div style="background:#0b1533;padding:20px 22px;display:flex;justify-content:space-between;align-items:flex-start"><div><div style="font:800 11px/1 Commissioner,sans-serif;color:#ffd200;margin-bottom:9px">02</div><div style="font:700 19px/1.15 Commissioner,sans-serif;color:#fff">Κλιματισμός<br />&amp; Θέρμανση</div><div style="font:500 11.5px/1 Commissioner,sans-serif;color:#8e9ab7;margin-top:9px">186 προϊόντα · εποχική αιχμή</div></div><div style="font:800 15px/1 Commissioner,sans-serif;color:#ffd200">→</div></div>
+        <div style="background:#fff;padding:20px 22px;display:flex;justify-content:space-between;align-items:flex-start"><div><div style="font:800 11px/1 Commissioner,sans-serif;color:#b8c0d0;margin-bottom:9px">03</div><div style="font:700 19px/1.15 Commissioner,sans-serif;color:#0b1533">Πλυντήρια<br />&amp; Στεγνωτήρια</div><div style="font:500 11.5px/1 Commissioner,sans-serif;color:#8a93a3;margin-top:9px">240 προϊόντα · με εγκατάσταση</div></div><div style="font:800 15px/1 Commissioner,sans-serif;color:#143a85">→</div></div>
+        <div style="background:#fff;padding:20px 22px;display:flex;justify-content:space-between;align-items:flex-start"><div><div style="font:800 11px/1 Commissioner,sans-serif;color:#b8c0d0;margin-bottom:9px">04</div><div style="font:700 19px/1.15 Commissioner,sans-serif;color:#0b1533">Ψυγεία<br />&amp; Καταψύκτες</div><div style="font:500 11.5px/1 Commissioner,sans-serif;color:#8a93a3;margin-top:9px">198 προϊόντα · A έως G</div></div><div style="font:800 15px/1 Commissioner,sans-serif;color:#143a85">→</div></div>
+        <div style="background:#fff;padding:20px 22px;display:flex;justify-content:space-between;align-items:flex-start"><div><div style="font:800 11px/1 Commissioner,sans-serif;color:#b8c0d0;margin-bottom:9px">05</div><div style="font:700 19px/1.15 Commissioner,sans-serif;color:#0b1533">Κινητά<br />&amp; Wearables</div><div style="font:500 11.5px/1 Commissioner,sans-serif;color:#8a93a3;margin-top:9px">312 προϊόντα</div></div><div style="font:800 15px/1 Commissioner,sans-serif;color:#143a85">→</div></div>
+        <div style="background:#fff;padding:20px 22px;display:flex;justify-content:space-between;align-items:flex-start"><div><div style="font:800 11px/1 Commissioner,sans-serif;color:#b8c0d0;margin-bottom:9px">06</div><div style="font:700 19px/1.15 Commissioner,sans-serif;color:#0b1533">Laptops<br />&amp; Computing</div><div style="font:500 11.5px/1 Commissioner,sans-serif;color:#8a93a3;margin-top:9px">154 προϊόντα</div></div><div style="font:800 15px/1 Commissioner,sans-serif;color:#143a85">→</div></div>
+        <div style="background:#fff;padding:20px 22px;display:flex;justify-content:space-between;align-items:flex-start"><div><div style="font:800 11px/1 Commissioner,sans-serif;color:#b8c0d0;margin-bottom:9px">07</div><div style="font:700 19px/1.15 Commissioner,sans-serif;color:#0b1533">Καφές<br />&amp; Μαγειρική</div><div style="font:500 11.5px/1 Commissioner,sans-serif;color:#8a93a3;margin-top:9px">176 προϊόντα</div></div><div style="font:800 15px/1 Commissioner,sans-serif;color:#143a85">→</div></div>
+        <div style="background:#fff;padding:20px 22px;display:flex;justify-content:space-between;align-items:flex-start"><div><div style="font:800 11px/1 Commissioner,sans-serif;color:#b8c0d0;margin-bottom:9px">08</div><div style="font:700 19px/1.15 Commissioner,sans-serif;color:#0b1533">Σκούπες<br />&amp; Καθαριότητα</div><div style="font:500 11.5px/1 Commissioner,sans-serif;color:#8a93a3;margin-top:9px">142 προϊόντα</div></div><div style="font:800 15px/1 Commissioner,sans-serif;color:#143a85">→</div></div>
+        <div style="background:#fff;padding:20px 22px;display:flex;justify-content:space-between;align-items:flex-start"><div><div style="font:800 11px/1 Commissioner,sans-serif;color:#b8c0d0;margin-bottom:9px">09</div><div style="font:700 19px/1.15 Commissioner,sans-serif;color:#0b1533">Προσωπική<br />Φροντίδα</div><div style="font:500 11.5px/1 Commissioner,sans-serif;color:#8a93a3;margin-top:9px">208 προϊόντα</div></div><div style="font:800 15px/1 Commissioner,sans-serif;color:#143a85">→</div></div>
+      </div>
+      <div style="position:absolute;top:8px;left:-13px;width:26px;height:26px;background:#ffd200;border:2px solid #0b1533;font:800 12px/23px Commissioner,sans-serif;color:#0b1533;text-align:center">6</div>
+    </div>
+
+    <!-- 7 · deals with quick buy -->
+    <div style="position:relative;background:#f0f2f7;padding:34px 26px">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:20px">
+        <div>
+          <div style="font:800 10.5px/1 Commissioner,sans-serif;letter-spacing:.12em;color:#c0392b;margin-bottom:8px">ΛΗΓΟΥΝ ΚΥΡΙΑΚΗ 2 ΑΥΓΟΥΣΤΟΥ</div>
+          <div style="font:700 30px/1.1 'Source Serif 4',serif;color:#0b1533;letter-spacing:-.02em">Προσφορές με πραγματική λήξη</div>
+        </div>
+        <div style="display:flex;gap:6px;align-items:flex-end">
+          <div style="background:#0b1533;color:#fff;padding:10px 13px;font:800 17px/1 Commissioner,sans-serif">02</div>
+          <div style="background:#0b1533;color:#fff;padding:10px 13px;font:800 17px/1 Commissioner,sans-serif">14</div>
+          <div style="background:#0b1533;color:#fff;padding:10px 13px;font:800 17px/1 Commissioner,sans-serif">38</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+
+        <div style="background:#fff;padding:0;display:flex;flex-direction:column">
+          <div style="position:relative;background:#f7f8fa;padding:14px">
+            <span style="position:absolute;top:0;left:0;background:#c0392b;color:#fff;font:800 11px/1 Commissioner,sans-serif;padding:6px 9px">−24%</span>
+            <img src="https://www.euronics.gr/images/thumbs/11398500_650.jpeg" alt="INVENTOR IKURA IKUI/IKUO-12WFI Inverter κλιματιστικό 12000 BTU" referrerpolicy="no-referrer" style="width:100%;aspect-ratio:1;object-fit:contain;display:block" />
+            <div style="position:absolute;bottom:10px;left:14px;display:flex;gap:5px"><span style="background:#1c7a4a;color:#fff;font:800 10px/1 Commissioner,sans-serif;padding:5px 6px">A++</span><span style="background:#fff;border:1px solid #dfe2ea;color:#5b6577;font:600 9.5px/1 Commissioner,sans-serif;padding:5px 6px">Δελτίο προϊόντος</span></div>
+          </div>
+          <div style="padding:14px;display:flex;flex-direction:column;flex:1">
+            <div style="font:600 10px/1 Commissioner,sans-serif;letter-spacing:.06em;color:#8a93a3;margin-bottom:5px">INVENTOR</div>
+            <div style="font:700 13px/1.3 Commissioner,sans-serif;color:#0b1533;height:34px;overflow:hidden">IKURA IKUI/IKUO-12WFI Inverter 12.000 BTU</div>
+            <div style="display:flex;align-items:baseline;gap:7px;margin:9px 0 3px"><span style="font:800 24px/1 Commissioner,sans-serif;color:#0b1533;letter-spacing:-.02em">449 €</span><span style="font:500 12px/1 Commissioner,sans-serif;color:#8a93a3;text-decoration:line-through">499 €</span></div>
+            <div style="font:400 10px/1.4 Commissioner,sans-serif;color:#5b6577">Χαμηλότερη τιμή 30 ημερών: 489,00 €</div>
+            <div style="font:700 11.5px/1 Commissioner,sans-serif;color:#143a85;margin:7px 0 9px">ή 12 × 37,42 € χωρίς κάρτα</div>
+            <div style="display:flex;align-items:center;gap:6px;font:700 11px/1 Commissioner,sans-serif;color:#1c7a4a;margin-bottom:12px"><span style="width:7px;height:7px;background:#1c7a4a;display:block"></span>Άμεσα · παράδοση Τρί 4/8</div>
+            <div style="display:flex;gap:7px;margin-top:auto">
+              <div style="flex:1;background:#0b1533;color:#fff;text-align:center;padding:13px;font:800 12.5px/1 Commissioner,sans-serif;letter-spacing:.03em">ΑΓΟΡΑ ΜΕ 1 ΚΛΙΚ</div>
+              <div style="flex:0 0 44px;border:2px solid #0b1533;color:#0b1533;text-align:center;padding:11px 0;font:800 13px/1 Commissioner,sans-serif">+</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;font:600 10px/1 Commissioner,sans-serif;color:#8a93a3;margin-top:10px"><span>Σύγκριση</span><span>Απόθεμα σε 12 καταστήματα</span></div>
+          </div>
+        </div>
+
+        <div style="background:#fff;padding:0;display:flex;flex-direction:column">
+          <div style="position:relative;background:#f7f8fa;padding:14px">
+            <span style="position:absolute;top:0;left:0;background:#c0392b;color:#fff;font:800 11px/1 Commissioner,sans-serif;padding:6px 9px">−18%</span>
+            <img src="https://www.euronics.gr/images/thumbs/11004601_480.jpeg" alt="LG 43NANO82T6B NanoCell 43 ιντσών 4K τηλεόραση" referrerpolicy="no-referrer" style="width:100%;aspect-ratio:1;object-fit:contain;display:block" />
+            <div style="position:absolute;bottom:10px;left:14px;display:flex;gap:5px"><span style="background:#5a9e2f;color:#fff;font:800 10px/1 Commissioner,sans-serif;padding:5px 6px">F</span><span style="background:#fff;border:1px solid #dfe2ea;color:#5b6577;font:600 9.5px/1 Commissioner,sans-serif;padding:5px 6px">Δελτίο προϊόντος</span></div>
+          </div>
+          <div style="padding:14px;display:flex;flex-direction:column;flex:1">
+            <div style="font:600 10px/1 Commissioner,sans-serif;letter-spacing:.06em;color:#8a93a3;margin-bottom:5px">LG</div>
+            <div style="font:700 13px/1.3 Commissioner,sans-serif;color:#0b1533;height:34px;overflow:hidden">43NANO82T6B NanoCell 43" 4K Smart TV</div>
+            <div style="display:flex;align-items:baseline;gap:7px;margin:9px 0 3px"><span style="font:800 24px/1 Commissioner,sans-serif;color:#0b1533;letter-spacing:-.02em">349 €</span><span style="font:500 12px/1 Commissioner,sans-serif;color:#8a93a3;text-decoration:line-through">429 €</span></div>
+            <div style="font:400 10px/1.4 Commissioner,sans-serif;color:#5b6577">Χαμηλότερη τιμή 30 ημερών: 379,00 €</div>
+            <div style="font:700 11.5px/1 Commissioner,sans-serif;color:#143a85;margin:7px 0 9px">ή 12 × 29,08 € χωρίς κάρτα</div>
+            <div style="display:flex;align-items:center;gap:6px;font:700 11px/1 Commissioner,sans-serif;color:#b5761a;margin-bottom:12px"><span style="width:7px;height:7px;background:#b5761a;display:block"></span>Σε 2–4 εργάσιμες · Παρ 7/8</div>
+            <div style="display:flex;gap:7px;margin-top:auto">
+              <div style="flex:1;background:#0b1533;color:#fff;text-align:center;padding:13px;font:800 12.5px/1 Commissioner,sans-serif;letter-spacing:.03em">ΑΓΟΡΑ ΜΕ 1 ΚΛΙΚ</div>
+              <div style="flex:0 0 44px;border:2px solid #0b1533;color:#0b1533;text-align:center;padding:11px 0;font:800 13px/1 Commissioner,sans-serif">+</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;font:600 10px/1 Commissioner,sans-serif;color:#8a93a3;margin-top:10px"><span>Σύγκριση</span><span>Απόθεμα σε 8 καταστήματα</span></div>
+          </div>
+        </div>
+
+        <div style="background:#fff;padding:0;display:flex;flex-direction:column">
+          <div style="position:relative;background:#f7f8fa;padding:14px">
+            <span style="position:absolute;top:0;left:0;background:#c0392b;color:#fff;font:800 11px/1 Commissioner,sans-serif;padding:6px 9px">−31%</span>
+            <div style="width:100%;aspect-ratio:1;background:#eaecf1;display:flex;align-items:center;justify-content:center;font:600 11px/1.4 Commissioner,sans-serif;color:#a8b0bd;text-align:center">φωτογραφία<br />πλυντηρίου</div>
+            <div style="position:absolute;bottom:10px;left:14px;display:flex;gap:5px"><span style="background:#1c7a4a;color:#fff;font:800 10px/1 Commissioner,sans-serif;padding:5px 6px">A</span><span style="background:#fff;border:1px solid #dfe2ea;color:#5b6577;font:600 9.5px/1 Commissioner,sans-serif;padding:5px 6px">Δελτίο προϊόντος</span></div>
+          </div>
+          <div style="padding:14px;display:flex;flex-direction:column;flex:1">
+            <div style="font:600 10px/1 Commissioner,sans-serif;letter-spacing:.06em;color:#8a93a3;margin-bottom:5px">AEG</div>
+            <div style="font:700 13px/1.3 Commissioner,sans-serif;color:#0b1533;height:34px;overflow:hidden">LR7F49GS Πλυντήριο 9kg 1400 στροφών</div>
+            <div style="display:flex;align-items:baseline;gap:7px;margin:9px 0 3px"><span style="font:800 24px/1 Commissioner,sans-serif;color:#0b1533;letter-spacing:-.02em">549 €</span><span style="font:500 12px/1 Commissioner,sans-serif;color:#8a93a3;text-decoration:line-through">799 €</span></div>
+            <div style="font:400 10px/1.4 Commissioner,sans-serif;color:#5b6577">Χαμηλότερη τιμή 30 ημερών: 599,00 €</div>
+            <div style="font:700 11.5px/1 Commissioner,sans-serif;color:#143a85;margin:7px 0 9px">ή 12 × 45,75 € χωρίς κάρτα</div>
+            <div style="display:flex;align-items:center;gap:6px;font:700 11px/1 Commissioner,sans-serif;color:#1c7a4a;margin-bottom:12px"><span style="width:7px;height:7px;background:#1c7a4a;display:block"></span>Άμεσα · με εγκατάσταση</div>
+            <div style="display:flex;gap:7px;margin-top:auto">
+              <div style="flex:1;background:#0b1533;color:#fff;text-align:center;padding:13px;font:800 12.5px/1 Commissioner,sans-serif;letter-spacing:.03em">ΑΓΟΡΑ ΜΕ 1 ΚΛΙΚ</div>
+              <div style="flex:0 0 44px;border:2px solid #0b1533;color:#0b1533;text-align:center;padding:11px 0;font:800 13px/1 Commissioner,sans-serif">+</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;font:600 10px/1 Commissioner,sans-serif;color:#8a93a3;margin-top:10px"><span>Σύγκριση</span><span>Παραλαβή παλιάς</span></div>
+          </div>
+        </div>
+
+        <div style="background:#fff;padding:0;display:flex;flex-direction:column">
+          <div style="position:relative;background:#f7f8fa;padding:14px">
+            <span style="position:absolute;top:0;left:0;background:#143a85;color:#fff;font:800 11px/1 Commissioner,sans-serif;padding:6px 9px">ΔΩΡΟ</span>
+            <div style="width:100%;aspect-ratio:1;background:#eaecf1;display:flex;align-items:center;justify-content:center;font:600 11px/1.4 Commissioner,sans-serif;color:#a8b0bd;text-align:center">φωτογραφία<br />καφετιέρας</div>
+            <div style="position:absolute;bottom:10px;left:14px;display:flex;gap:5px"><span style="background:#fff;border:1px solid #dfe2ea;color:#5b6577;font:600 9.5px/1 Commissioner,sans-serif;padding:5px 6px">4,6 ★ · 128 κριτικές</span></div>
+          </div>
+          <div style="padding:14px;display:flex;flex-direction:column;flex:1">
+            <div style="font:600 10px/1 Commissioner,sans-serif;letter-spacing:.06em;color:#8a93a3;margin-bottom:5px">DELONGHI</div>
+            <div style="font:700 13px/1.3 Commissioner,sans-serif;color:#0b1533;height:34px;overflow:hidden">Magnifica Evo Αυτόματη Μηχανή Espresso</div>
+            <div style="display:flex;align-items:baseline;gap:7px;margin:9px 0 3px"><span style="font:800 24px/1 Commissioner,sans-serif;color:#0b1533;letter-spacing:-.02em">399 €</span></div>
+            <div style="font:400 10px/1.4 Commissioner,sans-serif;color:#5b6577">Δώρο 2 κιλά καφέ αξίας 34,00 €</div>
+            <div style="font:700 11.5px/1 Commissioner,sans-serif;color:#143a85;margin:7px 0 9px">ή 12 × 33,25 € χωρίς κάρτα</div>
+            <div style="display:flex;align-items:center;gap:6px;font:700 11px/1 Commissioner,sans-serif;color:#1c7a4a;margin-bottom:12px"><span style="width:7px;height:7px;background:#1c7a4a;display:block"></span>Άμεσα · παράδοση Τρί 4/8</div>
+            <div style="display:flex;gap:7px;margin-top:auto">
+              <div style="flex:1;background:#0b1533;color:#fff;text-align:center;padding:13px;font:800 12.5px/1 Commissioner,sans-serif;letter-spacing:.03em">ΑΓΟΡΑ ΜΕ 1 ΚΛΙΚ</div>
+              <div style="flex:0 0 44px;border:2px solid #0b1533;color:#0b1533;text-align:center;padding:11px 0;font:800 13px/1 Commissioner,sans-serif">+</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;font:600 10px/1 Commissioner,sans-serif;color:#8a93a3;margin-top:10px"><span>Σύγκριση</span><span>Απόθεμα σε 24 καταστήματα</span></div>
+          </div>
+        </div>
+      </div>
+      <div style="position:absolute;top:8px;left:-13px;width:26px;height:26px;background:#ffd200;border:2px solid #0b1533;font:800 12px/23px Commissioner,sans-serif;color:#0b1533;text-align:center">7</div>
+    </div>
+
+    <!-- 8 · quick buy sheet -->
+    <div style="position:relative;background:#e3e6ee;padding:30px 26px;display:grid;grid-template-columns:1fr 420px;gap:30px;align-items:center">
+      <div>
+        <div style="font:800 10.5px/1 Commissioner,sans-serif;letter-spacing:.12em;color:#c0392b;margin-bottom:10px">ΤΙ ΣΥΜΒΑΙΝΕΙ ΟΤΑΝ ΠΑΤΗΘΕΙ «ΑΓΟΡΑ ΜΕ 1 ΚΛΙΚ»</div>
+        <div style="font:700 26px/1.15 'Source Serif 4',serif;color:#0b1533;letter-spacing:-.02em;margin-bottom:12px">Ένα φύλλο, τρία πεδία, καμία ανακατεύθυνση</div>
+        <div style="font:400 13px/1.6 Commissioner,sans-serif;color:#2c3550;max-width:44em">Το Quick buy δεν παραγγέλνει αμέσως — ανοίγει ένα φύλλο πάνω από τη σελίδα με προεπιλεγμένα τα στοιχεία του λογαριασμού, το συνολικό κόστος <em>με</em> μεταφορικά και ΦΠΑ, και ένα κουμπί με τη διατύπωση που απαιτεί η Οδηγία 2011/83/ΕΕ. Ο χρήστης δεν φεύγει από την αρχική, αλλά ούτε δεσμεύεται χωρίς να δει τι πληρώνει.</div>
+      </div>
+      <div style="background:#fff;padding:20px;box-shadow:0 8px 30px rgba(11,21,51,.16)">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid #e6e9f0"><span style="font:800 13px/1 Commissioner,sans-serif;color:#0b1533">ΓΡΗΓΟΡΗ ΑΓΟΡΑ</span><span style="font:600 12px/1 Commissioner,sans-serif;color:#8a93a3">Κλείσιμο ×</span></div>
+        <div style="display:flex;gap:11px;align-items:center;margin-bottom:14px">
+          <img src="https://www.euronics.gr/images/thumbs/11398500_100.jpeg" alt="" referrerpolicy="no-referrer" style="width:52px;height:52px;object-fit:contain;background:#f7f8fa;display:block" />
+          <div style="min-width:0"><div style="font:700 12px/1.3 Commissioner,sans-serif;color:#0b1533">INVENTOR IKURA 12.000 BTU</div><div style="font:600 12px/1 Commissioner,sans-serif;color:#143a85;margin-top:4px">449,00 €</div></div>
+        </div>
+        <div style="display:grid;gap:7px;margin-bottom:12px">
+          <div style="border:1px solid #dfe2ea;padding:11px;font:500 12px/1 Commissioner,sans-serif;color:#2c3550">Παράδοση στη διεύθυνσή μου · Τρί 4/8 <span style="color:#8a93a3">αλλαγή</span></div>
+          <div style="border:1px solid #dfe2ea;padding:11px;font:500 12px/1 Commissioner,sans-serif;color:#2c3550">Κάρτα •••• 4821 <span style="color:#8a93a3">αλλαγή</span></div>
+          <div style="border:1px solid #dfe2ea;padding:11px;font:500 12px/1 Commissioner,sans-serif;color:#2c3550">12 άτοκες δόσεις × 37,42 € <span style="color:#8a93a3">αλλαγή</span></div>
+        </div>
+        <div style="background:#f0f2f7;padding:11px;font:500 11.5px/1.6 Commissioner,sans-serif;color:#2c3550;margin-bottom:12px">Προϊόν 449,00 € · Μεταφορικά 0,00 € · ΦΠΑ 24% περιλαμβάνεται<br /><strong style="font:800 14px/1.4 Commissioner,sans-serif;color:#0b1533">Σύνολο 449,00 €</strong></div>
+        <div style="background:#ffd200;color:#0b1533;text-align:center;padding:15px;font:800 13px/1 Commissioner,sans-serif;letter-spacing:.03em">ΠΑΡΑΓΓΕΛΙΑ ΜΕ ΥΠΟΧΡΕΩΣΗ ΠΛΗΡΩΜΗΣ</div>
+        <div style="font:400 10px/1.5 Commissioner,sans-serif;color:#5b6577;margin-top:9px">Με την ολοκλήρωση αποδέχεσαι τους όρους. Δικαίωμα υπαναχώρησης 14 ημερών. Η πληρωμή επιβεβαιώνεται με ισχυρή ταυτοποίηση (SCA).</div>
+      </div>
+      <div style="position:absolute;top:8px;left:-13px;width:26px;height:26px;background:#ffd200;border:2px solid #0b1533;font:800 12px/23px Commissioner,sans-serif;color:#0b1533;text-align:center">8</div>
+    </div>
+
+    <!-- 9 · services dark -->
+    <div style="position:relative;background:#0b1533;color:#fff;padding:38px 26px 34px">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:24px">
+        <div>
+          <div style="font:800 10.5px/1 Commissioner,sans-serif;letter-spacing:.12em;color:#ffd200;margin-bottom:9px">ΔΩΔΕΚΑ ΥΠΗΡΕΣΙΕΣ, ΚΑΘΕΜΙΑ ΜΕ ΤΙΜΗ</div>
+          <div style="font:700 30px/1.1 'Source Serif 4',serif;letter-spacing:-.02em">Γιατί από euronics<br />και όχι από marketplace</div>
+        </div>
+        <div style="font:800 12px/1 Commissioner,sans-serif;color:#ffd200;border-bottom:3px solid #ffd200;padding-bottom:5px">ΟΛΕΣ ΟΙ ΥΠΗΡΕΣΙΕΣ →</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#26314a;border:1px solid #26314a">
+        <div style="background:#0b1533;padding:18px 20px;display:flex;gap:14px"><span style="font:800 12px/1 Commissioner,sans-serif;color:#ffd200;flex:0 0 22px">01</span><div><div style="font:700 14px/1.25 Commissioner,sans-serif">Επέκταση εγγύησης</div><div style="font:400 11.5px/1.5 Commissioner,sans-serif;color:#8e9ab7;margin-top:5px">Έως 5 έτη, από 19 € · καλύπτει και βλάβη από υγρά</div></div></div>
+        <div style="background:#0b1533;padding:18px 20px;display:flex;gap:14px"><span style="font:800 12px/1 Commissioner,sans-serif;color:#ffd200;flex:0 0 22px">02</span><div><div style="font:700 14px/1.25 Commissioner,sans-serif">Παράδοση &amp; εγκατάσταση</div><div style="font:400 11.5px/1.5 Commissioner,sans-serif;color:#8e9ab7;margin-top:5px">Με ραντεβού, από τεχνικό του καταστήματος</div></div></div>
+        <div style="background:#0b1533;padding:18px 20px;display:flex;gap:14px"><span style="font:800 12px/1 Commissioner,sans-serif;color:#ffd200;flex:0 0 22px">03</span><div><div style="font:700 14px/1.25 Commissioner,sans-serif">Παραλαβή σε 2 ώρες</div><div style="font:400 11.5px/1.5 Commissioner,sans-serif;color:#8e9ab7;margin-top:5px">Σε 350 σημεία · χωρίς κόστος</div></div></div>
+        <div style="background:#0b1533;padding:18px 20px;display:flex;gap:14px"><span style="font:800 12px/1 Commissioner,sans-serif;color:#ffd200;flex:0 0 22px">04</span><div><div style="font:700 14px/1.25 Commissioner,sans-serif">Ανακύκλωση ΑΗΗΕ</div><div style="font:400 11.5px/1.5 Commissioner,sans-serif;color:#8e9ab7;margin-top:5px">Δωρεάν παραλαβή της παλιάς συσκευής</div></div></div>
+        <div style="background:#0b1533;padding:18px 20px;display:flex;gap:14px"><span style="font:800 12px/1 Commissioner,sans-serif;color:#ffd200;flex:0 0 22px">05</span><div><div style="font:700 14px/1.25 Commissioner,sans-serif">Δωρεάν φύλαξη</div><div style="font:400 11.5px/1.5 Commissioner,sans-serif;color:#8e9ab7;margin-top:5px">Έως 6 μήνες, μέχρι να ετοιμαστεί ο χώρος</div></div></div>
+        <div style="background:#0b1533;padding:18px 20px;display:flex;gap:14px"><span style="font:800 12px/1 Commissioner,sans-serif;color:#ffd200;flex:0 0 22px">06</span><div><div style="font:700 14px/1.25 Commissioner,sans-serif">Δικό μας service</div><div style="font:400 11.5px/1.5 Commissioner,sans-serif;color:#8e9ab7;margin-top:5px">Συντήρηση &amp; επισκευή, με ανταλλακτικά αντιπροσωπείας</div></div></div>
+      </div>
+      <div style="position:absolute;top:8px;left:-13px;width:26px;height:26px;background:#ffd200;border:2px solid #0b1533;font:800 12px/23px Commissioner,sans-serif;color:#0b1533;text-align:center">9</div>
+    </div>
+
+    <!-- 10 · store finder -->
+    <div style="position:relative;display:grid;grid-template-columns:1fr 40%;background:#143a85;color:#fff">
+      <div style="padding:36px 26px">
+        <div style="font:800 10.5px/1 Commissioner,sans-serif;letter-spacing:.12em;color:#ffd200;margin-bottom:12px">ΤΟ ΔΙΚΤΥΟ</div>
+        <div style="font:700 32px/1.08 'Source Serif 4',serif;letter-spacing:-.022em;margin-bottom:12px">350 καταστήματα.<br />Ένα είναι δίπλα σου.</div>
+        <div style="font:400 13.5px/1.6 Commissioner,sans-serif;color:#c7cfe2;margin-bottom:22px;max-width:34em">Απόθεμα σε πραγματικό χρόνο, παραλαβή σε 2 ώρες, εγκατάσταση από τον τεχνικό της γειτονιάς σου.</div>
+        <div style="display:flex;gap:8px;max-width:430px;margin-bottom:14px">
+          <div style="flex:1;background:#fff;color:#8a93a3;padding:14px;font:400 13px/1 Commissioner,sans-serif">Ταχυδρομικός κώδικας ή πόλη</div>
+          <div style="background:#ffd200;color:#0b1533;padding:14px 20px;font:800 13px/1 Commissioner,sans-serif">ΒΡΕΣ</div>
+        </div>
+        <div style="font:700 12px/1 Commissioner,sans-serif;color:#ffd200">Χρήση της τοποθεσίας μου</div>
+      </div>
+      <div style="position:relative;background:#0f2f6d;display:flex;align-items:center;justify-content:center;padding:22px">
+        <img src="https://www.euronics.gr/Themes/Uptown/Content/img/Map220x170px.png" alt="Χάρτης καταστημάτων euronics στην Ελλάδα" referrerpolicy="no-referrer" style="width:190px;display:block;filter:brightness(1.15)" />
+        <div style="position:absolute;bottom:18px;left:20px;right:20px;background:#fff;color:#0b1533;padding:12px 14px;display:flex;justify-content:space-between;align-items:center">
+          <div><div style="font:700 12.5px/1.3 Commissioner,sans-serif">Μπριλάκη Αφοί — Μεσογείων 64</div><div style="font:500 11px/1.3 Commissioner,sans-serif;color:#5b6577;margin-top:2px">1,2 km · Ανοιχτό έως 21:00</div></div>
+          <div style="background:#0b1533;color:#fff;padding:8px 12px;font:800 11px/1 Commissioner,sans-serif">ΟΔΗΓΙΕΣ</div>
+        </div>
+      </div>
+      <div style="position:absolute;top:8px;left:-13px;width:26px;height:26px;background:#ffd200;border:2px solid #0b1533;font:800 12px/23px Commissioner,sans-serif;color:#0b1533;text-align:center">10</div>
+    </div>
+
+    <!-- 11 · guides -->
+    <div style="position:relative;padding:38px 26px 34px">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:20px">
+        <div>
+          <div style="font:800 10.5px/1 Commissioner,sans-serif;letter-spacing:.12em;color:#143a85;margin-bottom:8px">ΟΔΗΓΟΙ ΑΓΟΡΑΣ</div>
+          <div style="font:700 30px/1.1 'Source Serif 4',serif;color:#0b1533;letter-spacing:-.02em">Πρώτα καταλαβαίνεις, μετά αγοράζεις</div>
+        </div>
+        <div style="font:800 12px/1 Commissioner,sans-serif;color:#0b1533;border-bottom:3px solid #ffd200;padding-bottom:5px">ΟΛΟΙ ΟΙ ΟΔΗΓΟΙ →</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:16px">
+        <div style="position:relative;overflow:hidden;min-height:340px">
+          <img src="https://www.euronics.gr/images/thumbs/5237386_EVO%20G4%201048x400_mega.jpeg" alt="Οδηγός επιλογής κλιματιστικού" referrerpolicy="no-referrer" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block" />
+          <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(11,21,51,.94) 8%,rgba(11,21,51,.15) 78%)"></div>
+          <div style="position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:22px;color:#fff;min-height:340px">
+            <div style="font:800 10px/1 Commissioner,sans-serif;letter-spacing:.1em;color:#ffd200;margin-bottom:9px">ΟΔΗΓΟΣ · 4′</div>
+            <div style="font:700 23px/1.18 'Source Serif 4',serif;letter-spacing:-.015em;margin-bottom:8px">Πώς να επιλέξεις το σωστό κλιματιστικό για κάθε χώρο</div>
+            <div style="font:400 12.5px/1.5 Commissioner,sans-serif;color:#c7cfe2;margin-bottom:12px">BTU, Inverter, ενεργειακή απόδοση, μόνωση: τι μετράει πραγματικά.</div>
+            <div style="font:800 12px/1 Commissioner,sans-serif;color:#ffd200">ΔΙΑΒΑΣΕ &amp; ΔΕΣ 6 ΠΡΟΤΑΣΕΙΣ →</div>
+          </div>
+        </div>
+        <div style="border:1px solid #dfe2ea;display:flex;flex-direction:column">
+          <div style="height:112px;background:#eaecf1;display:flex;align-items:center;justify-content:center;font:600 11px/1.4 Commissioner,sans-serif;color:#a8b0bd">εικόνα άρθρου</div>
+          <div style="padding:16px;display:flex;flex-direction:column;flex:1">
+            <div style="font:800 10px/1 Commissioner,sans-serif;letter-spacing:.1em;color:#c0392b;margin-bottom:9px">ΟΔΗΓΟΣ · 5′</div>
+            <div style="font:700 17px/1.22 'Source Serif 4',serif;color:#0b1533;margin-bottom:8px">Οι βασικές μικροσυσκευές για φοιτητικό σπίτι</div>
+            <div style="font:400 12px/1.5 Commissioner,sans-serif;color:#5b6577">Λίγος χώρος, απαιτητική καθημερινότητα: οι επιλογές που αξίζουν.</div>
+            <div style="font:800 12px/1 Commissioner,sans-serif;color:#143a85;margin-top:auto;padding-top:12px">ΔΕΣ 9 ΠΡΟΤΑΣΕΙΣ →</div>
+          </div>
+        </div>
+        <div style="border:1px solid #dfe2ea;display:flex;flex-direction:column">
+          <div style="height:112px;background:#eaecf1;display:flex;align-items:center;justify-content:center;font:600 11px/1.4 Commissioner,sans-serif;color:#a8b0bd">εικόνα άρθρου</div>
+          <div style="padding:16px;display:flex;flex-direction:column;flex:1">
+            <div style="font:800 10px/1 Commissioner,sans-serif;letter-spacing:.1em;color:#1c7a4a;margin-bottom:9px">ΕΝΕΡΓΕΙΑ · 3′</div>
+            <div style="font:700 17px/1.22 'Source Serif 4',serif;color:#0b1533;margin-bottom:8px">Τι σημαίνει η νέα ενεργειακή ετικέτα A–G</div>
+            <div style="font:400 12px/1.5 Commissioner,sans-serif;color:#5b6577">Πόσο ρεύμα γλιτώνεις πραγματικά ανεβαίνοντας μία κλάση.</div>
+            <div style="font:800 12px/1 Commissioner,sans-serif;color:#143a85;margin-top:auto;padding-top:12px">ΔΙΑΒΑΣΕ →</div>
+          </div>
+        </div>
+      </div>
+      <div style="position:absolute;top:8px;left:-13px;width:26px;height:26px;background:#ffd200;border:2px solid #0b1533;font:800 12px/23px Commissioner,sans-serif;color:#0b1533;text-align:center">11</div>
+    </div>
+
+    <!-- 12 · newsletter + footer -->
+    <div style="position:relative;background:#f0f2f7;border-top:1px solid #dfe2ea;padding:26px;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center">
+      <div>
+        <div style="font:700 21px/1.2 'Source Serif 4',serif;color:#0b1533;margin-bottom:6px">Μάθε πρώτος τις πραγματικές πτώσεις τιμών</div>
+        <div style="font:400 12.5px/1.55 Commissioner,sans-serif;color:#5b6577">Ένα email την εβδομάδα. Διαγραφή με ένα κλικ, χωρίς ερωτήσεις.</div>
+      </div>
+      <div>
+        <div style="display:flex;gap:8px;margin-bottom:9px">
+          <div style="flex:1;background:#fff;border:1px solid #dfe2ea;color:#8a93a3;padding:14px;font:400 13px/1 Commissioner,sans-serif">Το email σου</div>
+          <div style="background:#0b1533;color:#fff;padding:14px 22px;font:800 13px/1 Commissioner,sans-serif">ΕΓΓΡΑΦΗ</div>
+        </div>
+        <div style="font:400 11px/1.45 Commissioner,sans-serif;color:#5b6577">☐ Συμφωνώ να λαμβάνω εμπορική επικοινωνία και έχω διαβάσει την <span style="color:#143a85;text-decoration:underline">Πολιτική Απορρήτου</span>.</div>
+      </div>
+      <div style="position:absolute;top:8px;left:-13px;width:26px;height:26px;background:#ffd200;border:2px solid #0b1533;font:800 12px/23px Commissioner,sans-serif;color:#0b1533;text-align:center">12</div>
+    </div>
+
+    <div style="background:#0b1533;color:#8e9ab7;padding:30px 26px 20px">
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:24px;font:400 11.5px/1.95 Commissioner,sans-serif;margin-bottom:22px">
+        <div><div style="font:800 11px/1 Commissioner,sans-serif;color:#fff;letter-spacing:.1em;margin-bottom:11px">ΑΓΟΡΕΣ</div>Τρόποι πληρωμής<br />Τρόποι &amp; χρόνοι αποστολής<br />Δόσεις χωρίς κάρτα<br />Παραλαβή σε 2 ώρες<br />Κάρτες δώρου</div>
+        <div><div style="font:800 11px/1 Commissioner,sans-serif;color:#fff;letter-spacing:.1em;margin-bottom:11px">ΕΞΥΠΗΡΕΤΗΣΗ</div>Επιστροφές &amp; υπαναχώρηση<br />Εγγυήσεις &amp; service<br />Ανακύκλωση ΑΗΗΕ<br />Συχνές ερωτήσεις<br />Επικοινωνία</div>
+        <div><div style="font:800 11px/1 Commissioner,sans-serif;color:#fff;letter-spacing:.1em;margin-bottom:11px">Η EURONICS</div>Ποιοι είμαστε<br />Αξίες &amp; φιλοσοφία<br />Οικονομικά στοιχεία<br />Δίκτυο καταστημάτων<br />Καριέρα</div>
+        <div><div style="font:800 11px/1 Commissioner,sans-serif;color:#fff;letter-spacing:.1em;margin-bottom:11px">ΝΟΜΙΚΑ</div>Όροι χρήσης<br />Πολιτική απορρήτου<br />Ρυθμίσεις cookies<br />Εναλλακτική επίλυση διαφορών<br />Πλατφόρμα ΗΕΔ της ΕΕ</div>
+        <div><div style="font:800 11px/1 Commissioner,sans-serif;color:#fff;letter-spacing:.1em;margin-bottom:11px">ΕΠΙΚΟΙΝΩΝΙΑ</div>Δαμάσκου Σταμάτη 12, Αχαρνές<br />210 483 5143<br />info@euronics.gr<br /><span style="color:#fff">Facebook · Instagram · YouTube</span></div>
+      </div>
+      <div style="border-top:1px solid #26314a;padding-top:15px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;font:400 11px/1.55 Commissioner,sans-serif">
+        <div>© euronics 2026 · MEGA ELECTRICS AEBE · ΑΦΜ 000000000 · ΓΕΜΗ 000000000 · Αρ. μητρώου ΑΗΗΕ 00000<br />Οι τιμές περιλαμβάνουν ΦΠΑ 24%. Τα μεταφορικά υπολογίζονται πριν την οριστικοποίηση της παραγγελίας.</div>
+        <img src="https://www.euronics.gr/Themes/Uptown/Content/img/credit_cards_final.png" alt="Τρόποι πληρωμής" referrerpolicy="no-referrer" style="height:22px;display:block" />
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+  <sc-if value="{{ showRationale }}" hint-placeholder-val="{{ true }}">
+  <div style="font:800 11px/1 Commissioner,sans-serif;letter-spacing:.14em;color:#143a85;margin:0 0 8px">ΤΙ ΑΛΛΑΞΕ ΑΠΟ ΤΗΝ v1 ΚΑΙ ΓΙΑΤΙ</div>
+  <h2 style="font:700 28px/1.15 'Source Serif 4',serif;color:#0b1533;margin:0 0 22px;letter-spacing:-.02em">Τεκμηρίωση των τολμηρών αποφάσεων</h2>
+
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-bottom:26px">
+
+    <div style="background:#fff;border-left:4px solid #c0392b;padding:20px 22px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><span style="width:24px;height:24px;background:#ffd200;border:2px solid #0b1533;font:800 11px/21px Commissioner,sans-serif;color:#0b1533;text-align:center;display:inline-block">6</span><span style="font:800 15px/1.3 Commissioner,sans-serif;color:#0b1533">Τα εικονίδια καταργήθηκαν</span></div>
+      <div style="font:400 12.5px/1.65 Commissioner,sans-serif;color:#2c3550;margin-bottom:11px">Είχες δίκιο: τα emoji-εικονίδια ήταν το αδύναμο σημείο. Ένα σετ εικονιδίων για 9 ανόμοιες κατηγορίες (τηλεοράσεις, κλιματισμός, φροντίδα) καταλήγει πάντα σε άτοπες αναπαραστάσεις που φαίνονται φθηνές και δεν μεταφράζονται σε μικρά μεγέθη. Η λύση δεν είναι «καλύτερα εικονίδια», είναι <strong>να μην υπάρχουν</strong>: αύξοντα νούμερα 01–09, μεγάλη τυπογραφία, πλήθος προϊόντων και μαρκών, ένα βέλος. Ένα κελί γεμίζει σκούρο ως εποχική έμφαση — το marketing αλλάζει ποιο, από το CMS. Το πλέγμα είναι hairline (1px), χωρίς στρογγυλές γωνίες και σκιές: ό,τι διαβάζεται σήμερα ως σύγχρονο σε ευρωπαϊκό retail.</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap"><span style="background:#0b1533;color:#fff;font:800 9.5px/1 Commissioner,sans-serif;letter-spacing:.06em;padding:5px 8px">ΑΙΤΗΜΑ ΠΕΛΑΤΗ</span><span style="background:#143a85;color:#fff;font:800 9.5px/1 Commissioner,sans-serif;letter-spacing:.06em;padding:5px 8px">ΚΛΙΜΑΚΩΣΙΜΟ ΣΕ 200 ΚΑΤΗΓΟΡΙΕΣ</span></div>
+    </div>
+
+    <div style="background:#fff;border-left:4px solid #c0392b;padding:20px 22px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><span style="width:24px;height:24px;background:#ffd200;border:2px solid #0b1533;font:800 11px/21px Commissioner,sans-serif;color:#0b1533;text-align:center;display:inline-block">4</span><span style="font:800 15px/1.3 Commissioner,sans-serif;color:#0b1533">Bento grid αντί hero</span></div>
+      <div style="font:400 12.5px/1.65 Commissioner,sans-serif;color:#2c3550;margin-bottom:11px">Το κλασικό «εικόνα + κείμενο» δίνει ένα μήνυμα. Το bento δίνει τέσσερα, χωρίς θόρυβο: την εποχική καμπάνια σε 2/3 του πλάτους με τυπογραφία 50px, την <em>προσφορά ημέρας με Quick buy</em>, τον εντοπισμό καταστήματος και τρεις υπηρεσίες. Ο επισκέπτης βλέπει σε μία οθόνη και έμπνευση και άμεση αγορά και το φυσικό δίκτυο — τα τρία πράγματα που η Euronics έχει και το marketplace όχι. Οι διαφάνειες παραμένουν τρεις με ορατή παύση (WCAG 2.2.2), και το grid γίνεται μία στήλη σε mobile με σειρά: καμπάνια → προσφορά → κατάστημα.</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap"><span style="background:#8a5cf6;color:#fff;font:800 9.5px/1 Commissioner,sans-serif;letter-spacing:.06em;padding:5px 8px">ΠΥΚΝΟΤΗΤΑ ΠΛΗΡΟΦΟΡΙΑΣ</span><span style="background:#1c7a4a;color:#fff;font:800 9.5px/1 Commissioner,sans-serif;letter-spacing:.06em;padding:5px 8px">WCAG 2.2.2</span></div>
+    </div>
+
+    <div style="background:#fff;border-left:4px solid #ffd200;padding:20px 22px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><span style="width:24px;height:24px;background:#ffd200;border:2px solid #0b1533;font:800 11px/21px Commissioner,sans-serif;color:#0b1533;text-align:center;display:inline-block">7</span><span style="font:800 15px/1.3 Commissioner,sans-serif;color:#0b1533">Quick buy: το κύριο κουμπί, όχι το δεύτερο</span></div>
+      <div style="font:400 12.5px/1.65 Commissioner,sans-serif;color:#2c3550;margin-bottom:11px">Κάθε κάρτα έχει <strong>«ΑΓΟΡΑ ΜΕ 1 ΚΛΙΚ»</strong> σε πλήρες πλάτος και ένα μικρό «+» για το καλάθι — αντιστροφή της συνήθους ιεραρχίας. Λόγος: σε λευκές συσκευές και κλιματιστικά η αγορά είναι μονοπρoϊοντική· το «στο καλάθι» προσθέτει βήματα χωρίς λόγο. Το «+» μένει για όποιον χτίζει σετ (κουζίνα, εντοιχιζόμενα). Και τα δύο έχουν ύψος ≥44px για αφή.</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap"><span style="background:#0b1533;color:#fff;font:800 9.5px/1 Commissioner,sans-serif;letter-spacing:.06em;padding:5px 8px">ΑΙΤΗΜΑ ΠΕΛΑΤΗ</span><span style="background:#143a85;color:#fff;font:800 9.5px/1 Commissioner,sans-serif;letter-spacing:.06em;padding:5px 8px">CRO</span></div>
+    </div>
+
+    <div style="background:#fff;border-left:4px solid #1c7a4a;padding:20px 22px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><span style="width:24px;height:24px;background:#ffd200;border:2px solid #0b1533;font:800 11px/21px Commissioner,sans-serif;color:#0b1533;text-align:center;display:inline-block">8</span><span style="font:800 15px/1.3 Commissioner,sans-serif;color:#0b1533">Το Quick buy δεν παραγγέλνει κρυφά</span></div>
+      <div style="font:400 12.5px/1.65 Commissioner,sans-serif;color:#2c3550;margin-bottom:11px">Εδώ είναι η λεπτή γραμμή. Ένα κουμπί που ολοκληρώνει παραγγελία χωρίς να δείξει το τελικό ποσό <strong>είναι παράνομο στην ΕΕ</strong>: η Οδηγία 2011/83/ΕΕ απαιτεί το συνολικό κόστος (με μεταφορικά και φόρους) πριν τη δέσμευση και κουμπί με ρητή διατύπωση υποχρέωσης πληρωμής. Γι' αυτό το Quick buy ανοίγει φύλλο: προϊόν, διεύθυνση, κάρτα, δόσεις, ανάλυση κόστους, «ΠΑΡΑΓΓΕΛΙΑ ΜΕ ΥΠΟΧΡΕΩΣΗ ΠΛΗΡΩΜΗΣ», μνεία 14 ημερών και SCA κατά PSD2. Τρία πεδία, καμία ανακατεύθυνση, μηδέν νομικό ρίσκο.</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap"><span style="background:#1c7a4a;color:#fff;font:800 9.5px/1 Commissioner,sans-serif;letter-spacing:.06em;padding:5px 8px">ΟΔΗΓΙΑ 2011/83/ΕΕ</span><span style="background:#1c7a4a;color:#fff;font:800 9.5px/1 Commissioner,sans-serif;letter-spacing:.06em;padding:5px 8px">PSD2 · SCA</span></div>
+    </div>
+
+    <div style="background:#fff;border-left:4px solid #143a85;padding:20px 22px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><span style="width:24px;height:24px;background:#ffd200;border:2px solid #0b1533;font:800 11px/21px Commissioner,sans-serif;color:#0b1533;text-align:center;display:inline-block">9</span><span style="font:800 15px/1.3 Commissioner,sans-serif;color:#0b1533">Οι υπηρεσίες σε σκούρη ζώνη με νούμερα</span></div>
+      <div style="font:400 12.5px/1.65 Commissioner,sans-serif;color:#2c3550;margin-bottom:11px">Στην v1 ήταν έξι πλακίδια με φωτογραφίες. Εδώ γίνονται αριθμημένος κατάλογος σε βαθύ navy: το χρώμα σταματά το scroll, η απουσία εικόνων βάζει το βάρος στο <em>τι κερδίζεις και πόσο κοστίζει</em> («από 19 €», «σε 2 ώρες», «έως 6 μήνες»). Επιπλέον λύνει πρακτικό πρόβλημα: τα σημερινά JPEG εικονίδια υπηρεσιών είναι ανομοιογενή και δεν θα άντεχαν σε αυτό το επίπεδο σχεδίασης.</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap"><span style="background:#143a85;color:#fff;font:800 9.5px/1 Commissioner,sans-serif;letter-spacing:.06em;padding:5px 8px">ΔΙΑΦΟΡΟΠΟΙΗΣΗ</span><span style="background:#1c7a4a;color:#fff;font:800 9.5px/1 Commissioner,sans-serif;letter-spacing:.06em;padding:5px 8px">ΟΔΗΓΙΑ 2012/19/ΕΕ</span></div>
+    </div>
+
+    <div style="background:#fff;border-left:4px solid #143a85;padding:20px 22px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><span style="width:24px;height:24px;background:#ffd200;border:2px solid #0b1533;font:800 11px/21px Commissioner,sans-serif;color:#0b1533;text-align:center;display:inline-block">1</span><span style="width:24px;height:24px;background:#ffd200;border:2px solid #0b1533;font:800 11px/21px Commissioner,sans-serif;color:#0b1533;text-align:center;display:inline-block">5</span><span style="font:800 15px/1.3 Commissioner,sans-serif;color:#0b1533">Δύο ζώνες μηνυμάτων, διαφορετική δουλειά</span></div>
+      <div style="font:400 12.5px/1.65 Commissioner,sans-serif;color:#2c3550;margin-bottom:11px">Πάνω από το header, σε navy, οι <em>όροι</em> (δίκτυο, μεταφορά, δόσεις, υπαναχώρηση) — πληροφορία που ο νόμος θέλει προσβάσιμη. Κάτω από το hero, σε κίτρινο ticker, τα <em>εμπορικά</em> επιχειρήματα με κεφαλαία και αραιό γράμμα. Το ticker κινείται αργά και σταματά σε hover ή σε <em>prefers-reduced-motion</em>· η κίνηση δεν κρύβει καμία πληροφορία που δεν επαναλαμβάνεται αλλού.</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap"><span style="background:#1c7a4a;color:#fff;font:800 9.5px/1 Commissioner,sans-serif;letter-spacing:.06em;padding:5px 8px">WCAG 2.2.2</span><span style="background:#143a85;color:#fff;font:800 9.5px/1 Commissioner,sans-serif;letter-spacing:.06em;padding:5px 8px">ΤΟΝΟΣ ΦΩΝΗΣ</span></div>
+    </div>
+
+    <div style="background:#fff;border-left:4px solid #143a85;padding:20px 22px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><span style="width:24px;height:24px;background:#ffd200;border:2px solid #0b1533;font:800 11px/21px Commissioner,sans-serif;color:#0b1533;text-align:center;display:inline-block">2</span><span style="width:24px;height:24px;background:#ffd200;border:2px solid #0b1533;font:800 11px/21px Commissioner,sans-serif;color:#0b1533;text-align:center;display:inline-block">3</span><span style="font:800 15px/1.3 Commissioner,sans-serif;color:#0b1533">Σκούρο header, πλακέτες αντί συνδέσμων</span></div>
+      <div style="font:400 12.5px/1.65 Commissioner,sans-serif;color:#2c3550;margin-bottom:11px">Το navy header κάνει το κίτρινο κουμπί αναζήτησης το φωτεινότερο σημείο της σελίδας — εκεί θέλουμε το πρώτο κλικ. Η ενεργή κατηγορία και οι «ΠΡΟΣΦΟΡΕΣ» είναι συμπαγείς πλακέτες, όχι υπογραμμίσεις: αναγνωρίζονται περιφερειακά. Το καλάθι δείχνει σύνολο σε κίτρινο, το τηλέφωνο παραγγελιών μένει σε πρώτο επίπεδο για το κοινό των λευκών συσκευών.</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap"><span style="background:#c0392b;color:#fff;font:800 9.5px/1 Commissioner,sans-serif;letter-spacing:.06em;padding:5px 8px">ΟΠΤΙΚΗ ΙΕΡΑΡΧΙΑ</span><span style="background:#143a85;color:#fff;font:800 9.5px/1 Commissioner,sans-serif;letter-spacing:.06em;padding:5px 8px">CRO</span></div>
+    </div>
+
+    <div style="background:#fff;border-left:4px solid #143a85;padding:20px 22px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><span style="width:24px;height:24px;background:#ffd200;border:2px solid #0b1533;font:800 11px/21px Commissioner,sans-serif;color:#0b1533;text-align:center;display:inline-block">11</span><span style="font:800 15px/1.3 Commissioner,sans-serif;color:#0b1533">Οδηγοί με ασύμμετρη σύνθεση</span></div>
+      <div style="font:400 12.5px/1.65 Commissioner,sans-serif;color:#2c3550;margin-bottom:11px">Τρεις ίσες κάρτες = τίποτα δεν διαβάζεται. Ένας κύριος οδηγός full-bleed με τίτλο 23px πάνω σε εικόνα, δύο δευτερεύοντες. Κάθε ένας τελειώνει σε αγοραστική διαδρομή («ΔΕΣ 6 ΠΡΟΤΑΣΕΙΣ»), γιατί το περιεχόμενο εδώ δεν είναι blog — είναι το κανάλι για ερωτήματα πρώιμης πρόθεσης όπου τα marketplace δεν κατατάσσονται.</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap"><span style="background:#c0392b;color:#fff;font:800 9.5px/1 Commissioner,sans-serif;letter-spacing:.06em;padding:5px 8px">SEO ΠΕΡΙΕΧΟΜΕΝΟΥ</span><span style="background:#8a5cf6;color:#fff;font:800 9.5px/1 Commissioner,sans-serif;letter-spacing:.06em;padding:5px 8px">ΣΥΝΘΕΣΗ</span></div>
+    </div>
+  </div>
+
+  <div style="background:#0b1533;color:#fff;padding:26px 30px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px">
+    <div>
+      <div style="font:800 11px/1 Commissioner,sans-serif;letter-spacing:.14em;color:#ffd200;margin-bottom:10px">ΤΟ ΣΧΕΔΙΑΣΤΙΚΟ ΣΥΣΤΗΜΑ</div>
+      <div style="font:400 12.5px/1.7 Commissioner,sans-serif;color:#c7cfe2">Μηδέν στρογγυλές γωνίες, μηδέν σκιές πλην του Quick buy sheet. Δύο γραμματοσειρές: Commissioner για UI, Source Serif για τίτλους. Τρία χρώματα δουλειάς: navy #0B1533, μπλε #143A85, κίτρινο #FFD200 — κόκκινο μόνο για εκπτώσεις, πράσινο μόνο για διαθεσιμότητα και ενέργεια.</div>
+    </div>
+    <div>
+      <div style="font:800 11px/1 Commissioner,sans-serif;letter-spacing:.14em;color:#ffd200;margin-bottom:10px">ΚΙΝΗΣΗ (GSAP + FRAMER)</div>
+      <div style="font:400 12.5px/1.7 Commissioner,sans-serif;color:#c7cfe2">GSAP: hero timeline, ticker, count-up στο countdown, reveal των bento κελιών με stagger 60ms. Framer Motion: Quick buy sheet, mega-menu, mini-cart. Όλα μόνο σε transform/opacity, όλα ακυρώνονται σε prefers-reduced-motion. Το hero δεν ανιμέιτ πριν το LCP.</div>
+    </div>
+    <div>
+      <div style="font:800 11px/1 Commissioner,sans-serif;letter-spacing:.14em;color:#ffd200;margin-bottom:10px">ΤΙ ΘΕΛΩ ΑΠΟ ΕΣΑΣ</div>
+      <div style="font:400 12.5px/1.7 Commissioner,sans-serif;color:#c7cfe2">Πραγματικές τιμές υπηρεσιών (επέκταση εγγύησης, e-support), 4 φωτογραφίες προϊόντων, και απόφαση: το Quick buy απαιτεί αποθηκευμένη κάρτα &amp; διεύθυνση — αν το τρέχον σύστημα δεν τα υποστηρίζει, το κουμπί γίνεται «Άμεση παραγγελία» με προσυμπληρωμένο ένα-βήμα checkout.</div>
+    </div>
+  </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showRationale&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Εμφάνιση&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    return { showRationale: this.props.showRationale ?? true };
+  }
+}
+</script>
+</body>
+</html>

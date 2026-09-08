@@ -1,7 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    remotePatterns: [{ protocol: "https", hostname: "www.euronics.gr" }],
+    formats: ["image/avif", "image/webp"],
+  },
+  typedRoutes: false,
 };
 
 export default nextConfig;

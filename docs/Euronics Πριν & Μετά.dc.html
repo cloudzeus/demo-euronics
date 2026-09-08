@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  body { margin: 0; background: #e9eaee; }
+  a { color: #143a85; text-decoration: none; border-bottom: 1px solid #ffd200; }
+  a:hover { color: #0e2a63; }
+</style>
+</helmet>
+
+<div style="max-width:1420px;margin:0 auto;padding:40px 32px 80px;font-family:'Source Sans 3',sans-serif">
+
+  <div style="background:#0e1726;color:#fff;padding:34px 38px;border-top:8px solid #ffd200;margin-bottom:30px">
+    <div style="font:700 12px/1 'Source Sans 3',sans-serif;letter-spacing:.16em;color:#ffd200;margin-bottom:16px">EURONICS.GR · ΠΡΙΝ &amp; ΜΕΤΑ</div>
+    <h1 style="font:700 40px/1.08 'Source Serif 4',serif;margin:0 0 14px;letter-spacing:-.015em">Μία μία οι αλλαγές,<br />πάνω στο σημερινό site</h1>
+    <p style="font:400 14.5px/1.6 'Source Sans 3',sans-serif;color:#b9c0cd;margin:0;max-width:44em">Κάθε τύπος σελίδας ανακατασκευασμένος όπως είναι σήμερα — με τα πραγματικά assets του euronics.gr — και αριθμημένες παρατηρήσεις πάνω στο layout. Πρώτα οι <strong style="color:#fff">γενικές αλλαγές</strong> που αφορούν όλο το site, μετά οι <strong style="color:#fff">ειδικές</strong> ανά σελίδα.</p>
+    <div style="display:flex;gap:22px;flex-wrap:wrap;margin-top:22px;font:400 12px/1.5 'Source Sans 3',sans-serif;color:#b9c0cd">
+      <div style="display:flex;align-items:center;gap:8px"><span style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:#ffd200;color:#0e1726;font:700 11px/1 'Source Sans 3',sans-serif">3</span> σημείο πάνω στο layout</div>
+      <div style="display:flex;align-items:center;gap:8px"><span style="background:#143a85;color:#fff;padding:4px 9px;border-radius:3px;font:700 10px/1 'Source Sans 3',sans-serif;letter-spacing:.08em">Γ</span> γενική αλλαγή</div>
+      <div style="display:flex;align-items:center;gap:8px"><span style="background:#c0392b;color:#fff;padding:4px 9px;border-radius:3px;font:700 10px/1 'Source Sans 3',sans-serif;letter-spacing:.08em">ΚΡΙΣΙΜΟ</span> μπλοκάρει πώληση ή SEO</div>
+    </div>
+  </div>
+
+  <sc-if value="{{ showGeneral }}" hint-placeholder-val="{{ true }}">
+  <div style="background:#fff;padding:30px 34px;margin-bottom:30px;box-shadow:0 1px 3px rgba(14,23,38,.12)">
+    <div style="font:700 11px/1 'Source Sans 3',sans-serif;letter-spacing:.14em;color:#143a85;margin-bottom:6px">ΜΕΡΟΣ Α</div>
+    <h2 style="font:600 27px/1.2 'Source Serif 4',serif;color:#0e1726;margin:0 0 6px">Γενικές αλλαγές — ισχύουν σε κάθε σελίδα</h2>
+    <p style="font:400 13px/1.6 'Source Sans 3',sans-serif;color:#5b6577;margin:0 0 24px;max-width:52em">Αυτές δεν είναι «βελτιώσεις εμφάνισης». Είναι οι κανόνες που, αν δεν κλειδώσουν πρώτα, θα ξανασπάσουν σε κάθε νέα σελίδα που φτιάχνει το marketing.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:18px">
+      <div style="border:1px solid #dfe3ea;border-left:3px solid #143a85;padding:16px 18px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="background:#143a85;color:#fff;padding:3px 8px;border-radius:3px;font:700 10px/1.4 'Source Sans 3',sans-serif">Γ1</span><span style="background:#c0392b;color:#fff;padding:3px 8px;border-radius:3px;font:700 9.5px/1.4 'Source Sans 3',sans-serif;letter-spacing:.06em">ΚΡΙΣΙΜΟ</span></div>
+        <div style="font:700 15px/1.35 'Source Sans 3',sans-serif;color:#0e1726;margin-bottom:7px">Κανένα κείμενο μέσα σε εικόνα</div>
+        <div style="font:400 12.5px/1.6 'Source Sans 3',sans-serif;color:#414b5c">Σήμερα τα 14 promo tiles της αρχικής και τα περισσότερα banners είναι PNG με ενσωματωμένο κείμενο: αόρατα στη Google, μη μεταφράσιμα, χωρίς alt, αδύνατον να προσαρμοστούν σε mobile. <strong>Μετά:</strong> εικόνα + HTML κείμενο σε ξεχωριστά πεδία CMS, art direction ανά breakpoint.</div>
+      </div>
+      <div style="border:1px solid #dfe3ea;border-left:3px solid #143a85;padding:16px 18px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="background:#143a85;color:#fff;padding:3px 8px;border-radius:3px;font:700 10px/1.4 'Source Sans 3',sans-serif">Γ2</span><span style="background:#c0392b;color:#fff;padding:3px 8px;border-radius:3px;font:700 9.5px/1.4 'Source Sans 3',sans-serif;letter-spacing:.06em">ΚΡΙΣΙΜΟ</span></div>
+        <div style="font:700 15px/1.35 'Source Sans 3',sans-serif;color:#0e1726;margin-bottom:7px">Η τιμή γίνεται ένα component</div>
+        <div style="font:400 12.5px/1.6 'Source Sans 3',sans-serif;color:#414b5c">Σήμερα η ίδια τιμή εμφανίζεται με τρεις μορφές («TIMH ESHOP €249,00», «€449,00 €499,00», «Παλαιά τιμή:»), χωρίς ποσοστό έκπτωσης και χωρίς την υποχρεωτική αναφορά χαμηλότερης τιμής 30 ημερών. <strong>Μετά:</strong> ένα <em>Price</em> component — τιμή, παλαιά, −%, ν.4177 — παντού ίδιο.</div>
+      </div>
+      <div style="border:1px solid #dfe3ea;border-left:3px solid #143a85;padding:16px 18px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="background:#143a85;color:#fff;padding:3px 8px;border-radius:3px;font:700 10px/1.4 'Source Sans 3',sans-serif">Γ3</span></div>
+        <div style="font:700 15px/1.35 'Source Sans 3',sans-serif;color:#0e1726;margin-bottom:7px">Η διαθεσιμότητα γίνεται σήμα, όχι πρόταση</div>
+        <div style="font:400 12.5px/1.6 'Source Sans 3',sans-serif;color:#414b5c">«Άμεσα Διαθέσιμο», «Διαθέσιμο σε 2-4 εργάσιμες ημέρες», «Διαθέσιμο κατόπιν παραγγελίας» είναι σκέτο γκρι κείμενο, ισοβαρές με την περιγραφή. <strong>Μετά:</strong> <em>StockPill</em> με χρώμα + εικονίδιο + πραγματική ημερομηνία παράδοσης.</div>
+      </div>
+      <div style="border:1px solid #dfe3ea;border-left:3px solid #143a85;padding:16px 18px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="background:#143a85;color:#fff;padding:3px 8px;border-radius:3px;font:700 10px/1.4 'Source Sans 3',sans-serif">Γ4</span><span style="background:#c0392b;color:#fff;padding:3px 8px;border-radius:3px;font:700 9.5px/1.4 'Source Sans 3',sans-serif;letter-spacing:.06em">ΚΡΙΣΙΜΟ</span></div>
+        <div style="font:700 15px/1.35 'Source Sans 3',sans-serif;color:#0e1726;margin-bottom:7px">Οι δόσεις παύουν να είναι κενές</div>
+        <div style="font:400 12.5px/1.6 'Source Sans 3',sans-serif;color:#414b5c">Στη σελίδα προϊόντος γράφει κυριολεκτικά «Πιστωτική κάρτα από __ το μήνα» και «Δόσεις χωρίς κάρτα από __ το μήνα». Το ισχυρότερο επιχείρημα της Euronics εμφανίζεται σπασμένο. <strong>Μετά:</strong> <em>InstallmentCalculator</em> με υπολογισμένα ποσά, tabs, όρους σε modal.</div>
+      </div>
+      <div style="border:1px solid #dfe3ea;border-left:3px solid #143a85;padding:16px 18px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="background:#143a85;color:#fff;padding:3px 8px;border-radius:3px;font:700 10px/1.4 'Source Sans 3',sans-serif">Γ5</span></div>
+        <div style="font:700 15px/1.35 'Source Sans 3',sans-serif;color:#0e1726;margin-bottom:7px">Ένα mega-menu που δεν κατεβαίνει ολόκληρο</div>
+        <div style="font:400 12.5px/1.6 'Source Sans 3',sans-serif;color:#414b5c">Κάθε σελίδα στέλνει ~200 links τριών επιπέδων, μαζί με ορατά «Back» items — βάρος, θόρυβος για screen readers, αδύνατη σάρωση από τον χρήστη. <strong>Μετά:</strong> 9 top-level στο HTML, panels lazy ανά κατηγορία με prefetch σε hover intent.</div>
+      </div>
+      <div style="border:1px solid #dfe3ea;border-left:3px solid #143a85;padding:16px 18px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="background:#143a85;color:#fff;padding:3px 8px;border-radius:3px;font:700 10px/1.4 'Source Sans 3',sans-serif">Γ6</span><span style="background:#c0392b;color:#fff;padding:3px 8px;border-radius:3px;font:700 9.5px/1.4 'Source Sans 3',sans-serif;letter-spacing:.06em">ΚΡΙΣΙΜΟ</span></div>
+        <div style="font:700 15px/1.35 'Source Sans 3',sans-serif;color:#0e1726;margin-bottom:7px">Υποδομή SEO από το μηδέν</div>
+        <div style="font:400 12.5px/1.6 'Source Sans 3',sans-serif;color:#414b5c">Κενά <em>meta description</em> και <em>keywords</em> σε αρχική, κατηγορίες και CMS σελίδες· τίτλοι της μορφής «euronics. Τηλεοράσεις»· κανένα structured data. <strong>Μετά:</strong> Metadata API ανά route, JSON-LD (Product, BreadcrumbList, LocalBusiness, FAQPage), δυναμικά sitemaps, canonical &amp; robots κανόνες στα facets.</div>
+      </div>
+      <div style="border:1px solid #dfe3ea;border-left:3px solid #143a85;padding:16px 18px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="background:#143a85;color:#fff;padding:3px 8px;border-radius:3px;font:700 10px/1.4 'Source Sans 3',sans-serif">Γ7</span></div>
+        <div style="font:700 15px/1.35 'Source Sans 3',sans-serif;color:#0e1726;margin-bottom:7px">Εικόνες, γραμματοσειρές, ταχύτητα</div>
+        <div style="font:400 12.5px/1.6 'Source Sans 3',sans-serif;color:#414b5c">Σήμερα JPEG/PNG σταθερού μεγέθους (<em>_480</em>, <em>_650</em>, <em>_1000</em>), lazy placeholders σε base64 GIF, jQuery stack. <strong>Μετά:</strong> AVIF/WebP με σωστά <em>sizes</em>, blur placeholder, <em>priority</em> μόνο στο LCP, budget στο CI (LCP &lt;2s, CLS &lt;0,05).</div>
+      </div>
+      <div style="border:1px solid #dfe3ea;border-left:3px solid #143a85;padding:16px 18px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="background:#143a85;color:#fff;padding:3px 8px;border-radius:3px;font:700 10px/1.4 'Source Sans 3',sans-serif">Γ8</span></div>
+        <div style="font:700 15px/1.35 'Source Sans 3',sans-serif;color:#0e1726;margin-bottom:7px">Καθαριότητα: ό,τι δεν είναι Euronics, φεύγει</div>
+        <div style="font:400 12.5px/1.6 'Source Sans 3',sans-serif;color:#414b5c">Στο top bar υπάρχουν social links προς λογαριασμούς <em>nopCommerce</em>, στο footer «© euronics 2020», και cookie banner με μόνο κουμπί «OK». <strong>Μετά:</strong> σωστά social, δυναμικό έτος, συμβατός <em>ConsentManager</em> (αποδοχή / απόρριψη / ρυθμίσεις).</div>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <div style="font:700 11px/1 'Source Sans 3',sans-serif;letter-spacing:.14em;color:#143a85;margin:44px 0 8px">ΜΕΡΟΣ Β</div>
+  <h2 style="font:600 27px/1.2 'Source Serif 4',serif;color:#0e1726;margin:0 0 26px">Ειδικές αλλαγές, σελίδα προς σελίδα</h2>
+
+  <!-- ===== HEADER / SHELL ===== -->
+  <div style="background:#fff;padding:26px 30px 30px;margin-bottom:26px;box-shadow:0 1px 3px rgba(14,23,38,.12)">
+    <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:18px;padding-bottom:14px;border-bottom:2px solid #ffd200">
+      <div style="font:700 22px/1.2 'Source Serif 4',serif;color:#0e1726">1 · Header, mega-menu, footer</div>
+      <div style="font:400 12px/1.4 'Source Sans 3',sans-serif;color:#5b6577">εμφανίζεται σε κάθε σελίδα του site</div>
+    </div>
+    <div style="display:flex;gap:26px;flex-wrap:wrap">
+      <sc-if value="{{ showFrames }}" hint-placeholder-val="{{ true }}">
+      <div style="width:640px;flex:0 0 640px">
+        <div style="font:600 10px/1 'Source Sans 3',sans-serif;letter-spacing:.12em;color:#5b6577;margin-bottom:8px">ΠΡΙΝ · ανακατασκευή τρέχοντος layout</div>
+        <div style="position:relative;border:1px solid #cfd5df;background:#fff;overflow:hidden">
+          <div style="background:#f2f2f2;padding:6px 12px;display:flex;justify-content:space-between;align-items:center;font:400 9px/1.4 'Source Sans 3',sans-serif;color:#666;border-bottom:1px solid #e2e2e2">
+            <div style="display:flex;gap:9px"><span>X</span><span>f</span><span>▶</span><span>RSS</span></div>
+            <div>ΤΗΛΕΦΩΝΙΚΕΣ ΠΑΡΑΓΓΕΛΙΕΣ 210 483 5143</div>
+          </div>
+          <div style="padding:12px 14px;display:flex;align-items:center;justify-content:space-between">
+            <img src="https://www.euronics.gr/images/thumbs/0000229_logo.png" alt="euronics" referrerpolicy="no-referrer" style="height:26px;width:auto;display:block" />
+            <div style="display:flex;gap:16px;align-items:center;font:400 10px/1.4 'Source Sans 3',sans-serif;color:#555">
+              <span>🔍</span><span>♡ 0</span><span>👤 Σύνδεση</span><span>🛒 0</span>
+            </div>
+          </div>
+          <div style="background:#1a1a1a;color:#fff;display:flex;gap:20px;padding:9px 14px;font:600 9.5px/1.4 'Source Sans 3',sans-serif;letter-spacing:.04em">
+            <span>ΠΡΟΪΟΝΤΑ ▾</span><span>EURONICS ▾</span><span>ΚΑΤΑΣΤΗΜΑΤΑ</span><span>ΥΠΗΡΕΣΙΕΣ</span><span>ΤΑ ΝΕΑ ΜΑΣ ▾</span><span>ΕΠΙΚΟΙΝΩΝΙΑ</span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e6e6e6;padding:1px">
+            <div style="background:#fafafa;padding:8px;font:400 8.5px/1.5 'Source Sans 3',sans-serif;color:#777">Back<br />Εικόνα και Ήχος<br />Τηλεοράσεις &amp; Αξεσουάρ<br />Back<br />Τηλεοράσεις<br />Βάσεις TV<br />Έπιπλα TV<br />Home Cinema<br />Back<br />Set Home Cinema…</div>
+            <div style="background:#fafafa;padding:8px;font:400 8.5px/1.5 'Source Sans 3',sans-serif;color:#777">Imaging<br />Back<br />Φωτογραφικές Μηχανές<br />Compact<br />DSLR<br />Θήκες Φωτογραφικής<br />Βιντεοκάμερες<br />Back<br />Action<br />Κάρτες Μνήμης…</div>
+            <div style="background:#fafafa;padding:8px;font:400 8.5px/1.5 'Source Sans 3',sans-serif;color:#777">Computing<br />Back<br />Laptops-Tablets-iPad<br />Storage-HDD-Sticks<br />Desktop Computers<br />Περιφερειακά PC<br />Ποντίκια<br />Πληκτρολόγια<br />Web Cams…</div>
+            <div style="background:#fafafa;padding:8px;font:400 8.5px/1.5 'Source Sans 3',sans-serif;color:#777">Λευκές Συσκευές<br />Back<br />Ψυγεία<br />Ψυγειοκαταψύκτες<br />Ντουλάπες &amp; Side by Side<br />Καταψύκτες<br />Πλυντήρια<br />Κουζίνες…</div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#fff;border-top:1px solid #e6e6e6">
+            <div style="padding:10px 8px;text-align:center;font:400 8.5px/1.4 'Source Sans 3',sans-serif;color:#555"><div style="height:16px;background:#eee;width:16px;margin:0 auto 5px;border-radius:50%"></div><strong>Πληρώνεις ...όπως θες!</strong><br />Με δόσεις χωρίς κάρτα</div>
+            <div style="padding:10px 8px;text-align:center;font:400 8.5px/1.4 'Source Sans 3',sans-serif;color:#555"><div style="height:16px;background:#eee;width:16px;margin:0 auto 5px;border-radius:50%"></div><strong>Δωρεάν μεταφορά</strong><br />σε όλη την Ελλάδα</div>
+            <div style="padding:10px 8px;text-align:center;font:400 8.5px/1.4 'Source Sans 3',sans-serif;color:#555"><div style="height:16px;background:#eee;width:16px;margin:0 auto 5px;border-radius:50%"></div><strong>Εγγυημένες αγορές</strong><br />εργοστασιακή εγγύηση</div>
+            <div style="padding:10px 8px;text-align:center;font:400 8.5px/1.4 'Source Sans 3',sans-serif;color:#555"><div style="height:16px;background:#eee;width:16px;margin:0 auto 5px;border-radius:50%"></div><strong>Δωρεάν φύλαξη</strong><br />παράλαβε όταν θες</div>
+          </div>
+          <div style="background:#333;color:#8d8d8d;padding:10px 14px;font:400 8.5px/1.5 'Source Sans 3',sans-serif;display:flex;justify-content:space-between">
+            <span>© euronics 2020 · Όροι Χρήσης · Πολιτική Απορρήτου</span>
+            <span>Powered by nopCommerce</span>
+          </div>
+          <div style="position:absolute;top:6px;left:12px;width:22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.35)">5</div>
+          <div style="position:absolute;top:44px;right:150px;width:22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.35)">1</div>
+          <div style="position:absolute;top:44px;right:22px;width:22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.35)">2</div>
+          <div style="position:absolute;top:150px;left:14px;width:22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.35)">3</div>
+          <div style="position:absolute;bottom:74px;left:14px;width:22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.35)">4</div>
+          <div style="position:absolute;bottom:12px;left:14px;width:22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.35)">6</div>
+        </div>
+      </div>
+      </sc-if>
+      <div style="flex:1;min-width:400px">
+        <div style="display:flex;gap:11px;padding:11px 0;border-bottom:1px solid #eceff4"><span style="flex:0 0 22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center">1</span><div><div style="font:700 13.5px/1.4 'Source Sans 3',sans-serif;color:#0e1726">Η αναζήτηση βγαίνει από το εικονίδιο</div><div style="font:400 12px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Σήμερα κρύβεται πίσω από 🔍 και δεν έχει autocomplete. <strong style="color:#143a85">Μετά:</strong> μόνιμο πεδίο πλήρους πλάτους με <em>SearchCommand</em> — 4 ομάδες αποτελεσμάτων (προϊόντα, κατηγορίες, brands, οδηγοί), εικόνα &amp; τιμή στο dropdown, ανοχή σε greeklish και ορθογραφικά.</div></div></div>
+        <div style="display:flex;gap:11px;padding:11px 0;border-bottom:1px solid #eceff4"><span style="flex:0 0 22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center">2</span><div><div style="font:700 13.5px/1.4 'Source Sans 3',sans-serif;color:#0e1726">Το καλάθι απαντά</div><div style="font:400 12px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Τώρα είναι απλό link στο /cart και μετά την προσθήκη δεν συμβαίνει τίποτα ορατό. <strong style="color:#143a85">Μετά:</strong> <em>MiniCartSheet</em> με optimistic προσθήκη, σύνολο, δόση/μήνα, μπάρα «σου λείπουν X€ για δωρεάν μεταφορά» και ένα upsell.</div></div></div>
+        <div style="display:flex;gap:11px;padding:11px 0;border-bottom:1px solid #eceff4"><span style="flex:0 0 22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center">3</span><div><div style="font:700 13.5px/1.4 'Source Sans 3',sans-serif;color:#0e1726">Το δέντρο των ~200 links φεύγει από το HTML <span style="background:#c0392b;color:#fff;padding:2px 6px;border-radius:3px;font:700 9px/1.4 'Source Sans 3',sans-serif;vertical-align:2px">ΚΡΙΣΙΜΟ</span></div><div style="font:400 12px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Τρία επίπεδα με ορατά «Back» items σε κάθε σελίδα. <strong style="color:#143a85">Μετά:</strong> panel ανά κατηγορία με προτεινόμενες υποκατηγορίες, ένα εμπορικό visual, «δημοφιλή» και «νέες αφίξεις» — και πλήρης πλοήγηση με πληκτρολόγιο.</div></div></div>
+        <div style="display:flex;gap:11px;padding:11px 0;border-bottom:1px solid #eceff4"><span style="flex:0 0 22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center">4</span><div><div style="font:700 13.5px/1.4 'Source Sans 3',sans-serif;color:#0e1726">Τα 4 USP σταματούν να αλλάζουν κείμενο</div><div style="font:400 12px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Στην αρχική γράφει «Με δόσεις χωρίς κάρτα, κατάθεση, χρεωστική…», στην κατηγορία «Με κατάθεση, χρεωστική ή πιστωτική» — δύο διαφορετικές υποσχέσεις. <strong style="color:#143a85">Μετά:</strong> ένα <em>TrustStrip</em> widget, μία πηγή αλήθειας, κάθε slot με link σε αντίστοιχη σελίδα υπηρεσίας.</div></div></div>
+        <div style="display:flex;gap:11px;padding:11px 0;border-bottom:1px solid #eceff4"><span style="flex:0 0 22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center">5</span><div><div style="font:700 13.5px/1.4 'Source Sans 3',sans-serif;color:#0e1726">Τα social του top bar δείχνουν στο nopCommerce</div><div style="font:400 12px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Κυριολεκτικά twitter.com/nopCommerce, facebook.com/nopCommerce, youtube/user/nopCommerce. <strong style="color:#143a85">Μετά:</strong> αφαίρεση του top bar· τα σωστά κανάλια μόνο στο footer, με το τηλέφωνο παραγγελιών να ανεβαίνει σε ορατό σημείο του header.</div></div></div>
+        <div style="display:flex;gap:11px;padding:11px 0"><span style="flex:0 0 22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center">6</span><div><div style="font:700 13.5px/1.4 'Source Sans 3',sans-serif;color:#0e1726">Footer: «© euronics 2020» και διπλά links</div><div style="font:400 12px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Ξεπερασμένο copyright, δύο διαφορετικά URL για τα καταστήματα, δύο φόρμες newsletter στην ίδια σελίδα. <strong style="color:#143a85">Μετά:</strong> 4 CMS στήλες, ένα newsletter, ένα URL καταστημάτων, badges πληρωμής, δυναμικό έτος.</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== HOME ===== -->
+  <div style="background:#fff;padding:26px 30px 30px;margin-bottom:26px;box-shadow:0 1px 3px rgba(14,23,38,.12)">
+    <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:18px;padding-bottom:14px;border-bottom:2px solid #ffd200">
+      <div style="font:700 22px/1.2 'Source Serif 4',serif;color:#0e1726">2 · Αρχική</div>
+      <div style="font:400 12px/1.4 'Source Sans 3',sans-serif;color:#5b6577">euronics.gr</div>
+    </div>
+    <div style="display:flex;gap:26px;flex-wrap:wrap">
+      <sc-if value="{{ showFrames }}" hint-placeholder-val="{{ true }}">
+      <div style="width:640px;flex:0 0 640px">
+        <div style="font:600 10px/1 'Source Sans 3',sans-serif;letter-spacing:.12em;color:#5b6577;margin-bottom:8px">ΠΡΙΝ · με τα πραγματικά assets της αρχικής</div>
+        <div style="position:relative;border:1px solid #cfd5df;background:#fff;overflow:hidden">
+          <img src="https://www.euronics.gr/images/thumbs/11354351_26-00522-SUM26-S_SiteHeader-1920x400.jpeg" alt="Τρέχον hero banner euronics" referrerpolicy="no-referrer" style="width:100%;display:block" />
+          <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px;padding:8px">
+            <img src="https://www.euronics.gr/images/thumbs/7911179_SamsungVisionAI_LaunchKV.png" alt="promo tile" referrerpolicy="no-referrer" style="width:100%;aspect-ratio:1;object-fit:cover;display:block;background:#f0f0f0" />
+            <div style="aspect-ratio:1;background:#eceff4;display:flex;align-items:center;justify-content:center;text-align:center;font:700 8px/1.3 'Source Sans 3',sans-serif;color:#8a93a3;padding:4px">PNG με<br />κείμενο μέσα</div>
+            <div style="aspect-ratio:1;background:#eceff4;display:flex;align-items:center;justify-content:center;text-align:center;font:700 8px/1.3 'Source Sans 3',sans-serif;color:#8a93a3;padding:4px">PNG με<br />κείμενο μέσα</div>
+            <div style="aspect-ratio:1;background:#eceff4;display:flex;align-items:center;justify-content:center;text-align:center;font:700 8px/1.3 'Source Sans 3',sans-serif;color:#8a93a3;padding:4px">PNG με<br />κείμενο μέσα</div>
+            <div style="aspect-ratio:1;background:#eceff4;display:flex;align-items:center;justify-content:center;text-align:center;font:700 8px/1.3 'Source Sans 3',sans-serif;color:#8a93a3;padding:4px">+10 ακόμη</div>
+          </div>
+          <div style="text-align:center;font:700 12px/1 'Source Sans 3',sans-serif;color:#333;padding:10px 0 8px;letter-spacing:.04em">ΠΡΟΤΑΣΕΙΣ ΔΡΟΣΙΑΣ</div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:0 8px 10px">
+            <div style="border:1px solid #eee;padding:6px;text-align:center"><div style="height:56px;background:#f6f6f6;margin-bottom:5px"></div><div style="font:400 7.5px/1.35 'Source Sans 3',sans-serif;color:#444;height:26px;overflow:hidden">INVENTOR IKURA IKUI/IKUO-12WFI Inverter Κλιματιστικό</div><div style="font:400 8px/1.3 'Source Sans 3',sans-serif;color:#111">€449,00 <span style="color:#999">€499,00</span></div></div>
+            <div style="border:1px solid #eee;padding:6px;text-align:center"><div style="height:56px;background:#f6f6f6;margin-bottom:5px"></div><div style="font:400 7.5px/1.35 'Source Sans 3',sans-serif;color:#444;height:26px;overflow:hidden">TOYOTOMI GTN/GTG-09CMB Gosai Shadow Black</div><div style="font:400 8px/1.3 'Source Sans 3',sans-serif;color:#111">€569,00 <span style="color:#999">€679,00</span></div></div>
+            <div style="border:1px solid #eee;padding:6px;text-align:center"><div style="height:56px;background:#f6f6f6;margin-bottom:5px"></div><div style="font:400 7.5px/1.35 'Source Sans 3',sans-serif;color:#444;height:26px;overflow:hidden">WINSTAR WST-09WFi/09WFo Inverter Κλιματιστικό</div><div style="font:400 8px/1.3 'Source Sans 3',sans-serif;color:#111">€299,00 <span style="color:#999">€379,00</span></div></div>
+            <div style="border:1px solid #eee;padding:6px;text-align:center"><div style="height:56px;background:#f6f6f6;margin-bottom:5px"></div><div style="font:400 7.5px/1.35 'Source Sans 3',sans-serif;color:#444;height:26px;overflow:hidden">TOYOTOMI GTN/GTG-24CMW AI White Inverter</div><div style="font:400 8px/1.3 'Source Sans 3',sans-serif;color:#111">€1049,00 <span style="color:#999">€1379,00</span></div></div>
+          </div>
+          <div style="border-top:1px solid #eee;padding:10px 8px"><div style="font:700 10px/1 'Source Sans 3',sans-serif;color:#333;margin-bottom:7px">BLOG</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px"><div style="height:44px;background:#f6f6f6"></div><div style="height:44px;background:#f6f6f6"></div><div style="height:44px;background:#f6f6f6"></div></div></div>
+          <div style="background:#f2f2f2;padding:12px;text-align:center;font:400 9px/1.4 'Source Sans 3',sans-serif;color:#666">ΕΓΓΡΑΦΗ NEWSLETTER — <em>Περιμένετε...</em></div>
+          <div style="position:absolute;top:12px;left:12px;width:22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.35)">1</div>
+          <div style="position:absolute;top:180px;left:12px;width:22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.35)">2</div>
+          <div style="position:absolute;top:268px;right:12px;width:22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.35)">3</div>
+          <div style="position:absolute;bottom:104px;left:12px;width:22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.35)">4</div>
+          <div style="position:absolute;bottom:34px;left:12px;width:22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.35)">5</div>
+        </div>
+      </div>
+      </sc-if>
+      <div style="flex:1;min-width:400px">
+        <div style="display:flex;gap:11px;padding:11px 0;border-bottom:1px solid #eceff4"><span style="flex:0 0 22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center">1</span><div><div style="font:700 13.5px/1.4 'Source Sans 3',sans-serif;color:#0e1726">Το hero γίνεται εμπορικό, όχι αφίσα</div><div style="font:400 12px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Σήμερα ένα JPEG 1920×400 με όλο το μήνυμα ζωγραφισμένο μέσα και ένα link. <strong style="color:#143a85">Μετά:</strong> <em>HeroSlider</em> με ξεχωριστά πεδία eyebrow / τίτλος / υπότιτλος / δύο CTA, διαφορετική εικόνα σε mobile, GSAP timeline, autoplay μόνο κατ' επιλογή.</div></div></div>
+        <div style="display:flex;gap:11px;padding:11px 0;border-bottom:1px solid #eceff4"><span style="flex:0 0 22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center">2</span><div><div style="font:700 13.5px/1.4 'Source Sans 3',sans-serif;color:#0e1726">Τα 14 promo PNG γίνονται PromoMosaic <span style="background:#c0392b;color:#fff;padding:2px 6px;border-radius:3px;font:700 9px/1.4 'Source Sans 3',sans-serif;vertical-align:2px">ΚΡΙΣΙΜΟ</span></div><div style="font:400 12px/1.55 'Source Sans 3',sans-serif;color:#5b6577">14 τετράγωνα 1000×1000 με κείμενο μέσα, ίδιο μέγεθος και ίδιο βάρος — τίποτα δεν ξεχωρίζει, τίποτα δεν διαβάζεται από μηχανή. <strong style="color:#143a85">Μετά:</strong> mosaic με ιεραρχία (1 μεγάλο + 4 μικρά), κείμενο σε HTML, προγραμματισμό εμφάνισης/λήξης ανά tile.</div></div></div>
+        <div style="display:flex;gap:11px;padding:11px 0;border-bottom:1px solid #eceff4"><span style="flex:0 0 22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center">3</span><div><div style="font:700 13.5px/1.4 'Source Sans 3',sans-serif;color:#0e1726">Το rail προϊόντων παύει να είναι χειροκίνητο</div><div style="font:400 12px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Το «ΠΡΟΤΑΣΕΙΣ ΔΡΟΣΙΑΣ» είναι στατική λίστα· τον Νοέμβριο θα δείχνει ακόμη κλιματιστικά ψύξης. <strong style="color:#143a85">Μετά:</strong> <em>ProductRail</em> με δυναμική πηγή (κατηγορία / tag / αποθηκευμένη αναζήτηση / bestsellers 30 ημερών) και δυνατότητα pin συγκεκριμένων SKU.</div></div></div>
+        <div style="display:flex;gap:11px;padding:11px 0;border-bottom:1px solid #eceff4"><span style="flex:0 0 22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center">4</span><div><div style="font:700 13.5px/1.4 'Source Sans 3',sans-serif;color:#0e1726">Λείπουν οι είσοδοι στις κατηγορίες και στα καταστήματα</div><div style="font:400 12px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Η αρχική δεν προσφέρει καμία διαδρομή προς τις 9 κατηγορίες παρά μόνο μέσα από το mega-menu, ούτε αναδεικνύει το δίκτυο 350 καταστημάτων. <strong style="color:#143a85">Μετά:</strong> <em>CategoryQuickNav</em> κάτω από το hero, <em>StoreFinderTeaser</em> με γεωεντοπισμό, <em>ServicesTeaser</em> για τις 12 υπηρεσίες.</div></div></div>
+        <div style="display:flex;gap:11px;padding:11px 0"><span style="flex:0 0 22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center">5</span><div><div style="font:700 13.5px/1.4 'Source Sans 3',sans-serif;color:#0e1726">Δύο φόρμες newsletter με «Περιμένετε...»</div><div style="font:400 12px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Η ίδια σελίδα έχει δύο ξεχωριστές εγγραφές, και οι δύο εμφανίζουν μόνιμα το κείμενο φόρτωσης. <strong style="color:#143a85">Μετά:</strong> μία <em>NewsletterBand</em> με server action, inline validation, διπλή συγκατάθεση και σαφές κέρδος («πρώτος στις προσφορές»).</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PLP ===== -->
+  <div style="background:#fff;padding:26px 30px 30px;margin-bottom:26px;box-shadow:0 1px 3px rgba(14,23,38,.12)">
+    <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:18px;padding-bottom:14px;border-bottom:2px solid #ffd200">
+      <div style="font:700 22px/1.2 'Source Serif 4',serif;color:#0e1726">3 · Λίστα προϊόντων</div>
+      <div style="font:400 12px/1.4 'Source Sans 3',sans-serif;color:#5b6577">δείγμα: /τηλεοράσεις — 200+ προϊόντα, 20 σελίδες, 13 ομάδες φίλτρων</div>
+    </div>
+    <div style="display:flex;gap:26px;flex-wrap:wrap">
+      <sc-if value="{{ showFrames }}" hint-placeholder-val="{{ true }}">
+      <div style="width:640px;flex:0 0 640px">
+        <div style="font:600 10px/1 'Source Sans 3',sans-serif;letter-spacing:.12em;color:#5b6577;margin-bottom:8px">ΠΡΙΝ · ανακατασκευή τρέχοντος layout</div>
+        <div style="position:relative;border:1px solid #cfd5df;background:#fff;overflow:hidden">
+          <div style="padding:8px 10px;font:400 8.5px/1.4 'Source Sans 3',sans-serif;color:#888">Αρχική &gt; ΠΡΟΪΟΝΤΑ &gt; Εικόνα και Ήχος &gt; Τηλεοράσεις &amp; Αξεσουάρ &gt; <strong style="color:#333">Τηλεοράσεις</strong></div>
+          <div style="font:700 17px/1 'Source Serif 4',serif;color:#222;padding:0 10px 8px">Τηλεοράσεις</div>
+          <img src="https://www.euronics.gr/images/thumbs/5237386_EVO%20G4%201048x400_mega.jpeg" alt="Banner κατηγορίας" referrerpolicy="no-referrer" style="width:calc(100% - 20px);margin:0 10px;display:block;background:#f0f0f0" />
+          <div style="display:flex;gap:10px;padding:10px">
+            <div style="flex:0 0 150px">
+              <div style="font:700 9px/1.4 'Source Sans 3',sans-serif;color:#333;border-bottom:1px solid #eee;padding-bottom:4px;margin-bottom:6px">Filter by: <span style="color:#888;font-weight:400">Clear All</span></div>
+              <div style="font:400 8px/1.5 'Source Sans 3',sans-serif;color:#666">
+                <strong style="color:#333">Εύρος τιμών</strong><br />119 —————— 24999<br /><br />
+                <strong style="color:#333">Εταιρία</strong><br />☐ HISENSE ☐ KYDOS ☐ LG<br />☐ METZ ☐ SAMSUNG ☐ TCL<br /><br />
+                <strong style="color:#333">Εύρος Οθόνης</strong><br />☐ 100 ☐ 24 ☐ 32 ☐ 40 ☐ 42<br />☐ 43 ☐ 48 ☐ 50 ☐ 55 ☐ 60…<br /><br />
+                <strong style="color:#333">Λειτουργία ξενοδοχείου</strong><br />☐ ΝΑΙ ☐ ΟΧΙ<br /><br />
+                <strong style="color:#333">USB Cloning</strong><br />☐ ΟΧΙ<br /><br />
+                <strong style="color:#333">Bluetooth Music Player</strong><br />☐ ΝΑΙ ☐ ΟΧΙ<br /><br />
+                <em style="color:#c0392b">Showing  of  results</em>
+              </div>
+            </div>
+            <div style="flex:1">
+              <div style="display:flex;justify-content:space-between;font:400 8px/1.4 'Source Sans 3',sans-serif;color:#777;border-bottom:1px solid #eee;padding-bottom:5px;margin-bottom:7px"><span>Προβολή ως Πλέγμα | Λίστα</span><span>Ταξινόμηση: Κορυφαίες επιλογές πρώτα ▾</span></div>
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:7px">
+                <div style="text-align:center"><div style="width:100%;aspect-ratio:1;background:#f6f6f6;display:flex;align-items:center;justify-content:center;font:600 7px/1.3 'Source Sans 3',sans-serif;color:#a8b0bd">εικόνα προϊόντος</div><div style="font:400 7.5px/1.3 'Source Sans 3',sans-serif;color:#0645ad;height:20px;overflow:hidden">LG 32LQ63006LA 32" Τηλεόραση</div><div style="font:400 7px/1.3 'Source Sans 3',sans-serif;color:#888">Διαθέσιμο κατόπιν παραγγελίας</div><div style="font:400 7.5px/1.3 'Source Sans 3',sans-serif;color:#111">TIMH ESHOP €249,00</div></div>
+                <div style="text-align:center"><div style="width:100%;aspect-ratio:1;background:#f6f6f6;display:flex;align-items:center;justify-content:center;font:600 7px/1.3 'Source Sans 3',sans-serif;color:#a8b0bd">εικόνα προϊόντος</div><div style="font:400 7.5px/1.3 'Source Sans 3',sans-serif;color:#0645ad;height:20px;overflow:hidden">LG 32LQ630B6LA 32" Τηλεόραση</div><div style="font:400 7px/1.3 'Source Sans 3',sans-serif;color:#888">Άμεσα Διαθέσιμο</div><div style="font:400 7.5px/1.3 'Source Sans 3',sans-serif;color:#111">TIMH ESHOP €229,00</div></div>
+                <div style="text-align:center"><div style="width:100%;aspect-ratio:1;background:#f6f6f6;display:flex;align-items:center;justify-content:center;font:600 7px/1.3 'Source Sans 3',sans-serif;color:#a8b0bd">εικόνα προϊόντος</div><div style="font:400 7.5px/1.3 'Source Sans 3',sans-serif;color:#0645ad;height:20px;overflow:hidden">LG 32LR60006LA 32" Τηλεόραση</div><div style="font:400 7px/1.3 'Source Sans 3',sans-serif;color:#888">Άμεσα Διαθέσιμο</div><div style="font:400 7.5px/1.3 'Source Sans 3',sans-serif;color:#111">TIMH ESHOP €249,00</div></div>
+                <div style="text-align:center"><div style="width:100%;aspect-ratio:1;background:#f6f6f6;display:flex;align-items:center;justify-content:center;font:600 7px/1.3 'Source Sans 3',sans-serif;color:#a8b0bd">εικόνα προϊόντος</div><div style="font:400 7.5px/1.3 'Source Sans 3',sans-serif;color:#0645ad;height:20px;overflow:hidden">LG 43NANO81A6A 43" Τηλεόραση</div><div style="font:400 7px/1.3 'Source Sans 3',sans-serif;color:#888">Άμεσα Διαθέσιμο</div><div style="font:400 7.5px/1.3 'Source Sans 3',sans-serif;color:#111">TIMH ESHOP €349,00</div></div>
+                <div style="text-align:center"><img src="https://www.euronics.gr/images/thumbs/11004601_480.jpeg" alt="LG 43NANO82T6B" referrerpolicy="no-referrer" style="width:100%;aspect-ratio:1;object-fit:contain;display:block" /><div style="font:400 7.5px/1.3 'Source Sans 3',sans-serif;color:#0645ad;height:20px;overflow:hidden">LG 43NANO82T6B NanoCell 43"</div><div style="font:400 7px/1.3 'Source Sans 3',sans-serif;color:#888">Διαθέσιμο σε 2-4 εργάσιμες ημέρες</div><div style="font:400 7.5px/1.3 'Source Sans 3',sans-serif;color:#111">TIMH ESHOP €349,00</div></div>
+                <div style="text-align:center"><div style="width:100%;aspect-ratio:1;background:#f6f6f6;display:flex;align-items:center;justify-content:center;font:600 7px/1.3 'Source Sans 3',sans-serif;color:#a8b0bd">εικόνα προϊόντος</div><div style="font:400 7.5px/1.3 'Source Sans 3',sans-serif;color:#0645ad;height:20px;overflow:hidden">LG 43QNED70A6A 43" Τηλεόραση</div><div style="font:400 7px/1.3 'Source Sans 3',sans-serif;color:#888">Άμεσα Διαθέσιμο</div><div style="font:400 7.5px/1.3 'Source Sans 3',sans-serif;color:#111">TIMH ESHOP €359,00</div></div>
+              </div>
+              <div style="text-align:center;font:400 8px/1.4 'Source Sans 3',sans-serif;color:#666;padding:9px 0 2px">1 · 2 · 3 · 4 · 5 · Επόμενη · Τελευταία (20)</div>
+            </div>
+          </div>
+          <div style="position:absolute;top:26px;right:12px;width:22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.35)">5</div>
+          <div style="position:absolute;top:270px;left:12px;width:22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.35)">2</div>
+          <div style="position:absolute;bottom:52px;left:12px;width:22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.35)">1</div>
+          <div style="position:absolute;top:250px;right:12px;width:22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.35)">3</div>
+          <div style="position:absolute;bottom:14px;right:12px;width:22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.35)">4</div>
+        </div>
+      </div>
+      </sc-if>
+      <div style="flex:1;min-width:400px">
+        <div style="display:flex;gap:11px;padding:11px 0;border-bottom:1px solid #eceff4"><span style="flex:0 0 22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center">1</span><div><div style="font:700 13.5px/1.4 'Source Sans 3',sans-serif;color:#0e1726">«Showing __ of __ results» και φίλτρα χωρίς URL <span style="background:#c0392b;color:#fff;padding:2px 6px;border-radius:3px;font:700 9px/1.4 'Source Sans 3',sans-serif;vertical-align:2px">ΚΡΙΣΙΜΟ</span></div><div style="font:400 12px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Ο μετρητής αποτελεσμάτων εμφανίζεται κενός και η επιλογή φίλτρων δεν αλλάζει URL: δεν μοιράζεται, δεν μπαίνει σε bookmark, δεν γίνεται καμπάνια. <strong style="color:#143a85">Μετά:</strong> facets σε searchParams (<em>?brand=lg&amp;size=55</em>), counts ανά τιμή, ορατά chips ενεργών φίλτρων με «×», canonical στην καθαρή κατηγορία και indexable landing pages για τα 40 εμπορικά ζεύγη.</div></div></div>
+        <div style="display:flex;gap:11px;padding:11px 0;border-bottom:1px solid #eceff4"><span style="flex:0 0 22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center">2</span><div><div style="font:700 13.5px/1.4 'Source Sans 3',sans-serif;color:#0e1726">13 ομάδες φίλτρων χωρίς ιεραρχία</div><div style="font:400 12px/1.55 'Source Sans 3',sans-serif;color:#5b6577">«Εύρος Οθόνης» με 17 τιμές έχει το ίδιο βάρος με «USB Cloning» που έχει μία μόνο τιμή (ΟΧΙ) και «Λειτουργία ξενοδοχείου». <strong style="color:#143a85">Μετά:</strong> ranking από το CMS ανά κατηγορία — primary πάνω και ανοιχτά, secondary κλειστά, αυτόματη απόκρυψη facet με &lt;2 τιμές ή 0 αποτελέσματα, «top 5 + Δες όλα».</div></div></div>
+        <div style="display:flex;gap:11px;padding:11px 0;border-bottom:1px solid #eceff4"><span style="flex:0 0 22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center">3</span><div><div style="font:700 13.5px/1.4 'Source Sans 3',sans-serif;color:#0e1726">Η κάρτα προϊόντος δεν πουλά</div><div style="font:400 12px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Εικόνα, μπλε υπογραμμισμένος τίτλος, μια γκρι γραμμή διαθεσιμότητας, «TIMH ESHOP €249,00». Καμία έκπτωση σε %, κανένα badge, καμία δόση, κανένα quick-add, καμία σύγκριση. <strong style="color:#143a85">Μετά:</strong> <em>ProductCard</em> με badge −%, <em>StockPill</em>, «από 21€/μήνα», energy label, δεύτερη εικόνα σε hover, checkbox σύγκρισης και quick-add.</div></div></div>
+        <div style="display:flex;gap:11px;padding:11px 0;border-bottom:1px solid #eceff4"><span style="flex:0 0 22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center">4</span><div><div style="font:700 13.5px/1.4 'Source Sans 3',sans-serif;color:#0e1726">20 σελίδες των 10 προϊόντων</div><div style="font:400 12px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Για να δει κάποιος τις 55άρες πρέπει να περάσει 6-7 σελίδες, και με το back χάνει τη θέση του. <strong style="color:#143a85">Μετά:</strong> 24 ανά σελίδα, «Φόρτωσε περισσότερα» με πραγματικά paginated URLs από κάτω (SEO + πληκτρολόγιο), διατήρηση scroll position στο back.</div></div></div>
+        <div style="display:flex;gap:11px;padding:11px 0"><span style="flex:0 0 22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center">5</span><div><div style="font:700 13.5px/1.4 'Source Sans 3',sans-serif;color:#0e1726">Κενό meta description, τίτλος «euronics. Τηλεοράσεις»</div><div style="font:400 12px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Σε όλες τις κατηγορίες. Επιπλέον, οι σελίδες 1ου/2ου επιπέδου («Εικόνα και Ήχος») είναι απλές λίστες χωρίς καθοδήγηση. <strong style="color:#143a85">Μετά:</strong> SEO πεδία ανά κατηγορία με fallback template (αριθμός προϊόντων, εύρος τιμών, brands) και ξεχωριστό template <em>CategoryHub</em> με υποκατηγορίες, «αγόρασε ανά χρήση» και οδηγό αγοράς.</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PDP ===== -->
+  <div style="background:#fff;padding:26px 30px 30px;margin-bottom:26px;box-shadow:0 1px 3px rgba(14,23,38,.12)">
+    <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:18px;padding-bottom:14px;border-bottom:2px solid #ffd200">
+      <div style="font:700 22px/1.2 'Source Serif 4',serif;color:#0e1726">4 · Σελίδα προϊόντος</div>
+      <div style="font:400 12px/1.4 'Source Sans 3',sans-serif;color:#5b6577">δείγμα: INVENTOR IKURA IKUI/IKUO-12WFI — €449 από €499</div>
+    </div>
+    <div style="display:flex;gap:26px;flex-wrap:wrap">
+      <sc-if value="{{ showFrames }}" hint-placeholder-val="{{ true }}">
+      <div style="width:640px;flex:0 0 640px">
+        <div style="font:600 10px/1 'Source Sans 3',sans-serif;letter-spacing:.12em;color:#5b6577;margin-bottom:8px">ΠΡΙΝ · με τις πραγματικές εικόνες του προϊόντος</div>
+        <div style="position:relative;border:1px solid #cfd5df;background:#fff;overflow:hidden">
+          <div style="padding:8px 10px;font:400 8.5px/1.4 'Source Sans 3',sans-serif;color:#888">Αρχική &gt; ΠΡΟΪΟΝΤΑ &gt; Κλιματισμός &amp; Θέρμανση &gt; Air Condition &gt; <strong style="color:#333">Κλιματιστικά Inverter</strong></div>
+          <div style="font:700 15px/1.25 'Source Serif 4',serif;color:#222;padding:0 10px 2px">INVENTOR IKURA IKUI/IKUO-12WFI Inverter Κλιματιστικό</div>
+          <div style="font:400 8px/1.4 'Source Sans 3',sans-serif;color:#999;padding:0 10px 8px">BarCode: 5213013885846 - 154286</div>
+          <div style="display:flex;gap:10px;padding:0 10px 10px">
+            <div style="flex:0 0 210px">
+              <img src="https://www.euronics.gr/images/thumbs/11398500_650.jpeg" alt="INVENTOR IKURA κλιματιστικό" referrerpolicy="no-referrer" style="width:100%;display:block;border:1px solid #eee" />
+              <div style="display:flex;gap:3px;margin-top:4px">
+                <img src="https://www.euronics.gr/images/thumbs/11398500_100.jpeg" alt="" referrerpolicy="no-referrer" style="width:30px;height:30px;object-fit:contain;border:1px solid #eee" />
+                <img src="https://www.euronics.gr/images/thumbs/11398502_100.jpeg" alt="" referrerpolicy="no-referrer" style="width:30px;height:30px;object-fit:contain;border:1px solid #eee" />
+                <img src="https://www.euronics.gr/images/thumbs/11398503_100.jpeg" alt="" referrerpolicy="no-referrer" style="width:30px;height:30px;object-fit:contain;border:1px solid #eee" />
+                <img src="https://www.euronics.gr/images/thumbs/11398505_100.jpeg" alt="" referrerpolicy="no-referrer" style="width:30px;height:30px;object-fit:contain;border:1px solid #eee" />
+                <img src="https://www.euronics.gr/images/thumbs/11398507_100.jpeg" alt="" referrerpolicy="no-referrer" style="width:30px;height:30px;object-fit:contain;border:1px solid #eee" />
+              </div>
+            </div>
+            <div style="flex:1;font:400 7.5px/1.5 'Source Sans 3',sans-serif;color:#555">
+              Με ενεργειακή κλάση Α++, απόδοση 12.000 BTU, ιονιστή, λειτουργία Eco και Follow Me.<br /><br />
+              Eco Drive AI<br />Αθόρυβη Λειτουργία<br />Breeze Away<br />Ροή Αέρα 4 Κατευθύνσεων<br />Λειτουργία Gear<br />Λειτουργία Follow Me<br />Αποστείρωση 56°C<br />Remote On/Off<br />Ιονιστής<br />Wi-Fi Standard με φωνητικές εντολές<br />Φίλτρο HEPA &amp; Τριπλής Δράσης<br />Hotel Menu<br />Χρυσή Προστασία<br /><br />
+              Διαστάσεις (MxBxY) Εσωτ.: 768x300x200<br />Διαστάσεις (MxBxY) Εξωτ.: 709x280x536<br />Καθαρό Βάρος Εσωτ.: 8kg — Εξωτ.: 20,5kg
+            </div>
+            <div style="flex:0 0 150px;font:400 8px/1.5 'Source Sans 3',sans-serif;color:#555;border-left:1px solid #eee;padding-left:9px">
+              <div style="font-weight:700;color:#333">TIMH ESHOP</div>
+              Παλαιά τιμή: <span style="text-decoration:line-through">€499,00</span><br />
+              Τιμή: <strong style="font-size:13px;color:#111">€449,00</strong><br />
+              <span style="color:#999;font-size:7px">εξαιρουμένης της αποστολής</span><br /><br />
+              Ποσότητα: <span style="border:1px solid #ddd;padding:0 5px">1</span> + −<br /><br />
+              <strong style="color:#c0392b">Πιστωτική κάρτα από __ το μήνα</strong><br />
+              <strong style="color:#c0392b">Δόσεις χωρίς κάρτα από __ το μήνα</strong><br /><br />
+              Υπηρεσίες e-support<br /><span style="font-size:7px;color:#888">Υπηρεσίες προστασίας smartphone για 1 έτος 23,90 €. Για να απολαμβάνεις τις συσκευές σου…</span><br /><br />
+              Άμεσα Διαθέσιμο<br />Διαθέσιμο για παραλαβή (σε 1 εώς 3 ημέρες)<br /><br />
+              Βρές ένα κατάστημα που σε εξυπηρετεί:
+            </div>
+          </div>
+          <div style="border-top:1px solid #eee;padding:8px 10px"><div style="font:700 8.5px/1.4 'Source Sans 3',sans-serif;color:#333;margin-bottom:5px">Χαρακτηριστικά</div>
+            <div style="font:700 8px/1.4 'Source Sans 3',sans-serif;color:#333">Προδιαγραφές προϊόντων</div>
+            <div style="font:400 7.5px/1.6 'Source Sans 3',sans-serif;color:#666">Εταιρία INVENTOR · Ονομαστική απόδοση 12.000 · Ενεργειακή Κλάση Ψύξης A++ · Θέρμανσης A+++ · Ιονιστής ΝΑΙ · Συνδεσιμότητα WI-FI · Follow me ΝΑΙ · Ψυκτική 3.5 kW · Θερμική 3.8 kW · Ηχητική 53 DB</div>
+            <div style="font:700 8px/1.4 'Source Sans 3',sans-serif;color:#c0392b;margin-top:6px">Προδιαγραφές προϊόντων <span style="font-weight:400">(ο ίδιος πίνακας, δεύτερη φορά)</span></div>
+            <div style="font:400 7.5px/1.6 'Source Sans 3',sans-serif;color:#666">Εταιρία INVENTOR · Ονομαστική απόδοση 12.000 · Ενεργειακή Κλάση Ψύξης A++ · Θέρμανσης A+++ · Ιονιστής ΝΑΙ · Συνδεσιμότητα WI-FI · Follow me ΝΑΙ · Ψυκτική 3.5 kW · Θερμική 3.8 kW · Ηχητική 53 DB</div>
+          </div>
+          <div style="position:absolute;top:52px;left:12px;width:22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.35)">1</div>
+          <div style="position:absolute;top:56px;left:238px;width:22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.35)">2</div>
+          <div style="position:absolute;top:120px;right:12px;width:22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.35)">3</div>
+          <div style="position:absolute;top:214px;right:12px;width:22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.35)">4</div>
+          <div style="position:absolute;bottom:34px;left:12px;width:22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.35)">5</div>
+        </div>
+      </div>
+      </sc-if>
+      <div style="flex:1;min-width:400px">
+        <div style="display:flex;gap:11px;padding:11px 0;border-bottom:1px solid #eceff4"><span style="flex:0 0 22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center">1</span><div><div style="font:700 13.5px/1.4 'Source Sans 3',sans-serif;color:#0e1726">Η gallery δεν αξιοποιεί τις 6 εικόνες</div><div style="font:400 12px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Μικρή κύρια εικόνα, thumbnails 100px, alt της μορφής «Εικόνα από …», χωρίς zoom, χωρίς lightbox, χωρίς video. <strong style="color:#143a85">Μετά:</strong> <em>MediaGallery</em> sticky με zoom σε hover, lightbox, pinch-zoom σε mobile, υποδοχή για video/360°, ετικέτα ενέργειας ως ξεχωριστό tab και πραγματικά alt.</div></div></div>
+        <div style="display:flex;gap:11px;padding:11px 0;border-bottom:1px solid #eceff4"><span style="flex:0 0 22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center">2</span><div><div style="font:700 13.5px/1.4 'Source Sans 3',sans-serif;color:#0e1726">13 χαρακτηριστικά ως τοίχος κειμένου</div><div style="font:400 12px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Eco Drive AI, Breeze Away, Ιονιστής, HEPA, Hotel Menu… όλα σε μία στοίβα γκρι γραμμών 7px, μαζί με διαστάσεις και βάρη. <strong style="color:#143a85">Μετά:</strong> <em>HighlightGrid</em> — 6 εικονιδιοποιημένα πλακίδια με τα εμπορικά χαρακτηριστικά· διαστάσεις &amp; βάρη πάνε στις προδιαγραφές.</div></div></div>
+        <div style="display:flex;gap:11px;padding:11px 0;border-bottom:1px solid #eceff4"><span style="flex:0 0 22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center">3</span><div><div style="font:700 13.5px/1.4 'Source Sans 3',sans-serif;color:#0e1726">«από __ το μήνα» — κενές δόσεις <span style="background:#c0392b;color:#fff;padding:2px 6px;border-radius:3px;font:700 9px/1.4 'Source Sans 3',sans-serif;vertical-align:2px">ΚΡΙΣΙΜΟ</span></div><div style="font:400 12px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Και για κάρτα και για «δόσεις χωρίς κάρτα». Ό,τι ισχυρότερο έχει η Euronics, εμφανίζεται σπασμένο πάνω από το κουμπί αγοράς. <strong style="color:#143a85">Μετά:</strong> <em>InstallmentCalculator</em> — «€449 ή 12 × €37,42», tabs για τα δύο προγράμματα, όροι σε modal, ενσωματωμένο στο sticky buy box.</div></div></div>
+        <div style="display:flex;gap:11px;padding:11px 0;border-bottom:1px solid #eceff4"><span style="flex:0 0 22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center">4</span><div><div style="font:700 13.5px/1.4 'Source Sans 3',sans-serif;color:#0e1726">«Βρές ένα κατάστημα που σε εξυπηρετεί:» — και τίποτα</div><div style="font:400 12px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Η πρόταση τελειώνει σε άνω-κάτω τελεία χωρίς επιλογέα καταστήματος· τα e-support add-ons είναι διαφημιστικό κείμενο, όχι επιλογές που μπαίνουν στο καλάθι. <strong style="color:#143a85">Μετά:</strong> <em>StorePickupSelector</em> με ΤΚ, απόθεμα ανά κατάστημα και ώρες· <em>ServiceAddOns</em> ως checkbox με τιμή (23,90 € / επέκταση εγγύησης 5 ετών).</div></div></div>
+        <div style="display:flex;gap:11px;padding:11px 0"><span style="flex:0 0 22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center">5</span><div><div style="font:700 13.5px/1.4 'Source Sans 3',sans-serif;color:#0e1726">Ο πίνακας προδιαγραφών τυπώνεται δύο φορές <span style="background:#c0392b;color:#fff;padding:2px 6px;border-radius:3px;font:700 9px/1.4 'Source Sans 3',sans-serif;vertical-align:2px">ΚΡΙΣΙΜΟ</span></div><div style="font:400 12px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Ίδιες 9 γραμμές, δύο συνεχόμενοι πανομοιότυποι πίνακες — καθαρό bug που φαίνεται στον πελάτη. <strong style="color:#143a85">Μετά:</strong> ένας <em>SpecTable</em>, ομαδοποιημένος (Απόδοση / Ενέργεια / Συνδεσιμότητα / Διαστάσεις), με «Δες όλες τις προδιαγραφές», σύγκριση με παρόμοια και ενότητες ερωτήσεων &amp; αξιολογήσεων από κάτω.</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ΥΠΗΡΕΣΙΕΣ ===== -->
+  <div style="background:#fff;padding:26px 30px 30px;margin-bottom:26px;box-shadow:0 1px 3px rgba(14,23,38,.12)">
+    <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:18px;padding-bottom:14px;border-bottom:2px solid #ffd200">
+      <div style="font:700 22px/1.2 'Source Serif 4',serif;color:#0e1726">5 · Υπηρεσίες</div>
+      <div style="font:400 12px/1.4 'Source Sans 3',sans-serif;color:#5b6577">/υπηρεσιεσ — το πιο υποτιμημένο asset του site</div>
+    </div>
+    <div style="display:flex;gap:26px;flex-wrap:wrap">
+      <sc-if value="{{ showFrames }}" hint-placeholder-val="{{ true }}">
+      <div style="width:640px;flex:0 0 640px">
+        <div style="font:600 10px/1 'Source Sans 3',sans-serif;letter-spacing:.12em;color:#5b6577;margin-bottom:8px">ΠΡΙΝ · με τα πραγματικά εικονίδια υπηρεσιών</div>
+        <div style="position:relative;border:1px solid #cfd5df;background:#fff;overflow:hidden;padding:12px">
+          <div style="font:700 18px/1.2 'Source Serif 4',serif;color:#222;margin-bottom:8px">ΥΠΗΡΕΣΙΕΣ</div>
+          <div style="font:400 8.5px/1.55 'Source Sans 3',sans-serif;color:#666;margin-bottom:12px">Στη Euronics σας νιώθουμε φίλους! Σας γνωρίζουμε με το όνομά σας και μας αρέσει να σας κοιτάμε ίσια στα μάτια! Γι' αυτό και είμαστε πάντα πρόθυμοι να σας ακούσουμε, να συζητήσουμε τις ανάγκες σας και να σας βοηθήσουμε να επιλέξετε τη συσκευή που σας ταιριάζει απόλυτα και στην τιμή και με όρους στα μέτρα σας</div>
+          <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:14px">
+            <div style="text-align:center"><img src="https://www.euronics.gr/Themes/Uptown/Content/img/services_1.jpg" alt="Επέκταση εγγύησης" referrerpolicy="no-referrer" style="width:100%;display:block;background:#f4f4f4" /><div style="font:400 7px/1.3 'Source Sans 3',sans-serif;color:#666;margin-top:3px">Επέκταση εγγύησης</div></div>
+            <div style="text-align:center"><img src="https://www.euronics.gr/Themes/Uptown/Content/img/services_2.jpg" alt="Ανακύκλωση" referrerpolicy="no-referrer" style="width:100%;display:block;background:#f4f4f4" /><div style="font:400 7px/1.3 'Source Sans 3',sans-serif;color:#666;margin-top:3px">Ανακύκλωση</div></div>
+            <div style="text-align:center"><img src="https://www.euronics.gr/Themes/Uptown/Content/img/services_3.jpg" alt="E-Support" referrerpolicy="no-referrer" style="width:100%;display:block;background:#f4f4f4" /><div style="font:400 7px/1.3 'Source Sans 3',sans-serif;color:#666;margin-top:3px">E-Support</div></div>
+            <div style="text-align:center"><img src="https://www.euronics.gr/Themes/Uptown/Content/img/services_4.jpg" alt="Εγγύηση χαμηλότερης τιμής" referrerpolicy="no-referrer" style="width:100%;display:block;background:#f4f4f4" /><div style="font:400 7px/1.3 'Source Sans 3',sans-serif;color:#666;margin-top:3px">Χαμηλότερη τιμή</div></div>
+            <div style="text-align:center"><img src="https://www.euronics.gr/Themes/Uptown/Content/img/services_5.jpg" alt="Παράδοση και εγκατάσταση" referrerpolicy="no-referrer" style="width:100%;display:block;background:#f4f4f4" /><div style="font:400 7px/1.3 'Source Sans 3',sans-serif;color:#666;margin-top:3px">Παράδοση</div></div>
+            <div style="text-align:center"><img src="https://www.euronics.gr/Themes/Uptown/Content/img/services_6.jpg" alt="Συντήρηση - Επισκευή" referrerpolicy="no-referrer" style="width:100%;display:block;background:#f4f4f4" /><div style="font:400 7px/1.3 'Source Sans 3',sans-serif;color:#666;margin-top:3px">Επισκευή</div></div>
+            <div style="text-align:center"><img src="https://www.euronics.gr/Themes/Uptown/Content/img/services_7.jpg" alt="Εγγύηση αλλαγής" referrerpolicy="no-referrer" style="width:100%;display:block;background:#f4f4f4" /><div style="font:400 7px/1.3 'Source Sans 3',sans-serif;color:#666;margin-top:3px">Εγγύηση αλλαγής</div></div>
+            <div style="text-align:center"><img src="https://www.euronics.gr/Themes/Uptown/Content/img/services_8.jpg" alt="Χρηματοδότηση" referrerpolicy="no-referrer" style="width:100%;display:block;background:#f4f4f4" /><div style="font:400 7px/1.3 'Source Sans 3',sans-serif;color:#666;margin-top:3px">Χρηματοδότηση</div></div>
+            <div style="text-align:center"><img src="https://www.euronics.gr/Themes/Uptown/Content/img/services_9.jpg" alt="Συμβουλευτική" referrerpolicy="no-referrer" style="width:100%;display:block;background:#f4f4f4" /><div style="font:400 7px/1.3 'Source Sans 3',sans-serif;color:#666;margin-top:3px">Συμβουλευτική</div></div>
+            <div style="text-align:center"><img src="https://www.euronics.gr/Themes/Uptown/Content/img/services_10.jpg" alt="Παραλαβή με ένα κλικ" referrerpolicy="no-referrer" style="width:100%;display:block;background:#f4f4f4" /><div style="font:400 7px/1.3 'Source Sans 3',sans-serif;color:#666;margin-top:3px">Παραλαβή 1 κλικ</div></div>
+            <div style="text-align:center"><img src="https://www.euronics.gr/Themes/Uptown/Content/img/services_11.jpg" alt="Κάρτες δώρου" referrerpolicy="no-referrer" style="width:100%;display:block;background:#f4f4f4" /><div style="font:400 7px/1.3 'Source Sans 3',sans-serif;color:#666;margin-top:3px">Κάρτες δώρου</div></div>
+            <div style="text-align:center"><img src="https://www.euronics.gr/Themes/Uptown/Content/img/services_12.jpg" alt="Υποστήριξη high-tech" referrerpolicy="no-referrer" style="width:100%;display:block;background:#f4f4f4" /><div style="font:400 7px/1.3 'Source Sans 3',sans-serif;color:#666;margin-top:3px">High-tech support</div></div>
+          </div>
+          <img src="https://www.euronics.gr/images/uploaded/visa.png" alt="visa" referrerpolicy="no-referrer" style="height:22px;display:block;margin-bottom:8px" />
+          <div style="font:400 8px/1.6 'Source Sans 3',sans-serif;color:#666"><strong style="color:#333;font-size:9px">Δόσεις / Ευκολία (VISA)</strong><br />Για την αποπληρωμή των συσκευών που αγοράζετε μπορείτε να διευκολυνθείτε από τις ευέλικτες δόσεις…<br /><strong style="color:#333;font-size:9px">Μεταφορά συσκευών</strong><br />Η μεταφορά των συσκευών στον χώρο σας γίνεται δωρεάν (Εντός περιφέρειας).<br /><strong style="color:#333;font-size:9px">Φύλαξη συσκευών</strong> · <strong style="color:#333;font-size:9px">Εγγύηση συσκευών</strong> · <strong style="color:#333;font-size:9px">Ανακύκλωση συσκευών</strong></div>
+          <div style="position:absolute;top:12px;right:12px;width:22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.35)">1</div>
+          <div style="position:absolute;top:106px;left:12px;width:22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.35)">2</div>
+          <div style="position:absolute;bottom:96px;right:12px;width:22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.35)">3</div>
+          <div style="position:absolute;bottom:20px;left:12px;width:22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.35)">4</div>
+        </div>
+      </div>
+      </sc-if>
+      <div style="flex:1;min-width:400px">
+        <div style="display:flex;gap:11px;padding:11px 0;border-bottom:1px solid #eceff4"><span style="flex:0 0 22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center">1</span><div><div style="font:700 13.5px/1.4 'Source Sans 3',sans-serif;color:#0e1726">12 εικονίδια που δεν πηγαίνουν πουθενά <span style="background:#c0392b;color:#fff;padding:2px 6px;border-radius:3px;font:700 9px/1.4 'Source Sans 3',sans-serif;vertical-align:2px">ΚΡΙΣΙΜΟ</span></div><div style="font:400 12px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Επέκταση εγγύησης, e-support, εγγύηση χαμηλότερης τιμής, παραλαβή με ένα κλικ: δώδεκα λόγοι να αγοράσει κάποιος από εσάς και όχι από marketplace — και είναι δώδεκα άκλικτες εικόνες. <strong style="color:#143a85">Μετά:</strong> <em>ServiceIndex</em> με 12 κάρτες → <em>ServiceDetail</em> ανά υπηρεσία (τι περιλαμβάνει, κόστος, πώς το ζητάς, FAQ, CTA), δικό URL, δικό SEO.</div></div></div>
+        <div style="display:flex;gap:11px;padding:11px 0;border-bottom:1px solid #eceff4"><span style="flex:0 0 22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center">2</span><div><div style="font:700 13.5px/1.4 'Source Sans 3',sans-serif;color:#0e1726">Τα 12 πλακίδια δεν αντιστοιχούν στα 5 κείμενα</div><div style="font:400 12px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Από κάτω αναπτύσσονται μόνο 5 θέματα (δόσεις, μεταφορά, φύλαξη, εγγύηση, ανακύκλωση) — οι υπόλοιπες 7 υπηρεσίες μένουν ανεξήγητες. <strong style="color:#143a85">Μετά:</strong> κάθε υπηρεσία έχει υποχρεωτικά περιγραφή, βήματα και συχνές ερωτήσεις· το CMS δεν επιτρέπει δημοσίευση χωρίς αυτά.</div></div></div>
+        <div style="display:flex;gap:11px;padding:11px 0;border-bottom:1px solid #eceff4"><span style="flex:0 0 22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center">3</span><div><div style="font:700 13.5px/1.4 'Source Sans 3',sans-serif;color:#0e1726">Οι υπηρεσίες δεν εμφανίζονται εκεί που παίρνεται η απόφαση</div><div style="font:400 12px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Ζουν αποκλειστικά σε αυτή τη σελίδα. <strong style="color:#143a85">Μετά:</strong> η επέκταση εγγύησης και το e-support γίνονται <em>add-ons</em> στο buy box και στο καλάθι· η δωρεάν φύλαξη και η εγκατάσταση εμφανίζονται στο checkout· η ανακύκλωση ως επιλογή στην παράδοση.</div></div></div>
+        <div style="display:flex;gap:11px;padding:11px 0"><span style="flex:0 0 22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center">4</span><div><div style="font:700 13.5px/1.4 'Source Sans 3',sans-serif;color:#0e1726">Λεπτομέρειες που φαίνονται</div><div style="font:400 12px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Το εισαγωγικό κείμενο δεν κλείνει με τελεία, τα εικονίδια είναι JPEG με λευκό φόντο σε διαφορετικά μεγέθη, το «(Εντός περιφέρειας)» μένει ασαφές. <strong style="color:#143a85">Μετά:</strong> επιμέλεια κειμένων, SVG εικονίδια ενός set, σαφείς όροι («δωρεάν μεταφορά εντός Αττικής· αλλιώς X€»).</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ΚΑΤΑΣΤΗΜΑΤΑ ===== -->
+  <div style="background:#fff;padding:26px 30px 30px;margin-bottom:26px;box-shadow:0 1px 3px rgba(14,23,38,.12)">
+    <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:18px;padding-bottom:14px;border-bottom:2px solid #ffd200">
+      <div style="font:700 22px/1.2 'Source Serif 4',serif;color:#0e1726">6 · Καταστήματα</div>
+      <div style="font:400 12px/1.4 'Source Sans 3',sans-serif;color:#5b6577">~350 σημεία — το μεγαλύτερο ανεκμετάλλευτο SEO κεφάλαιο</div>
+    </div>
+    <div style="display:flex;gap:26px;flex-wrap:wrap">
+      <sc-if value="{{ showFrames }}" hint-placeholder-val="{{ true }}">
+      <div style="width:640px;flex:0 0 640px">
+        <div style="font:600 10px/1 'Source Sans 3',sans-serif;letter-spacing:.12em;color:#5b6577;margin-bottom:8px">ΠΡΙΝ · ανακατασκευή με τα πραγματικά δεδομένα καταστημάτων</div>
+        <div style="position:relative;border:1px solid #cfd5df;background:#fff;overflow:hidden;padding:12px">
+          <div style="font:700 18px/1.2 'Source Serif 4',serif;color:#222;margin-bottom:8px">ΚΑΤΑΣΤΗΜΑΤΑ</div>
+          <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:10px">
+            <div style="font:400 8.5px/1.5 'Source Sans 3',sans-serif;color:#666">Χρήση της τοποθεσίας μου<br />« Back To Results<br />Αναζήτηση καταστημάτων σε ακτίνα <span style="border:1px solid #ddd;padding:0 8px">&nbsp;</span> km.<br />Πόλη, ΤΚ <span style="border:1px solid #ddd;padding:0 20px">&nbsp;</span></div>
+            <img src="https://www.euronics.gr/Themes/Uptown/Content/img/Map220x170px.png" alt="Χάρτης καταστημάτων" referrerpolicy="no-referrer" style="width:130px;display:block;background:#f4f4f4" />
+          </div>
+          <div style="border-top:1px solid #eee;padding-top:8px;font:400 8px/1.55 'Source Sans 3',sans-serif;color:#666">
+            <div style="margin-bottom:9px"><strong style="color:#0645ad;font-size:9px">ΜΠΡΙΛΑΚΗ ΑΦΟΙ Ε.Ε</strong> — Απόσταση: <strong style="color:#c0392b">0 km.</strong> · Εμφάνιση οδηγιών<br />ΚΑΤΑΣΤΗΜΑ ΗΛΕΚΤΡΙΚΩΝ ΕΙΔΩΝ -ΗΛΕΚΤΡΟΝΙΚΩΝ ΕΙΔΩΝ<br />ΜΕΣΟΓΕΙΩΝ 64 · 11527, ΑΤΤΙΚΗ · Τ:2107709247<br /><span style="color:#999">Tags: 11527 · μεσογειων 64 · μπριλακη</span> · Read More</div>
+            <div style="margin-bottom:9px"><strong style="color:#0645ad;font-size:9px">ΑΔΑΜ Π. ΑΓΗΣΙΛΑΟΣ</strong> — Απόσταση: <strong style="color:#c0392b">0 km.</strong> · Εμφάνιση οδηγιών<br />ΠΑΠΑΔΙΑΜΑΝΤΗ 12 - ΣΚΙΑΘΟΣ · ΣΚΙΑΘΟΣ, 37002<br /><span style="color:#999">Tags: σκιαθος · αγησιλαος · 37002 · 2427022238 · αδαμ</span> · Read More</div>
+            <div style="margin-bottom:9px"><strong style="color:#0645ad;font-size:9px">ΑΝΘΙΔΗΣ Μ. ΓΕΩΡΓΙΟΣ (ΚΕΝΤΡΙΚΟ)</strong> — Απόσταση: <strong style="color:#c0392b">0 km.</strong><br />ΑΓ.ΠΑΝΤΩΝ 63 · ΘΕΣΣΑΛΟΝΙΚΗ, 54629<br /><span style="color:#999">Tags: θεσσαλονικη · 54629 · 54625 · 54626 · 54627 · 54628 · 54630 · 54632 · 54633 · 54634 · 54635 · 54636 · 54638</span></div>
+            <div style="color:#c0392b;font-style:italic">Δεν υπάρχει κατάστημα σε αυτή την πόλη...</div>
+          </div>
+          <div style="position:absolute;top:58px;right:12px;width:22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.35)">1</div>
+          <div style="position:absolute;top:130px;left:12px;width:22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.35)">2</div>
+          <div style="position:absolute;bottom:60px;left:12px;width:22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.35)">3</div>
+          <div style="position:absolute;bottom:14px;left:12px;width:22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.35)">4</div>
+        </div>
+      </div>
+      </sc-if>
+      <div style="flex:1;min-width:400px">
+        <div style="display:flex;gap:11px;padding:11px 0;border-bottom:1px solid #eceff4"><span style="flex:0 0 22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center">1</span><div><div style="font:700 13.5px/1.4 'Source Sans 3',sans-serif;color:#0e1726">Ο χάρτης είναι εικόνα 220×170</div><div style="font:400 12px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Στατικό PNG, χωρίς pins, χωρίς αλληλεπίδραση, δίπλα σε πεδία «ακτίνα km» και «Πόλη, ΤΚ» που δεν φαίνεται πώς συνδέονται. <strong style="color:#143a85">Μετά:</strong> <em>StoreLocator</em> — χάρτης και λίστα συγχρονισμένα (hover στη λίστα → highlight στον χάρτη), clustering, γεωεντοπισμός με ένα κουμπί, φίλτρα ανά υπηρεσία (click &amp; collect, επισκευή, εγκατάσταση).</div></div></div>
+        <div style="display:flex;gap:11px;padding:11px 0;border-bottom:1px solid #eceff4"><span style="flex:0 0 22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center">2</span><div><div style="font:700 13.5px/1.4 'Source Sans 3',sans-serif;color:#0e1726">«Απόσταση: 0 km.» σε όλα τα καταστήματα <span style="background:#c0392b;color:#fff;padding:2px 6px;border-radius:3px;font:700 9px/1.4 'Source Sans 3',sans-serif;vertical-align:2px">ΚΡΙΣΙΜΟ</span></div><div style="font:400 12px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Ό,τι σειρά κι αν έχει η λίστα, η απόσταση είναι πάντα μηδέν — το εργαλείο είναι σπασμένο και η αλφαβητική σειρά βάζει τη Σκιάθο πάνω από τη Θεσσαλονίκη. <strong style="color:#143a85">Μετά:</strong> υπολογισμός απόστασης από συντεταγμένες, ταξινόμηση «κοντινότερα πρώτα», χρόνος διαδρομής, «ανοιχτό τώρα».</div></div></div>
+        <div style="display:flex;gap:11px;padding:11px 0;border-bottom:1px solid #eceff4"><span style="flex:0 0 22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center">3</span><div><div style="font:700 13.5px/1.4 'Source Sans 3',sans-serif;color:#0e1726">Τα SEO tags εμφανίζονται στον χρήστη</div><div style="font:400 12px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Κάθε κατάστημα δείχνει τη λίστα ταχυδρομικών κωδίκων και greeklish παραλλαγών («thessaloniki», «54625», «54626»…) ως ορατό περιεχόμενο· οι διευθύνσεις είναι όλες κεφαλαία και τα emails εκτεθειμένα. <strong style="color:#143a85">Μετά:</strong> tags μόνο στον μηχανισμό αναζήτησης, σωστή πεζή/κεφαλαία γραφή, τηλέφωνο ως κουμπί κλήσης, email πίσω από φόρμα.</div></div></div>
+        <div style="display:flex;gap:11px;padding:11px 0"><span style="flex:0 0 22px;height:22px;border-radius:50%;background:#ffd200;border:2px solid #0e1726;font:700 11px/19px 'Source Sans 3',sans-serif;color:#0e1726;text-align:center">4</span><div><div style="font:700 13.5px/1.4 'Source Sans 3',sans-serif;color:#0e1726">«Δεν υπάρχει κατάστημα σε αυτή την πόλη...» ενώ υπάρχουν</div><div style="font:400 12px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Το μήνυμα κενού αποτελέσματος εμφανίζεται κάτω από μια γεμάτη λίστα· υπάρχουν και δύο διαφορετικά URL για τα καταστήματα (<em>/καταστηματα-euronics</em> και <em>/καταστηματα-2</em>). <strong style="color:#143a85">Μετά:</strong> ένα URL, σωστά empty states, και <strong>350 στατικές σελίδες καταστήματος</strong> με LocalBusiness JSON-LD, ώρες, φωτογραφίες και υπηρεσίες — τοπικές αναζητήσεις τύπου «ηλεκτρικά είδη Πτολεμαΐδα».</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#143a85;color:#fff;padding:26px 32px;display:flex;gap:30px;flex-wrap:wrap;align-items:center;justify-content:space-between">
+    <div style="max-width:46em">
+      <div style="font:700 11px/1 'Source Sans 3',sans-serif;letter-spacing:.14em;color:#ffd200;margin-bottom:9px">ΠΡΟΤΕΡΑΙΟΤΗΤΑ</div>
+      <div style="font:400 13.5px/1.6 'Source Sans 3',sans-serif;color:#dce2ee">Από τις 37 αλλαγές, οι <strong style="color:#fff">11 με σήμανση ΚΡΙΣΙΜΟ</strong> επηρεάζουν άμεσα πωλήσεις ή ορατότητα: κείμενο μέσα σε εικόνες, ενιαία τιμή, κενές δόσεις, mega-menu, SEO μεταδεδομένα, φίλτρα χωρίς URL, διπλός πίνακας προδιαγραφών, νεκρές υπηρεσίες και σπασμένος locator. Οι περισσότερες λύνονται στις Φάσεις 1–3.</div>
+    </div>
+    <div style="font:400 12px/1.6 'Source Sans 3',sans-serif;color:#9fb0d4;min-width:220px">Τα «ΠΡΙΝ» είναι ανακατασκευές των τρεχόντων layouts με τα πραγματικά assets και κείμενα του euronics.gr (σάρωση 31 Ιουλίου 2026) — όχι screenshots.</div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showFrames&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Εμφάνιση&quot;},&quot;showGeneral&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Εμφάνιση&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      showFrames: this.props.showFrames ?? true,
+      showGeneral: this.props.showGeneral ?? true
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+import { ZoneBadge } from "@/components/site/ZoneBadge";
+
+/** Zone 12 — one newsletter (the current site has two on one page), separate un-prechecked consent (GDPR). */
+export function NewsletterBand({ zoneNo }: { zoneNo?: number }) {
+  return (
+    <section className="relative bg-eu-surface border-t border-eu-line eu-container" aria-labelledby="nl-title">
+      <ZoneBadge no={zoneNo} />
+      <div className="eu-canvas eu-gutter py-6 grid grid-cols-1 @lg:grid-cols-2 gap-5 @lg:gap-[30px] items-center">
+        <div>
+          <h2 id="nl-title" className="m-0 font-heading font-bold text-eu-ink text-[length:var(--fs-21)] leading-[1.2] mb-1.5">
+            Μάθε πρώτος τις πραγματικές πτώσεις τιμών
+          </h2>
+          <p className="m-0 text-eu-muted text-[length:var(--fs-12-5)] leading-[1.55]">Ένα email την εβδομάδα. Διαγραφή με ένα κλικ, χωρίς ερωτήσεις.</p>
+        </div>
+        <form action="/newsletter" method="post">
+          <div className="flex gap-2 mb-2">
+            <label htmlFor="nl-email" className="sr-only">
+              Το email σου
+            </label>
+            <input id="nl-email" name="email" type="email" required placeholder="Το email σου" className="flex-1 min-w-0 rounded-full bg-white border border-eu-line text-eu-ink placeholder:text-eu-muted-2 px-4 py-3 text-[length:var(--fs-13)] outline-none focus-visible:ring-2 ring-eu-blue" />
+            <button type="submit" className="rounded-full bg-eu-navy text-white font-extrabold text-[length:var(--fs-13)] px-5 min-h-11 hover:bg-eu-blue">
+              Εγγραφή
+            </button>
+          </div>
+          <label className="flex items-start gap-2 text-eu-muted text-[length:var(--fs-11)] leading-[1.45] cursor-pointer">
+            <input type="checkbox" name="consent" required className="mt-0.5 size-4 accent-eu-blue" />
+            <span>
+              Συμφωνώ να λαμβάνω εμπορική επικοινωνία και έχω διαβάσει την{" "}
+              <a href="/aporrito" className="text-eu-blue underline">
+                Πολιτική Απορρήτου
+              </a>
+              .
+            </span>
+          </label>
+        </form>
+      </div>
+    </section>
+  );
+}

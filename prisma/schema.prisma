@@ -1,0 +1,501 @@
+// Euronics commerce core — no intermediate e-commerce platform.
+// The ERP stays the source of truth for items, prices, stock and documents;
+// this schema is the web mirror + everything the ERP does not model
+// (zones, widgets, guides, consents, reviews, sessions).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// ---------- Catalogue (mirrored from the ERP) ----------
+
+model Category {
+  id        String     @id @default(cuid())
+  erpCode   String?    @unique
+  slug      String     @unique
+  name      String
+  parentId  String?
+  parent    Category?  @relation("CategoryTree", fields: [parentId], references: [id])
+  children  Category[] @relation("CategoryTree")
+  depth     Int        @default(0)
+  sortNo    Int        @default(0)
+  metaTitle String?
+  metaDesc  String?    @db.Text
+  products  Product[]
+  facets    Facet[]
+
+  @@index([parentId])
+}
+
+model Brand {
+  id       String    @id @default(cuid())
+  slug     String    @unique
+  name     String
+  logo     String?
+  products Product[]
+}
+
+model Product {
+  id          String       @id @default(cuid())
+  erpCode     String       @unique // MTRL / item code
+  slug        String       @unique
+  sku         String       @unique
+  ean         String?
+  title       String
+  brandId     String
+  brand       Brand        @relation(fields: [brandId], references: [id])
+  categoryId  String
+  category    Category     @relation(fields: [categoryId], references: [id])
+  description String?      @db.LongText
+  highlights  Json?
+  vatRate     Decimal      @default(24) @db.Decimal(5, 2)
+  isRenew     Boolean      @default(false)
+  renewGrade  String? // A | B
+  active      Boolean      @default(true)
+  variants    Variant[]
+  media       Media[]
+  specs       Spec[]
+  energy      EnergyLabel?
+  reviews     Review[]
+  questions   Question[]
+  tags        ProductTag[]
+  updatedAt   DateTime     @updatedAt
+  createdAt   DateTime     @default(now())
+
+  @@index([categoryId, active])
+  @@index([brandId])
+}
+
+model Variant {
+  id         String       @id @default(cuid())
+  productId  String
+  product    Product      @relation(fields: [productId], references: [id], onDelete: Cascade)
+  erpCode    String       @unique
+  axis       Json // { color: "Deep Blue", capacity: "256GB" }
+  price      Decimal      @db.Decimal(10, 2)
+  wasPrice   Decimal?     @db.Decimal(10, 2)
+  /// Omnibus: lowest price of the previous 30 days, maintained by PriceHistory
+  lowest30   Decimal?     @db.Decimal(10, 2)
+  prices     PriceHistory[]
+  stock      StoreStock[]
+  cartLines  CartLine[]
+  orderLines OrderLine[]
+  updatedAt  DateTime     @updatedAt
+
+  @@index([productId])
+}
+
+model PriceHistory {
+  id        String   @id @default(cuid())
+  variantId String
+  variant   Variant  @relation(fields: [variantId], references: [id], onDelete: Cascade)
+  price     Decimal  @db.Decimal(10, 2)
+  from      DateTime
+  to        DateTime?
+
+  @@index([variantId, from])
+}
+
+model StoreStock {
+  variantId String
+  storeId   String
+  variant   Variant  @relation(fields: [variantId], references: [id], onDelete: Cascade)
+  store     Store    @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  qty       Int
+  updatedAt DateTime @updatedAt
+
+  @@id([variantId, storeId])
+  @@index([storeId])
+}
+
+model Media {
+  id        String  @id @default(cuid())
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  kind      String // image | video | manual | fiche
+  url       String
+  alt       String?
+  sortNo    Int     @default(0)
+
+  @@index([productId])
+}
+
+model Spec {
+  id        String  @id @default(cuid())
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  groupName String
+  key       String
+  value     String
+  sortNo    Int     @default(0)
+
+  @@index([productId])
+}
+
+model EnergyLabel {
+  productId String  @id
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  class     String // A+++ … G
+  scale     String // "A-G" | "A+++-D"
+  eprelId   String?
+  labelUrl  String?
+  ficheUrl  String?
+}
+
+/// Facet definitions per category: which specs become filters and how they map to URL params.
+model Facet {
+  id         String   @id @default(cuid())
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  key        String
+  label      String
+  param      String
+  kind       String // checkbox | range | boolean
+  sortNo     Int      @default(0)
+
+  @@unique([categoryId, param])
+}
+
+model Tag {
+  id       String       @id @default(cuid())
+  slug     String       @unique
+  name     String
+  products ProductTag[]
+}
+
+model ProductTag {
+  productId String
+  tagId     String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  tag       Tag     @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([productId, tagId])
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  customerId String?
+  rating    Int
+  title     String?
+  body      String   @db.Text
+  verified  Boolean  @default(false)
+  status    String   @default("pending")
+  createdAt DateTime @default(now())
+
+  @@index([productId, status])
+}
+
+model Question {
+  id        String   @id @default(cuid())
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  body      String   @db.Text
+  answer    String?  @db.Text
+  status    String   @default("pending")
+  createdAt DateTime @default(now())
+
+  @@index([productId, status])
+}
+
+// ---------- Network & services ----------
+
+model Store {
+  id        String       @id @default(cuid())
+  erpBranch String?      @unique
+  slug      String       @unique
+  name      String
+  member    String? // cooperative member company
+  address   String
+  city      String
+  region    String
+  zip       String
+  phone     String?
+  email     String?
+  lat       Float
+  lng       Float
+  hours     Json // [{ day: 1, open: "09:00", close: "21:00" }]
+  services  Json // ["click-collect", "installation", "service-point", …]
+  active    Boolean      @default(true)
+  stock     StoreStock[]
+  orders    Order[]
+
+  @@index([region])
+}
+
+model Service {
+  id         String  @id @default(cuid())
+  slug       String  @unique
+  no         Int
+  title      String
+  blurb      String
+  body       String? @db.LongText
+  priceFrom  Decimal? @db.Decimal(10, 2)
+  /// Where the service is offered as an add-on: pdp | checkout | delivery
+  addonAt    Json?
+  faq        Json?
+  active     Boolean @default(true)
+  orderLines OrderLineAddon[]
+}
+
+// ---------- Customers, carts, orders ----------
+
+model Customer {
+  id         String      @id @default(cuid())
+  email      String      @unique
+  phone      String?
+  firstName  String
+  lastName   String
+  erpTrdr    String? // ERP customer id, linked by ΑΦΜ or email
+  vatNumber  String?
+  addresses  Address[]
+  cards      SavedCard[]
+  consents   Consent[]
+  wishlist   Wishlist[]
+  orders     Order[]
+  carts      Cart[]
+  createdAt  DateTime    @default(now())
+}
+
+model Address {
+  id         String   @id @default(cuid())
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  label      String?
+  street     String
+  number     String?
+  floor      String?
+  city       String
+  zip        String
+  region     String
+  phone      String?
+  isDefault  Boolean  @default(false)
+
+  @@index([customerId])
+}
+
+/// Tokenised card reference from the PSP (Viva / Stripe) — never PAN. Enables Quick buy.
+model SavedCard {
+  id         String   @id @default(cuid())
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  psp        String
+  token      String
+  last4      String
+  brand      String
+  expMonth   Int
+  expYear    Int
+  isDefault  Boolean  @default(false)
+
+  @@index([customerId])
+}
+
+model Consent {
+  id         String   @id @default(cuid())
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  kind       String // newsletter | cookies-analytics | cookies-marketing | geolocation
+  granted    Boolean
+  source     String
+  at         DateTime @default(now())
+
+  @@index([customerId, kind])
+}
+
+model Wishlist {
+  customerId String
+  productId  String
+  customer   Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  addedAt    DateTime @default(now())
+
+  @@id([customerId, productId])
+}
+
+model Cart {
+  id         String     @id @default(cuid())
+  customerId String?
+  customer   Customer?  @relation(fields: [customerId], references: [id])
+  sessionId  String?    @unique
+  lines      CartLine[]
+  updatedAt  DateTime   @updatedAt
+
+  @@index([customerId])
+}
+
+model CartLine {
+  id        String  @id @default(cuid())
+  cartId    String
+  cart      Cart    @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  variantId String
+  variant   Variant @relation(fields: [variantId], references: [id])
+  qty       Int
+  addons    Json? // [{ serviceId, price }]
+
+  @@index([cartId])
+}
+
+model Order {
+  id          String      @id @default(cuid())
+  number      String      @unique // EUR-YYYYMMDD-0000
+  customerId  String?
+  customer    Customer?   @relation(fields: [customerId], references: [id])
+  guestEmail  String?
+  status      String      @default("pending") // pending | paid | processing | shipped | ready-for-pickup | delivered | cancelled | returned
+  fulfilment  String // courier | click-collect | appointment
+  pickupStoreId String?
+  pickupStore Store?      @relation(fields: [pickupStoreId], references: [id])
+  shipping    Json // snapshot address
+  invoice     Json? // { vatNumber, doy, company } when a τιμολόγιο is requested
+  subtotal    Decimal     @db.Decimal(10, 2)
+  shippingFee Decimal     @db.Decimal(10, 2)
+  vat         Decimal     @db.Decimal(10, 2)
+  total       Decimal     @db.Decimal(10, 2)
+  lines       OrderLine[]
+  payment     Payment?
+  erpSync     ErpSync?
+  returns     Return[]
+  tracking    String?
+  courier     String?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@index([customerId, createdAt])
+  @@index([status])
+}
+
+model OrderLine {
+  id        String           @id @default(cuid())
+  orderId   String
+  order     Order            @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  variantId String
+  variant   Variant          @relation(fields: [variantId], references: [id])
+  title     String
+  qty       Int
+  unitPrice Decimal          @db.Decimal(10, 2)
+  addons    OrderLineAddon[]
+
+  @@index([orderId])
+}
+
+model OrderLineAddon {
+  id          String    @id @default(cuid())
+  orderLineId String
+  orderLine   OrderLine @relation(fields: [orderLineId], references: [id], onDelete: Cascade)
+  serviceId   String
+  service     Service   @relation(fields: [serviceId], references: [id])
+  price       Decimal   @db.Decimal(10, 2)
+}
+
+model Payment {
+  orderId     String   @id
+  order       Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  method      String // card | instalments | iris | bank-transfer | cod | no-card-loan
+  psp         String?
+  pspRef      String?
+  instalments Int      @default(1)
+  status      String   @default("pending")
+  scaDone     Boolean  @default(false)
+  updatedAt   DateTime @updatedAt
+}
+
+/// Outbox for writing orders to the ERP with retries; the shop never blocks on the ERP.
+model ErpSync {
+  orderId   String   @id
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  status    String   @default("queued") // queued | sent | failed
+  attempts  Int      @default(0)
+  erpDocId  String?
+  lastError String?  @db.Text
+  updatedAt DateTime @updatedAt
+}
+
+model Return {
+  id        String   @id @default(cuid())
+  orderId   String
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  reason    String
+  lines     Json
+  status    String   @default("requested")
+  createdAt DateTime @default(now())
+
+  @@index([orderId])
+}
+
+// ---------- Marketing zones (CMS) ----------
+
+model Page {
+  id        String   @id @default(cuid())
+  path      String   @unique
+  title     String
+  zones     Zone[]
+  updatedAt DateTime @updatedAt
+}
+
+model Zone {
+  id      String   @id @default(cuid())
+  pageId  String
+  page    Page     @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  key     String // announcement | hero | ticker | catalog | deals | services | stores | guides | newsletter | listing-top | pdp-below-buybox …
+  label   String
+  slot    String // above-header | header | main | pre-footer
+  sortNo  Int      @default(0)
+  widgets Widget[]
+
+  @@unique([pageId, key])
+}
+
+model Widget {
+  id         String    @id @default(cuid())
+  zoneId     String
+  zone       Zone      @relation(fields: [zoneId], references: [id], onDelete: Cascade)
+  type       String // registry key
+  label      String?
+  props      Json
+  query      Json?
+  scheduleFrom DateTime?
+  scheduleTo   DateTime?
+  visibility Json? // { devices, audience, regions, hideOnSaveData }
+  ab         Json? // { experiment, variant, weight }
+  zoneNo     Int?
+  sortNo     Int       @default(0)
+  version    Int       @default(1)
+  updatedAt  DateTime  @updatedAt
+
+  @@index([zoneId, sortNo])
+}
+
+model Campaign {
+  id       String   @id @default(cuid())
+  slug     String   @unique
+  title    String
+  startsAt DateTime
+  /// Real expiry — the same value drives every countdown (Omnibus).
+  endsAt   DateTime
+  tagSlug  String?
+}
+
+model Guide {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  kicker    String
+  title     String
+  excerpt   String
+  body      String   @db.LongText
+  image     String?
+  minutes   Int
+  ctaLabel  String?
+  ctaHref   String?
+  published DateTime?
+}
+
+model Redirect {
+  from String @id
+  to   String
+  code Int    @default(301)
+}

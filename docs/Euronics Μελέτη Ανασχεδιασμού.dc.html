@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  body { margin: 0; background: #edeef1; }
+  doc-page:not(:defined) { visibility: hidden; }
+  a { color: #143a85; text-decoration: none; border-bottom: 1px solid #ffd200; }
+  a:hover { color: #0e2a63; border-bottom-color: #143a85; }
+</style>
+<script src="./doc-page.js"></script>
+</helmet>
+
+<doc-page margin="0.7in">
+
+<div style="border-top:8px solid #143a85;padding-top:26px;margin-bottom:34px">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:20px;margin-bottom:26px">
+    <div style="font:700 13px/1 'Source Sans 3',sans-serif;letter-spacing:.16em;color:#143a85">EURONICS.GR</div>
+    <div style="font:500 11px/1 'Source Sans 3',sans-serif;letter-spacing:.1em;color:#5b6577">ΙΟΥΛΙΟΣ 2026 · ΕΜΠΙΣΤΕΥΤΙΚΟ</div>
+  </div>
+  <h1 style="font:700 44px/1.06 'Source Serif 4',serif;color:#0e1726;margin:0 0 14px;letter-spacing:-.015em">Μελέτη ανασχεδιασμού<br />του euronics.gr</h1>
+  <p style="font:400 15px/1.5 'Source Sans 3',sans-serif;color:#5b6577;margin:0 0 22px;max-width:34em">Πλήρης σάρωση των υφιστάμενων σελίδων — λίστες προϊόντων, σελίδες προϊόντος και όλες οι CMS σελίδες — και πρόταση αλλαγών σε επίπεδο component, με τεχνολογική βάση Next.js, GSAP, Framer Motion και custom CMS με δυναμικά widgets.</p>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <span style="font:600 10.5px/1 'Source Sans 3',sans-serif;letter-spacing:.06em;background:#143a85;color:#fff;padding:7px 11px;border-radius:3px">NEXT.JS 15 · APP ROUTER</span>
+    <span style="font:600 10.5px/1 'Source Sans 3',sans-serif;letter-spacing:.06em;background:#0e1726;color:#fff;padding:7px 11px;border-radius:3px">GSAP + SCROLLTRIGGER</span>
+    <span style="font:600 10.5px/1 'Source Sans 3',sans-serif;letter-spacing:.06em;background:#0e1726;color:#fff;padding:7px 11px;border-radius:3px">FRAMER MOTION</span>
+    <span style="font:600 10.5px/1 'Source Sans 3',sans-serif;letter-spacing:.06em;background:#ffd200;color:#0e1726;padding:7px 11px;border-radius:3px">CUSTOM CMS · WIDGETS</span>
+  </div>
+</div>
+
+<h2 style="font:600 25px/1.2 'Source Serif 4',serif;color:#143a85;margin:0 0 12px;border-bottom:2px solid #ffd200;padding-bottom:8px">1. Τι σαρώθηκε</h2>
+<p style="font:400 12.5px/1.65 'Source Sans 3',sans-serif;color:#242c3a;margin:0 0 10px">Το τρέχον site τρέχει σε <strong>nopCommerce</strong> με το theme <em>Uptown</em> (server-rendered .NET MVC, jQuery, εικόνες από <span style="font:500 11px ui-monospace,monospace;background:#eef1f7;padding:1px 5px;border-radius:3px;color:#143a85">/images/thumbs/</span>). Σαρώθηκαν όλοι οι τύποι σελίδας — όχι το σύνολο των προϊόντων, αλλά ένα αντιπροσωπευτικό δείγμα ανά τύπο.</p>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:0 26px;margin:16px 0 20px">
+  <div>
+    <div style="font:700 10.5px/1 'Source Sans 3',sans-serif;letter-spacing:.12em;color:#143a85;margin-bottom:9px">ΕΜΠΟΡΙΚΕΣ ΣΕΛΙΔΕΣ</div>
+    <div style="font:400 11.5px/1.6 'Source Sans 3',sans-serif;color:#242c3a">Αρχική (banner rotator, 14 promo tiles, «Προτάσεις Δροσιάς», blog teaser, newsletter)<br />9 κατηγορίες 1ου επιπέδου → 3 επίπεδα βάθος → ~200 leaf κατηγορίες<br />Λίστα προϊόντων (grid/list, 8 sort options, 13 ομάδες φίλτρων, pagination 20 σελίδες)<br />Σελίδα προϊόντος (gallery, specs ×2, δόσεις, e-support, διαθεσιμότητα, store pickup)<br />filterSearch (ενιαία αναζήτηση + facets), producttag, κατασκευαστές</div>
+  </div>
+  <div>
+    <div style="font:700 10.5px/1 'Source Sans 3',sans-serif;letter-spacing:.12em;color:#143a85;margin-bottom:9px">CMS &amp; ΛΕΙΤΟΥΡΓΙΚΕΣ</div>
+    <div style="font:400 11.5px/1.6 'Source Sans 3',sans-serif;color:#242c3a">Υπηρεσίες (12 icon tiles + 5 κείμενα), Αξίες &amp; φιλοσοφία, Ιστορία, Οικονομικά στοιχεία<br />Καταστήματα (locator με ακτίνα &amp; γεωεντοπισμό, ~350 σημεία, σελίδα ανά κατάστημα)<br />Blog / E-news / Νέα Συνεργατών / E-blog<br />Επικοινωνία, Τρόποι πληρωμής, Τρόποι αποστολής, Πολιτική επιστροφών, Όροι, Απόρρητο, Cookies, Χάρτης πλοήγησης<br />Καλάθι, Σύνδεση, Εγγραφή, Wishlist, Λογαριασμός</div>
+  </div>
+</div>
+
+<div style="background:#f4f6fa;border-left:3px solid #ffd200;padding:13px 15px;margin:0 0 8px;break-inside:avoid">
+  <div style="font:700 10.5px/1 'Source Sans 3',sans-serif;letter-spacing:.12em;color:#143a85;margin-bottom:7px">ΤΟ ΣΥΜΠΕΡΑΣΜΑ ΣΕ ΜΙΑ ΠΑΡΑΓΡΑΦΟ</div>
+  <div style="font:400 12px/1.6 'Source Sans 3',sans-serif;color:#242c3a">Το περιεχόμενο υπάρχει και είναι πλούσιο· η <strong>δομή παρουσίασής του</strong> είναι το πρόβλημα. Κάθε σελίδα φορτώνει ολόκληρο το mega-menu (~200 links) στο DOM, οι σελίδες προϊόντος επαναλαμβάνουν τον ίδιο πίνακα προδιαγραφών δύο φορές, τα meta descriptions κατηγοριών είναι κενά, τα φίλτρα δεν αποτυπώνονται σε URL, και ο εμπορικός λόγος («350 καταστήματα», δόσεις χωρίς κάρτα, δωρεάν φύλαξη) είναι θαμμένος σε στατικά banner. Η μετάβαση σε Next.js + custom CMS δεν είναι restyling: είναι <strong>αναδιάταξη του περιεχομένου σε components με σαφή data contracts</strong>, ώστε το marketing να χτίζει σελίδες χωρίς development.</div>
+</div>
+
+<h2 style="font:600 25px/1.2 'Source Serif 4',serif;color:#143a85;margin:40px 0 12px;border-bottom:2px solid #ffd200;padding-bottom:8px;break-before:page">2. Ευρήματα ανά τύπο σελίδας</h2>
+
+<h3 style="font:700 15px/1.3 'Source Sans 3',sans-serif;color:#0e1726;margin:22px 0 8px">2.1 Global shell — header, mega-menu, footer</h3>
+<table style="width:100%;border-collapse:collapse;font:400 11px/1.5 'Source Sans 3',sans-serif;margin:8px 0 16px">
+  <thead>
+    <tr>
+      <th style="text-align:left;background:#143a85;color:#fff;padding:7px 9px;font:600 10px/1.3 'Source Sans 3',sans-serif;letter-spacing:.05em;width:30%">ΣΗΜΕΡΑ</th>
+      <th style="text-align:left;background:#143a85;color:#fff;padding:7px 9px;font:600 10px/1.3 'Source Sans 3',sans-serif;letter-spacing:.05em">ΠΡΟΤΑΣΗ ΣΕ ΕΠΙΠΕΔΟ COMPONENT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td style="padding:7px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">Όλο το δέντρο κατηγοριών (3 επίπεδα, ~200 links) σε κάθε σελίδα, με «Back» items ορατά στο markup</td><td style="padding:7px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#242c3a"><strong>MegaMenu</strong> — server component που φορτώνει μόνο τα 9 top-level. Τα panels έρχονται lazy ανά κατηγορία (<span style="font:500 10.5px ui-monospace,monospace;background:#eef1f7;padding:1px 4px;border-radius:3px;color:#143a85">/api/nav/[slug]</span>, cache 24h) και προ-φορτώνονται σε hover intent 120ms. Framer Motion για το άνοιγμα του panel.</td></tr>
+    <tr><td style="padding:7px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">Αναζήτηση κρυμμένη πίσω από icon, χωρίς autocomplete</td><td style="padding:7px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#242c3a"><strong>SearchCommand</strong> — μόνιμο πεδίο στο header, overlay με 4 ομάδες αποτελεσμάτων (προϊόντα / κατηγορίες / brands / περιεχόμενο), debounce 180ms, πλήρης πλοήγηση με πληκτρολόγιο, «πρόσφατες αναζητήσεις» σε localStorage.</td></tr>
+    <tr><td style="padding:7px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">Καλάθι = link σε /cart. Κανένα feedback μετά την προσθήκη</td><td style="padding:7px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#242c3a"><strong>MiniCartSheet</strong> — optimistic προσθήκη, slide-over με σύνολο, δόσεις, «Δωρεάν μεταφορά» progress και upsell.</td></tr>
+    <tr><td style="padding:7px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">4 USP banners επαναλαμβάνονται με διαφορετικό κείμενο ανά σελίδα (ασυνέπεια: «με δόσεις χωρίς κάρτα» vs «με κατάθεση»)</td><td style="padding:7px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#242c3a"><strong>TrustStrip</strong> — ένα CMS widget, μία πηγή αλήθειας, 4 slots με εικονίδιο/τίτλο/υπότιτλο/link.</td></tr>
+    <tr><td style="padding:7px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">Footer με social links προς λογαριασμούς <em>nopCommerce</em> στο top bar</td><td style="padding:7px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#242c3a"><strong>SiteFooter</strong> — 4 CMS-driven στήλες + StoreTeaser («350 καταστήματα») + NewsletterForm με server action &amp; διπλή συγκατάθεση. Καθαρισμός placeholder links.</td></tr>
+  </tbody>
+</table>
+
+<h3 style="font:700 15px/1.3 'Source Sans 3',sans-serif;color:#0e1726;margin:22px 0 8px">2.2 Αρχική</h3>
+<p style="font:400 12px/1.62 'Source Sans 3',sans-serif;color:#242c3a;margin:0 0 10px">Σήμερα: ένα hero banner 1920×400, 14 promo tiles ως σκέτα PNG (όλο το κείμενο μέσα στην εικόνα — μηδέν SEO, μηδέν responsive control, μηδέν accessibility), ένα carousel «Προτάσεις Δροσιάς», τρία blog teasers και δύο ξεχωριστές φόρμες newsletter. Δεν υπάρχει καμία προσωποποίηση ούτε είσοδος στις κατηγορίες.</p>
+<p style="font:400 12px/1.62 'Source Sans 3',sans-serif;color:#242c3a;margin:0 0 10px"><strong>Πρόταση:</strong> η αρχική γίνεται 100% συνθέσιμη από widgets (§4). Σειρά αναφοράς: <span style="font:500 10.5px ui-monospace,monospace;background:#eef1f7;padding:1px 4px;border-radius:3px;color:#143a85">HeroSlider</span> → <span style="font:500 10.5px ui-monospace,monospace;background:#eef1f7;padding:1px 4px;border-radius:3px;color:#143a85">CategoryQuickNav</span> → <span style="font:500 10.5px ui-monospace,monospace;background:#eef1f7;padding:1px 4px;border-radius:3px;color:#143a85">DealCountdownRail</span> → <span style="font:500 10.5px ui-monospace,monospace;background:#eef1f7;padding:1px 4px;border-radius:3px;color:#143a85">PromoMosaic</span> (κείμενο ως HTML πάνω από art-directed εικόνα) → <span style="font:500 10.5px ui-monospace,monospace;background:#eef1f7;padding:1px 4px;border-radius:3px;color:#143a85">ProductRail</span> ×2 (δυναμικά: εποχικό, best sellers) → <span style="font:500 10.5px ui-monospace,monospace;background:#eef1f7;padding:1px 4px;border-radius:3px;color:#143a85">BrandStrip</span> → <span style="font:500 10.5px ui-monospace,monospace;background:#eef1f7;padding:1px 4px;border-radius:3px;color:#143a85">ServicesTeaser</span> → <span style="font:500 10.5px ui-monospace,monospace;background:#eef1f7;padding:1px 4px;border-radius:3px;color:#143a85">StoreFinderTeaser</span> → <span style="font:500 10.5px ui-monospace,monospace;background:#eef1f7;padding:1px 4px;border-radius:3px;color:#143a85">EditorialRail</span> → <span style="font:500 10.5px ui-monospace,monospace;background:#eef1f7;padding:1px 4px;border-radius:3px;color:#143a85">NewsletterBand</span>.</p>
+
+<h3 style="font:700 15px/1.3 'Source Sans 3',sans-serif;color:#0e1726;margin:22px 0 8px">2.3 Κατηγορία &amp; λίστα προϊόντων (PLP)</h3>
+<div style="display:grid;grid-template-columns:1fr;gap:0;margin:8px 0 14px">
+  <div style="display:grid;grid-template-columns:150px 1fr;gap:12px;padding:7px 0;border-bottom:1px solid #eceff4"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#c0392b">Φίλτρα χωρίς URL</div><div style="font:400 11.5px/1.55 'Source Sans 3',sans-serif;color:#242c3a">Οι επιλογές facet δεν αποτυπώνονται σε shareable URL και το «Showing __ of __ results» εμφανίζεται κενό. <strong>Λύση:</strong> facets σε searchParams (<span style="font:500 10.5px ui-monospace,monospace;background:#eef1f7;padding:1px 4px;border-radius:3px;color:#143a85">?brand=lg,samsung&amp;size=55&amp;price=400-900</span>), canonical στην καθαρή κατηγορία, <span style="font:500 10.5px ui-monospace,monospace;background:#eef1f7;padding:1px 4px;border-radius:3px;color:#143a85">noindex,follow</span> σε συνδυασμούς &gt;1 facet, indexable landing pages για ~40 εμπορικά ζεύγη (π.χ. «Τηλεοράσεις 55 ιντσών OLED»).</div></div>
+  <div style="display:grid;grid-template-columns:150px 1fr;gap:12px;padding:7px 0;border-bottom:1px solid #eceff4"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#c0392b">13 ομάδες φίλτρων, μηδέν ιεραρχία</div><div style="font:400 11.5px/1.55 'Source Sans 3',sans-serif;color:#242c3a">Σε «Τηλεοράσεις» εμφανίζονται ισότιμα «Εύρος Οθόνης» και «USB Cloning» (μία μόνο τιμή: ΟΧΙ). <strong>Λύση:</strong> <strong>FacetGroup</strong> με ranking από το CMS (primary / secondary / collapsed), αυτόματη απόκρυψη facet με &lt;2 τιμές ή 0 αποτελέσματα, counts ανά τιμή, «top 5 + Δες όλα».</div></div>
+  <div style="display:grid;grid-template-columns:150px 1fr;gap:12px;padding:7px 0;border-bottom:1px solid #eceff4"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#c0392b">Κάρτα προϊόντος χωρίς σήματα</div><div style="font:400 11.5px/1.55 'Source Sans 3',sans-serif;color:#242c3a">Η διαθεσιμότητα («Άμεσα Διαθέσιμο» / «σε 2-4 εργάσιμες» / «κατόπιν παραγγελίας») είναι σκέτο κείμενο· η έκπτωση δεν υπολογίζεται· λείπει σύγκριση. <strong>ProductCard</strong>: badge έκπτωσης (%), StockPill με 3 καταστάσεις &amp; χρώμα, δόση/μήνα, energy label, hover swap 2ης εικόνας, checkbox σύγκρισης, quick-add.</div></div>
+  <div style="display:grid;grid-template-columns:150px 1fr;gap:12px;padding:7px 0;border-bottom:1px solid #eceff4"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#c0392b">Pagination 20 σελίδες</div><div style="font:400 11.5px/1.55 'Source Sans 3',sans-serif;color:#242c3a">200+ τηλεοράσεις σε σελίδες των 10. <strong>Λύση:</strong> 24/σελίδα, «Φόρτωσε περισσότερα» με πραγματικά paginated URLs κάτω από το κουμπί (SEO + accessibility), διατήρηση θέσης scroll στο back.</div></div>
+  <div style="display:grid;grid-template-columns:150px 1fr;gap:12px;padding:7px 0;border-bottom:1px solid #eceff4"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#c0392b">Κενό meta description</div><div style="font:400 11.5px/1.55 'Source Sans 3',sans-serif;color:#242c3a">Σε όλες τις κατηγορίες. <strong>Λύση:</strong> πεδία SEO στο CMS ανά κατηγορία + fallback template με αριθμό προϊόντων, εύρος τιμών και brands.</div></div>
+  <div style="display:grid;grid-template-columns:150px 1fr;gap:12px;padding:7px 0;border-bottom:1px solid #eceff4"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#c0392b">Category hub = απλή λίστα</div><div style="font:400 11.5px/1.55 'Source Sans 3',sans-serif;color:#242c3a">Οι σελίδες 1ου/2ου επιπέδου δεν καθοδηγούν. <strong>Λύση:</strong> ξεχωριστό template <strong>CategoryHub</strong>: SubcategoryTiles + «Αγόρασε ανά χρήση» (widget) + BuyingGuide (σύνδεση με blog) + ProductRail των top sellers.</div></div>
+</div>
+
+<h3 style="font:700 15px/1.3 'Source Sans 3',sans-serif;color:#0e1726;margin:22px 0 8px">2.4 Σελίδα προϊόντος (PDP)</h3>
+<p style="font:400 12px/1.62 'Source Sans 3',sans-serif;color:#242c3a;margin:0 0 10px">Δείγμα: <em>INVENTOR IKURA IKUI/IKUO-12WFI</em>. Το περιεχόμενο είναι εξαιρετικά πλούσιο (6 εικόνες, 12 χαρακτηριστικά, εύρη λειτουργίας, διαστάσεις, βάρη, 9 προδιαγραφές) αλλά παρουσιάζεται ως ένας αδιαφοροποίητος τοίχος κειμένου με <strong>τον πίνακα προδιαγραφών να τυπώνεται δύο φορές</strong>. Τα ποσά δόσεων εμφανίζονται κενά («από __ το μήνα»). Το store pickup λέει «Βρες ένα κατάστημα που σε εξυπηρετεί» χωρίς επιλογέα.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:0 22px;margin:10px 0 14px">
+  <div>
+    <div style="font:700 10.5px/1 'Source Sans 3',sans-serif;letter-spacing:.12em;color:#143a85;margin-bottom:8px">ΑΡΙΣΤΕΡΗ ΣΤΗΛΗ</div>
+    <div style="font:400 11.5px/1.6 'Source Sans 3',sans-serif;color:#242c3a"><strong>MediaGallery</strong> — sticky, zoom σε hover, lightbox, υποδοχή για video &amp; 360°, thumbnails με πραγματικά alt<br /><strong>HighlightGrid</strong> — τα 12 χαρακτηριστικά ως εικονιδιοποιημένα πλακίδια αντί λίστας<br /><strong>SpecTable</strong> — μία φορά, ομαδοποιημένη (Απόδοση / Ενέργεια / Συνδεσιμότητα / Διαστάσεις), με «Δες όλες τις προδιαγραφές»<br /><strong>EnergyLabelBlock</strong> — κλάση ψύξης/θέρμανσης + PDF fiche (νομική υποχρέωση EPREL)<br /><strong>QnA · Reviews · CompatibleWith</strong></div>
+  </div>
+  <div>
+    <div style="font:700 10.5px/1 'Source Sans 3',sans-serif;letter-spacing:.12em;color:#143a85;margin-bottom:8px">STICKY BUY BOX (ΔΕΞΙΑ)</div>
+    <div style="font:400 11.5px/1.6 'Source Sans 3',sans-serif;color:#242c3a"><strong>PriceBlock</strong> — τιμή, παλαιά τιμή, ποσοστό, «τιμή e-shop», ενημέρωση ν.4177 (χαμηλότερη τιμή 30 ημερών)<br /><strong>InstallmentCalculator</strong> — υπολογισμένα ποσά, tabs «με κάρτα» / «χωρίς κάρτα», modal με όρους<br /><strong>StockPill + DeliveryEstimate</strong> — πραγματική ημερομηνία, όχι «1 εώς 3 ημέρες»<br /><strong>StorePickupSelector</strong> — αναζήτηση με ΤΚ, απόθεμα ανά κατάστημα, ώρες<br /><strong>ServiceAddOns</strong> — e-support &amp; επέκταση εγγύησης ως επιλέξιμα add-ons με τιμή, όχι διαφημιστικό κείμενο<br /><strong>AddToCartBar</strong> — mobile sticky, πάντα ορατό</div>
+  </div>
+</div>
+
+<h3 style="font:700 15px/1.3 'Source Sans 3',sans-serif;color:#0e1726;margin:22px 0 8px">2.5 CMS σελίδες</h3>
+<table style="width:100%;border-collapse:collapse;font:400 11px/1.5 'Source Sans 3',sans-serif;margin:8px 0 16px">
+  <thead>
+    <tr>
+      <th style="text-align:left;background:#143a85;color:#fff;padding:7px 9px;font:600 10px/1.3 'Source Sans 3',sans-serif;letter-spacing:.05em;width:22%">ΣΕΛΙΔΑ</th>
+      <th style="text-align:left;background:#143a85;color:#fff;padding:7px 9px;font:600 10px/1.3 'Source Sans 3',sans-serif;letter-spacing:.05em;width:34%">ΤΙ ΦΤΑΙΕΙ ΣΗΜΕΡΑ</th>
+      <th style="text-align:left;background:#143a85;color:#fff;padding:7px 9px;font:600 10px/1.3 'Source Sans 3',sans-serif;letter-spacing:.05em">ΝΕΟ TEMPLATE / WIDGETS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td style="padding:7px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#0e1726;font-weight:600">Υπηρεσίες</td><td style="padding:7px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">12 πλακίδια-εικόνες χωρίς links ή περιγραφή· 5 κείμενα από κάτω που δεν αντιστοιχούν 1:1 με τα πλακίδια. Το σημαντικότερο εμπορικό asset της Euronics, ανενεργό.</td><td style="padding:7px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#242c3a"><strong>ServiceIndex</strong> (grid με 12 ServiceCard → σελίδα ανά υπηρεσία) + <strong>ServiceDetail</strong> (τι περιλαμβάνει, κόστος, πώς το ζητάς, FAQ, CTA). Widgets: <span style="font:500 10.5px ui-monospace,monospace;background:#eef1f7;padding:1px 4px;border-radius:3px;color:#143a85">ServiceGrid</span>, <span style="font:500 10.5px ui-monospace,monospace;background:#eef1f7;padding:1px 4px;border-radius:3px;color:#143a85">StepFlow</span>, <span style="font:500 10.5px ui-monospace,monospace;background:#eef1f7;padding:1px 4px;border-radius:3px;color:#143a85">FaqAccordion</span>.</td></tr>
+    <tr><td style="padding:7px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#0e1726;font-weight:600">Καταστήματα</td><td style="padding:7px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">Λίστα με «Απόσταση: 0 km» για όλα, ξεχωριστό «Δίκτυο καταστημάτων» στο footer με άλλο URL, διευθύνσεις σε ΚΕΦΑΛΑΙΑ, tags ορατά στον χρήστη, «Δεν υπάρχει κατάστημα σε αυτή την πόλη» ενώ εμφανίζονται καταστήματα.</td><td style="padding:7px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#242c3a"><strong>StoreLocator</strong> — χάρτης + λίστα συγχρονισμένα, γεωεντοπισμός, φίλτρα (ώρες, υπηρεσίες, click&amp;collect), ταξινόμηση με πραγματική απόσταση. <strong>StorePage</strong> με LocalBusiness JSON-LD, ώρες, φωτογραφίες, υπηρεσίες, οδηγίες. Ενοποίηση των δύο URL.</td></tr>
+    <tr><td style="padding:7px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#0e1726;font-weight:600">Blog / E-news</td><td style="padding:7px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">4 διαφορετικά κανάλια (blog, e-news, partners-news, e-blog) με ασαφή διαχωρισμό· άρθρα με εικόνες που περιέχουν όλο το κείμενο· καμία σύνδεση με προϊόντα.</td><td style="padding:7px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#242c3a">Ένα <strong>ContentHub</strong> με 3 τύπους (Οδηγός αγοράς / Νέα / Προσφορά-διαγωνισμός) και tags. <strong>ArticlePage</strong> με <span style="font:500 10.5px ui-monospace,monospace;background:#eef1f7;padding:1px 4px;border-radius:3px;color:#143a85">ProductMention</span> inline widget → μετρήσιμο content-to-cart.</td></tr>
+    <tr><td style="padding:7px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#0e1726;font-weight:600">Εταιρικές</td><td style="padding:7px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">Αξίες, Ιστορία, Οικονομικά στοιχεία: κείμενο σε default template, χωρίς οπτική ταυτότητα.</td><td style="padding:7px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#242c3a"><strong>EditorialPage</strong> — hero, <span style="font:500 10.5px ui-monospace,monospace;background:#eef1f7;padding:1px 4px;border-radius:3px;color:#143a85">Timeline</span>, <span style="font:500 10.5px ui-monospace,monospace;background:#eef1f7;padding:1px 4px;border-radius:3px;color:#143a85">StatBand</span>, <span style="font:500 10.5px ui-monospace,monospace;background:#eef1f7;padding:1px 4px;border-radius:3px;color:#143a85">DocumentList</span> (ισολογισμοί ως PDF με έτος &amp; μέγεθος).</td></tr>
+    <tr><td style="padding:7px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#0e1726;font-weight:600">Νομικές &amp; βοήθεια</td><td style="padding:7px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">Τρόποι πληρωμής/αποστολής, επιστροφές, όροι, cookies: διάσπαρτα, ανεπίκαιρο copyright «© euronics 2020», cookie banner χωρίς επιλογές (μόνο «OK»).</td><td style="padding:7px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#242c3a"><strong>HelpCenter</strong> με κατηγορίες &amp; αναζήτηση, <strong>LegalPage</strong> με auto table-of-contents και ημερομηνία ισχύος. Συμβατό <strong>ConsentManager</strong> (GDPR: αποδοχή / απόρριψη / ρυθμίσεις).</td></tr>
+  </tbody>
+</table>
+
+<h2 style="font:600 25px/1.2 'Source Serif 4',serif;color:#143a85;margin:40px 0 12px;border-bottom:2px solid #ffd200;padding-bottom:8px;break-before:page">3. Βιβλιοθήκη components</h2>
+<p style="font:400 12px/1.62 'Source Sans 3',sans-serif;color:#242c3a;margin:0 0 14px">Τέσσερα επίπεδα. Primitives και patterns είναι server components εξ ορισμού· <span style="font:500 10.5px ui-monospace,monospace;background:#eef1f7;padding:1px 4px;border-radius:3px;color:#143a85">use client</span> μόνο όπου υπάρχει state ή animation. Κάθε component έχει typed props, Storybook story και visual regression snapshot.</p>
+
+<sc-if value="{{ isFull }}" hint-placeholder-val="{{ true }}">
+<div>
+  <div style="font:700 11px/1 'Source Sans 3',sans-serif;letter-spacing:.12em;color:#143a85;margin:16px 0 9px;padding-bottom:6px;border-bottom:1px solid #dfe3ea">L1 · PRIMITIVES</div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">Button</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">variant: primary | secondary | ghost | danger · size: sm|md|lg · loading · asChild. Ύψος ≥44px σε mobile.</div></div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">Price</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">value, compareAt, currency, size, showDiscount, lowest30d — ένα σημείο αλήθειας για κάθε τιμή στο site.</div></div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">Badge · StockPill</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">tone: sale | new | gift | eco · status: in_stock | days_2_4 | on_order. Χρώμα + εικονίδιο + κείμενο (όχι μόνο χρώμα).</div></div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">Field set</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Input, Select, Checkbox, Radio, Stepper, Combobox — accessible labels, error text, aria-describedby.</div></div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">Sheet · Modal · Popover</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Radix primitives + Framer Motion presence. Focus trap, ESC, scroll lock.</div></div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">Skeleton · EmptyState</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Κάθε async περιοχή έχει skeleton ίδιου ύψους με το τελικό περιεχόμενο (μηδέν CLS).</div></div>
+
+  <div style="font:700 11px/1 'Source Sans 3',sans-serif;letter-spacing:.12em;color:#143a85;margin:22px 0 9px;padding-bottom:6px;border-bottom:1px solid #dfe3ea">L2 · COMMERCE PATTERNS</div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">ProductCard</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">product, layout: grid|list|rail, showCompare, showQuickAdd, priority. Hover image swap, badge stack, δόση/μήνα.</div></div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">FacetPanel · FacetGroup</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">facets, appliedFacets, resultCount, rank. Optimistic UI: τα αποτελέσματα ανανεώνονται πριν κλείσει το request.</div></div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">AppliedFilterChips</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Ορατά ενεργά φίλτρα με «×» και «Καθάρισε όλα» — σήμερα δεν υπάρχουν.</div></div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">SortSelect · ViewToggle</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Οι 8 σημερινές επιλογές ταξινόμησης μειώνονται σε 5 ουσιαστικές.</div></div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">MediaGallery</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">images, video, energyFiche. Pinch-zoom mobile, keyboard, preload μόνο της πρώτης.</div></div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">BuyBox</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Σύνθεση: Price + InstallmentCalculator + StockPill + DeliveryEstimate + StorePickupSelector + ServiceAddOns + AddToCart.</div></div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">CompareTray · CompareTable</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Έως 4 προϊόντα, persist σε cookie, διαφορές highlighted. Κρίσιμο για TV / λευκές συσκευές / κλιματιστικά.</div></div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">MiniCartSheet · CartLine</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Server actions + useOptimistic. Progress «δωρεάν μεταφορά», add-ons ανά γραμμή.</div></div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">CheckoutStepper</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Ένα route, 4 accordion βήματα, τρόποι: κάρτα, δόσεις χωρίς κάρτα, κατάθεση, αντικαταβολή, παραλαβή από κατάστημα.</div></div>
+
+  <div style="font:700 11px/1 'Source Sans 3',sans-serif;letter-spacing:.12em;color:#143a85;margin:22px 0 9px;padding-bottom:6px;border-bottom:1px solid #dfe3ea">L3 · CMS WIDGETS (ΤΟΠΟΘΕΤΟΥΝΤΑΙ ΑΠΟ ΤΟ MARKETING)</div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">HeroSlider</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">slides[] · κείμενο ως HTML (όχι μέσα στην εικόνα) · art direction desktop/mobile · autoplay opt-in · GSAP timeline.</div></div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">PromoMosaic</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Αντικαθιστά τα 14 PNG tiles: tiles[] με image, eyebrow, title, cta, span (1|2), scheduling.</div></div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">ProductRail</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577"><strong>Δυναμικά δεδομένα:</strong> source = manual ids | category | tag | savedSearch | bestsellers | recentlyViewed | recommended. limit, sort, «κρύψε τα εξαντλημένα».</div></div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">DealCountdownRail</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Προσφορές με λήξη· server-computed χρόνος, client ticker. Αυτόματη απόσυρση στη λήξη.</div></div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">CategoryQuickNav · BrandStrip</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Είσοδοι στις 9 κατηγορίες / logos κατασκευαστών από το PIM με link σε brand landing.</div></div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">TrustStrip · StatBand</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">USP και αριθμοί («350 καταστήματα») με count-up animation.</div></div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">ServiceGrid · StepFlow</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Οι 12 υπηρεσίες / διαδικασίες «πώς λειτουργεί» σε 3-5 βήματα με scroll-linked progress.</div></div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">FaqAccordion · Timeline</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">FAQ με FAQPage JSON-LD· timeline για την εταιρική ιστορία.</div></div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">EditorialRail · ProductMention</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Άρθρα σε rail· inline αναφορά προϊόντος μέσα σε άρθρο με ζωντανή τιμή &amp; add-to-cart.</div></div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">StoreFinderTeaser</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Χάρτης-teaser με «βρες το κοντινότερο» + geolocation.</div></div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">NewsletterBand · LeafletEmbed</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Μία φόρμα σε όλο το site· φυλλάδιο προσφορών (σήμερα εξωτερικό publuu link) ως native flipbook.</div></div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">RichText · MediaSplit · Spacer</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Τα «generic» widgets — αυστηρά περιορισμένα σε επιλογές ώστε να μη σπάει το design system.</div></div>
+
+  <div style="font:700 11px/1 'Source Sans 3',sans-serif;letter-spacing:.12em;color:#143a85;margin:22px 0 9px;padding-bottom:6px;border-bottom:1px solid #dfe3ea">L4 · TEMPLATES (ΣΥΝΘΕΣΕΙΣ ΑΝΑ ROUTE)</div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">SiteShell</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Root layout: AnnouncementBar, Header + MegaMenu + SearchCommand + MiniCartSheet, TrustStrip, SiteFooter, ConsentManager.</div></div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">HomeTemplate</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Ζώνες hero + main, 100% συνθέσιμο από widgets (§2.2). Καμία σκληροκωδικοποιημένη ενότητα.</div></div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">CategoryHub · PLP</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Κοινό route <span style="font:500 10.5px ui-monospace,monospace;color:#143a85">/c/[...slug]</span>· hub = SubcategoryTiles + BuyingGuide + ProductRail, PLP = FacetPanel + ProductGrid + AppliedFilterChips.</div></div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">PDPTemplate</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">MediaGallery + BuyBox (sticky) + HighlightGrid + SpecTable + EnergyLabelBlock + QnA + CrossSell· CMS ζώνες belowBuyBox / belowSpecs.</div></div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">SearchTemplate</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Ίδιο facet σύστημα με PLP + διόρθωση ερωτήματος («μήπως εννοούσατε») + zero-results με προτάσεις.</div></div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">StoreLocator · StorePage</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Χάρτης+λίστα συγχρονισμένα· ~350 στατικές σελίδες καταστημάτων με LocalBusiness JSON-LD.</div></div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">ServiceIndex · ServiceDetail</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Οι 12 υπηρεσίες ως πλοηγήσιμο περιεχόμενο με δικό τους URL, FAQ και CTA.</div></div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">ContentHub · ArticlePage</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Ενοποίηση blog / e-news / partners-news / e-blog σε 3 τύπους με tags και ProductMention.</div></div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">EditorialPage · HelpCenter · LegalPage</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Εταιρικές σελίδες, κέντρο βοήθειας με αναζήτηση, νομικά με auto-TOC και ημερομηνία ισχύος.</div></div>
+  <div style="display:grid;grid-template-columns:165px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid #f1f3f7"><div style="font:600 11px/1.4 'Source Sans 3',sans-serif;color:#0e1726">CartPage · CheckoutFlow · AccountArea</div><div style="font:400 11px/1.55 'Source Sans 3',sans-serif;color:#5b6577">Ένα route checkout με 4 βήματα· λογαριασμός με παραγγελίες, εγγυήσεις, wishlist, διευθύνσεις.</div></div>
+</div>
+</sc-if>
+
+<h2 style="font:600 25px/1.2 'Source Serif 4',serif;color:#143a85;margin:40px 0 12px;border-bottom:2px solid #ffd200;padding-bottom:8px;break-before:page">4. Custom CMS με δυναμικά widgets</h2>
+<p style="font:400 12px/1.62 'Source Sans 3',sans-serif;color:#242c3a;margin:0 0 12px">Το CMS δεν κρατά HTML. Κρατά <strong>δομημένο περιεχόμενο και μια λίστα widgets</strong> ανά ζώνη σελίδας. Το frontend αποφασίζει πώς αποδίδεται. Έτσι μια αλλαγή στο design system εφαρμόζεται σε όλες τις σελίδες ταυτόχρονα.</p>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 16px">
+  <div style="background:#f4f6fa;padding:13px 14px;border-radius:4px;break-inside:avoid">
+    <div style="font:700 10.5px/1 'Source Sans 3',sans-serif;letter-spacing:.1em;color:#143a85;margin-bottom:8px">ΜΟΝΤΕΛΟ ΠΕΡΙΕΧΟΜΕΝΟΥ</div>
+    <div style="font:400 11px/1.6 'Source Sans 3',sans-serif;color:#242c3a">Page (slug, template, seo, zones[])<br />Widget (type, props, visibility, schedule, audience)<br />Product · Category · Brand (από PIM/ERP, read-only στο CMS)<br />Store (γεωσυντεταγμένες, ώρες, υπηρεσίες)<br />Service · Article · FaqItem · LegalDoc<br />Redirect (from, to, status)<br />Navigation (δέντρο, ανεξάρτητο από το δέντρο κατηγοριών)</div>
+  </div>
+  <div style="background:#f4f6fa;padding:13px 14px;border-radius:4px;break-inside:avoid">
+    <div style="font:700 10.5px/1 'Source Sans 3',sans-serif;letter-spacing:.1em;color:#143a85;margin-bottom:8px">ΖΩΝΕΣ ΑΝΑ TEMPLATE</div>
+    <div style="font:400 11px/1.6 'Source Sans 3',sans-serif;color:#242c3a"><strong>home</strong>: hero, main<br /><strong>categoryHub</strong>: aboveGrid, belowGrid, sidebarPromo<br /><strong>plp</strong>: banner, belowGrid<br /><strong>pdp</strong>: belowBuyBox, belowSpecs, crossSell<br /><strong>editorial / service / legal</strong>: main<br /><strong>global</strong>: announcementBar, trustStrip, footer<br />Κάθε ζώνη δηλώνει ποια widget types επιτρέπονται — δεν μπαίνει HeroSlider σε PDP.</div>
+  </div>
+</div>
+
+<h3 style="font:700 15px/1.3 'Source Sans 3',sans-serif;color:#0e1726;margin:20px 0 8px">Δυναμικά δεδομένα στα widgets</h3>
+<p style="font:400 12px/1.62 'Source Sans 3',sans-serif;color:#242c3a;margin:0 0 10px">Το κρίσιμο σημείο: ένα widget δεν «κολλάει» προϊόντα με το χέρι. Δηλώνει <strong>query</strong>. Ο editor βλέπει ζωντανό preview των αποτελεσμάτων και μπορεί να καρφιτσώσει (pin) συγκεκριμένα προϊόντα στην κορυφή.</p>
+<table style="width:100%;border-collapse:collapse;font:400 11px/1.5 'Source Sans 3',sans-serif;margin:6px 0 16px">
+  <thead>
+    <tr>
+      <th style="text-align:left;background:#143a85;color:#fff;padding:7px 9px;font:600 10px/1.3 'Source Sans 3',sans-serif;letter-spacing:.05em;width:24%">SOURCE</th>
+      <th style="text-align:left;background:#143a85;color:#fff;padding:7px 9px;font:600 10px/1.3 'Source Sans 3',sans-serif;letter-spacing:.05em;width:38%">ΠΩΣ ΤΡΟΦΟΔΟΤΕΙΤΑΙ</th>
+      <th style="text-align:left;background:#143a85;color:#fff;padding:7px 9px;font:600 10px/1.3 'Source Sans 3',sans-serif;letter-spacing:.05em">CACHE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#0e1726;font-weight:600">manual</td><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">Λίστα SKU από τον editor</td><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">tag <span style="font:500 10px ui-monospace,monospace;color:#143a85">product:{sku}</span></td></tr>
+    <tr><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#0e1726;font-weight:600">category / tag</td><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">Κατηγορία ή ετικέτα + sort + limit</td><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">ISR 10′</td></tr>
+    <tr><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#0e1726;font-weight:600">savedSearch</td><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">Αποθηκευμένο facet query (π.χ. «TV, 55″, OLED, &lt;1200€»)</td><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">ISR 10′</td></tr>
+    <tr><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#0e1726;font-weight:600">bestsellers</td><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">Πωλήσεις 30 ημερών από ERP, ανά κατηγορία</td><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">nightly job</td></tr>
+    <tr><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#0e1726;font-weight:600">recentlyViewed</td><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">Client-side από cookie — το widget αποδίδεται με Suspense</td><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">no-store</td></tr>
+    <tr><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#0e1726;font-weight:600">stock &amp; price</td><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">Πάντα ζωντανά: το HTML έρχεται από cache, τιμή/απόθεμα από edge endpoint</td><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">60s SWR</td></tr>
+  </tbody>
+</table>
+
+<h3 style="font:700 15px/1.3 'Source Sans 3',sans-serif;color:#0e1726;margin:20px 0 8px">Λειτουργίες που πρέπει να έχει ο editor</h3>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:0 22px;margin:0 0 14px">
+  <div style="font:400 11.5px/1.7 'Source Sans 3',sans-serif;color:#242c3a">· Drag &amp; drop widgets μέσα σε ζώνη, με ζωντανό preview στην πραγματική σελίδα<br />· Προγραμματισμός δημοσίευσης/απόσυρσης (κρίσιμο για κλιματιστικά, Black Friday, φοιτητικά)<br />· Visibility rules: συσκευή, νέος/επιστρέφων, γεωγραφία, UTM<br />· Draft → preview link → approval → publish, με audit log</div>
+  <div style="font:400 11.5px/1.7 'Source Sans 3',sans-serif;color:#242c3a">· Ένα asset pipeline: upload μία φορά, αυτόματα AVIF/WebP σε 6 μεγέθη, υποχρεωτικό alt<br />· SEO panel ανά σελίδα (title, description, OG, canonical, robots) με προειδοποίηση αν λείπει<br />· A/B δύο εκδοχών του ίδιου widget<br />· Redirects UI για τη μετάπτωση (§6)</div>
+</div>
+
+<h2 style="font:600 25px/1.2 'Source Serif 4',serif;color:#143a85;margin:40px 0 12px;border-bottom:2px solid #ffd200;padding-bottom:8px;break-before:page">5. Αρχιτεκτονική Next.js</h2>
+<table style="width:100%;border-collapse:collapse;font:400 11px/1.5 'Source Sans 3',sans-serif;margin:8px 0 16px">
+  <thead>
+    <tr>
+      <th style="text-align:left;background:#143a85;color:#fff;padding:7px 9px;font:600 10px/1.3 'Source Sans 3',sans-serif;letter-spacing:.05em;width:30%">ROUTE</th>
+      <th style="text-align:left;background:#143a85;color:#fff;padding:7px 9px;font:600 10px/1.3 'Source Sans 3',sans-serif;letter-spacing:.05em;width:24%">RENDERING</th>
+      <th style="text-align:left;background:#143a85;color:#fff;padding:7px 9px;font:600 10px/1.3 'Source Sans 3',sans-serif;letter-spacing:.05em">ΣΗΜΕΙΩΣΕΙΣ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;font:500 10.5px ui-monospace,monospace;color:#143a85">/</td><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">ISR 5′ + tag</td><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">Άμεσο revalidate σε publish από το CMS</td></tr>
+    <tr><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;font:500 10.5px ui-monospace,monospace;color:#143a85">/c/[...slug]</td><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">ISR 10′, top 200 προ-παραγόμενες</td><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">Ίδιο route για hub &amp; PLP· το template επιλέγεται από το βάθος</td></tr>
+    <tr><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;font:500 10.5px ui-monospace,monospace;color:#143a85">/p/[slug]</td><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">ISR 15′ + on-demand</td><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">Τιμή/απόθεμα σε Suspense island· Product JSON-LD</td></tr>
+    <tr><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;font:500 10.5px ui-monospace,monospace;color:#143a85">/search</td><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">Dynamic (edge)</td><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">Typesense/Meilisearch με ελληνικό stemming &amp; greeklish tolerance</td></tr>
+    <tr><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;font:500 10.5px ui-monospace,monospace;color:#143a85">/stores · /stores/[slug]</td><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">SSG + ISR 24h</td><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">~350 σελίδες με LocalBusiness JSON-LD — μεγάλο τοπικό SEO κέρδος</td></tr>
+    <tr><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;font:500 10.5px ui-monospace,monospace;color:#143a85">/services · /guides · /news</td><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">SSG + ISR</td><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">Ενοποίηση των 4 σημερινών καναλιών</td></tr>
+    <tr><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;font:500 10.5px ui-monospace,monospace;color:#143a85">/cart · /checkout · /account</td><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">Dynamic, no-store</td><td style="padding:6px 9px;border-bottom:1px solid #dfe3ea;vertical-align:top;color:#5b6577">Server actions, idempotency keys στην πληρωμή</td></tr>
+  </tbody>
+</table>
+<p style="font:400 12px/1.62 'Source Sans 3',sans-serif;color:#242c3a;margin:0 0 10px"><strong>Data layer.</strong> Ένα <span style="font:500 10.5px ui-monospace,monospace;background:#eef1f7;padding:1px 4px;border-radius:3px;color:#143a85">packages/commerce</span> με typed clients (PIM/ERP, CMS, search, payments) και Zod schemas στα σύνορα. Καμία σελίδα δεν καλεί API απευθείας. Cache tags: <span style="font:500 10.5px ui-monospace,monospace;background:#eef1f7;padding:1px 4px;border-radius:3px;color:#143a85">product:{sku}</span>, <span style="font:500 10.5px ui-monospace,monospace;background:#eef1f7;padding:1px 4px;border-radius:3px;color:#143a85">category:{id}</span>, <span style="font:500 10.5px ui-monospace,monospace;background:#eef1f7;padding:1px 4px;border-radius:3px;color:#143a85">page:{slug}</span>, <span style="font:500 10.5px ui-monospace,monospace;background:#eef1f7;padding:1px 4px;border-radius:3px;color:#143a85">nav</span> — webhook από PIM/CMS καλεί <span style="font:500 10.5px ui-monospace,monospace;background:#eef1f7;padding:1px 4px;border-radius:3px;color:#143a85">revalidateTag</span>.</p>
+<p style="font:400 12px/1.62 'Source Sans 3',sans-serif;color:#242c3a;margin:0 0 10px"><strong>Εικόνες.</strong> Το σημερινό <span style="font:500 10.5px ui-monospace,monospace;background:#eef1f7;padding:1px 4px;border-radius:3px;color:#143a85">/images/thumbs/*_480.jpeg</span> αντικαθίσταται από <span style="font:500 10.5px ui-monospace,monospace;background:#eef1f7;padding:1px 4px;border-radius:3px;color:#143a85">next/image</span> με AVIF/WebP, σωστά <span style="font:500 10.5px ui-monospace,monospace;background:#eef1f7;padding:1px 4px;border-radius:3px;color:#143a85">sizes</span>, blur placeholder και <span style="font:500 10.5px ui-monospace,monospace;background:#eef1f7;padding:1px 4px;border-radius:3px;color:#143a85">priority</span> μόνο στο LCP. Μηδέν κείμενο μέσα σε εικόνα.</p>
+<p style="font:400 12px/1.62 'Source Sans 3',sans-serif;color:#242c3a;margin:0 0 4px"><strong>SEO.</strong> Metadata API ανά route, JSON-LD (Product με AggregateOffer &amp; availability, BreadcrumbList, LocalBusiness, FAQPage, Article), δυναμικά sitemaps ανά τύπο, hreflang έτοιμο για μελλοντικό EN.</p>
+
+<h2 style="font:600 25px/1.2 'Source Serif 4',serif;color:#143a85;margin:40px 0 12px;border-bottom:2px solid #ffd200;padding-bottom:8px">6. Animation: GSAP ή Framer Motion</h2>
+<p style="font:400 12px/1.62 'Source Sans 3',sans-serif;color:#242c3a;margin:0 0 12px">Δύο βιβλιοθήκες, καθαρός διαχωρισμός ευθυνών — αλλιώς διπλασιάζεται το bundle χωρίς λόγο.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 16px">
+  <div style="border:1px solid #dfe3ea;border-top:3px solid #143a85;padding:13px 14px;break-inside:avoid">
+    <div style="font:700 11px/1 'Source Sans 3',sans-serif;letter-spacing:.1em;color:#143a85;margin-bottom:8px">FRAMER MOTION → UI STATE</div>
+    <div style="font:400 11px/1.6 'Source Sans 3',sans-serif;color:#242c3a">Mega-menu panels, MiniCartSheet, modals &amp; popovers (AnimatePresence), filter drawer, accordion, tabs, layout transitions σε grid/list toggle, micro-interactions σε buttons, badge pop στο καλάθι, page transitions.<br /><br /><em style="color:#5b6577">Γιατί:</em> declarative, δεσμευμένο στο React lifecycle, σωστό exit animation, μικρό για component-level δουλειά.</div>
+  </div>
+  <div style="border:1px solid #dfe3ea;border-top:3px solid #ffd200;padding:13px 14px;break-inside:avoid">
+    <div style="font:700 11px/1 'Source Sans 3',sans-serif;letter-spacing:.1em;color:#143a85;margin-bottom:8px">GSAP → SCROLL &amp; TIMELINES</div>
+    <div style="font:400 11px/1.6 'Source Sans 3',sans-serif;color:#242c3a">HeroSlider timelines, ScrollTrigger σε StepFlow &amp; Timeline, pinned sections σε brand storytelling, count-up στο StatBand, horizontal rails με drag inertia, PromoMosaic parallax, reveal sequences.<br /><br /><em style="color:#5b6577">Γιατί:</em> ακρίβεια σε πολύπλοκες αλληλουχίες, ScrollTrigger. Φορτώνεται <strong>δυναμικά</strong> μόνο στα routes που το χρειάζονται.</div>
+  </div>
+</div>
+<div style="background:#f4f6fa;border-left:3px solid #143a85;padding:12px 14px;margin:0 0 8px;break-inside:avoid">
+  <div style="font:700 10.5px/1 'Source Sans 3',sans-serif;letter-spacing:.1em;color:#143a85;margin-bottom:7px">ΚΑΝΟΝΕΣ ΠΟΥ ΔΕΝ ΠΑΡΑΒΙΑΖΟΝΤΑΙ</div>
+  <div style="font:400 11.5px/1.65 'Source Sans 3',sans-serif;color:#242c3a">Μόνο <span style="font:500 10.5px ui-monospace,monospace;color:#143a85">transform</span> και <span style="font:500 10.5px ui-monospace,monospace;color:#143a85">opacity</span> · καμία animation δεν κρύβει τιμή, απόθεμα ή CTA · <span style="font:500 10.5px ui-monospace,monospace;color:#143a85">prefers-reduced-motion</span> απενεργοποιεί τα πάντα πλην opacity · διάρκειες 150–400ms στο UI, ≤900ms στο storytelling · καμία animation στο LCP element · animation libraries πάντα σε client component πίσω από <span style="font:500 10.5px ui-monospace,monospace;color:#143a85">dynamic()</span>.</div>
+</div>
+
+<h2 style="font:600 25px/1.2 'Source Serif 4',serif;color:#143a85;margin:38px 0 12px;border-bottom:2px solid #ffd200;padding-bottom:8px">7. Απόδοση, προσβασιμότητα, μετάπτωση</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0 18px;margin:0 0 16px">
+  <div>
+    <div style="font:700 10.5px/1 'Source Sans 3',sans-serif;letter-spacing:.1em;color:#143a85;margin-bottom:8px">BUDGET</div>
+    <div style="font:400 11px/1.65 'Source Sans 3',sans-serif;color:#242c3a">LCP &lt; 2,0s (4G mobile)<br />INP &lt; 200ms<br />CLS &lt; 0,05<br />JS &lt; 180KB gz στο PDP<br />Lighthouse ≥ 92 σε home/PLP/PDP<br />Budget σε CI, αποτυγχάνει το build</div>
+  </div>
+  <div>
+    <div style="font:700 10.5px/1 'Source Sans 3',sans-serif;letter-spacing:.1em;color:#143a85;margin-bottom:8px">ΠΡΟΣΒΑΣΙΜΟΤΗΤΑ</div>
+    <div style="font:400 11px/1.65 'Source Sans 3',sans-serif;color:#242c3a">WCAG 2.2 AA<br />Πλήρης πλοήγηση με πληκτρολόγιο στο mega-menu &amp; στα φίλτρα<br />Ορατό focus ring<br />Στόχοι ≥44px<br />Πραγματικά alt (σήμερα «Εικόνα της …»)<br />Ελληνικά <span style="font:500 10px ui-monospace,monospace;color:#143a85">lang="el"</span> + σωστός τονισμός σε labels</div>
+  </div>
+  <div>
+    <div style="font:700 10.5px/1 'Source Sans 3',sans-serif;letter-spacing:.1em;color:#143a85;margin-bottom:8px">ΜΕΤΑΠΤΩΣΗ URL</div>
+    <div style="font:400 11px/1.65 'Source Sans 3',sans-serif;color:#242c3a">Τα σημερινά URL είναι percent-encoded ελληνικά (π.χ. <span style="font:500 10px ui-monospace,monospace;color:#143a85">/τηλεοράσεις</span>). Διατηρούνται ως 301 προς <span style="font:500 10px ui-monospace,monospace;color:#143a85">/c/tileoraseis</span>.<br />Πλήρες crawl → πίνακας αντιστοίχισης → middleware redirects → παρακολούθηση 404 για 90 ημέρες.<br />Κανένα URL δεν χάνεται.</div>
+  </div>
+</div>
+
+<sc-if value="{{ showRoadmap }}" hint-placeholder-val="{{ true }}">
+<h3 style="font:700 15px/1.3 'Source Sans 3',sans-serif;color:#0e1726;margin:22px 0 10px">Πορεία υλοποίησης</h3>
+<div style="display:grid;grid-template-columns:74px 1fr;gap:10px 14px;font:400 11.5px/1.55 'Source Sans 3',sans-serif;color:#242c3a">
+  <div style="font-weight:700;color:#143a85">Φάση 1</div><div>Design system, tokens, primitives, Storybook · content model &amp; widget registry · καθορισμός data contracts με PIM/ERP. <em style="color:#5b6577">4–5 εβδ.</em></div>
+  <div style="font-weight:700;color:#143a85">Φάση 2</div><div>Global shell, home, category hub, PLP με facets σε URL, search engine indexing. <em style="color:#5b6577">5–6 εβδ.</em></div>
+  <div style="font-weight:700;color:#143a85">Φάση 3</div><div>PDP με sticky buy box, δόσεις, store pickup, σύγκριση · mini-cart. <em style="color:#5b6577">4 εβδ.</em></div>
+  <div style="font-weight:700;color:#143a85">Φάση 4</div><div>Checkout &amp; λογαριασμός · 4 τρόποι πληρωμής · click &amp; collect. <em style="color:#5b6577">4–5 εβδ.</em></div>
+  <div style="font-weight:700;color:#143a85">Φάση 5</div><div>CMS σελίδες, 350 σελίδες καταστημάτων, content hub, redirects, launch &amp; παρακολούθηση. <em style="color:#5b6577">4 εβδ.</em></div>
+</div>
+</sc-if>
+
+<div style="margin-top:34px;padding-top:14px;border-top:1px solid #dfe3ea;font:400 10.5px/1.5 'Source Sans 3',sans-serif;color:#5b6577">Η μελέτη βασίζεται σε σάρωση του euronics.gr στις 31 Ιουλίου 2026. Τα ευρήματα αφορούν τη δημόσια εκδοχή του site· η πρόσβαση σε PIM/ERP και analytics θα επιτρέψει ποσοτικοποίηση των προτεραιοτήτων ανά κατηγορία.</div>
+
+</doc-page>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;mode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;full&quot;,&quot;executive&quot;],&quot;default&quot;:&quot;full&quot;,&quot;tsType&quot;:&quot;'full' | 'executive'&quot;,&quot;section&quot;:&quot;Έκταση&quot;},&quot;showRoadmap&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Έκταση&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      isFull: (this.props.mode ?? 'full') === 'full',
+      showRoadmap: this.props.showRoadmap ?? true
+    };
+  }
+}
+</script>
+</body>
+</html>

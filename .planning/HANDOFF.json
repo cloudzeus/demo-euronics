@@ -1,0 +1,354 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-09-08T08:52:08.334Z",
+  "source": "auto-postool",
+  "partial": false,
+  "phase": null,
+  "phase_name": null,
+  "phase_dir": null,
+  "plan": null,
+  "task": null,
+  "total_tasks": null,
+  "status": "auto-checkpoint",
+  "completed_tasks": [],
+  "remaining_tasks": [],
+  "blockers": [],
+  "human_actions_pending": [],
+  "decisions": [],
+  "uncommitted_files": [
+    {
+      "status": "A",
+      "path": ".claude/launch.json"
+    },
+    {
+      "status": "AM",
+      "path": ".planning/HANDOFF.json"
+    },
+    {
+      "status": "M",
+      "path": "app/globals.css"
+    },
+    {
+      "status": "M",
+      "path": "app/layout.tsx"
+    },
+    {
+      "status": "M",
+      "path": "app/page.tsx"
+    },
+    {
+      "status": "A",
+      "path": "app/protasi/PrintButton.tsx"
+    },
+    {
+      "status": "A",
+      "path": "app/protasi/doc.css"
+    },
+    {
+      "status": "A",
+      "path": "app/protasi/page.tsx"
+    },
+    {
+      "status": "A",
+      "path": "app/protasi/pages-a.tsx"
+    },
+    {
+      "status": "A",
+      "path": "app/protasi/pages-b.tsx"
+    },
+    {
+      "status": "AM",
+      "path": "app/protasi/pages-c.tsx"
+    },
+    {
+      "status": "A",
+      "path": "components.json"
+    },
+    {
+      "status": "A",
+      "path": "components/commerce/CartProvider.tsx"
+    },
+    {
+      "status": "A",
+      "path": "components/commerce/Countdown.tsx"
+    },
+    {
+      "status": "A",
+      "path": "components/commerce/EnergyChip.tsx"
+    },
+    {
+      "status": "AM",
+      "path": "components/commerce/ProductCard.tsx"
+    },
+    {
+      "status": "A",
+      "path": "components/commerce/QuickBuySheet.tsx"
+    },
+    {
+      "status": "AM",
+      "path": "components/doc/DocPage.tsx"
+    },
+    {
+      "status": "A",
+      "path": "components/fluid/DeviceProvider.tsx"
+    },
+    {
+      "status": "A",
+      "path": "components/fluid/Fluid.tsx"
+    },
+    {
+      "status": "A",
+      "path": "components/site/AnnouncementBar.tsx"
+    },
+    {
+      "status": "A",
+      "path": "components/site/CartButton.tsx"
+    },
+    {
+      "status": "A",
+      "path": "components/site/MegaNav.tsx"
+    },
+    {
+      "status": "A",
+      "path": "components/site/MobileMenu.tsx"
+    },
+    {
+      "status": "A",
+      "path": "components/site/SearchBox.tsx"
+    },
+    {
+      "status": "A",
+      "path": "components/site/SiteFooter.tsx"
+    },
+    {
+      "status": "A",
+      "path": "components/site/SiteHeader.tsx"
+    },
+    {
+      "status": "A",
+      "path": "components/site/ZoneBadge.tsx"
+    },
+    {
+      "status": "A",
+      "path": "components/site/ZonesToggle.tsx"
+    },
+    {
+      "status": "A",
+      "path": "components/ui/badge.tsx"
+    },
+    {
+      "status": "A",
+      "path": "components/ui/button.tsx"
+    },
+    {
+      "status": "A",
+      "path": "components/ui/checkbox.tsx"
+    },
+    {
+      "status": "A",
+      "path": "components/ui/dialog.tsx"
+    },
+    {
+      "status": "A",
+      "path": "components/ui/input.tsx"
+    },
+    {
+      "status": "A",
+      "path": "components/ui/separator.tsx"
+    },
+    {
+      "status": "A",
+      "path": "components/ui/sheet.tsx"
+    },
+    {
+      "status": "A",
+      "path": "components/widgets/BentoHero.tsx"
+    },
+    {
+      "status": "A",
+      "path": "components/widgets/CategoryGrid.tsx"
+    },
+    {
+      "status": "A",
+      "path": "components/widgets/DealOfDayTile.tsx"
+    },
+    {
+      "status": "A",
+      "path": "components/widgets/DealsRail.tsx"
+    },
+    {
+      "status": "A",
+      "path": "components/widgets/GuidesBand.tsx"
+    },
+    {
+      "status": "AM",
+      "path": "components/widgets/HeroSlider.tsx"
+    },
+    {
+      "status": "A",
+      "path": "components/widgets/NewsletterBand.tsx"
+    },
+    {
+      "status": "A",
+      "path": "components/widgets/QuickBuyExplainer.tsx"
+    },
+    {
+      "status": "A",
+      "path": "components/widgets/SectionHead.tsx"
+    },
+    {
+      "status": "A",
+      "path": "components/widgets/ServicesBand.tsx"
+    },
+    {
+      "status": "A",
+      "path": "components/widgets/StoreFinder.tsx"
+    },
+    {
+      "status": "A",
+      "path": "components/widgets/Ticker.tsx"
+    },
+    {
+      "status": "A",
+      "path": "\"docs/Euronics \\316\\221\\317\\201\\317\\207\\316\\271\\316\\272\\316\\256 - \\316\\240\\317\\201\\317\\214\\317\\204\\316\\261\\317\\203\\316\\267 v2.dc.html\""
+    },
+    {
+      "status": "A",
+      "path": "\"docs/Euronics \\316\\234\\316\\265\\316\\273\\316\\255\\317\\204\\316\\267 \\316\\221\\316\\275\\316\\261\\317\\203\\317\\207\\316\\265\\316\\264\\316\\271\\316\\261\\317\\203\\316\\274\\316\\277\\317\\215.dc.html\""
+    },
+    {
+      "status": "A",
+      "path": "\"docs/Euronics \\316\\240\\316\\261\\317\\201\\316\\277\\317\\205\\317\\203\\316\\257\\316\\261\\317\\203\\316\\267 \\316\\221\\316\\275\\316\\261\\317\\203\\317\\207\\316\\265\\316\\264\\316\\271\\316\\261\\317\\203\\316\\274\\316\\277\\317\\215.dc.html\""
+    },
+    {
+      "status": "A",
+      "path": "\"docs/Euronics \\316\\240\\317\\201\\316\\271\\316\\275 & \\316\\234\\316\\265\\317\\204\\316\\254.dc.html\""
+    },
+    {
+      "status": "A",
+      "path": "docs/audit-euronics-gr.md"
+    },
+    {
+      "status": "A",
+      "path": "docs/audit-kotsovolos-gr.md"
+    },
+    {
+      "status": "A",
+      "path": "docs/audit-web-kolleris-com.md"
+    },
+    {
+      "status": "A",
+      "path": "lib/cms/home.layout.ts"
+    },
+    {
+      "status": "A",
+      "path": "lib/cms/render.tsx"
+    },
+    {
+      "status": "A",
+      "path": "lib/cms/zones.ts"
+    },
+    {
+      "status": "A",
+      "path": "lib/data/catalog.ts"
+    },
+    {
+      "status": "A",
+      "path": "lib/data/nav.ts"
+    },
+    {
+      "status": "A",
+      "path": "lib/data/types.ts"
+    },
+    {
+      "status": "A",
+      "path": "lib/device.ts"
+    },
+    {
+      "status": "A",
+      "path": "lib/format.ts"
+    },
+    {
+      "status": "A",
+      "path": "lib/utils.ts"
+    },
+    {
+      "status": "M",
+      "path": "next.config.ts"
+    },
+    {
+      "status": "M",
+      "path": "package-lock.json"
+    },
+    {
+      "status": "M",
+      "path": "package.json"
+    },
+    {
+      "status": "A",
+      "path": "prisma/schema.prisma"
+    },
+    {
+      "status": "A",
+      "path": "public/design/euronics-logo-white.png"
+    },
+    {
+      "status": "A",
+      "path": "public/design/euronics-logo.png"
+    },
+    {
+      "status": "A",
+      "path": "public/design/logo-on-blue.svg"
+    },
+    {
+      "status": "A",
+      "path": "public/design/logo.svg"
+    },
+    {
+      "status": "A",
+      "path": "public/design/star.svg"
+    },
+    {
+      "status": "A",
+      "path": "public/img/guide-ac.jpg"
+    },
+    {
+      "status": "A",
+      "path": "public/img/guide-energy.jpg"
+    },
+    {
+      "status": "A",
+      "path": "public/img/guide-student.jpg"
+    },
+    {
+      "status": "A",
+      "path": "public/img/hero-clima.jpg"
+    },
+    {
+      "status": "A",
+      "path": "public/img/hero-laptop.jpg"
+    },
+    {
+      "status": "A",
+      "path": "public/img/hero-renew.jpg"
+    },
+    {
+      "status": "A",
+      "path": "public/img/product-espresso.jpg"
+    },
+    {
+      "status": "A",
+      "path": "public/img/product-washer.jpg"
+    },
+    {
+      "status": "A",
+      "path": "public/img/store-front.jpg"
+    },
+    {
+      "status": "A",
+      "path": "scripts/fluid-type.mjs"
+    }
+  ],
+  "next_action": null,
+  "context_notes": "Recent commits:\nd98819f Initial commit from Create Next App"
+}

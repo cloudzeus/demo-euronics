@@ -1,0 +1,65 @@
+/* Proposal document — A4 landscape pages (1123 × 794 css px at 96dpi). */
+.doc {
+  --doc-w: 1123;
+  --doc-h: 794;
+  --doc-scale: min(1, (100vw - 32px) / var(--doc-w));
+  background: var(--eu-desk);
+  padding: 32px 16px 96px;
+}
+.doc-page-wrap {
+  width: calc(var(--doc-w) * 1px * var(--doc-scale));
+  height: calc(var(--doc-h) * 1px * var(--doc-scale));
+  margin: 0 auto 28px;
+  position: relative;
+}
+.doc-page {
+  width: calc(var(--doc-w) * 1px);
+  height: calc(var(--doc-h) * 1px);
+  transform: scale(var(--doc-scale));
+  transform-origin: top left;
+  overflow: hidden;
+  box-shadow: var(--shadow-raised);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  padding: 44px 52px;
+  box-sizing: border-box;
+}
+.doc-page.cover {
+  padding: 52px 58px;
+}
+/* Pixel identity: sizes inside a page are design px, not fluid tokens —
+   the page itself is what scales. */
+.doc-page * {
+  text-wrap: pretty;
+}
+
+@media print {
+  @page {
+    size: A4 landscape;
+    margin: 0;
+  }
+  .doc {
+    background: none;
+    padding: 0;
+  }
+  .doc-toolbar {
+    display: none;
+  }
+  .doc-page-wrap {
+    width: 297mm;
+    height: 210mm;
+    margin: 0;
+    break-after: page;
+    overflow: hidden;
+  }
+  .doc-page {
+    transform: none;
+    width: 297mm;
+    height: 210mm;
+    border-radius: 0;
+    box-shadow: none;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}
