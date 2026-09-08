@@ -1,26 +1,29 @@
 "use client";
 
-import { Children, useEffect, useRef, useState, type ReactNode } from "react";
+import { Children, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import gsap from "gsap";
 import { useDevice } from "@/components/fluid/DeviceProvider";
 
 /**
  * Adaptive card rail. The number of cards per view comes from the
- * measured width and a minimum optimal card width — cards never get
- * cramped. Whatever does not fit is reached with the arrows (or a swipe
- * on touch); there is never a scrollbar. With few items it is a plain
- * grid. Pages move by a full view, so alignment stays pixel-perfect.
+ * measured width and a minimum optimal card width — cards are never
+ * cramped. Whatever does not fit is reached with the arrows or a swipe,
+ * one card at a time: the first slides out, the next slides in. Motion
+ * is tweened with GSAP (power3.out); there is never a scrollbar. With
+ * few items it is a plain grid.
  */
 export function CardCarousel({ children, minItem = 240, minItemNarrow = 165, gap = 16, label = "Προϊόντα" }: { children: ReactNode; minItem?: number; minItemNarrow?: number; gap?: number; label?: string }) {
   const items = Children.toArray(children);
   const { device } = useDevice();
-  const ref = useRef<HTMLDivElement>(null);
+  const viewport = useRef<HTMLDivElement>(null);
+  const track = useRef<HTMLUListElement>(null);
   const [w, setW] = useState(0);
-  const [page, setPage] = useState(0);
+  const [start, setStart] = useState(0);
   const drag = useRef<number | null>(null);
 
   useEffect(() => {
-    const el = ref.current;
+    const el = viewport.current;
     if (!el) return;
     const ro = new ResizeObserver((entries) => setW(Math.round(entries[0].contentRect.width)));
     ro.observe(el);
@@ -30,18 +33,25 @@ export function CardCarousel({ children, minItem = 240, minItemNarrow = 165, gap
   const min = w && w < 520 ? minItemNarrow : minItem;
   const fallback = device === "mobile" ? 2 : device === "tablet" ? 3 : 4;
   const per = w ? Math.max(1, Math.floor((w + gap) / (min + gap))) : fallback;
-  const pages = Math.max(1, Math.ceil(items.length / per));
-  const cur = Math.min(page, pages - 1);
   const multi = items.length > per;
-  /** First visible index: pages advance by a full view, the last page ends flush so no card stands alone. */
-  const start = multi ? Math.min(cur * per, items.length - per) : 0;
-  const cardW = `((100% - ${(per - 1) * gap}px) / ${per})`;
-  const go = (d: 1 | -1) => setPage(Math.max(0, Math.min(pages - 1, cur + d)));
+  const maxStart = Math.max(0, items.length - per);
+  const cur = Math.min(start, maxStart);
+  const cardPx = w ? (w - (per - 1) * gap) / per : 0;
+  const go = (d: 1 | -1) => setStart(Math.max(0, Math.min(maxStart, cur + d)));
+
+  // Tween the track to the current position (GSAP, no CSS scroll).
+  useLayoutEffect(() => {
+    const t = track.current;
+    if (!t) return;
+    const x = -cur * (cardPx + gap);
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    gsap.to(t, { x, duration: reduce ? 0 : 0.55, ease: "power3.out", overwrite: true });
+  }, [cur, cardPx, gap]);
 
   return (
     <div className="relative" role="region" aria-roledescription="carousel" aria-label={label}>
       <div
-        ref={ref}
+        ref={viewport}
         className="overflow-hidden"
         onPointerDown={(e) => (drag.current = e.clientX)}
         onPointerUp={(e) => {
@@ -52,12 +62,9 @@ export function CardCarousel({ children, minItem = 240, minItemNarrow = 165, gap
         }}
         onPointerCancel={() => (drag.current = null)}
       >
-        <ul
-          className="m-0 p-0 list-none grid grid-flow-col transition-transform duration-300 ease-out motion-reduce:transition-none"
-          style={{ gap, gridAutoColumns: `calc(${cardW})`, transform: `translateX(calc(-${start} * (${cardW} + ${gap}px)))` }}
-        >
+        <ul ref={track} className="m-0 p-0 list-none grid grid-flow-col will-change-transform" style={{ gap, gridAutoColumns: `calc((100% - ${(per - 1) * gap}px) / ${per})` }}>
           {items.map((it, i) => (
-            <li key={i} className="min-w-0" aria-hidden={multi && (i < start || i >= start + per) ? true : undefined}>
+            <li key={i} className="min-w-0" aria-hidden={multi && (i < cur || i >= cur + per) ? true : undefined}>
               {it}
             </li>
           ))}
@@ -65,17 +72,19 @@ export function CardCarousel({ children, minItem = 240, minItemNarrow = 165, gap
       </div>
       {multi && (
         <>
-          <button type="button" aria-label="Προηγούμενα" disabled={cur === 0} onClick={() => go(-1)} className="absolute left-0 top-[38%] -translate-x-1/2 size-12 rounded-full bg-white border border-eu-line shadow-[var(--shadow-raised)] inline-flex items-center justify-center text-eu-navy hover:bg-eu-navy hover:text-white disabled:opacity-0 disabled:pointer-events-none z-10">
+          <button type="button" aria-label="Προηγούμενο" disabled={cur === 0} onClick={() => go(-1)} className="absolute left-0 top-[38%] -translate-x-1/2 size-12 rounded-full bg-white border border-eu-line shadow-[var(--shadow-raised)] inline-flex items-center justify-center text-eu-navy hover:bg-eu-navy hover:text-white transition-colors disabled:opacity-0 disabled:pointer-events-none z-10">
             <ChevronLeft className="size-6" aria-hidden />
           </button>
-          <button type="button" aria-label="Επόμενα" disabled={cur >= pages - 1} onClick={() => go(1)} className="absolute right-0 top-[38%] translate-x-1/2 size-12 rounded-full bg-white border border-eu-line shadow-[var(--shadow-raised)] inline-flex items-center justify-center text-eu-navy hover:bg-eu-navy hover:text-white disabled:opacity-0 disabled:pointer-events-none z-10">
+          <button type="button" aria-label="Επόμενο" disabled={cur >= maxStart} onClick={() => go(1)} className="absolute right-0 top-[38%] translate-x-1/2 size-12 rounded-full bg-white border border-eu-line shadow-[var(--shadow-raised)] inline-flex items-center justify-center text-eu-navy hover:bg-eu-navy hover:text-white transition-colors disabled:opacity-0 disabled:pointer-events-none z-10">
             <ChevronRight className="size-6" aria-hidden />
           </button>
-          <div className="flex justify-center gap-1.5 mt-4" aria-hidden>
-            {Array.from({ length: pages }).map((_, i) => (
-              <button key={i} type="button" tabIndex={-1} onClick={() => setPage(i)} className={`h-2 rounded-full transition-all ${i === cur ? "w-6 bg-eu-navy" : "w-2 bg-eu-line-3"}`} />
-            ))}
-          </div>
+          {maxStart < 8 && (
+            <div className="flex justify-center gap-1.5 mt-4" aria-hidden>
+              {Array.from({ length: maxStart + 1 }).map((_, i) => (
+                <button key={i} type="button" tabIndex={-1} onClick={() => setStart(i)} className={`h-2 rounded-full transition-all ${i === cur ? "w-6 bg-eu-navy" : "w-2 bg-eu-line-3"}`} />
+              ))}
+            </div>
+          )}
         </>
       )}
     </div>
