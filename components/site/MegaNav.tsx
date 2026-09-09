@@ -194,17 +194,16 @@ export function MegaNav({ data = [] }: { data?: MegaMenuEntry[] }) {
                 <div className="flex items-baseline justify-between gap-3 mb-3">
                   <h2 className="m-0 font-heading font-bold text-eu-ink text-[length:var(--fs-21)]">{active.label}</h2>
                   <Link href={`/k/${active.slug}`} onClick={() => setOpen(null)} className="inline-flex items-center gap-1 font-extrabold text-eu-blue text-[length:var(--fs-14)] hover:underline">
-                    Όλα{active.count ? ` (${active.count})` : ""} <ArrowRight className="size-3.5" aria-hidden />
+                    Όλα τα προϊόντα{active.count ? ` (${active.count})` : ""} <ArrowRight className="size-3.5" aria-hidden />
                   </Link>
                 </div>
                 <ul className="m-0 p-0 list-none grid grid-cols-2 gap-x-8 gap-y-0">
                   {active.children.map((ch) => {
-                    const n = entry?.subCounts[ch.slug];
                     return (
                       <li key={ch.slug}>
-                        <Link href={`/k/${active.slug}/${ch.slug}`} onClick={() => setOpen(null)} className="flex items-center justify-between gap-2 py-2 min-h-10 border-b border-eu-line-3 text-eu-ink text-[length:var(--fs-15)] font-semibold hover:text-eu-blue">
+                        <Link href={`/k/${active.slug}/${ch.slug}`} onClick={() => setOpen(null)} className="group flex items-center justify-between gap-2 py-2 min-h-10 border-b border-eu-line-3 text-eu-ink text-[length:var(--fs-15)] font-semibold hover:text-eu-blue">
                           {ch.name}
-                          {n ? <span className="text-eu-muted-2 text-[length:var(--fs-13)] tabular-nums">{n}</span> : null}
+                          <ArrowRight className="size-4 text-eu-blue opacity-0 -translate-x-1 transition group-hover:opacity-100 group-hover:translate-x-0" aria-hidden />
                         </Link>
                       </li>
                     );
@@ -217,25 +216,27 @@ export function MegaNav({ data = [] }: { data?: MegaMenuEntry[] }) {
                 {entry && entry.brands.length > 0 && (
                   <div>
                     <div className="font-extrabold text-eu-muted text-[length:var(--fs-13)] tracking-wide uppercase mb-2">Δημοφιλείς μάρκες</div>
-                    <ul className="m-0 p-0 list-none grid grid-cols-2 gap-x-4">
+                    <ul className="m-0 p-0 list-none flex flex-wrap gap-x-5 gap-y-1">
                       {entry.brands.map((b) => (
                         <li key={b.slug}>
-                          <Link href={`/proionta?k=${active.slug}&brand=${b.slug}`} onClick={() => setOpen(null)} className="flex items-center justify-between py-1.5 min-h-9 text-[length:var(--fs-15)] font-semibold text-eu-ink hover:text-eu-blue">
-                            {b.name} <span className="text-eu-muted-2 text-[length:var(--fs-13)] tabular-nums">{b.count}</span>
+                          <Link href={`/proionta?k=${active.slug}&brand=${b.slug}`} onClick={() => setOpen(null)} className="inline-flex items-center py-1 min-h-9 text-[length:var(--fs-15)] font-semibold text-eu-ink hover:text-eu-blue">
+                            {b.name}
                           </Link>
                         </li>
                       ))}
                     </ul>
                   </div>
                 )}
-                {entry && entry.quick.length > 0 && (
+                {entry?.quick && (
                   <div>
-                    <div className="font-extrabold text-eu-muted text-[length:var(--fs-13)] tracking-wide uppercase mb-2">Γρήγορα φίλτρα</div>
-                    <ul className="m-0 p-0 list-none grid gap-0.5">
-                      {entry.quick.map((qk) => (
+                    <div className="font-extrabold text-eu-muted text-[length:var(--fs-13)] tracking-wide uppercase mb-2 inline-flex items-center gap-1.5">
+                      <Tag className="size-3.5 text-eu-blue" aria-hidden /> {entry.quick.key}
+                    </div>
+                    <ul className="m-0 p-0 list-none flex flex-wrap gap-1.5">
+                      {entry.quick.items.map((qk) => (
                         <li key={qk.href}>
-                          <Link href={qk.href} onClick={() => setOpen(null)} className="inline-flex items-center gap-2 py-1.5 min-h-9 text-eu-ink-2 text-[length:var(--fs-15)] font-semibold hover:text-eu-blue">
-                            <Tag className="size-3.5 text-eu-blue" aria-hidden /> {qk.label}
+                          <Link href={qk.href} onClick={() => setOpen(null)} className="inline-flex items-center rounded-md border border-eu-line px-2.5 min-h-9 text-eu-ink text-[length:var(--fs-14)] font-semibold hover:border-eu-blue hover:text-eu-blue">
+                            {qk.label}
                           </Link>
                         </li>
                       ))}
@@ -262,13 +263,16 @@ export function MegaNav({ data = [] }: { data?: MegaMenuEntry[] }) {
               {entry?.promo ? (
                 <div className="pl-8 grid gap-2 content-start">
                   <div className="flex items-center justify-between">
-                    <span className="font-extrabold text-eu-red text-[length:var(--fs-13)] tracking-wide uppercase">Προτεινόμενο</span>
+                    <span className={`font-extrabold text-[length:var(--fs-13)] tracking-wide uppercase ${entry.promo.wasPrice ? "text-eu-red" : "text-eu-blue"}`}>{entry.promo.wasPrice ? "Η προσφορά της κατηγορίας" : "Επιλογή της εβδομάδας"}</span>
                     {entry.promo.wasPrice && <span className="rounded-full bg-eu-red text-white font-extrabold text-[length:var(--fs-13)] px-2 py-0.5">−{Math.round((1 - entry.promo.price / entry.promo.wasPrice) * 100)}%</span>}
                   </div>
                   <Link href={`/proion/${entry.promo.slug}`} onClick={() => setOpen(null)} className="block">
                     <ProductImage src={entry.promo.image} sizes="280px" className="w-full" rounded="rounded-lg" />
                   </Link>
-                  <div className="text-eu-muted-2 font-bold text-[length:var(--fs-13)] uppercase">{entry.promo.brand}</div>
+                  <div className="flex items-center justify-between gap-2 text-[length:var(--fs-13)]">
+                    <span className="text-eu-muted-2 font-bold uppercase">{entry.promo.brand}</span>
+                    {entry.promo.rating && <span className="text-eu-muted">★ {entry.promo.rating.value.toLocaleString("el-GR")} · {entry.promo.rating.count}</span>}
+                  </div>
                   <Link href={`/proion/${entry.promo.slug}`} onClick={() => setOpen(null)} className="font-bold text-eu-ink text-[length:var(--fs-15)] leading-tight line-clamp-2 hover:text-eu-blue">
                     {entry.promo.title}
                   </Link>

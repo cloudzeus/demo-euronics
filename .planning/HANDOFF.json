@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "timestamp": "2026-09-09T06:01:44.215Z",
+  "timestamp": "2026-09-09T06:04:12.636Z",
   "source": "auto-postool",
   "partial": false,
   "phase": null,
@@ -15,7 +15,16 @@
   "blockers": [],
   "human_actions_pending": [],
   "decisions": [],
-  "uncommitted_files": [],
+  "uncommitted_files": [
+    {
+      "status": "M",
+      "path": ".claude/launch.json"
+    },
+    {
+      "status": "M",
+      "path": ".planning/HANDOFF.json"
+    }
+  ],
   "next_action": null,
-  "context_notes": "Recent commits:\n04d12b7 Policy and account sidebars follow the scroll (smart sticky below the pinned header); stray markup fragments removed from verbatim policies\nd83ea3f Policies copied verbatim from live euronics.gr (terms, privacy, cookies, payment, shipping, returns, financial statements) with source links; footer useful links, phones, email and social media as on the live site\n05229c0 Header with search and category menu stay pinned on scroll; section nav, filters and buy box offset below it (--eu-header-h / --eu-subnav-h)\ndafb557 Mega menu as tabs with connected panel (no floating rounded plaque, no divider), calmer panel content, priority+ row: categories that don't fit collapse into «Περισσότερα», always one line\n01aeb9e Advanced mega menu (sub-categories with counts, top brands, quick filters, smart guide, promoted product with quick buy) and search with live multi-level results (products with photos, categories, brands, guides, recent/popular, promo)"
+  "context_notes": "Recent commits:\n1a26599 Full-bleed frames (header, menu, announcement bar, hero) capped at 1920px and centered on wider screens\n04d12b7 Policy and account sidebars follow the scroll (smart sticky below the pinned header); stray markup fragments removed from verbatim policies\nd83ea3f Policies copied verbatim from live euronics.gr (terms, privacy, cookies, payment, shipping, returns, financial statements) with source links; footer useful links, phones, email and social media as on the live site\n05229c0 Header with search and category menu stay pinned on scroll; section nav, filters and buy box offset below it (--eu-header-h / --eu-subnav-h)\ndafb557 Mega menu as tabs with connected panel (no floating rounded plaque, no divider), calmer panel content, priority+ row: categories that don't fit collapse into «Περισσότερα», always one line"
 }

@@ -333,7 +333,7 @@ export interface MegaMenuEntry {
   slug: string;
   subCounts: Record<string, number>;
   brands: { slug: string; name: string; count: number }[];
-  quick: { label: string; href: string }[];
+  quick: { key: string; items: { label: string; href: string }[] } | null;
   promo: Product | null;
   guide: { title: string; href: string; image?: string } | null;
 }
@@ -351,7 +351,7 @@ export async function getMegaMenuData(): Promise<MegaMenuEntry[]> {
       for (const p of r.items) subCounts[p.subcategory] = (subCounts[p.subcategory] ?? 0) + 1;
       const promoP = [...r.items].sort((a, b) => ((b.wasPrice ?? b.price) - b.price) / (b.wasPrice ?? b.price) - ((a.wasPrice ?? a.price) - a.price) / (a.wasPrice ?? a.price) || (b.rating?.count ?? 0) - (a.rating?.count ?? 0))[0];
       const facet = r.attributes.find((a) => !["Ενεργειακή κλάση", "Χρώμα"].includes(a.key));
-      const quick = facet ? facet.values.slice(0, 4).map((v) => ({ label: `${facet.key} ${v.value}`, href: `/proionta?k=${c.slug}&${encodeURIComponent(`f_${facet.key}`)}=${encodeURIComponent(v.value)}` })) : [];
+      const quick = facet ? { key: facet.key, items: facet.values.slice(0, 5).map((v) => ({ label: v.value, href: `/proionta?k=${c.slug}&${encodeURIComponent(`f_${facet.key}`)}=${encodeURIComponent(v.value)}` })) } : null;
       const g = smart[c.slug] ?? (guides.find((x) => x.ctaHref?.includes(`/k/${c.slug}`)) ? { title: guides.find((x) => x.ctaHref?.includes(`/k/${c.slug}`))!.title, href: `/odigoi/${guides.find((x) => x.ctaHref?.includes(`/k/${c.slug}`))!.slug}`, image: guides.find((x) => x.ctaHref?.includes(`/k/${c.slug}`))!.image } : null);
       return {
         slug: c.slug,
