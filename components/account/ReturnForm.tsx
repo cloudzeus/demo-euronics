@@ -49,7 +49,7 @@ export function ReturnForm({ orders, preselect }: { orders: O[]; preselect?: str
       <label className={label}>
         Λόγος
         <select className={input}>
-          <option>Άλλαξα γνώμη (υπαναχώρηση 14 ημερών)</option>
+          <option>Άλλαξα γνώμη (μέσα σε 14 ημέρες)</option>
           <option>Ελαττωματικό κατά την παραλαβή (DOA)</option>
           <option>Λάθος προϊόν</option>
           <option>Ζημιά στη μεταφορά</option>

@@ -109,7 +109,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             </div>
             <aside className="rounded-xl bg-eu-navy text-white p-5 grid gap-3 self-start">
               <div className="font-extrabold text-eu-yellow text-[length:var(--fs-14)] tracking-wide">Γιατί από Euronics</div>
-              {["Επίσημη εγγύηση αντιπροσωπείας 2 έτη", "Service με γνήσια ανταλλακτικά", "Παραλαβή σε 2 ώρες από 350 καταστήματα", "Δόσεις με ή χωρίς κάρτα έως 24 μήνες", "14 ημέρες υπαναχώρηση"].map((t) => (
+              {["Επίσημη εγγύηση αντιπροσωπείας 2 έτη", "Service με γνήσια ανταλλακτικά", "Παραλαβή σε 2 ώρες από 350 καταστήματα", "Δόσεις με ή χωρίς κάρτα έως 24 μήνες", "Επιστροφή μέσα σε 14 ημέρες"].map((t) => (
                 <div key={t} className="flex gap-2 text-[length:var(--fs-16)]">
                   <span className="text-eu-yellow font-extrabold">✓</span> {t}
                 </div>

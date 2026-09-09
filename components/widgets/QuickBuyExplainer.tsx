@@ -46,9 +46,9 @@ export function QuickBuyExplainer({ product: p, zoneNo }: { product: Product; zo
             <br />
             <strong className="font-extrabold text-eu-ink text-[length:var(--fs-16)]">Σύνολο {priceLong(p.price)}</strong>
           </div>
-          <div className="rounded-full bg-eu-yellow text-eu-navy text-center font-extrabold text-[length:var(--fs-15)] py-3.5">Παραγγελία με υποχρέωση πληρωμής</div>
+          <div className="rounded-full bg-eu-yellow text-eu-navy text-center font-extrabold text-[length:var(--fs-15)] py-3.5">Πληρωμή {priceLong(p.price)} & ολοκλήρωση</div>
           <p className="m-0 mt-2.5 text-eu-muted text-[length:var(--fs-13)] leading-[1.5]">
-            Με την ολοκλήρωση αποδέχεσαι τους όρους. Δικαίωμα υπαναχώρησης 14 ημερών. Η πληρωμή επιβεβαιώνεται με ισχυρή ταυτοποίηση (SCA).
+            Χρεώνεται η κάρτα σου και η παραγγελία καταχωρείται αμέσως. Η τράπεζά σου θα ζητήσει επιβεβαίωση (3D Secure). Μπορείς να επιστρέψεις το προϊόν μέσα σε 14 ημέρες.
           </p>
         </div>
       </div>

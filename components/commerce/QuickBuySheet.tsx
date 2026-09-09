@@ -11,7 +11,7 @@ import { ProductImage } from "@/components/commerce/ProductImage";
  * Quick buy — «Αγορά με 1 κλικ» never orders silently. Directive
  * 2011/83/EU: total cost with shipping and VAT before commitment, a
  * button that states the payment obligation, 14-day withdrawal notice,
- * and SCA (PSD2) on confirmation. One sheet, three fields, no redirect.
+ * and bank confirmation (3D Secure) on confirmation. One sheet, three fields, no redirect.
  * On phones it becomes a bottom sheet; on desktop a right-hand panel.
  */
 export function QuickBuySheet() {
@@ -71,10 +71,10 @@ export function QuickBuySheet() {
               type="button"
               className="w-full rounded-full bg-eu-yellow text-eu-navy font-extrabold text-[length:var(--fs-15)] py-4 hover:bg-eu-yellow-dark transition-colors min-h-12"
             >
-              Παραγγελία με υποχρέωση πληρωμής
+              Πληρωμή {priceLong(p.price)} & ολοκλήρωση
             </button>
             <p className="text-eu-muted text-[length:var(--fs-13)] leading-snug m-0">
-              Με την ολοκλήρωση αποδέχεσαι τους όρους. Δικαίωμα υπαναχώρησης 14 ημερών. Η πληρωμή επιβεβαιώνεται με ισχυρή ταυτοποίηση (SCA).
+              Χρεώνεται η κάρτα σου και η παραγγελία καταχωρείται αμέσως. Η τράπεζά σου θα ζητήσει επιβεβαίωση (3D Secure). Μπορείς να επιστρέψεις το προϊόν μέσα σε 14 ημέρες.
             </p>
           </div>
         )}

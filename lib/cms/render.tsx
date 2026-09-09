@@ -13,6 +13,7 @@ import { StoreFinder } from "@/components/widgets/StoreFinder";
 import { GuidesBand } from "@/components/widgets/GuidesBand";
 import { SmartGuidesBand } from "@/components/widgets/SmartGuidesBand";
 import { NewsBand } from "@/components/widgets/NewsBand";
+import { CampaignSpotlight, type VendorCampaign } from "@/components/widgets/CampaignSpotlight";
 import { getNews } from "@/lib/data/repo";
 import { NewsletterBand } from "@/components/widgets/NewsletterBand";
 import { getCategories, getDealOfDay, getGuides, getHeroSlides, getNearestStore, getProduct, getServices, getWeeklyDeals } from "@/lib/data/catalog";
@@ -53,6 +54,10 @@ const registry: Record<string, Renderer> = {
   },
   "services-band": async (w) => <ServicesBand key={w.id} services={await getServices((w.props as { limit?: number }).limit ?? 6)} zoneNo={w.zoneNo} />,
   "store-finder": async (w) => <StoreFinder key={w.id} store={await getNearestStore()} image="/img/store-front.jpg" zoneNo={w.zoneNo} />,
+  "campaign-spotlight": async (w) => {
+    const p = w.props as { campaigns: VendorCampaign[]; title?: string; kicker?: string; link?: { label: string; href: string } };
+    return <CampaignSpotlight key={w.id} campaigns={p.campaigns} title={p.title} kicker={p.kicker} link={p.link} zoneNo={w.zoneNo} />;
+  },
   "news-band": async (w) => <NewsBand key={w.id} items={await getNews({ limit: (w.props as { limit?: number }).limit ?? 3 })} zoneNo={w.zoneNo} />,
   "smart-guides": async (w) => <SmartGuidesBand key={w.id} zoneNo={w.zoneNo} />,
   guides: async (w) => <GuidesBand key={w.id} guides={await getGuides()} zoneNo={w.zoneNo} />,

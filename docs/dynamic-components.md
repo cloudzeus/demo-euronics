@@ -6,6 +6,7 @@
 |---|---|---|---|
 | Αρχική — ζώνες (`lib/cms/home.layout.ts`) | `getHomeLayout()` | CMS zones (schedule, ορατότητα, A/B) | ISR 60s |
 | `NewsBand`, `/nea`, `/nea/[slug]` | `getNews({category, limit})`, `getNewsItem(slug)` | CMS «Νέα & ανακοινώσεις» (ή SoftOne Ανακοινώσεις) | ISR 300s, revalidate on publish |
+| `CampaignSpotlight` (ζώνη 8 — καμπάνιες κατασκευαστών) | `getHomeLayout()` → widget `campaign-spotlight` | CMS ζώνη: μάρκα, τίτλος, κείμενο, CTA, σύνδεσμος, key visual του κατασκευαστή (upload), σειρά & χρονοπρόγραμμα· σήμερα με τα 4 KV που τρέχουν στο euronics.gr (Samsung Vision AI, OLED S95F, Miele 25 χρόνια εγγύηση μοτέρ, Dell οθόνες) | ISR 60s |
 | `DealsRail`, `DealOfDayTile` | `listProducts({tag})`, `getDealOfDay()` | SoftOne MTRL + τιμοκατάλογος προσφορών (PRCRULES), Omnibus 30 ημερών από ιστορικό τιμών | ISR 60s |
 | `ProductCard`, `ProductGrid`, `Facets` | `listProducts(filter)` | SoftOne MTRL + χαρακτηριστικά (CCCSUBGROUP2 / extra fields) → `lib/data/attributes` | ISR 60s, facets από search index |
 | `ProductHeader`, `BuyBox`, `SpecsTable`, `CompareSimilar` | `getProductBySlug`, `getRelated`, `getAccessoriesFor` | SoftOne MTRL, απόθεμα ανά κατάστημα (MTRSTORE), σχετικά/συμπληρωματικά από ITEGROUP mapping | ISR 60s· απόθεμα live (no-store) |

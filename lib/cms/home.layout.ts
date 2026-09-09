@@ -24,7 +24,7 @@ export async function getHomeLayout(): Promise<PageLayout> {
             type: "announcement-bar",
             zoneNo: 1,
             props: {
-              left: ["350 καταστήματα", "Δωρεάν μεταφορά & φύλαξη", "Δόσεις με ή χωρίς κάρτα"],
+              left: ["350 καταστήματα", "Δωρεάν μεταφορά εντός περιφέρειας", "Δόσεις με ή χωρίς κάρτα"],
               right: ["14 ημέρες υπαναχώρηση"],
               accent: { label: "Παρακολούθηση παραγγελίας", href: "/entopismos" },
             },
@@ -57,10 +57,10 @@ export async function getHomeLayout(): Promise<PageLayout> {
             zoneNo: 5,
             props: {
               items: [
-                "Δωρεάν μεταφορά σε όλη την Ελλάδα",
+                "Δωρεάν μεταφορά συσκευών εντός περιφέρειας",
                 "Δόσεις χωρίς κάρτα έως 24 μήνες",
                 "Επίσημη εγγύηση αντιπροσωπείας",
-                "Δωρεάν φύλαξη έως 6 μήνες",
+                "Φύλαξη συσκευών μέχρι να ετοιμαστεί ο χώρος σου",
                 "Παραλαβή σε 2 ώρες",
               ],
             },
@@ -86,11 +86,21 @@ export async function getHomeLayout(): Promise<PageLayout> {
             query: { kind: "tag", value: "weekly-deals", limit: 4, pin: ["p-inventor-ikura"] },
           },
           {
-            id: "quick-buy-explainer",
-            type: "quick-buy-explainer",
+            id: "campaigns",
+            type: "campaign-spotlight",
             zoneNo: 8,
-            props: {},
-            visibility: { devices: ["desktop", "tablet"] },
+            label: "Καμπάνιες κατασκευαστών (key visuals από euronics.gr)",
+            props: {
+              kicker: "Τρέχουν τώρα",
+              title: "Καμπάνιες κατασκευαστών",
+              link: { label: "Όλες οι προσφορές", href: "/prosfores" },
+              campaigns: [
+                { id: "samsung-vision-ai", brand: "Samsung", title: "Samsung Vision AI is here", text: "QLED · Neo QLED · Neo QLED 8K · OLED · The Frame.", cta: "Ανακάλυψε τις νέες AI τηλεοράσεις", href: "/k/eikona-ixos/tileoraseis", image: "/img/campaigns/samsung-vision-ai.jpg", alt: "Samsung Vision AI — QLED, Neo QLED, Neo QLED 8K, OLED, The Frame" },
+                { id: "samsung-oled-s95f", brand: "Samsung", title: "OLED S95F", text: "Απογείωσε την κινηματογραφική σου εμπειρία, με Glare Free Technology.", cta: "Δες τις OLED S95F", href: "/k/eikona-ixos/tileoraseis", image: "/img/campaigns/samsung-oled-s95f.jpg", alt: "Samsung OLED S95F — Απογείωσε την κινηματογραφική σου εμπειρία" },
+                { id: "miele-25y-motor", brand: "Miele", title: "25 χρόνια εγγύηση μοτέρ", text: "Σε πλυντήρια, στεγνωτήρια και πλυντήρια-στεγνωτήρια Miele, από 1 Οκτωβρίου 2025.", cta: "Δες τα πλυντήρια Miele", href: "/k/leykes-syskeyes/plyntiria", image: "/img/campaigns/miele-25y-motor.jpg", alt: "Miele — 25 χρόνια εγγύηση μοτέρ" },
+                { id: "dell-monitors", brand: "Dell", title: "Οθόνες κορυφαίων επιδόσεων", text: "S2721HN · S2421HN · E2221HN · E2421HN.", cta: "Δες τις οθόνες Dell", href: "/k/computing/othones", image: "/img/campaigns/dell-monitors.jpg", alt: "Dell Οθόνες Κορυφαίων Επιδόσεων" },
+              ],
+            },
           },
         ],
       },

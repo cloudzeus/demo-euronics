@@ -30,6 +30,12 @@ npm run build
 | **Στήλες ανά πλάτος**: `repeat(auto-fill, minmax(220px, 1fr))` — 2 στο κινητό, 3–5 ανάλογα με τον διαθέσιμο χώρο | `ProductGrid`, `ProductRail`, `DealsRail` |
 | **Κανένας εσωτερικός scroller**: φίλτρα με «+ N ακόμη» αντί για scroll, chips/breadcrumbs/thumbs/side nav σε wrap, deals σε grid, buy box χωρίς max-height, πίνακες σύγκρισης → stacked layout σε στενά πλάτη (`CompareStacked`) | παντού |
 
+### v3.6 — Ζώνη καμπανιών κατασκευαστών & καθαρό λεκτικό αγοράς
+
+- **Ζώνη 8 «Καμπάνιες κατασκευαστών»** (`components/widgets/CampaignSpotlight.tsx`, widget `campaign-spotlight`): τα 4 key visuals που τρέχουν σήμερα στο euronics.gr (Samsung Vision AI, Samsung OLED S95F, Miele 25 χρόνια εγγύηση μοτέρ, Dell οθόνες — `public/img/campaigns/`) σε φωτεινή ζώνη: λίστα καμπανιών με μικρογραφία αριστερά, το visual ολόκληρο σε λευκό «πόστερ» δεξιά. Hover/focus αλλάζει το πόστερ (hover intent 90 ms, κατευθυντική εναλλαγή με GSAP), χωρίς hover προχωρά μόνο του κάθε 7" με κίτρινη γραμμή προόδου, reveal στο scroll· `prefers-reduced-motion` απενεργοποιεί όλα. Κάτω από 768px: γραμμές με μικρογραφία, όλες ορατές, χωρίς tabs. Αντικατέστησε την επεξήγηση «Αγορά με 1 κλικ».
+- **Λεκτικό αγοράς**: το «Παραγγελία με υποχρέωση πληρωμής» έγινε «Πληρωμή {ποσό} & ολοκλήρωση» με απλή σημείωση χρέωσης· η «υπαναχώρηση» παντού «Επιστροφή μέσα σε 14 ημέρες».
+- **Υπηρεσία φύλαξης**: λεκτικό όπως στο live site («μέχρι να ετοιμαστεί ο χώρος σου»), χωρίς διάρκεια που δεν αναφέρεται εκεί.
+
 ### v3.5 — Αυτούσιες πολιτικές και footer από το live site
 
 Όροι χρήσης, Πολιτική απορρήτου, Πολιτική cookies, Τρόποι πληρωμής, Τρόποι αποστολής/παράδοσης, Πολιτική επιστροφών και Οικονομικά στοιχεία (ισολογισμοί 2014–2018) αντιγράφηκαν **αυτούσια** από το euronics.gr στις 8/9/2026 (`lib/data/fixtures/policies.live.ts`, σήμα «Κείμενο αυτούσιο από το euronics.gr» με σύνδεσμο πηγής). Ο footer έχει τα «Χρήσιμα links», τα τηλέφωνα, το email και τα social (Facebook, Instagram, YouTube, Google Maps, Euronics International) του live site.

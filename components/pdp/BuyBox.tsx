@@ -219,7 +219,7 @@ export function BuyBox({ product: p, addons, stores, accessory }: { product: Pro
         </div>
         <div className="flex justify-between items-center text-[length:var(--fs-14)]">
           <CompareCheckbox id={p.id} />
-          <span className="text-eu-muted">Εγγύηση 2 έτη · 14 ημέρες υπαναχώρηση</span>
+          <span className="text-eu-muted">Εγγύηση 2 έτη · Επιστροφή μέσα σε 14 ημέρες</span>
         </div>
       </div>
     </aside>

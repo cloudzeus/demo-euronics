@@ -18,8 +18,8 @@ export default async function ShopLayout({ children }: LayoutProps<"/">) {
     <CartProvider>
       <AnnouncementBar
         zoneNo={1}
-        left={["350 καταστήματα", "Δωρεάν μεταφορά & φύλαξη", "Δόσεις με ή χωρίς κάρτα"]}
-        right={["14 ημέρες υπαναχώρηση"]}
+        left={["350 καταστήματα", "Δωρεάν μεταφορά εντός περιφέρειας", "Δόσεις με ή χωρίς κάρτα"]}
+        right={["Επιστροφή μέσα σε 14 ημέρες"]}
         accent={{ label: "Παρακολούθηση παραγγελίας", href: "/entopismos" }}
       />
       <StickyHeader>

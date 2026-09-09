@@ -121,6 +121,8 @@ export interface Service {
   steps?: string[];
   faq?: { q: string; a: string }[];
   addonAt?: ("pdp" | "checkout" | "delivery")[];
+  /** Live euronics.gr page the copy was taken from. */
+  sourceUrl?: string;
 }
 
 export interface Store {

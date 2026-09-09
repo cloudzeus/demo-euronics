@@ -173,7 +173,7 @@ export function MiniCart({ suggestions = [] }: { suggestions?: Product[] }) {
                   <ShieldCheck className="size-4 text-eu-green" aria-hidden /> 3D Secure
                 </li>
                 <li className="flex items-center gap-1.5">
-                  <RotateCcw className="size-4 text-eu-green" aria-hidden /> 14 ημέρες υπαναχώρηση
+                  <RotateCcw className="size-4 text-eu-green" aria-hidden /> Επιστροφή μέσα σε 14 ημέρες
                 </li>
                 <li className="flex items-center gap-1.5">
                   <Truck className="size-4 text-eu-green" aria-hidden /> Παραλαβή σε 2 ώρες

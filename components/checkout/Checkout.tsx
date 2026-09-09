@@ -20,7 +20,7 @@ const REGIONS = ["Αττική", "Θεσσαλονίκη", "Αχαΐα", "Λάρ
  * sections — 1 στοιχεία, 2 παράδοση, 3 τιμολόγιο, 4 πληρωμή — that
  * collapse to a one-line summary with «Αλλαγή» once completed. Guest by
  * default, account optional. Sticky order summary with images, coupon
- * and the full total before «Παραγγελία με υποχρέωση πληρωμής»
+ * and the full total before «Πληρωμή & ολοκλήρωση» (the button names the payment, as the consumer-rights rules require)
  * (Directive 2011/83). Mobile: sticky total + CTA at the bottom.
  * Every text ≥ 14px, every control ≥ 48px.
  */
@@ -423,7 +423,7 @@ export function Checkout({ stores }: { stores: StoreLite[] }) {
                     <Link href="/aporrito" className="text-eu-blue underline">
                       πολιτική απορρήτου
                     </Link>
-                    . Γνωρίζω το δικαίωμα υπαναχώρησης 14 ημερών.
+                    . Μπορώ να επιστρέψω ό,τι αγοράσω μέσα σε 14 ημέρες, χωρίς αιτιολογία.
                   </span>
                 </label>
                 {err && <p className="m-0 text-eu-red font-semibold text-[length:var(--fs-15)]">{err}</p>}
@@ -434,7 +434,7 @@ export function Checkout({ stores }: { stores: StoreLite[] }) {
                   ← Στοιχεία & παράδοση
                 </button>
                 <button type="button" onClick={submit} disabled={sca === "pending"} className="hidden @3xl:inline-flex rounded-full bg-eu-yellow text-eu-navy font-extrabold text-[length:var(--fs-17)] px-8 min-h-14 items-center hover:bg-eu-yellow-dark disabled:opacity-60">
-                  {sca === "pending" ? "Επιβεβαίωση από την τράπεζα…" : `Παραγγελία με υποχρέωση πληρωμής · ${priceLong(total)}`}
+                  {sca === "pending" ? "Επιβεβαίωση πληρωμής…" : `Πληρωμή ${priceLong(total)} & ολοκλήρωση`}
                 </button>
               </div>
             </>
@@ -503,9 +503,10 @@ export function Checkout({ stores }: { stores: StoreLite[] }) {
             </div>
             {step === 3 && (
               <button type="button" onClick={submit} disabled={sca === "pending"} className="hidden @3xl:block rounded-full bg-eu-yellow text-eu-navy font-extrabold text-[length:var(--fs-17)] py-4 min-h-14 hover:bg-eu-yellow-dark disabled:opacity-60">
-                {sca === "pending" ? "Επιβεβαίωση από την τράπεζα…" : "Παραγγελία με υποχρέωση πληρωμής"}
+                {sca === "pending" ? "Επιβεβαίωση πληρωμής…" : `Πληρωμή ${priceLong(total)} & ολοκλήρωση`}
               </button>
             )}
+            {step === 3 && <p className="m-0 text-eu-muted text-[length:var(--fs-14)] leading-snug">Πατώντας το κουμπί χρεώνεται το ποσό {priceLong(total)} και η παραγγελία σου καταχωρείται. Θα λάβεις email επιβεβαίωσης αμέσως.</p>}
             {step === 2 && (
               <button type="button" onClick={next} className="hidden @3xl:block rounded-full bg-eu-navy text-white font-extrabold text-[length:var(--fs-17)] py-4 min-h-14 hover:bg-eu-blue">
                 Συνέχεια στην πληρωμή →
@@ -514,7 +515,7 @@ export function Checkout({ stores }: { stores: StoreLite[] }) {
             <ul className="m-0 p-0 list-none grid gap-2 text-[length:var(--fs-14)] text-eu-muted">
               {[
                 [Lock, "Ασφαλής πληρωμή με 3D Secure"],
-                [RotateCcw, "14 ημέρες υπαναχώρηση · δωρεάν επιστροφή σε 350 καταστήματα"],
+                [RotateCcw, "Επιστροφή μέσα σε 14 ημέρες · δωρεάν σε 350 καταστήματα"],
                 [ShieldCheck, "Εγγύηση 2 ετών σε κάθε προϊόν"],
               ].map(([Icon, t]) => {
                 const I = Icon as typeof Lock;
@@ -541,7 +542,7 @@ export function Checkout({ stores }: { stores: StoreLite[] }) {
           </button>
         ) : (
           <button type="button" onClick={submit} disabled={sca === "pending"} className="flex-1 rounded-full bg-eu-yellow text-eu-navy font-extrabold text-[length:var(--fs-16)] min-h-14 disabled:opacity-60">
-            {sca === "pending" ? "Επιβεβαίωση…" : "Παραγγελία με υποχρέωση πληρωμής"}
+            {sca === "pending" ? "Επιβεβαίωση…" : "Πληρωμή & ολοκλήρωση"}
           </button>
         )}
       </div>

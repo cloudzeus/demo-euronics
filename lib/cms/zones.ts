@@ -27,7 +27,8 @@ export type WidgetType =
   | "smart-guides"
   | "news-band"
   | "newsletter"
-  | "quick-buy-explainer";
+  | "quick-buy-explainer"
+  | "campaign-spotlight";
 
 export type Audience = "all" | "guest" | "customer" | "returning";
 
