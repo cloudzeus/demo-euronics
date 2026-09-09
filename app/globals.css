@@ -305,9 +305,10 @@ body {
   padding-inline: clamp(14px, 3vw, var(--eu-gutter));
 }
 /* Full-bleed frame (header, nav, hero, ticker): no max-width, wider gutters on large screens */
+/* Full-bleed frames (header, menu, hero, ticker) — capped at 1920px: wider than that the header falls apart. */
 @utility eu-full {
   width: 100%;
-  max-width: none;
+  max-width: 1920px;
   margin-inline: auto;
 }
 @utility eu-gutter-wide {
