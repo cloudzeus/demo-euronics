@@ -335,6 +335,8 @@ export interface MegaMenuEntry {
   brands: { slug: string; name: string; count: number }[];
   quick: { key: string; items: { label: string; href: string }[] } | null;
   promo: Product | null;
+  /** Three best-rated products of the category (excluding the promo). */
+  top: Product[];
   guide: { title: string; href: string; image?: string } | null;
 }
 /** @dynamic Per-category menu content (promo product, top brands, quick filters, guide) — from the CMS «menu» zone with fallbacks computed from the catalogue. Cached 5 min. */
@@ -359,6 +361,7 @@ export async function getMegaMenuData(): Promise<MegaMenuEntry[]> {
         brands: r.brands.slice(0, 6),
         quick,
         promo: promoP ?? null,
+        top: [...r.items].filter((p) => p.id !== promoP?.id).sort((a, b) => (b.rating?.count ?? 0) - (a.rating?.count ?? 0)).slice(0, 3),
         guide: g,
       };
     }),

@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "timestamp": "2026-09-09T06:04:12.636Z",
+  "timestamp": "2026-09-09T06:08:50.194Z",
   "source": "auto-postool",
   "partial": false,
   "phase": null,
@@ -18,13 +18,21 @@
   "uncommitted_files": [
     {
       "status": "M",
-      "path": ".claude/launch.json"
+      "path": ".planning/HANDOFF.json"
     },
     {
       "status": "M",
-      "path": ".planning/HANDOFF.json"
+      "path": "components/site/MegaNav.tsx"
+    },
+    {
+      "status": "M",
+      "path": "lib/data/nav.ts"
+    },
+    {
+      "status": "M",
+      "path": "lib/data/repo.ts"
     }
   ],
   "next_action": null,
-  "context_notes": "Recent commits:\n1a26599 Full-bleed frames (header, menu, announcement bar, hero) capped at 1920px and centered on wider screens\n04d12b7 Policy and account sidebars follow the scroll (smart sticky below the pinned header); stray markup fragments removed from verbatim policies\nd83ea3f Policies copied verbatim from live euronics.gr (terms, privacy, cookies, payment, shipping, returns, financial statements) with source links; footer useful links, phones, email and social media as on the live site\n05229c0 Header with search and category menu stay pinned on scroll; section nav, filters and buy box offset below it (--eu-header-h / --eu-subnav-h)\ndafb557 Mega menu as tabs with connected panel (no floating rounded plaque, no divider), calmer panel content, priority+ row: categories that don't fit collapse into «Περισσότερα», always one line"
+  "context_notes": "Recent commits:\ne63f0d9 Mega menu content fine-tuning: sub-categories without demo counts and hover arrows, brands as plain links, quick filters grouped under their attribute with value chips, promo card labelled by context with rating; launch.json attach config\n1a26599 Full-bleed frames (header, menu, announcement bar, hero) capped at 1920px and centered on wider screens\n04d12b7 Policy and account sidebars follow the scroll (smart sticky below the pinned header); stray markup fragments removed from verbatim policies\nd83ea3f Policies copied verbatim from live euronics.gr (terms, privacy, cookies, payment, shipping, returns, financial statements) with source links; footer useful links, phones, email and social media as on the live site\n05229c0 Header with search and category menu stay pinned on scroll; section nav, filters and buy box offset below it (--eu-header-h / --eu-subnav-h)"
 }
