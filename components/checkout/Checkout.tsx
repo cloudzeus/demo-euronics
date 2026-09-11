@@ -8,9 +8,12 @@ import { instalment, priceLong } from "@/lib/format";
 import { useCart, type Fulfilment } from "@/components/commerce/CartProvider";
 import { Stepper } from "./Stepper";
 import { ProductImage } from "@/components/commerce/ProductImage";
+import { WalletSheet, type Wallet } from "./WalletSheet";
+import { SocialLogin } from "./SocialLogin";
+import { AppleMark, GoogleMark, RevolutMark } from "./BrandMarks";
 
 type StoreLite = { id: string; slug: string; name: string; city: string; address: string; zip: string; region: string; distanceKm: number; openUntil: string };
-type Pay = "card" | "no-card" | "iris" | "bank" | "cod" | "store";
+type Pay = "card" | "no-card" | "iris" | "bank" | "cod" | "store" | "apple" | "google" | "revolut";
 
 const REGIONS = ["Αττική", "Θεσσαλονίκη", "Αχαΐα", "Λάρισα", "Ηράκλειο", "Χανιά", "Δωδεκάνησα", "Ιωάννινα", "Μαγνησία", "Καβάλα", "Κέρκυρα", "Εύβοια", "Μεσσηνία", "Σέρρες", "Άλλη"];
 
@@ -38,6 +41,8 @@ export function Checkout({ stores }: { stores: StoreLite[] }) {
   const [vatLookup, setVatLookup] = useState<"idle" | "loading" | "ok" | "err">("idle");
   const [err, setErr] = useState<string | null>(null);
   const [coupon, setCoupon] = useState("");
+  const [wallet, setWallet] = useState<Wallet | null>(null);
+  const [signedIn, setSignedIn] = useState<string | null>(null);
   const [couponMsg, setCouponMsg] = useState<string | null>(null);
   const [discount, setDiscount] = useState(0);
   const [touched, setTouched] = useState<Record<string, boolean>>({});
@@ -105,6 +110,7 @@ export function Checkout({ stores }: { stores: StoreLite[] }) {
   const submit = () => {
     if (!f.terms) return setErr("Πρέπει να αποδεχτείς τους όρους χρήσης για να συνεχίσεις.");
     setErr(null);
+    if (pay === "apple" || pay === "google" || pay === "revolut") return setWallet(pay);
     if (pay === "card" || pay === "no-card") {
       setSca("pending");
       setTimeout(() => {
@@ -155,8 +161,11 @@ export function Checkout({ stores }: { stores: StoreLite[] }) {
     { v: "click-collect", icon: StoreIcon, t: "Παραλαβή από κατάστημα", price: "Δωρεάν", sub: "Σε 2 ώρες όπου υπάρχει απόθεμα · 350 καταστήματα" },
     { v: "appointment", icon: CalendarClock, t: "Με ραντεβού", price: heavy ? "Δωρεάν" : "Δωρεάν από 100 €", sub: heavy ? "Με εγκατάσταση από τεχνικό του καταστήματος" : "Επιλέγεις ημέρα και ώρα" },
   ];
-  const payments: { v: Pay; icon: typeof Truck; t: string; sub: string; disabled?: boolean }[] = [
+  const payments: { v: Pay; icon: typeof Truck; t: string; sub: string; disabled?: boolean; mark?: React.ReactNode }[] = [
     { v: "card", icon: CreditCard, t: "Κάρτα", sub: `Visa · Mastercard · Amex${maxInst > 1 ? ` · έως ${maxInst} άτοκες` : ""}` },
+    { v: "apple", icon: CreditCard, t: "Apple Pay", sub: "Με Face ID / Touch ID, χωρίς πληκτρολόγηση", mark: <AppleMark className="size-5" /> },
+    { v: "google", icon: CreditCard, t: "Google Pay", sub: "Με την κάρτα του Google λογαριασμού σου", mark: <GoogleMark className="size-5" /> },
+    { v: "revolut", icon: CreditCard, t: "Revolut Pay", sub: "Επιβεβαίωση στην εφαρμογή Revolut, χωρίς προμήθεια", mark: <RevolutMark className="h-4" /> },
     { v: "no-card", icon: Smartphone, t: "Δόσεις χωρίς κάρτα", sub: total >= 200 && total <= 2000 ? `Eurobank · έως 24 × ${priceLong(instalment(total, 24))}` : "Για αγορές 200–2.000 €", disabled: total < 200 || total > 2000 },
     { v: "iris", icon: Smartphone, t: "IRIS", sub: "Άμεσα από το mobile banking, χωρίς προμήθεια" },
     { v: "bank", icon: Landmark, t: "Κατάθεση σε τράπεζα", sub: "Εθνική · Πειραιώς · Eurobank · Alpha" },
@@ -178,16 +187,19 @@ export function Checkout({ stores }: { stores: StoreLite[] }) {
                   </h1>
                   <span className="text-eu-muted text-[length:var(--fs-14)] hidden @sm:inline">Διεύθυνση & πληρωμή από το wallet σου</span>
                 </div>
-                <div className="grid grid-cols-3 gap-2">
-                  {[
-                    ["Apple Pay", "bg-black text-white"],
-                    ["Google Pay", "bg-white text-eu-ink border-2 border-eu-line"],
-                    ["IRIS", "bg-eu-blue text-white"],
-                  ].map(([t, cls]) => (
-                    <button key={t} type="button" onClick={() => setPay(t === "IRIS" ? "iris" : "card")} className={`rounded-full font-extrabold text-[length:var(--fs-15)] min-h-12 ${cls}`}>
-                      {t}
-                    </button>
-                  ))}
+                <div className="grid grid-cols-2 @md:grid-cols-4 gap-2">
+                  <button type="button" onClick={() => setWallet("apple")} aria-label="Πληρωμή με Apple Pay" className="rounded-full bg-black text-white font-extrabold text-[length:var(--fs-15)] min-h-12 inline-flex items-center justify-center gap-1.5 hover:bg-black/85">
+                    <AppleMark className="size-5" /> Pay
+                  </button>
+                  <button type="button" onClick={() => setWallet("google")} aria-label="Πληρωμή με Google Pay" className="rounded-full bg-white text-eu-ink border-2 border-eu-line font-extrabold text-[length:var(--fs-15)] min-h-12 inline-flex items-center justify-center gap-1.5 hover:border-eu-blue">
+                    <GoogleMark className="size-5" /> Pay
+                  </button>
+                  <button type="button" onClick={() => setWallet("revolut")} aria-label="Πληρωμή με Revolut Pay" className="rounded-full bg-black text-white font-extrabold text-[length:var(--fs-15)] min-h-12 inline-flex items-center justify-center gap-1.5 hover:bg-black/85">
+                    <RevolutMark className="h-4" /> Pay
+                  </button>
+                  <button type="button" onClick={() => setPay("iris")} className="rounded-full bg-eu-blue text-white font-extrabold text-[length:var(--fs-15)] min-h-12 hover:bg-eu-blue-dark">
+                    IRIS
+                  </button>
                 </div>
                 <div className="flex items-center gap-3 text-eu-muted text-[length:var(--fs-14)]">
                   <span className="flex-1 h-px bg-eu-line" /> ή συμπλήρωσε τα στοιχεία σου <span className="flex-1 h-px bg-eu-line" />
@@ -195,6 +207,21 @@ export function Checkout({ stores }: { stores: StoreLite[] }) {
               </section>
 
               <Section n={1} title="Στοιχεία επικοινωνίας" lead="Εδώ στέλνουμε την επιβεβαίωση και το SMS παράδοσης.">
+                {signedIn ? (
+                  <p className="m-0 rounded-xl bg-eu-green/10 text-eu-green font-bold text-[length:var(--fs-15)] px-4 py-3 inline-flex items-center gap-2">
+                    <Check className="size-4" aria-hidden /> Συνδέθηκες με {signedIn}. Τα στοιχεία σου συμπληρώθηκαν.
+                  </p>
+                ) : (
+                  <div className="grid gap-2">
+                    <div className="text-eu-ink-3 text-[length:var(--fs-14)] font-semibold">Σύνδεση για αυτόματη συμπλήρωση, ή συνέχισε ως επισκέπτης.</div>
+                    <SocialLogin
+                      onSignedIn={(p) => {
+                        setF((x) => ({ ...x, firstName: p.firstName, lastName: p.lastName, email: p.email }));
+                        setSignedIn({ google: "Google", microsoft: "Microsoft", facebook: "Facebook", apple: "Apple" }[p.provider]);
+                      }}
+                    />
+                  </div>
+                )}
                 <div className="grid grid-cols-1 @sm:grid-cols-2 gap-4">
                   {field("firstName", "Όνομα", text("firstName", { autoComplete: "given-name", required: true }), "")}
                   {field("lastName", "Επώνυμο", text("lastName", { autoComplete: "family-name", required: true }), "")}
@@ -345,7 +372,7 @@ export function Checkout({ stores }: { stores: StoreLite[] }) {
                     <label key={o.v} className={`rounded-xl border-2 p-4 grid gap-1 ${o.disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"} ${pay === o.v ? "border-eu-blue bg-eu-chip" : "border-eu-line hover:border-eu-blue"}`}>
                       <span className="flex items-center gap-2 font-bold text-eu-ink text-[length:var(--fs-16)]">
                         <input type="radio" name="pay" disabled={o.disabled} checked={pay === o.v} onChange={() => setPay(o.v)} className="accent-eu-blue size-[18px]" />
-                        <o.icon className="size-5 text-eu-blue shrink-0" aria-hidden /> {o.t}
+                        {o.mark ?? <o.icon className="size-5 text-eu-blue shrink-0" aria-hidden />} {o.t}
                       </span>
                       <span className="text-eu-muted text-[length:var(--fs-14)] pl-7">{o.sub}</span>
                     </label>
@@ -546,6 +573,20 @@ export function Checkout({ stores }: { stores: StoreLite[] }) {
           </button>
         )}
       </div>
+      {wallet && (
+        <WalletSheet
+          kind={wallet}
+          total={total}
+          itemsLabel={`${lines.length} ${lines.length === 1 ? "προϊόν" : "προϊόντα"}${shipping ? " · μεταφορικά" : ""}`}
+          address={f.street ? `${f.street} ${f.number}, ${f.zip} ${f.city}` : undefined}
+          onClose={() => setWallet(null)}
+          onDone={() => {
+            setWallet(null);
+            if (!f.firstName) setF((x) => ({ ...x, firstName: "Μαρία", lastName: "Παπαδοπούλου", email: "maria.p@icloud.com", phone: "6945123456", street: "Λ. Κηφισού", number: "48", city: "Περιστέρι", zip: "12132", terms: true }));
+            finish();
+          }}
+        />
+      )}
     </div>
   );
 }

@@ -419,6 +419,14 @@ html:not([data-zones="1"]) .eu-zone-badge {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
 }
+@keyframes eu-scan {
+  0%, 100% { transform: translateY(-40px); }
+  50% { transform: translateY(40px); }
+}
+@keyframes eu-sheet {
+  from { transform: translateY(24px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
 @keyframes eu-bump {
   0% { transform: scale(1); }
   35% { transform: scale(1.18); }
@@ -495,4 +503,17 @@ html:not([data-zones="1"]) .eu-zone-badge {
 @media (prefers-reduced-motion: reduce) {
   .eu-ambient, .eu-rays, .eu-float, .eu-breathe, .eu-shimmer::after, .eu-bump { animation: none !important; }
   ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+}
+
+/* v4: tactile buttons everywhere — press feedback without layout shift */
+button.rounded-full, a.rounded-full {
+  transition-property: transform, background-color, color, border-color, box-shadow, opacity;
+  transition-duration: var(--eu-dur-fast);
+  transition-timing-function: var(--eu-ease-out);
+}
+button.rounded-full:active, a.rounded-full:active {
+  transform: scale(0.97);
+}
+@media (prefers-reduced-motion: reduce) {
+  button.rounded-full:active, a.rounded-full:active { transform: none; }
 }

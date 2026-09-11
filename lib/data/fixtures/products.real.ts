@@ -49,6 +49,7 @@ export const realProducts: Product[] = [
   },
   {
     id: "r-154164", sku: "154164", ean: "8806099024260", slug: "samsung-qe65qn70hauxxh-tileorasi",
+    promo: { kind: "contest", label: "Διαγωνισμός: ταξίδι στη Σεούλ", until: "2026-09-30" },
     brand: "SAMSUNG", brandSlug: "samsung",
     title: "Neo QLED 4K QE65QN70HAUXXH 65\" Τηλεόραση",
     category: "eikona-ixos", subcategory: "tileoraseis",
@@ -119,6 +120,7 @@ export const realProducts: Product[] = [
   },
   {
     id: "r-134843", sku: "134843", ean: "8806095539522", slug: "samsung-ww11dg5b25aele-11kg",
+    promo: { kind: "cashback", amount: 100, by: "Samsung" },
     brand: "SAMSUNG", brandSlug: "samsung",
     title: "WW11DG5B25AELE Πλυντήριο Ρούχων 11kg",
     category: "leykes-syskeyes", subcategory: "plyntiria",
@@ -360,6 +362,7 @@ export const realProducts: Product[] = [
   },
   {
     id: "r-138705", sku: "138705", ean: "8004399327924", slug: "delonghi-en80-b-mayro",
+    promo: { kind: "bundle", with: "100 κάψουλες Nespresso" },
     brand: "DELONGHI", brandSlug: "delonghi",
     title: "EN80.B Inissia Nespresso Μαύρο",
     category: "oikiakos-exoplismos", subcategory: "kafes-rofimata",
@@ -402,6 +405,7 @@ export const realProducts: Product[] = [
   },
   {
     id: "r-150109", sku: "150109", ean: "8720389036651", slug: "philips-fc9555-09-sakoyla",
+    promo: { kind: "bogo", label: "1+1" },
     brand: "PHILIPS", brandSlug: "philips",
     title: "FC9555/09 Ηλεκτρική Σκούπα χωρίς σακούλα",
     category: "oikiakos-exoplismos", subcategory: "skoypes",

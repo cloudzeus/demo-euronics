@@ -8,6 +8,7 @@ import { services } from "./fixtures/services";
 import { guides } from "./fixtures/guides";
 import { faqs, policies } from "./fixtures/content";
 import { livePolicies } from "./fixtures/policies.live";
+import { devices, type DeviceInfo } from "./fixtures/devices";
 import { orders } from "./fixtures/orders";
 import { news, NEWS_CATEGORIES } from "./fixtures/news";
 import { appointments, consents, customer, instalmentPlans, paymentMethods } from "./fixtures/account";
@@ -366,4 +367,9 @@ export async function getMegaMenuData(): Promise<MegaMenuEntry[]> {
       };
     }),
   );
+}
+
+/** @dynamic Per-appliance service/warranty/document info (SoftOne SRVJOB + PIM/EPREL). */
+export async function getDevices(): Promise<DeviceInfo[]> {
+  return devices;
 }

@@ -64,6 +64,8 @@ export interface Product {
   stockLeft?: number;
   /** a member store recommends it (sticker «Επιλογή καταστήματος») — CMS/store portal */
   storePick?: string;
+  /** marketing promotion (CMS campaign rules): 1+1, gift with another product, contest, cashback */
+  promo?: { kind: "bogo"; label?: string } | { kind: "bundle"; with: string; label?: string } | { kind: "contest"; label: string; until?: string } | { kind: "cashback"; amount: number; by: string };
   description?: string;
   highlights?: string[];
   specs?: Spec[];

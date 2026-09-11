@@ -14,6 +14,9 @@ import { MySpaceProvider } from "@/components/space/MySpaceProvider";
 import { MySpaceSheet } from "@/components/space/MySpaceSheet";
 import { AdvisorProvider } from "@/components/advisor/AdvisorContext";
 import { AdvisorOrb } from "@/components/advisor/AdvisorOrb";
+import { SnapSheet } from "@/components/snap/SnapSheet";
+import { AutoReveal } from "@/components/motion/AutoReveal";
+import { ExitIntent } from "@/components/site/ExitIntent";
 
 /** Shop frame: terms rail, header, mega nav, page, footer + the three drawers (mini-cart, quick buy, compare). */
 export default async function ShopLayout({ children }: LayoutProps<"/">) {
@@ -50,6 +53,9 @@ export default async function ShopLayout({ children }: LayoutProps<"/">) {
           <CookieConsent />
           <MySpaceSheet />
           <AdvisorOrb />
+          <SnapSheet />
+          <AutoReveal />
+          <ExitIntent />
         </AdvisorProvider>
       </MySpaceProvider>
     </CartProvider>

@@ -13,6 +13,17 @@
 | `ArButton` («Δες το στον χώρο σου») | `/models/<id>.glb` + `.usdz` | 3D asset ανά SKU από PIM/κατασκευαστή, αλλιώς κουτί σε κλίμακα από τις διαστάσεις (`scripts/gen-models.py`) | static |
 | `AdvisorOrb` (AI σύμβουλος) | `AdvisorContext` (προϊόν σελίδας) → `/api/advisor` (SSE) | AI Sales Engine: OpenRouter routing, pgvector retrieval, εργαλεία Fit-My-Space / Energy / απόθεμα, hand-off σε κατάστημα· demo: τοπικές απαντήσεις από δεδομένα καταλόγου | no-store |
 | `CinematicHero` | `getHeroSlides()` (+ `cutout`, `productHref`) | CMS slides με cutout προϊόντος καμπάνιας | ISR 60s |
+| `SearchBox` advisor mode (πρόταση αντί για λέξη, φωνή, κάμερα) | `/api/advisor?q&door` → `advisorAnswer()` | Demo: κανόνες πρόθεσης (κατηγορία, όριο τιμής, πόρτα, θόρυβος, kg, ίντσες) πάνω στον κατάλογο· παραγωγή: AI Sales Engine (LLM tool-calling + pgvector + Fit/Energy tools), streamed | no-store |
+| `SnapSheet` (Snap & Find) | tesseract.js στη συσκευή → `/api/search` → `/api/advisor` | Παραγωγή: vision model του AI Sales Engine (αναγνώριση συσκευής και πινακίδας, φωτογραφία εσοχής) | client |
+| `CompareVerdict` («Εξήγησέ μου τη διαφορά») | `compareRows()`, `estimateKwh()` | Παραγωγή: LLM σύνοψη από τα ίδια χαρακτηριστικά + reviews summary, streamed | client |
+| `StoreHandoff` (άνθρωπος από το κατάστημα) | `AdvisorOrb` → lead | SoftOne TRDR + SRVJOB lead, ειδοποίηση καταστήματος (tablet/SMS), σύνοψη συνομιλίας | no-store |
+| `/admin/radar` («Ραντάρ ζήτησης») | `radar` fixture | Νυχτερινή συγκέντρωση από ChatSession/ChatMessage + search logs × απόθεμα SoftOne (MTRSTORE) × κατάλογος· εβδομαδιαίο email CEO | ISR 3600s |
+| `WalletSheet` (Apple Pay / Google Pay / Revolut Pay) | `Checkout` express + payment list | Payment Request API / Apple Pay JS / Google Pay API / Revolut Checkout μέσω PSP (Viva, ePay, Adyen)· tokens μόνο στον PSP | client |
+| `SocialLogin` (Google, Microsoft, Facebook, Apple) | `AuthForm`, `Checkout` βήμα 1 | Auth.js v5 providers (OAuth/OIDC), account linking με επαληθευμένο email, συγκατάθεση στο ledger | no-store |
+| `DeviceWallet` («Οι συσκευές μου»), `ServiceRequest` | `getOrders()` × `getDevices()` | Παραγγελίες (SALDOC) × service (SRVJOB) × PIM/EPREL (εγχειρίδιο, ετικέτα) × έγγραφα (απόδειξη/πιστοποιητικό PDF)· αίτημα service → SRVJOB + ημερολόγιο καταστήματος | no-store |
+| `NearestStoreCard`, `geoFromRequest()` | `getNearestStoreWithGeo()` · `/api/stores/near` | IP → πόλη (ipapi.co demo· παραγωγή MaxMind/CDN geo headers), GPS μόνο μετά από άδεια, haversine στα 350 καταστήματα | per request |
+| `ExitIntent` («Πριν φύγεις…») | `CartProvider`, session | Λόγος → Ραντάρ ζήτησης· email καλαθιού μέσω Klaviyo/Brevo με cart token (transactional) | client |
+| `AdvisorOrb` mascot «Άρης» | `public/img/advisor/mascot*.png` | Χαρακτήρας brand (OpenArt, cutout)· παραγωγή: ίδιο asset από το brand kit, animation states | static |
 | `DealsRail`, `DealOfDayTile` | `listProducts({tag})`, `getDealOfDay()` | SoftOne MTRL + τιμοκατάλογος προσφορών (PRCRULES), Omnibus 30 ημερών από ιστορικό τιμών | ISR 60s |
 | `ProductCard`, `ProductGrid`, `Facets` | `listProducts(filter)` | SoftOne MTRL + χαρακτηριστικά (CCCSUBGROUP2 / extra fields) → `lib/data/attributes` | ISR 60s, facets από search index |
 | `ProductHeader`, `BuyBox`, `SpecsTable`, `CompareSimilar` | `getProductBySlug`, `getRelated`, `getAccessoriesFor` | SoftOne MTRL, απόθεμα ανά κατάστημα (MTRSTORE), σχετικά/συμπληρωματικά από ITEGROUP mapping | ISR 60s· απόθεμα live (no-store) |

@@ -30,6 +30,16 @@ npm run build
 | **Στήλες ανά πλάτος**: `repeat(auto-fill, minmax(220px, 1fr))` — 2 στο κινητό, 3–5 ανάλογα με τον διαθέσιμο χώρο | `ProductGrid`, `ProductRail`, `DealsRail` |
 | **Κανένας εσωτερικός scroller**: φίλτρα με «+ N ακόμη» αντί για scroll, chips/breadcrumbs/thumbs/side nav σε wrap, deals σε grid, buy box χωρίς max-height, πίνακες σύγκρισης → stacked layout σε στενά πλάτη (`CompareStacked`) | παντού |
 
+### v4.1 — Ζωντάνια παντού, «Άρης», Snap & Find, checkout wallets, λογαριασμός συσκευών
+
+- `AutoReveal` (κάθε section κάθε σελίδας), tactile buttons, cutouts παντού μέσω `ProductImage`, `ProductGrid` stagger.
+- **Σύμβουλος «Άρης»** (comic χαρακτήρας, `public/img/advisor`): orb, πάνελ, `SearchBox` advisor mode (`/api/advisor`, `lib/advisor/answer.ts`) με φωνή (Web Speech) και κάμερα, `SnapSheet` (tesseract.js), `CompareVerdict`, `StoreHandoff`, `ExitIntent`.
+- **Stickers καμπανιών**: `Product.promo` (bogo / bundle / contest / cashback) → `BurstSticker`, `ContestSticker`, ribbon «Δώρο μαζί».
+- **Checkout**: `WalletSheet` (Apple Pay / Google Pay / Revolut Pay), `SocialLogin` (Google / Microsoft / Facebook / Apple) στο βήμα 1 και στο `AuthForm`, `BrandMarks`.
+- **Λογαριασμός**: `DeviceWallet` (δακτύλιος εγγύησης, έγγραφα, ιστορικό service, tips, hotline, ανταλλαγή), `ServiceRequest`, νέο dashboard.
+- **Κοντινό κατάστημα από IP** (`lib/geo/ip.ts`, `NearestStoreCard`, `/api/stores/near`) με GPS refinement.
+- **Ραντάρ ζήτησης** `/admin/radar` (demo, χωρίς auth).
+
 ### v4.0 — «Το αστέρι φωτίζει το προϊόν»: wow layer, Fit-My-Space, AR, AI σύμβουλος
 
 - **Οπτική υπογραφή**: το αστέρι του λογότυπου ως πηγή φωτός (`components/motion/StarLight`, ακτίνες, ambient φως σε navy ζώνες, cursor spotlight), cutout φωτογραφίες προϊόντων (`public/img/cutouts`, rembg birefnet, manifest από `scripts/cutouts-manifest.mjs`), τεράστια τυπογραφία (`--fs-80…150`), ρυθμός navy/λευκό ανά ζώνη.

@@ -8,7 +8,11 @@ export type Sticker =
   | { kind: "renew"; grade?: "A" | "B" }
   | { kind: "last"; n: number }
   | { kind: "ends"; days: number }
-  | { kind: "pick"; store: string };
+  | { kind: "pick"; store: string }
+  | { kind: "bogo"; label: string }
+  | { kind: "bundle"; with: string }
+  | { kind: "contest"; label: string }
+  | { kind: "cashback"; amount: number; by: string };
 
 /**
  * @dynamic Sticker system for offers. Every sticker is derived from data
@@ -16,7 +20,9 @@ export type Sticker =
  *  · discount → red, with the euro saving (Omnibus stays as the price line)
  *  · gift → yellow ribbon, · new → navy, · renew → green
  *  · «Τελευταία N» when stockLeft ≤ 5, · «Λήγει σε N ημ.» from the deal's end
- *  · «Επιλογή καταστήματος» → navy stamp with the store name.
+ *  · «Επιλογή καταστήματος» → navy stamp with the store name
+ *  · promos from CMS campaigns: «1+1» burst, «Δώρο + προϊόν» ribbon,
+ *    «Διαγωνισμός» star pill, «Επιστροφή N €» cashback pill.
  * Each kind has a fixed slot on the card so stickers never collide.
  */
 export function stickersFor(p: Product, dealEndsAt?: string, now = Date.now()): Sticker[] {
@@ -33,6 +39,10 @@ export function stickersFor(p: Product, dealEndsAt?: string, now = Date.now()): 
     if (days >= 0 && days <= 3) out.push({ kind: "ends", days });
   }
   if (p.storePick) out.push({ kind: "pick", store: p.storePick });
+  if (p.promo?.kind === "bogo") out.push({ kind: "bogo", label: p.promo.label ?? "1+1" });
+  if (p.promo?.kind === "bundle") out.push({ kind: "bundle", with: p.promo.with });
+  if (p.promo?.kind === "contest") out.push({ kind: "contest", label: p.promo.label });
+  if (p.promo?.kind === "cashback") out.push({ kind: "cashback", amount: p.promo.amount, by: p.promo.by });
   return out;
 }
 
@@ -50,10 +60,38 @@ export function CornerSticker({ s, compact = false }: { s: Sticker; compact?: bo
   return null;
 }
 
-/** Diagonal yellow ribbon, top-right corner (gift / store pick). */
+/** «1+1» starburst, bottom-right of the photo — rotates slightly on hover. */
+export function BurstSticker({ s }: { s: Sticker }) {
+  if (s.kind !== "bogo" && s.kind !== "cashback") return null;
+  const big = s.kind === "bogo" ? s.label : `−${s.amount} €`;
+  const small = s.kind === "bogo" ? "το δεύτερο δώρο" : `επιστροφή από ${s.by}`;
+  return (
+    <span className="pointer-events-none absolute right-3 bottom-12 size-[74px] grid place-items-center text-center rotate-[-8deg] transition-transform duration-300 group-hover/card:rotate-[4deg] group-hover/card:scale-105" aria-label={`${big} ${small}`}>
+      <svg viewBox="0 0 100 100" className="absolute inset-0 size-full drop-shadow-[0_6px_10px_rgba(18,42,88,.25)]" aria-hidden>
+        <polygon fill={s.kind === "bogo" ? "var(--eu-yellow)" : "var(--eu-green)"} points="50,2 58,14 72,8 74,23 89,24 84,38 97,45 87,55 95,68 80,72 80,87 66,84 60,98 50,88 40,98 34,84 20,87 20,72 5,68 13,55 3,45 16,38 11,24 26,23 28,8 42,14" />
+      </svg>
+      <span className={`relative leading-none ${s.kind === "bogo" ? "text-eu-navy" : "text-white"}`}>
+        <span className="block font-heading font-extrabold text-[length:var(--fs-20)] tracking-[-0.03em]">{big}</span>
+        <span className="block font-bold text-[10px] uppercase tracking-wide mt-0.5 px-2">{small}</span>
+      </span>
+    </span>
+  );
+}
+
+/** Contest pill (navy with star) under the corner sticker. */
+export function ContestSticker({ s }: { s: Sticker }) {
+  if (s.kind !== "contest") return null;
+  return (
+    <span className="pointer-events-none inline-flex items-center gap-1 rounded-full bg-eu-navy text-eu-yellow font-extrabold text-[length:var(--fs-13)] px-2.5 py-1 leading-none shadow-[0_4px_12px_rgba(18,42,88,.25)] eu-shimmer">
+      <span aria-hidden>★</span> {s.label}
+    </span>
+  );
+}
+
+/** Diagonal yellow ribbon, top-right corner (gift / bundle / store pick). */
 export function RibbonSticker({ s }: { s: Sticker }) {
-  const text = s.kind === "gift" ? "Δώρο" : s.kind === "pick" ? "Επιλογή καταστήματος" : null;
-  const title = s.kind === "gift" ? `Δώρο ${s.label}` : s.kind === "pick" ? `Επιλογή καταστήματος · ${s.store}` : "";
+  const text = s.kind === "gift" ? "Δώρο" : s.kind === "bundle" ? "Δώρο μαζί" : s.kind === "pick" ? "Επιλογή καταστήματος" : null;
+  const title = s.kind === "gift" ? `Δώρο ${s.label}` : s.kind === "bundle" ? `Δώρο μαζί: ${s.with}` : s.kind === "pick" ? `Επιλογή καταστήματος · ${s.store}` : "";
   if (!text) return null;
   return (
     <span className="pointer-events-none absolute -right-14 top-5 w-48 rotate-45 bg-eu-yellow text-eu-navy font-extrabold text-[length:var(--fs-13)] text-center py-1.5 shadow-[0_4px_12px_rgba(18,42,88,.2)] eu-shimmer" aria-label={title} title={title}>

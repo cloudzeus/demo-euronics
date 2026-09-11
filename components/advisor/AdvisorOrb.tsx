@@ -2,12 +2,14 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { X, Send, Sparkles, Store, Ruler, Zap, Scale } from "lucide-react";
 import gsap from "gsap";
 import { STAR_PATH } from "@/components/motion/star";
 import { useAdvisor } from "./AdvisorContext";
 import { useMySpace } from "@/components/space/MySpaceProvider";
 import { fitVerdict } from "@/lib/space/fit";
+import { StoreHandoff } from "./StoreHandoff";
 
 interface Msg {
   role: "user" | "advisor";
@@ -32,6 +34,7 @@ export function AdvisorOrb() {
   const [msgs, setMsgs] = useState<Msg[]>([]);
   const [typing, setTyping] = useState(false);
   const [input, setInput] = useState("");
+  const [handoff, setHandoff] = useState(false);
   const list = useRef<HTMLDivElement>(null);
   const orb = useRef<HTMLButtonElement>(null);
 
@@ -173,21 +176,20 @@ export function AdvisorOrb() {
         onClick={() => setOpen(true)}
         aria-label="Σύμβουλος αγοράς"
         aria-expanded={open}
-        className={`fixed z-[60] right-4 bottom-20 @md:bottom-6 @md:right-6 size-16 rounded-full bg-eu-navy shadow-[0_16px_40px_rgba(18,42,88,.45)] flex items-center justify-center group ${open ? "opacity-0 pointer-events-none" : "opacity-100"} transition-opacity`}
+        className={`fixed z-[60] right-4 bottom-24 @md:bottom-6 @md:right-6 size-16 rounded-full bg-eu-navy shadow-[0_16px_40px_rgba(18,42,88,.45)] flex items-center justify-center group ${open ? "opacity-0 pointer-events-none" : "opacity-100"} transition-opacity`}
       >
         <span
           className="absolute inset-0 rounded-full bg-[radial-gradient(closest-side,rgba(241,196,0,.5),rgba(241,196,0,0))] blur-md eu-breathe"
           aria-hidden
         />
-        <svg
-          viewBox="0 12 72 85"
-          className="relative size-8 eu-breathe"
-          aria-hidden
-        >
+        <span className="relative size-14 rounded-full overflow-hidden bg-eu-yellow ring-2 ring-white/80">
+          <Image src="/img/advisor/mascot-head.png" alt="" fill sizes="56px" className="object-cover scale-[1.15] translate-y-[6%] transition-transform duration-300 group-hover:scale-[1.28]" />
+        </span>
+        <svg viewBox="0 12 72 85" className="absolute -top-1 -right-1 size-5 eu-breathe drop-shadow" aria-hidden>
           <path d={STAR_PATH} fill="var(--eu-yellow)" />
         </svg>
         <span className="pointer-events-none absolute right-full mr-3 whitespace-nowrap rounded-full bg-white text-eu-navy font-extrabold text-[length:var(--fs-14)] px-3 py-2 shadow-[var(--shadow-raised)] opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all hidden @md:block">
-          {product ? "Ρώτα με για αυτό το προϊόν" : "Ρώτα τον σύμβουλο"}
+          {product ? "Ρώτα τον Άρη για αυτό το προϊόν" : "Ρώτα τον Άρη"}
         </span>
       </button>
 
@@ -207,16 +209,12 @@ export function AdvisorOrb() {
           <div className="absolute inset-x-0 bottom-0 @md:inset-auto @md:right-6 @md:bottom-6 @md:w-[440px] max-h-[88dvh] @md:max-h-[min(720px,90dvh)] bg-white rounded-t-3xl @md:rounded-3xl shadow-[var(--shadow-overlay)] grid grid-rows-[auto_minmax(0,1fr)_auto] overflow-hidden">
             <div className="relative bg-eu-navy text-white p-4 pr-3 flex items-start gap-3 overflow-hidden">
               <span className="eu-ambient" aria-hidden />
-              <svg
-                viewBox="0 12 72 85"
-                className="relative size-9 shrink-0 eu-breathe"
-                aria-hidden
-              >
-                <path d={STAR_PATH} fill="var(--eu-yellow)" />
-              </svg>
+              <span className="relative size-12 shrink-0 rounded-full overflow-hidden bg-eu-yellow ring-2 ring-white/60">
+                <Image src="/img/advisor/mascot-head.png" alt="" fill sizes="48px" className="object-cover scale-[1.15] translate-y-[6%]" />
+              </span>
               <div className="relative min-w-0 flex-1">
                 <div className="font-extrabold text-eu-yellow text-[length:var(--fs-13)] tracking-wide uppercase inline-flex items-center gap-1">
-                  <Sparkles className="size-3.5" aria-hidden /> Σύμβουλος αγοράς
+                  <Sparkles className="size-3.5" aria-hidden /> Ο Άρης · Σύμβουλος αγοράς
                 </div>
                 <h2
                   id="advisor-title"
@@ -224,7 +222,7 @@ export function AdvisorOrb() {
                 >
                   {product
                     ? `${product.brand} ${product.title}`
-                    : "Πες μου τι ψάχνεις"}
+                    : "Γεια, είμαι ο Άρης. Τι ψάχνεις;"}
                 </h2>
                 <p className="m-0 text-eu-on-dark-2 text-[length:var(--fs-14)]">
                   Απαντώ σε 2 δευτ. από τον κατάλογο. Άνθρωπος σε ένα κλικ.
@@ -270,7 +268,11 @@ export function AdvisorOrb() {
                   {m.chips && (
                     <div className="flex flex-wrap gap-1.5 mt-2">
                       {m.chips.map((c) =>
-                        c.href === "#myspace" ? (
+                        c.href === "#handoff" ? (
+                          <button key={c.label} type="button" onClick={() => setHandoff(true)} className="inline-flex items-center gap-1 rounded-full bg-eu-chip text-eu-blue font-extrabold text-[length:var(--fs-14)] px-3 min-h-9">
+                            <Store className="size-3.5" aria-hidden /> {c.label}
+                          </button>
+                        ) : c.href === "#myspace" ? (
                           <button
                             key={c.label}
                             type="button"
@@ -365,6 +367,7 @@ export function AdvisorOrb() {
                 <Send className="size-5" aria-hidden />
               </button>
             </form>
+            {handoff && <StoreHandoff summary={msgs.filter((m) => m.role === "user").map((m) => m.text).join(" · ") || (product ? `${product.brand} ${product.title}` : "Γενική ερώτηση")} onClose={() => setHandoff(false)} />}
             <div className="sr-only">
               <Zap /> <Scale />
             </div>

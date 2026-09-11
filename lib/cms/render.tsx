@@ -17,7 +17,7 @@ import { CampaignSpotlight, type VendorCampaign } from "@/components/widgets/Cam
 import { getNews } from "@/lib/data/repo";
 import { NewsletterBand } from "@/components/widgets/NewsletterBand";
 import { Reveal } from "@/components/motion/Reveal";
-import { getCategories, getDealOfDay, getGuides, getHeroSlides, getNearestStore, getProduct, getServices, getWeeklyDeals } from "@/lib/data/catalog";
+import { getCategories, getDealOfDay, getGuides, getHeroSlides, getNearestStore, getNearestStoreWithGeo, getProduct, getServices, getWeeklyDeals } from "@/lib/data/catalog";
 
 /**
  * Widget registry: type → async server component. Each widget resolves
@@ -54,7 +54,10 @@ const registry: Record<string, Renderer> = {
     return p ? <QuickBuyExplainer key={w.id} product={p} zoneNo={w.zoneNo} /> : null;
   },
   "services-band": async (w) => <ServicesBand key={w.id} services={await getServices((w.props as { limit?: number }).limit ?? 6)} zoneNo={w.zoneNo} />,
-  "store-finder": async (w) => <StoreFinder key={w.id} store={await getNearestStore()} image="/img/store-front.jpg" zoneNo={w.zoneNo} />,
+  "store-finder": async (w) => {
+    const g = await getNearestStoreWithGeo();
+    return <StoreFinder key={w.id} store={g.store} geoCity={g.city} geoSource={g.source} image="/img/store-front.jpg" zoneNo={w.zoneNo} />;
+  },
   "campaign-spotlight": async (w) => {
     const p = w.props as { campaigns: VendorCampaign[]; title?: string; kicker?: string; link?: { label: string; href: string } };
     return <CampaignSpotlight key={w.id} campaigns={p.campaigns} title={p.title} kicker={p.kicker} link={p.link} zoneNo={w.zoneNo} />;

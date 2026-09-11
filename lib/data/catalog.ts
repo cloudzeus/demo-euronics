@@ -10,6 +10,7 @@ import type { Category, Guide, HeroSlide, Product, Service, Store } from "./type
 
 
 import { products } from "./fixtures/products";
+import { geoFromRequest, storesNear } from "@/lib/geo/ip";
 import { stores } from "./fixtures/stores";
 
 const categories: Category[] = [
@@ -128,8 +129,14 @@ export async function getCategories(): Promise<Category[]> {
 export async function getServices(limit?: number): Promise<Service[]> {
   return limit ? services.slice(0, limit) : services;
 }
+/** @dynamic Nearest store from the request IP (city level); GPS refinement happens client-side. */
 export async function getNearestStore(): Promise<Store> {
-  return stores[0];
+  const g = await geoFromRequest();
+  return storesNear(g, 1)[0] ?? stores[0];
+}
+export async function getNearestStoreWithGeo(): Promise<{ store: Store; city?: string; source: "ip" | "fallback" }> {
+  const g = await geoFromRequest();
+  return { store: storesNear(g, 1)[0] ?? stores[0], city: g.city, source: g.source };
 }
 export async function getGuides(): Promise<Guide[]> {
   return guides;

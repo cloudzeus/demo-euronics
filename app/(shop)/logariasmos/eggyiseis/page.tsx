@@ -1,46 +1,43 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { getOrders } from "@/lib/data/repo";
+import { getDevices, getOrders } from "@/lib/data/repo";
+import { DeviceCard, deviceRows } from "@/components/account/DeviceWallet";
+import { ServiceRequest } from "@/components/account/ServiceRequest";
+import { Reveal } from "@/components/motion/Reveal";
 
-export const metadata: Metadata = { title: "Εγγυήσεις & service" };
+export const metadata: Metadata = { title: "Οι συσκευές μου · Εγγυήσεις & service" };
 
-/** Warranties derived from orders: 2 years legal + extensions bought as add-ons; book service. */
-export default async function WarrantiesPage() {
-  const orders = await getOrders();
-  const rows = orders.flatMap((o) =>
-    o.lines.map((l) => {
-      const ext = l.addons?.find((a) => a.slug === "epektasi-eggyisis");
-      const years = ext ? 5 : 2;
-      const end = new Date(o.date);
-      end.setFullYear(end.getFullYear() + years);
-      return { key: `${o.number}-${l.productId}`, title: `${l.brand} ${l.title}`, order: o.number, from: o.date, to: end.toISOString().slice(0, 10), years, ext: !!ext };
-    }),
-  );
+/**
+ * @dynamic «Οι συσκευές μου»: every appliance bought, with warranty ring,
+ * documents (receipt, certificate, manual, energy label), service history
+ * and one-tap fault report / service booking. ?service=<productId> opens
+ * the request form for that device.
+ */
+export default async function DevicesPage({ searchParams }: { searchParams: Promise<{ service?: string }> }) {
+  const [{ service }, orders, infos] = await Promise.all([searchParams, getOrders(), getDevices()]);
+  const rows = deviceRows(orders, infos);
+  const target = service ? rows.find((r) => r.productId === service) : null;
+  const active = rows.filter((r) => r.daysLeft > 0).length;
   return (
-    <div className="grid grid-cols-1 gap-4">
-      <h1 className="m-0 font-heading font-bold text-eu-ink text-[length:var(--fs-24)]">Εγγυήσεις & service</h1>
-      <ul className="m-0 p-0 list-none grid gap-3">
-        {rows.map((r) => (
-          <li key={r.key} className="bg-white rounded-xl border border-eu-line p-4 grid grid-cols-1 @md:grid-cols-[1fr_auto] gap-3 items-center text-[length:var(--fs-15)]">
-            <div>
-              <div className="font-bold text-eu-ink text-[length:var(--fs-16)]">{r.title}</div>
-              <div className="text-eu-muted">
-                Παραγγελία {r.order} · Εγγύηση {r.years} έτη{r.ext ? " (με επέκταση)" : " (νόμιμη)"} · έως {new Date(r.to).toLocaleDateString("el-GR")}
-              </div>
-            </div>
-            <div className="flex gap-2">
-              <Link href="/ypiresies/syntirisi-episkeyi" className="rounded-full bg-eu-navy text-white font-extrabold text-[length:var(--fs-14)] px-4 min-h-10 inline-flex items-center hover:bg-eu-blue">
-                Κλείσε service
-              </Link>
-              {!r.ext && (
-                <Link href="/ypiresies/epektasi-eggyisis" className="rounded-full border-2 border-eu-navy text-eu-navy font-extrabold text-[length:var(--fs-14)] px-4 min-h-10 inline-flex items-center hover:bg-eu-surface">
-                  Επέκταση
-                </Link>
-              )}
-            </div>
-          </li>
+    <div className="grid grid-cols-1 gap-5">
+      <Reveal>
+        <div data-reveal className="flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <div className="font-extrabold text-eu-blue text-[length:var(--fs-13)] tracking-wide uppercase">Εγγυήσεις & service</div>
+            <h1 className="m-0 font-heading font-bold text-eu-ink text-[length:var(--fs-28)] leading-tight">Οι συσκευές μου</h1>
+            <p className="m-0 mt-1 text-eu-ink-3 text-[length:var(--fs-15)]">
+              {rows.length} συσκευές · {active} με ενεργή εγγύηση · αποδείξεις, πιστοποιητικά, εγχειρίδια και ιστορικό service σε ένα μέρος.
+            </p>
+          </div>
+        </div>
+      </Reveal>
+      {target && <ServiceRequest device={{ title: `${target.brand} ${target.title}`, serial: target.info?.serial, inWarranty: target.daysLeft > 0 }} />}
+      <Reveal className="grid grid-cols-1 @5xl:grid-cols-2 gap-4" stagger={0.08}>
+        {rows.map((d) => (
+          <div key={d.key} data-reveal className="min-w-0">
+            <DeviceCard d={d} />
+          </div>
         ))}
-      </ul>
+      </Reveal>
     </div>
   );
 }

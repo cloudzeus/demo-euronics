@@ -14,7 +14,7 @@ import { ProductImage } from "@/components/commerce/ProductImage";
 import { Tilt } from "@/components/motion/Tilt";
 import { cutoutFor } from "@/lib/data/cutouts";
 import { flyToCart } from "@/lib/motion/flyToCart";
-import { CornerSticker, RibbonSticker, UrgencyPill, stickersFor } from "./Stickers";
+import { CornerSticker, RibbonSticker, UrgencyPill, BurstSticker, ContestSticker, stickersFor } from "./Stickers";
 import { FitBadge } from "@/components/space/FitBadge";
 
 /**
@@ -42,7 +42,9 @@ export function ProductCard({ product: p, priority = false, dealEndsAt, tone = "
   const imgRef = useRef<HTMLDivElement>(null);
   const stickers = stickersFor(p, dealEndsAt);
   const corner = stickers.find((s) => s.kind === "discount" || s.kind === "new" || s.kind === "renew");
-  const ribbon = stickers.find((s) => s.kind === "gift" || s.kind === "pick");
+  const ribbon = stickers.find((s) => s.kind === "gift" || s.kind === "bundle" || s.kind === "pick");
+  const burst = stickers.find((s) => s.kind === "bogo" || s.kind === "cashback");
+  const contest = stickers.find((s) => s.kind === "contest");
   const urgency = stickers.filter((s) => s.kind === "last" || s.kind === "ends");
 
   const avail = (() => {
@@ -82,6 +84,12 @@ export function ProductCard({ product: p, priority = false, dealEndsAt, tone = "
                   </span>
                 )}
                 {ribbon && <span className="absolute inset-0 overflow-hidden rounded-t-2xl pointer-events-none"><RibbonSticker s={ribbon} /></span>}
+                {burst && <BurstSticker s={burst} />}
+                {contest && (
+                  <span className={`absolute left-3 ${corner ? "top-14" : "top-3"}`}>
+                    <ContestSticker s={contest} />
+                  </span>
+                )}
                 <button
                   type="button"
                   aria-pressed={liked}
@@ -111,7 +119,7 @@ export function ProductCard({ product: p, priority = false, dealEndsAt, tone = "
                   <span className="font-extrabold text-eu-ink text-[length:var(--fs-27)] leading-none tracking-[-0.02em]">{priceShort(p.price)}</span>
                   {p.wasPrice && <s className="font-medium text-eu-muted-2 text-[length:var(--fs-15)]">{priceShort(p.wasPrice)}</s>}
                 </div>
-                <div className="text-eu-muted text-[length:var(--fs-14)] leading-snug mt-1 min-h-[1.4em]">{p.lowest30 ? `Χαμηλότερη 30 ημερών: ${priceLong(p.lowest30)}` : p.gift ?? ""}</div>
+                <div className="text-eu-muted text-[length:var(--fs-14)] leading-snug mt-1 min-h-[1.4em]">{p.lowest30 ? `Χαμηλότερη 30 ημερών: ${priceLong(p.lowest30)}` : p.promo?.kind === "bundle" ? `Δώρο μαζί: ${p.promo.with}` : p.gift ?? ""}</div>
                 <div className="font-bold text-eu-blue text-[length:var(--fs-15)] my-2">ή 12 × {priceLong(monthly)} χωρίς κάρτα</div>
                 <div className={`flex items-center flex-wrap gap-x-2 gap-y-1.5 font-bold text-[length:var(--fs-14)] mb-3 ${avail.color}`}>
                   <span className="inline-flex items-center gap-1.5">

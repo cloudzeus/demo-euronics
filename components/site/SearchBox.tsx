@@ -2,8 +2,11 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { ChevronDown, Search, X, Clock, TrendingUp, ArrowRight, BookOpen } from "lucide-react";
+import { ChevronDown, Search, X, Clock, TrendingUp, ArrowRight, BookOpen, Mic, Camera, Sparkles, Check, AlertTriangle } from "lucide-react";
+import type { AdvisorAnswer } from "@/lib/advisor/answer";
+import { useMySpace } from "@/components/space/MySpaceProvider";
 import { navCategories } from "@/lib/data/nav";
 import type { SuggestResult } from "@/lib/data/repo";
 import { priceShort, instalment, priceLong } from "@/lib/format";
@@ -20,12 +23,22 @@ const RECENT_KEY = "euronics.recentSearches.v1";
  * recent + popular searches and the promoted product. Arrow keys move,
  * Enter opens, Esc closes; the form still submits to /anazitisi.
  */
+/** A query reads as a question when it has 3+ words or ends with «;» / «?». */
+const isQuestion = (q: string) => /[;?]\s*$/.test(q) || q.trim().split(/\s+/).length >= 3;
+
+const SUGGEST_Q = ["αθόρυβο πλυντήριο για διαμέρισμα, πόρτα 62 εκ.", "τηλεόραση 55 ιντσών κάτω από 600 €", "ψυγείο που καίει λίγο ρεύμα"];
+
 export function SearchBox({ compact = false }: { compact?: boolean }) {
   const id = useId();
   const router = useRouter();
+  const { space } = useMySpace();
+  const [ans, setAns] = useState<AdvisorAnswer | null>(null);
+  const [thinking, setThinking] = useState(false);
+  const [listening, setListening] = useState(false);
   const [scope, setScope] = useState("all");
   const [q, setQ] = useState("");
   const [open, setOpen] = useState(false);
+  const advisorMode = isQuestion(q);
   const [res, setRes] = useState<SuggestResult | null>(null);
   const [active, setActive] = useState(-1);
   const [recent, setRecent] = useState<string[]>([]);
@@ -61,6 +74,44 @@ export function SearchBox({ compact = false }: { compact?: boolean }) {
     return () => clearTimeout(t);
   }, [q, scope, open]);
 
+  // Advisor mode: a sentence instead of a keyword → ask the advisor (debounced).
+  useEffect(() => {
+    if (!open || !advisorMode) {
+      const t0 = setTimeout(() => setAns(null), 0);
+      return () => clearTimeout(t0);
+    }
+    const ac = new AbortController();
+    const t = setTimeout(async () => {
+      setThinking(true);
+      try {
+        const r = await fetch(`/api/advisor?q=${encodeURIComponent(q)}${space ? `&door=${space.door}` : ""}`, { signal: ac.signal });
+        if (r.ok) setAns((await r.json()) as AdvisorAnswer);
+      } catch {}
+      setThinking(false);
+    }, 350);
+    return () => {
+      clearTimeout(t);
+      ac.abort();
+    };
+  }, [q, open, advisorMode, space]);
+
+  const listen = () => {
+    type SR = new () => { lang: string; interimResults: boolean; onresult: (e: { results: ArrayLike<ArrayLike<{ transcript: string }>> }) => void; onend: () => void; start: () => void };
+    const Ctor = (window as unknown as { webkitSpeechRecognition?: SR; SpeechRecognition?: SR }).SpeechRecognition ?? (window as unknown as { webkitSpeechRecognition?: SR }).webkitSpeechRecognition;
+    if (!Ctor) return;
+    const rec = new Ctor();
+    rec.lang = "el-GR";
+    rec.interimResults = true;
+    rec.onresult = (e) => {
+      const text = Array.from(e.results).map((r) => r[0].transcript).join(" ");
+      setQ(text);
+      setOpen(true);
+    };
+    rec.onend = () => setListening(false);
+    setListening(true);
+    rec.start();
+  };
+
   const remember = (term: string) => {
     const next = [term, ...recent.filter((r) => r !== term)].slice(0, 6);
     setRecent(next);
@@ -74,7 +125,9 @@ export function SearchBox({ compact = false }: { compact?: boolean }) {
     router.push(href);
   };
 
-  const items: { href: string; term?: string }[] = res
+  const items: { href: string; term?: string }[] = advisorMode
+    ? (ans?.products ?? []).map((p) => ({ href: `/proion/${p.slug}`, term: q }))
+    : res
     ? q
       ? [...res.products.map((p) => ({ href: `/proion/${p.slug}`, term: q })), ...res.categories.map((c) => ({ href: c.href, term: q })), ...res.guides.map((g) => ({ href: `/odigoi/${g.slug}`, term: q }))]
       : [...recent.map((r) => ({ href: `/anazitisi?q=${encodeURIComponent(r)}`, term: r })), ...res.popular.map((r) => ({ href: `/anazitisi?q=${encodeURIComponent(r)}`, term: r }))]
@@ -163,15 +216,91 @@ export function SearchBox({ compact = false }: { compact?: boolean }) {
             <X className="size-4" aria-hidden />
           </button>
         )}
+        <button type="button" onClick={listen} aria-label={listening ? "Ακούω…" : "Φωνητική αναζήτηση"} aria-pressed={listening} className={`shrink-0 w-10 items-center justify-center transition-colors ${compact ? "flex" : "hidden @6xl:flex"} ${listening ? "text-eu-red animate-pulse" : "text-eu-muted hover:text-eu-navy"}`}>
+          <Mic className="size-[18px]" aria-hidden />
+        </button>
+        <button type="button" onClick={() => { setOpen(false); window.dispatchEvent(new CustomEvent("eu:snap")); }} aria-label="Snap & Find: φωτογράφισε την παλιά σου συσκευή" className={`shrink-0 w-10 items-center justify-center text-eu-muted hover:text-eu-navy transition-colors ${compact ? "flex" : "hidden @6xl:flex"}`}>
+          <Camera className="size-[18px]" aria-hidden />
+        </button>
         <button type="submit" className="shrink-0 bg-eu-yellow text-eu-navy font-extrabold text-[length:var(--fs-15)] px-4 @md:px-[22px] flex items-center gap-2 hover:bg-eu-yellow-dark transition-colors min-h-11">
           <Search className="size-4" aria-hidden />
           <span className={compact ? "sr-only" : "hidden @5xl:inline"}>Αναζήτηση</span>
         </button>
       </form>
 
-      {open && res && (
+      {open && (res || advisorMode) && (
         <div id={`${id}-panel`} role="listbox" className={`absolute z-50 top-[calc(100%+8px)] left-0 bg-white text-eu-ink rounded-2xl shadow-[var(--shadow-overlay)] border border-eu-line overflow-hidden eu-container ${compact ? "right-0" : "w-[min(900px,calc(100vw-2rem))]"}`}>
-          {nothing ? (
+          {advisorMode ? (
+            <div className="grid grid-cols-1 @3xl:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)]">
+              <div className="relative bg-eu-navy text-white p-4 @md:p-5 overflow-hidden isolate">
+                <span className="eu-ambient" aria-hidden />
+                <div className="relative">
+                  <div className="flex items-center gap-2">
+                    <span className="relative size-9 shrink-0 rounded-full overflow-hidden bg-eu-yellow ring-2 ring-white/60">
+                      <Image src="/img/advisor/mascot-head.png" alt="" fill sizes="36px" className="object-cover scale-[1.15] translate-y-[6%]" />
+                    </span>
+                    <div className="font-extrabold text-eu-yellow text-[length:var(--fs-13)] tracking-wide uppercase inline-flex items-center gap-1.5">
+                      <Sparkles className="size-3.5" aria-hidden /> Ο Άρης απαντά
+                    </div>
+                  </div>
+                  {thinking && !ans ? (
+                    <div className="mt-3 flex gap-1" aria-label="Ο σύμβουλος σκέφτεται">
+                      {[0, 1, 2].map((i) => (
+                        <span key={i} className="size-2 rounded-full bg-eu-yellow animate-bounce" style={{ animationDelay: `${i * 120}ms` }} />
+                      ))}
+                    </div>
+                  ) : ans ? (
+                    <>
+                      {ans.understood.length > 0 && (
+                        <div className="mt-3 flex flex-wrap gap-1.5">
+                          {ans.understood.map((u) => (
+                            <span key={u} className="rounded-full bg-white/12 px-2.5 py-1 text-[length:var(--fs-13)] font-bold">
+                              {u}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                      <p className="m-0 mt-3 text-[length:var(--fs-15)] leading-snug text-eu-on-dark">{ans.text}</p>
+                      {ans.href && (
+                        <Link href={ans.href.href} onClick={() => remember(q)} className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-eu-yellow text-eu-navy font-extrabold text-[length:var(--fs-14)] px-4 min-h-10 hover:bg-eu-yellow-dark">
+                          {ans.href.label} <ArrowRight className="size-3.5" aria-hidden />
+                        </Link>
+                      )}
+                    </>
+                  ) : null}
+                </div>
+              </div>
+              <div className="p-3 grid gap-1 content-start">
+                {(ans?.products ?? []).map((p) => (
+                  <div key={p.id}>
+                    {row(
+                      `/proion/${p.slug}`,
+                      q,
+                      <div className="flex items-center gap-3 p-2">
+                        <ProductImage src={p.image} sizes="72px" className="size-[72px]" rounded="rounded-lg" />
+                        <div className="min-w-0 flex-1">
+                          <div className="text-eu-muted-2 font-bold text-[length:var(--fs-13)] uppercase truncate">{p.brand}</div>
+                          <div className="font-bold text-eu-ink text-[length:var(--fs-15)] leading-tight line-clamp-1">{p.title}</div>
+                          <div className="text-eu-ink-3 text-[length:var(--fs-14)] leading-snug mt-0.5 line-clamp-1">{p.why}</div>
+                          {p.fit && (
+                            <span className={`mt-1 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[length:var(--fs-13)] font-extrabold ${p.fit === "fits" ? "bg-eu-green/12 text-eu-green" : p.fit === "tight" ? "bg-eu-amber/15 text-eu-amber" : "bg-eu-surface-3 text-eu-ink-3"}`}>
+                              {p.fit === "no" ? <X className="size-3" aria-hidden /> : p.fit === "tight" ? <AlertTriangle className="size-3" aria-hidden /> : <Check className="size-3" aria-hidden />}
+                              {p.fit === "fits" ? "Χωράει" : p.fit === "tight" ? "Οριακά" : "Δεν χωράει"}
+                            </span>
+                          )}
+                        </div>
+                        <div className="text-right shrink-0">
+                          <div className="font-extrabold text-eu-ink text-[length:var(--fs-17)]">{priceShort(p.price)}</div>
+                          {p.wasPrice && <s className="text-eu-muted-2 text-[length:var(--fs-13)]">{priceShort(p.wasPrice)}</s>}
+                        </div>
+                      </div>,
+                    )}
+                  </div>
+                ))}
+                {ans && ans.products.length === 0 && <p className="m-0 p-3 text-eu-muted text-[length:var(--fs-14)]">Δεν βρέθηκαν προϊόντα για αυτή την περιγραφή.</p>}
+              </div>
+            </div>
+          ) : !res ? null : nothing ? (
             <div className="p-6 grid gap-2">
               <div className="font-bold text-eu-ink text-[length:var(--fs-16)]">Δεν βρέθηκε κάτι για «{q}»</div>
               <p className="m-0 text-eu-muted text-[length:var(--fs-15)]">Δοκίμασε μάρκα, μοντέλο ή κωδικό, ή ρώτησε τον έξυπνο οδηγό αγοράς.</p>
@@ -310,6 +439,18 @@ export function SearchBox({ compact = false }: { compact?: boolean }) {
                     </ul>
                   </div>
                 )}
+                <div>
+                  <div className="inline-flex items-center gap-1.5 px-1 mb-1.5 font-extrabold text-eu-blue text-[length:var(--fs-13)] tracking-wide uppercase">
+                    <Sparkles className="size-3.5" aria-hidden /> Ρώτα τον σύμβουλο
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {SUGGEST_Q.map((sq) => (
+                      <button key={sq} type="button" onClick={() => { setQ(sq); setOpen(true); }} className="rounded-full bg-eu-chip text-eu-blue px-3 min-h-9 inline-flex items-center text-[length:var(--fs-14)] font-bold hover:bg-eu-blue hover:text-white transition-colors">
+                        {sq}
+                      </button>
+                    ))}
+                  </div>
+                </div>
                 <div>
                   <div className="inline-flex items-center gap-1.5 px-1 mb-1.5 font-extrabold text-eu-muted text-[length:var(--fs-13)] tracking-wide uppercase">
                     <TrendingUp className="size-3.5" aria-hidden /> Δημοφιλείς αναζητήσεις
