@@ -29,16 +29,11 @@ export function CategoryGrid({ categories, featured, zoneNo }: { categories: Cat
           {categories.map((c) => {
             const dark = c.id === featured || (!featured && c.featured);
             return (
-              <li key={c.id} data-reveal className={`relative overflow-hidden ${dark ? "bg-eu-navy" : "bg-white"}`}>
-                {/* giant numeral watermark: slides up on hover */}
-                <span className={`pointer-events-none absolute -right-2 -bottom-6 font-heading font-extrabold text-[length:var(--fs-120)] leading-none tracking-[-0.06em] select-none transition-transform duration-500 ease-[var(--eu-ease-out)] group-hover:translate-y-0 ${dark ? "text-white/[.07]" : "text-eu-navy/[.05]"}`} aria-hidden>
-                  {c.no}
-                </span>
+              <li key={c.id} className={dark ? "bg-eu-navy" : "bg-white"}>
                 <Link
                   href={`/k/${c.slug}`}
-                  className={`relative flex justify-between items-start gap-3 p-4 @md:p-[20px_22px] h-full group ${dark ? "text-white" : "text-eu-ink"} hover:bg-eu-surface/60 ${dark ? "hover:bg-eu-navy-2" : ""} transition-colors`}
+                  className={`flex justify-between items-start gap-3 p-4 @md:p-[20px_22px] h-full group ${dark ? "text-white" : "text-eu-ink"} hover:bg-eu-surface/60 ${dark ? "hover:bg-eu-navy-2" : ""}`}
                 >
-                  <span className="pointer-events-none absolute left-0 bottom-0 h-[3px] w-full origin-left scale-x-0 bg-eu-yellow transition-transform duration-500 ease-[var(--eu-ease-out)] group-hover:scale-x-100" aria-hidden />
                   <div>
                     <div className={`font-extrabold text-[length:var(--fs-13-5)] mb-2 ${dark ? "text-eu-yellow" : "text-eu-muted-3"}`}>{c.no}</div>
                     <div className="font-bold text-[length:var(--fs-19)] leading-[1.15]">

@@ -3,12 +3,11 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { SocialLogin } from "@/components/checkout/SocialLogin";
 
 const input = "rounded-md border border-eu-line bg-white px-3 py-2.5 min-h-11 text-[length:var(--fs-15)] w-full outline-none focus-visible:ring-2 ring-eu-blue";
 const label = "grid gap-1 text-[length:var(--fs-14)] font-semibold text-eu-ink";
 
-/** @dynamic Login / register: Google, Microsoft, Facebook, Apple via Auth.js providers, email+password or magic link, OTP on the phone (demo: any credentials sign you in). */
+/** Login / register (demo: any credentials sign you in; OTP and social are visual). */
 export function AuthForm({ mode }: { mode: "login" | "register" }) {
   const router = useRouter();
   const [busy, setBusy] = useState(false);
@@ -27,7 +26,13 @@ export function AuthForm({ mode }: { mode: "login" | "register" }) {
         <h1 className="m-0 font-heading font-bold text-eu-ink text-[length:var(--fs-24)]">{mode === "login" ? "Σύνδεση" : "Δημιουργία λογαριασμού"}</h1>
         <p className="m-0 mt-1 text-eu-muted text-[length:var(--fs-15)]">{mode === "login" ? "Με email και κωδικό, ή με σύνδεσμο μίας χρήσης στο email σου." : "Λίγα πεδία. Τα στοιχεία διεύθυνσης τα ζητάμε μόνο στην πρώτη παραγγελία."}</p>
       </div>
-      <SocialLogin onSignedIn={() => router.push("/logariasmos")} />
+      <div className="grid grid-cols-2 gap-2">
+        {["Google", "Apple"].map((p) => (
+          <button key={p} type="button" className="rounded-full border-2 border-eu-line font-bold text-eu-ink text-[length:var(--fs-15)] min-h-11 hover:border-eu-blue">
+            Συνέχεια με {p}
+          </button>
+        ))}
+      </div>
       <div className="flex items-center gap-3 text-eu-muted-2 text-[length:var(--fs-13-5)]">
         <span className="flex-1 h-px bg-eu-line" /> ή <span className="flex-1 h-px bg-eu-line" />
       </div>

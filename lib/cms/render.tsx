@@ -16,8 +16,7 @@ import { NewsBand } from "@/components/widgets/NewsBand";
 import { CampaignSpotlight, type VendorCampaign } from "@/components/widgets/CampaignSpotlight";
 import { getNews } from "@/lib/data/repo";
 import { NewsletterBand } from "@/components/widgets/NewsletterBand";
-import { Reveal } from "@/components/motion/Reveal";
-import { getCategories, getDealOfDay, getGuides, getHeroSlides, getNearestStoreWithGeo, getProduct, getServices, getWeeklyDeals } from "@/lib/data/catalog";
+import { getCategories, getDealOfDay, getGuides, getHeroSlides, getNearestStore, getProduct, getServices, getWeeklyDeals } from "@/lib/data/catalog";
 
 /**
  * Widget registry: type → async server component. Each widget resolves
@@ -32,11 +31,11 @@ const registry: Record<string, Renderer> = {
     return <AnnouncementBar key={w.id} {...p} zoneNo={w.zoneNo} />;
   },
   "bento-hero": async (w, ctx) => {
-    const [slides, deal, geo, services] = await Promise.all([getHeroSlides(), getDealOfDay(), getNearestStoreWithGeo(), getServices(6)]);
+    const [slides, deal, store, services] = await Promise.all([getHeroSlides(), getDealOfDay(), getNearestStore(), getServices(3)]);
     const p = w.props as { intervalMs?: number };
     // Save-Data: a single static slide, no slideshow.
     const shown = ctx.saveData ? slides.slice(0, 1) : slides;
-    return <BentoHero key={w.id} slides={shown} deal={deal} store={geo.store} geoCity={geo.city} geoSource={geo.source} services={services.map((s) => ({ title: s.title, blurb: s.blurb }))} intervalMs={p.intervalMs} zoneNo={w.zoneNo} />;
+    return <BentoHero key={w.id} slides={shown} deal={deal} store={store} services={services.map((s) => s.title)} intervalMs={p.intervalMs} zoneNo={w.zoneNo} />;
   },
   ticker: async (w) => <Ticker key={w.id} items={(w.props as { items: string[] }).items} zoneNo={w.zoneNo} />,
   "category-grid": async (w) => <CategoryGrid key={w.id} categories={await getCategories()} featured={(w.props as { featured?: string }).featured} zoneNo={w.zoneNo} />,
@@ -54,10 +53,7 @@ const registry: Record<string, Renderer> = {
     return p ? <QuickBuyExplainer key={w.id} product={p} zoneNo={w.zoneNo} /> : null;
   },
   "services-band": async (w) => <ServicesBand key={w.id} services={await getServices((w.props as { limit?: number }).limit ?? 6)} zoneNo={w.zoneNo} />,
-  "store-finder": async (w) => {
-    const g = await getNearestStoreWithGeo();
-    return <StoreFinder key={w.id} store={g.store} geoCity={g.city} geoSource={g.source} image="/img/store-front.jpg" zoneNo={w.zoneNo} />;
-  },
+  "store-finder": async (w) => <StoreFinder key={w.id} store={await getNearestStore()} image="/img/store-front.jpg" zoneNo={w.zoneNo} />,
   "campaign-spotlight": async (w) => {
     const p = w.props as { campaigns: VendorCampaign[]; title?: string; kicker?: string; link?: { label: string; href: string } };
     return <CampaignSpotlight key={w.id} campaigns={p.campaigns} title={p.title} kicker={p.kicker} link={p.link} zoneNo={w.zoneNo} />;
@@ -77,9 +73,7 @@ export async function renderZone(zone: Zone, ctx: RenderContext): Promise<ReactN
         if (process.env.NODE_ENV !== "production") console.warn(`[cms] unknown widget type "${w.type}" in zone ${zone.id}`);
         return null;
       }
-      const node = await r(w, ctx);
-      // v4: every zone below the fold rises into view once (transform/opacity only).
-      return node && (w.zoneNo ?? 0) >= 6 ? <Reveal key={w.id}>{node}</Reveal> : node;
+      return r(w, ctx);
     }),
   );
 }

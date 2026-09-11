@@ -10,7 +10,6 @@ import type { Category, Guide, HeroSlide, Product, Service, Store } from "./type
 
 
 import { products } from "./fixtures/products";
-import { geoFromRequest, storesNear } from "@/lib/geo/ip";
 import { stores } from "./fixtures/stores";
 
 const categories: Category[] = [
@@ -86,8 +85,6 @@ const heroSlides: HeroSlide[] = [
     bullets: ["Δωρεάν μεταφορά", "Εγκατάσταση", "Εγγύηση έως 5 έτη"],
     image: "/img/hero-clima.jpg",
     alt: "Δροσερό σαλόνι με κλιματιστικό inverter",
-    cutout: "/img/cutouts/r-152092-0.png",
-    productHref: "/proion/inventor-veri-vero-18wfi-klimatistiko",
   },
   {
     id: "back-to-school",
@@ -99,8 +96,6 @@ const heroSlides: HeroSlide[] = [
     bullets: ["Δωρεάν μεταφορά", "Δόσεις χωρίς κάρτα", "Επίσημη εγγύηση"],
     image: "/img/hero-laptop.jpg",
     alt: "Φοιτήτρια με laptop στο γραφείο της",
-    cutout: "/img/cutouts/r-157206-0.png",
-    productHref: "/proion/apple-mdhe4gr-a-midnight",
   },
   {
     id: "renew",
@@ -112,8 +107,6 @@ const heroSlides: HeroSlide[] = [
     bullets: ["2 έτη εγγύηση", "Επιστροφή σε 14 ημέρες", "Δόσεις"],
     image: "/img/hero-renew.jpg",
     alt: "Refurbished smartphone στο χέρι",
-    cutout: "/img/cutouts/r-146037-0.png",
-    productHref: "/renew",
   },
 ];
 
@@ -129,14 +122,8 @@ export async function getCategories(): Promise<Category[]> {
 export async function getServices(limit?: number): Promise<Service[]> {
   return limit ? services.slice(0, limit) : services;
 }
-/** @dynamic Nearest store from the request IP (city level); GPS refinement happens client-side. */
 export async function getNearestStore(): Promise<Store> {
-  const g = await geoFromRequest();
-  return storesNear(g, 1)[0] ?? stores[0];
-}
-export async function getNearestStoreWithGeo(): Promise<{ store: Store; city?: string; source: "ip" | "fallback" }> {
-  const g = await geoFromRequest();
-  return { store: storesNear(g, 1)[0] ?? stores[0], city: g.city, source: g.source };
+  return stores[0];
 }
 export async function getGuides(): Promise<Guide[]> {
   return guides;

@@ -10,7 +10,6 @@ import { compareRows } from "@/lib/data/attributes";
 import { useCart } from "@/components/commerce/CartProvider";
 import { CompareStacked } from "./CompareStacked";
 import { ProductImage } from "@/components/commerce/ProductImage";
-import { CompareVerdict } from "./CompareVerdict";
 
 /**
  * Compare up to four products on their canonical characteristics
@@ -47,7 +46,6 @@ export function CompareTable({ initial }: { initial: Product[] }) {
 
   return (
     <div className="grid gap-4">
-      <CompareVerdict products={initial} />
       <div className="flex flex-wrap items-center justify-between gap-3">
         <label className="inline-flex items-center gap-2 font-semibold text-eu-ink text-[length:var(--fs-15)] cursor-pointer min-h-11">
           <input type="checkbox" checked={onlyDiff} onChange={(e) => setOnlyDiff(e.target.checked)} className="size-[18px] accent-eu-blue" /> Μόνο οι διαφορές
@@ -114,11 +112,11 @@ export function CompareTable({ initial }: { initial: Product[] }) {
                 </td>
               ))}
             </tr>
-            {groups.map(([g, keys], gi) => {
+            {groups.map(([g, keys]) => {
               const rows = keys.filter((k) => !onlyDiff || differs(k));
               if (!rows.length) return null;
               return (
-                <GroupRows key={`${g}-${gi}`} title={g} cols={initial.length + 1}>
+                <GroupRows key={g} title={g} cols={initial.length + 1}>
                   {rows.map((k) => {
                     const d = differs(k);
                     return (

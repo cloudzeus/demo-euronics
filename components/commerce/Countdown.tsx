@@ -12,7 +12,7 @@ function parts(ms: number) {
  * server value first, then ticks on the client. `variant="blocks"` is the
  * big 02·14·38 of the deals rail, `"inline"` the 14:38:02 chip.
  */
-export function Countdown({ endsAt, variant = "inline", tone = "light", className = "" }: { endsAt: string; variant?: "inline" | "blocks"; tone?: "light" | "dark"; className?: string }) {
+export function Countdown({ endsAt, variant = "inline", className = "" }: { endsAt: string; variant?: "inline" | "blocks"; className?: string }) {
   const [now, setNow] = useState<number | null>(null);
   useEffect(() => {
     // First tick deferred so the server-rendered value paints first.
@@ -33,7 +33,7 @@ export function Countdown({ endsAt, variant = "inline", tone = "light", classNam
     return (
       <div className={`flex gap-1.5 items-end ${className}`} role="timer" aria-label={label}>
         {cells.map((c, i) => (
-          <span key={i} className={`rounded-md px-3 py-2.5 font-extrabold text-[length:var(--fs-17)] leading-none tabular-nums ${tone === "dark" ? "bg-eu-yellow text-eu-navy" : "bg-eu-navy text-white"}`}>
+          <span key={i} className="bg-eu-navy text-white rounded-md px-3 py-2.5 font-extrabold text-[length:var(--fs-17)] leading-none tabular-nums">
             {pad(c)}
           </span>
         ))}

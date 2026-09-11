@@ -1,15 +1,14 @@
 import Image from "next/image";
-import { NearestStoreCard } from "@/components/stores/NearestStoreCard";
+import { LocateFixed } from "lucide-react";
 import type { Store } from "@/lib/data/types";
 import { ZoneBadge } from "@/components/site/ZoneBadge";
 
 /**
- * @dynamic Zone 10 — the network. The nearest store is picked on the server
- * from the request IP (city level, no prompt); GPS refinement only after the
- * user asks (GDPR). Real distance, «open now», 350 store pages behind it.
+ * Zone 10 — the network. Real distance, «open now», service filters, and
+ * 350 static store pages with LocalBusiness data behind it. Geolocation
+ * only after the user asks (GDPR).
  */
-export function StoreFinder({ store, image, zoneNo, geoCity, geoSource = "fallback" }: { store: Store; image: string; zoneNo?: number; geoCity?: string; geoSource?: "ip" | "fallback" }) {
-  const near = { id: store.id, slug: store.slug, name: store.name, city: store.city, distanceKm: store.distanceKm, openUntil: store.openUntil, lat: store.lat, lng: store.lng };
+export function StoreFinder({ store, image, zoneNo }: { store: Store; image: string; zoneNo?: number }) {
   return (
     <section className="relative bg-eu-blue text-white eu-container" aria-labelledby="stores-title">
       <ZoneBadge no={zoneNo} />
@@ -33,12 +32,22 @@ export function StoreFinder({ store, image, zoneNo, geoCity, geoSource = "fallba
               Βρες
             </button>
           </form>
-          <NearestStoreCard initial={near} geoCity={geoCity} geoSource={geoSource} variant="button" />
+          <button type="button" className="inline-flex items-center gap-1.5 font-bold text-eu-yellow text-[length:var(--fs-14)] min-h-11 hover:underline">
+            <LocateFixed className="size-4" aria-hidden /> Χρήση της τοποθεσίας μου
+          </button>
         </div>
         <div className="relative bg-eu-blue-dark min-h-[260px] @lg:min-h-0">
           <Image src={image} alt="Κατάστημα euronics" fill sizes="(max-width: 1024px) 100vw, 540px" className="object-cover" />
-          <div className="absolute bottom-4 left-4 right-4 @lg:bottom-[18px] @lg:left-5 @lg:right-5">
-            <NearestStoreCard initial={near} geoCity={geoCity} geoSource={geoSource} />
+          <div className="absolute bottom-4 left-4 right-4 @lg:bottom-[18px] @lg:left-5 @lg:right-5 bg-white text-eu-ink rounded-lg p-3 flex justify-between items-center gap-3 shadow-[var(--shadow-raised)]">
+            <div className="min-w-0">
+              <div className="font-bold text-[length:var(--fs-15)] leading-[1.3] truncate">{store.name}</div>
+              <div className="font-medium text-eu-muted text-[length:var(--fs-13-5)] mt-0.5">
+                {store.distanceKm.toLocaleString("el-GR")} km · Ανοιχτό έως {store.openUntil}
+              </div>
+            </div>
+            <a href={`https://maps.google.com/?q=${store.lat},${store.lng}`} className="rounded-full bg-eu-navy text-white font-extrabold text-[length:var(--fs-13-5)] px-3.5 py-2.5 min-h-10 inline-flex items-center shrink-0 hover:bg-eu-blue">
+              Οδηγίες
+            </a>
           </div>
         </div>
       </div>

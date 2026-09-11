@@ -10,7 +10,6 @@ export function CartButton() {
   const total = subtotal + addonsTotal;
   return (
     <button
-      id="cart-button"
       type="button"
       onClick={() => setMiniOpen(true)}
       className="relative flex items-center gap-2 bg-eu-blue text-white rounded-full size-11 justify-center @md:size-auto @md:pl-3 @md:pr-4 @md:py-2 min-h-11 hover:bg-eu-blue-light transition-colors"

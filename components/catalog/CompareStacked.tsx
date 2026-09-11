@@ -37,8 +37,8 @@ export function CompareStacked({ products, rows, val, current }: { products: Pro
           </li>
         ))}
       </ul>
-      {[{ group: "Γενικά", keys: extra.map((e) => e.key) }, ...rows].map((g, gi) => (
-        <div key={`${g.group}-${gi}`} className="rounded-xl border border-eu-line overflow-hidden">
+      {[{ group: "Γενικά", keys: extra.map((e) => e.key) }, ...rows].map((g) => (
+        <div key={g.group} className="rounded-xl border border-eu-line overflow-hidden">
           <div className="bg-eu-navy text-white font-extrabold text-[length:var(--fs-14)] tracking-wide px-3 py-2">{g.group}</div>
           <dl className="m-0 divide-y divide-eu-line-2">
             {g.keys.map((k) => {

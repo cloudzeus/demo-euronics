@@ -1,7 +1,6 @@
 import type { Product } from "@/lib/data/types";
 import { ProductCard } from "@/components/commerce/ProductCard";
 import { ProductRow } from "@/components/commerce/ProductRow";
-import { Reveal } from "@/components/motion/Reveal";
 
 export function ProductGrid({ products, view = "grid" }: { products: Product[]; view?: "grid" | "list" }) {
   if (products.length === 0) {
@@ -24,12 +23,12 @@ export function ProductGrid({ products, view = "grid" }: { products: Product[]; 
     );
   }
   return (
-    <Reveal as="ul" stagger={0.04} className="m-0 p-0 list-none grid grid-cols-2 @xl:grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-3 @md:gap-4">
+    <ul className="m-0 p-0 list-none grid grid-cols-2 @xl:grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-3 @md:gap-4">
       {products.map((p, i) => (
-        <li key={p.id} data-reveal>
+        <li key={p.id}>
           <ProductCard product={p} priority={i < 4} />
         </li>
       ))}
-    </Reveal>
+    </ul>
   );
 }

@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { CheckCircle2 } from "lucide-react";
 import { priceLong } from "@/lib/format";
 import { Stepper } from "./Stepper";
@@ -41,24 +40,13 @@ export function OrderSuccess({ number }: { number: string }) {
       <Stepper step={4} />
       <div className="grid grid-cols-1 @lg:grid-cols-[minmax(0,1fr)_360px] gap-6 items-start">
         <div className="grid gap-5">
-          <section className="bg-eu-green/10 border border-eu-green/30 rounded-xl p-6 grid gap-4">
-            <div className="flex gap-4 items-start">
-              <CheckCircle2 className="size-10 text-eu-green shrink-0" aria-hidden />
-              <div>
-                <h1 className="m-0 font-heading font-bold text-eu-ink text-[length:var(--fs-24)]">Ευχαριστούμε! Η παραγγελία σου καταχωρήθηκε.</h1>
-                <p className="m-0 mt-1 text-eu-ink-2 text-[length:var(--fs-16)]">
-                  Αριθμός παραγγελίας <strong className="font-extrabold text-eu-ink">{number}</strong>. Στείλαμε επιβεβαίωση στο {o?.address.email ?? "email σου"}.
-                </p>
-              </div>
-            </div>
-            {/* Άρης: a quiet thank-you, no confetti */}
-            <div className="flex items-center gap-3 rounded-xl bg-white/70 border border-eu-green/20 px-4 py-3 text-[length:var(--fs-15)] text-eu-ink-2">
-              <span className="relative size-10 shrink-0 rounded-full overflow-hidden bg-eu-yellow ring-2 ring-eu-yellow/50">
-                <Image src="/img/advisor/mascot-head.png" alt="" fill sizes="40px" className="object-cover scale-[1.15] translate-y-[6%]" />
-              </span>
-              <span>
-                <span className="font-extrabold text-eu-navy">Ο Άρης:</span> Ευχαριστώ{o?.address.firstName ? `, ${o.address.firstName}` : ""}! Θα σου γράψω μόλις φύγει η παραγγελία και αν χρειαστείς κάτι για την τοποθέτηση, είμαι εδώ.
-              </span>
+          <section className="bg-eu-green/10 border border-eu-green/30 rounded-xl p-6 flex gap-4 items-start">
+            <CheckCircle2 className="size-10 text-eu-green shrink-0" aria-hidden />
+            <div>
+              <h1 className="m-0 font-heading font-bold text-eu-ink text-[length:var(--fs-24)]">Ευχαριστούμε! Η παραγγελία σου καταχωρήθηκε.</h1>
+              <p className="m-0 mt-1 text-eu-ink-2 text-[length:var(--fs-16)]">
+                Αριθμός παραγγελίας <strong className="font-extrabold text-eu-ink">{number}</strong>. Στείλαμε επιβεβαίωση στο {o?.address.email ?? "email σου"}.
+              </p>
             </div>
           </section>
 

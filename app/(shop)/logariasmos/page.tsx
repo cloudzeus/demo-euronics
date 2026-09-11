@@ -1,12 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Package, Truck, ShieldCheck, Gift, CalendarClock, CreditCard, Bell, User, Heart, ArrowRight } from "lucide-react";
-import { getAppointments, getCustomer, getDevices, getInstalmentPlans, getOrders } from "@/lib/data/repo";
-import { DeviceCard, deviceRows } from "@/components/account/DeviceWallet";
-import { CountUp } from "@/components/motion/CountUp";
-import { Reveal } from "@/components/motion/Reveal";
-import { StarLight } from "@/components/motion/StarLight";
-import { Spotlight } from "@/components/motion/Spotlight";
+import { getAppointments, getCustomer, getInstalmentPlans, getOrders } from "@/lib/data/repo";
 import { OrderTimeline, StatusChip } from "@/components/account/OrderTimeline";
 import { priceLong } from "@/lib/format";
 
@@ -18,34 +13,29 @@ export const metadata: Metadata = { title: "Ο λογαριασμός μου" };
  * to its section; the active delivery shows its live courier timeline.
  */
 export default async function AccountHome() {
-  const [c, orders, plans, appts, infos] = await Promise.all([getCustomer(), getOrders(), getInstalmentPlans(), getAppointments(), getDevices()]);
-  const devices = deviceRows(orders, infos);
-  const activeWarranties = devices.filter((d) => d.daysLeft > 0).length;
+  const [c, orders, plans, appts] = await Promise.all([getCustomer(), getOrders(), getInstalmentPlans(), getAppointments()]);
   const active = orders.find((o) => ["paid", "processing", "shipped", "ready-for-pickup"].includes(o.status));
   const nextAppt = appts.find((a) => a.status === "scheduled" || a.status === "confirmed");
   const nextPlan = [...plans].sort((a, b) => a.nextDate.localeCompare(b.nextDate))[0];
   const tiles = [
     { icon: Package, n: String(orders.length), t: "Παραγγελίες", h: "/logariasmos/paraggelies" },
     { icon: Truck, n: active ? "1" : "0", t: "Σε εξέλιξη", h: active ? `/logariasmos/paraggelies/${active.number}` : "/logariasmos/paraggelies" },
-    { icon: ShieldCheck, n: String(activeWarranties), t: "Ενεργές εγγυήσεις", h: "/logariasmos/eggyiseis" },
+    { icon: ShieldCheck, n: "3", t: "Ενεργές εγγυήσεις", h: "/logariasmos/eggyiseis" },
     { icon: CreditCard, n: String(plans.length), t: "Προγράμματα δόσεων", h: "/logariasmos/pliromes" },
     { icon: CalendarClock, n: String(appts.filter((a) => a.status !== "done" && a.status !== "cancelled").length), t: "Ραντεβού", h: "/logariasmos/rantevou" },
     { icon: Gift, n: (c.loyaltyPoints ?? 0).toLocaleString("el-GR"), t: "Πόντοι Euronics", h: "/kartes-dorou" },
   ];
   return (
     <div className="grid grid-cols-1 gap-5">
-      <div className="relative rounded-2xl bg-eu-navy text-white p-5 @md:p-6 flex flex-wrap items-center justify-between gap-4 overflow-hidden isolate">
-        <span className="eu-ambient" aria-hidden />
-        <Spotlight />
-        <StarLight size={56} className="right-6 top-3 hidden @lg:block" rays={false} />
-        <div className="relative">
+      <div className="rounded-2xl bg-eu-navy text-white p-5 @md:p-6 flex flex-wrap items-center justify-between gap-4">
+        <div>
           <div className="font-extrabold text-eu-yellow text-[length:var(--fs-14)] tracking-wide">Ο λογαριασμός μου</div>
           <h1 className="m-0 font-heading font-bold text-[length:var(--fs-28)] leading-tight">Καλώς ήρθες, {c.firstName}</h1>
           <p className="m-0 mt-1 text-eu-on-dark text-[length:var(--fs-15)]">
             {c.email} · {c.phone} · μέλος από {new Date(c.memberSince).getFullYear()}
           </p>
         </div>
-        <div className="relative flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2">
           <Link href="/logariasmos/stoixeia" className="inline-flex items-center gap-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-[length:var(--fs-14)] px-4 min-h-11">
             <User className="size-4" aria-hidden /> Στοιχεία
           </Link>
@@ -58,38 +48,17 @@ export default async function AccountHome() {
         </div>
       </div>
 
-      <Reveal as="ul" className="m-0 p-0 list-none grid grid-cols-2 @xl:grid-cols-3 @5xl:grid-cols-6 gap-3">
+      <ul className="m-0 p-0 list-none grid grid-cols-2 @xl:grid-cols-3 @5xl:grid-cols-6 gap-3">
         {tiles.map((t) => (
-          <li key={t.t} data-reveal>
-            <Link href={t.h} className="group block rounded-2xl bg-white border border-eu-line p-4 hover:border-eu-blue hover:shadow-[var(--shadow-raised)] hover:-translate-y-0.5 transition-all h-full">
-              <t.icon className="size-5 text-eu-blue transition-transform group-hover:-translate-y-0.5" aria-hidden />
-              <div className="font-heading font-extrabold text-eu-ink text-[length:var(--fs-30)] leading-none mt-2 tracking-[-0.02em]">{/^\d+$/.test(t.n.replace(/\./g, "")) ? <CountUp value={Number(t.n.replace(/\./g, ""))} /> : t.n}</div>
+          <li key={t.t}>
+            <Link href={t.h} className="block rounded-2xl bg-white border border-eu-line p-4 hover:border-eu-blue hover:shadow-[var(--shadow-card)] h-full">
+              <t.icon className="size-5 text-eu-blue" aria-hidden />
+              <div className="font-extrabold text-eu-ink text-[length:var(--fs-26)] leading-none mt-2">{t.n}</div>
               <div className="text-eu-muted text-[length:var(--fs-14)] mt-1">{t.t}</div>
             </Link>
           </li>
         ))}
-      </Reveal>
-
-      <section className="grid gap-3" aria-labelledby="devices-title">
-        <div className="flex flex-wrap items-end justify-between gap-2">
-          <div>
-            <div className="font-extrabold text-eu-blue text-[length:var(--fs-13)] tracking-wide uppercase">Ηλεκτρονικός φάκελος</div>
-            <h2 id="devices-title" className="m-0 font-heading font-bold text-eu-ink text-[length:var(--fs-22)]">
-              Οι συσκευές μου
-            </h2>
-          </div>
-          <Link href="/logariasmos/eggyiseis" className="inline-flex items-center gap-1 font-bold text-eu-blue text-[length:var(--fs-15)] hover:underline">
-            Εγγυήσεις, αποδείξεις & service <ArrowRight className="size-4" aria-hidden />
-          </Link>
-        </div>
-        <Reveal className="grid grid-cols-1 @3xl:grid-cols-2 @6xl:grid-cols-3 gap-3" stagger={0.08}>
-          {devices.slice(0, 3).map((d) => (
-            <div key={d.key} data-reveal className="min-w-0">
-              <DeviceCard d={d} compact />
-            </div>
-          ))}
-        </Reveal>
-      </section>
+      </ul>
 
       {active && (
         <section className="bg-white rounded-2xl border border-eu-line p-5 @md:p-6">

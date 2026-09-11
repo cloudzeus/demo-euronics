@@ -196,7 +196,7 @@ export function MegaNav({ data = [] }: { data?: MegaMenuEntry[] }) {
       </ul>
       <ul
         ref={row}
-        className="relative z-40 bg-white eu-full eu-gutter-wide flex flex-nowrap items-center gap-x-1 m-0 p-0 list-none"
+        className="eu-full eu-gutter-wide flex flex-nowrap items-center gap-x-1 m-0 p-0 list-none"
       >
         {navCategories.slice(0, visible).map((c, i) => (
           <li key={c.slug}>{plaque(c, i, true)}</li>
@@ -257,10 +257,6 @@ export function MegaNav({ data = [] }: { data?: MegaMenuEntry[] }) {
             aria-label="Κλείσιμο μενού"
             tabIndex={-1}
             onClick={() => setOpen(null)}
-            onMouseEnter={() => {
-              cancelIntent();
-              setOpen(null);
-            }}
             initial={reducedMotion ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
