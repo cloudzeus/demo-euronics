@@ -95,6 +95,10 @@
   --fs-50: clamp(2.4375rem, 2.1685rem + 1.1957vw, 3.125rem);
   --fs-58: clamp(2.8125rem, 2.4946rem + 1.413vw, 3.625rem);
   --fs-66: clamp(3.2188rem, 2.8641rem + 1.5761vw, 4.125rem);
+  --fs-80: clamp(3.9063rem, 3.4783rem + 1.9022vw, 5rem);
+  --fs-96: clamp(4.6875rem, 4.1739rem + 2.2826vw, 6rem);
+  --fs-120: clamp(5.8438rem, 5.1957rem + 2.8804vw, 7.5rem);
+  --fs-150: clamp(7.3125rem, 6.5054rem + 3.587vw, 9.375rem);
 
   /* shadcn base, mapped to the Euronics palette */
   --background: #ffffff;
@@ -385,4 +389,110 @@ html:not([data-zones="1"]) .eu-zone-badge {
 }
 .eu-scrollbar-none::-webkit-scrollbar {
   display: none;
+}
+
+
+/* ---------- v4 «Το αστέρι φωτίζει το προϊόν»: motion + light ---------- */
+:root {
+  --eu-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --eu-dur-fast: 200ms;
+  --eu-dur: 320ms;
+}
+@keyframes eu-ambient {
+  0% { transform: translate3d(-6%, -4%, 0) scale(1); }
+  50% { transform: translate3d(4%, 6%, 0) scale(1.08); }
+  100% { transform: translate3d(-6%, -4%, 0) scale(1); }
+}
+@keyframes eu-rays {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes eu-breathe {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50% { transform: scale(1.12); opacity: 1; }
+}
+@keyframes eu-shimmer {
+  from { transform: translateX(-130%) skewX(-18deg); }
+  to { transform: translateX(230%) skewX(-18deg); }
+}
+@keyframes eu-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes eu-bump {
+  0% { transform: scale(1); }
+  35% { transform: scale(1.18); }
+  100% { transform: scale(1); }
+}
+/* Ambient light blob for navy zones */
+@utility eu-ambient {
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+  background:
+    radial-gradient(38% 48% at 22% 30%, rgba(29, 66, 138, 0.9), transparent 70%),
+    radial-gradient(30% 40% at 78% 70%, rgba(241, 196, 0, 0.16), transparent 70%),
+    radial-gradient(50% 60% at 60% 20%, rgba(255, 255, 255, 0.06), transparent 70%);
+  animation: eu-ambient 18s ease-in-out infinite;
+  will-change: transform;
+}
+/* Rotating light rays behind a product */
+@utility eu-rays {
+  position: absolute;
+  pointer-events: none;
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  background: repeating-conic-gradient(from 0deg, rgba(241, 196, 0, 0.16) 0deg 6deg, transparent 6deg 24deg);
+  -webkit-mask-image: radial-gradient(closest-side, #000 0%, rgba(0, 0, 0, 0.6) 45%, transparent 72%);
+  mask-image: radial-gradient(closest-side, #000 0%, rgba(0, 0, 0, 0.6) 45%, transparent 72%);
+  animation: eu-rays 90s linear infinite;
+  will-change: transform;
+}
+/* Soft light field behind a cutout on white surfaces */
+@utility eu-cutout-field {
+  background: radial-gradient(70% 60% at 50% 62%, #ffffff 0%, var(--eu-surface-2) 70%, var(--eu-surface-2) 100%);
+}
+/* Cutout image shadow */
+@utility eu-cutout-shadow {
+  filter: drop-shadow(0 18px 24px rgba(18, 42, 88, 0.22));
+}
+@utility eu-cutout-shadow-dark {
+  filter: drop-shadow(0 24px 32px rgba(0, 0, 0, 0.45));
+}
+/* One-time shimmer sweep for stickers/ribbons */
+@utility eu-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.eu-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 40%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  animation: eu-shimmer 1.6s var(--eu-ease-out) 0.6s 1 both;
+  pointer-events: none;
+}
+@utility eu-float {
+  animation: eu-float 6s ease-in-out infinite;
+}
+@utility eu-breathe {
+  animation: eu-breathe 3.2s ease-in-out infinite;
+  transform-origin: center;
+}
+.eu-bump {
+  animation: eu-bump 420ms var(--eu-ease-out) 1;
+}
+/* Shared-element page transition (card image → gallery) */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 260ms;
+}
+::view-transition-group(*) {
+  animation-timing-function: var(--eu-ease-out);
+  animation-duration: 420ms;
+}
+@media (prefers-reduced-motion: reduce) {
+  .eu-ambient, .eu-rays, .eu-float, .eu-breathe, .eu-shimmer::after, .eu-bump { animation: none !important; }
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
 }

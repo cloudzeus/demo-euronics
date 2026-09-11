@@ -30,6 +30,16 @@ npm run build
 | **Στήλες ανά πλάτος**: `repeat(auto-fill, minmax(220px, 1fr))` — 2 στο κινητό, 3–5 ανάλογα με τον διαθέσιμο χώρο | `ProductGrid`, `ProductRail`, `DealsRail` |
 | **Κανένας εσωτερικός scroller**: φίλτρα με «+ N ακόμη» αντί για scroll, chips/breadcrumbs/thumbs/side nav σε wrap, deals σε grid, buy box χωρίς max-height, πίνακες σύγκρισης → stacked layout σε στενά πλάτη (`CompareStacked`) | παντού |
 
+### v4.0 — «Το αστέρι φωτίζει το προϊόν»: wow layer, Fit-My-Space, AR, AI σύμβουλος
+
+- **Οπτική υπογραφή**: το αστέρι του λογότυπου ως πηγή φωτός (`components/motion/StarLight`, ακτίνες, ambient φως σε navy ζώνες, cursor spotlight), cutout φωτογραφίες προϊόντων (`public/img/cutouts`, rembg birefnet, manifest από `scripts/cutouts-manifest.mjs`), τεράστια τυπογραφία (`--fs-80…150`), ρυθμός navy/λευκό ανά ζώνη.
+- **Κίνηση**: `Reveal` (κάθε ζώνη ανεβαίνει στο scroll), `CountUp`, `Tilt` (3D tilt με τον δείκτη), `CinematicHero` (τίτλος λέξη-λέξη, προϊόν που ακολουθεί τον δείκτη, γραμμή προόδου), fly-to-cart (`lib/motion/flyToCart`), shared-element View Transition κάρτα → σελίδα προϊόντος. Όλα απενεργοποιούνται με `prefers-reduced-motion`.
+- **Stickers από δεδομένα** (`components/commerce/Stickers.tsx`): έκπτωση με ποσό κέρδους, «Λήγει σε N ημ.», «Τελευταία N», κορδέλα «Δώρο», «Επιλογή καταστήματος».
+- **Fit-My-Space**: «Ο χώρος μου» (πόρτα, ασανσέρ, εσοχή· `components/space`), `FitBadge` σε κάθε κάρτα και στη σελίδα προϊόντος, διαστάσεις από specs ή κατηγορία (`lib/data/dims.ts`).
+- **Ρεύμα σε ευρώ** (`components/pdp/EnergyCost`, `lib/energy/estimate.ts`): παλιά vs νέα συσκευή, κέρδος 3/5/8 ετών.
+- **AR** (`components/ar/ArButton`): `<model-viewer>` με GLB (Android/WebXR) και USDZ (iOS Quick Look) ανά SKU από τις διαστάσεις — `scripts/gen-models.ts` + `scripts/gen-models.py` (pillow, usd-core) → `public/models`. QR για συνέχεια στο κινητό.
+- **AI σύμβουλος** (`components/advisor`): αστέρι στη γωνία, σκηνή με έτοιμες ερωτήσεις ανά σελίδα (χωράει; ρεύμα; διαφορά;), hand-off σε κατάστημα. Demo απαντήσεις από τον κατάλογο· παραγωγή: AI Sales Engine (βλ. πρόταση DGSoft).
+
 ### v3.6 — Ζώνη καμπανιών κατασκευαστών & καθαρό λεκτικό αγοράς
 
 - **Ζώνη 8 «Καμπάνιες κατασκευαστών»** (`components/widgets/CampaignSpotlight.tsx`, widget `campaign-spotlight`): τα 4 key visuals που τρέχουν σήμερα στο euronics.gr (Samsung Vision AI, Samsung OLED S95F, Miele 25 χρόνια εγγύηση μοτέρ, Dell οθόνες — `public/img/campaigns/`) σε φωτεινή ζώνη: λίστα καμπανιών με μικρογραφία αριστερά, το visual ολόκληρο σε λευκό «πόστερ» δεξιά. Hover/focus αλλάζει το πόστερ (hover intent 90 ms, κατευθυντική εναλλαγή με GSAP), χωρίς hover προχωρά μόνο του κάθε 7" με κίτρινη γραμμή προόδου, reveal στο scroll· `prefers-reduced-motion` απενεργοποιεί όλα. Κάτω από 768px: γραμμές με μικρογραφία, όλες ορατές, χωρίς tabs. Αντικατέστησε την επεξήγηση «Αγορά με 1 κλικ».

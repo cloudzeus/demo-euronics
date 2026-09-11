@@ -16,6 +16,7 @@ import { NewsBand } from "@/components/widgets/NewsBand";
 import { CampaignSpotlight, type VendorCampaign } from "@/components/widgets/CampaignSpotlight";
 import { getNews } from "@/lib/data/repo";
 import { NewsletterBand } from "@/components/widgets/NewsletterBand";
+import { Reveal } from "@/components/motion/Reveal";
 import { getCategories, getDealOfDay, getGuides, getHeroSlides, getNearestStore, getProduct, getServices, getWeeklyDeals } from "@/lib/data/catalog";
 
 /**
@@ -73,7 +74,9 @@ export async function renderZone(zone: Zone, ctx: RenderContext): Promise<ReactN
         if (process.env.NODE_ENV !== "production") console.warn(`[cms] unknown widget type "${w.type}" in zone ${zone.id}`);
         return null;
       }
-      return r(w, ctx);
+      const node = await r(w, ctx);
+      // v4: every zone below the fold rises into view once (transform/opacity only).
+      return node && (w.zoneNo ?? 0) >= 6 ? <Reveal key={w.id}>{node}</Reveal> : node;
     }),
   );
 }

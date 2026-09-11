@@ -6,6 +6,7 @@ import { CartButton } from "./CartButton";
 import { MobileMenu } from "./MobileMenu";
 import { ZoneBadge } from "./ZoneBadge";
 import { navCategories } from "@/lib/data/nav";
+import { MySpaceButton } from "@/components/space/MySpaceSheet";
 
 /**
  * Zone 2 — dark brand-blue header. The yellow search button is the
@@ -43,6 +44,7 @@ export function SiteHeader() {
             <span className="text-eu-on-dark-2 font-normal mt-0.5">Τηλ. παραγγελίες</span>
           </a>
           <span className="hidden @6xl:block w-px h-[26px] bg-eu-navy-line" aria-hidden />
+          <MySpaceButton className="hidden @lg:flex" />
           <Link
             href="/lista"
             className="hidden @lg:flex flex-col items-center gap-0.5 text-eu-on-dark-2 font-semibold text-[length:var(--fs-13-5)] hover:text-white min-h-11 justify-center"

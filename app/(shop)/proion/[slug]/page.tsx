@@ -19,6 +19,13 @@ import { Answers, SeoPanel } from "@/components/pdp/Answers";
 import { StickySidebar } from "@/components/fluid/StickySidebar";
 import { CompactRail } from "@/components/pdp/CompactRail";
 import { productJsonLd, productMetadata } from "@/lib/seo/product";
+import { ArButton } from "@/components/ar/ArButton";
+import { FitBadge } from "@/components/space/FitBadge";
+import { EnergyCost } from "@/components/pdp/EnergyCost";
+import { dimsFor } from "@/lib/data/dims";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
+import { AdvisorContext } from "@/components/advisor/AdvisorContext";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const p = await getProductBySlug((await params).slug);
@@ -45,15 +52,31 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const addons = services.filter((s) => s.addonAt?.includes("pdp") && s.slug !== "paradosi-egkatastasi");
   const similar = related.filter((x) => x.subcategory === p.subcategory).slice(0, 3);
   const sections = ["overview", ...(p.description ? ["description"] : []), "answers", ...(p.specs?.length ? ["specs"] : []), ...(similar.length ? ["compare"] : []), "services", "reviews", "qa"];
+  const dims = dimsFor(p);
+  const hasModel = existsSync(join(process.cwd(), "public", "models", `${p.id}.glb`));
   const crumbs: { label: string; href?: string }[] = [{ label: "Προϊόντα", href: "/proionta" }, ...(l1 ? [{ label: l1.label, href: `/k/${l1.slug}` }] : []), ...(l1 && l2 ? [{ label: l2.name, href: `/k/${l1.slug}/${l2.slug}` }] : []), { label: p.title }];
 
   return (
     <div className="eu-container">
+      <AdvisorContext product={{ id: p.id, brand: p.brand, title: p.title, price: p.price, energy: p.energy?.cls, dims, category: p.subcategory }} />
       <ProductHeader product={p} crumbs={crumbs} />
       <article className="eu-canvas eu-gutter py-6 @lg:py-8">
         <div className="grid grid-cols-1 @lg:grid-cols-[minmax(0,1fr)_420px] @xl:grid-cols-[minmax(0,1fr)_460px] gap-6 @lg:gap-10 items-stretch">
           <div className="min-w-0 grid gap-6 content-start">
-            <Gallery images={p.images?.length ? p.images : p.image ? [p.image] : []} title={p.title} badge={p.badge} energy={p.energy} />
+            <Gallery
+              productId={p.id}
+              images={p.images?.length ? p.images : p.image ? [p.image] : []}
+              title={p.title}
+              badge={p.badge}
+              energy={p.energy}
+              actions={
+                <>
+                  {hasModel && <ArButton id={p.id} title={`${p.brand} ${p.title}`} dims={dims} />}
+                  <FitBadge product={p} size="lg" prompt />
+                </>
+              }
+            />
+            <EnergyCost product={p} />
             {p.tradeIn && (
               <div className="rounded-xl bg-eu-surface p-4 flex items-center gap-3">
                 <Recycle className="size-8 text-eu-green shrink-0" aria-hidden />

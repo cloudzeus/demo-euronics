@@ -60,6 +60,10 @@ export interface Product {
   tradeIn?: boolean;
   installation?: boolean;
   badge?: { kind: "discount" } | { kind: "gift"; label: string } | { kind: "new" } | { kind: "renew"; grade: "A" | "B" };
+  /** units left in the web warehouse when low (sticker «Τελευταία N») — ERP MTRSTORE */
+  stockLeft?: number;
+  /** a member store recommends it (sticker «Επιλογή καταστήματος») — CMS/store portal */
+  storePick?: string;
   description?: string;
   highlights?: string[];
   specs?: Spec[];
@@ -169,6 +173,10 @@ export interface HeroSlide {
   bullets: string[];
   image: string;
   alt: string;
+  /** transparent product cutout that floats in the cinematic hero (v4) */
+  cutout?: string;
+  /** product the cutout belongs to (link on the floating product) */
+  productHref?: string;
 }
 
 export interface Faq {
