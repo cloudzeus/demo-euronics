@@ -17,7 +17,7 @@ import { CampaignSpotlight, type VendorCampaign } from "@/components/widgets/Cam
 import { getNews } from "@/lib/data/repo";
 import { NewsletterBand } from "@/components/widgets/NewsletterBand";
 import { Reveal } from "@/components/motion/Reveal";
-import { getCategories, getDealOfDay, getGuides, getHeroSlides, getNearestStore, getNearestStoreWithGeo, getProduct, getServices, getWeeklyDeals } from "@/lib/data/catalog";
+import { getCategories, getDealOfDay, getGuides, getHeroSlides, getNearestStoreWithGeo, getProduct, getServices, getWeeklyDeals } from "@/lib/data/catalog";
 
 /**
  * Widget registry: type → async server component. Each widget resolves
@@ -32,11 +32,11 @@ const registry: Record<string, Renderer> = {
     return <AnnouncementBar key={w.id} {...p} zoneNo={w.zoneNo} />;
   },
   "bento-hero": async (w, ctx) => {
-    const [slides, deal, store, services] = await Promise.all([getHeroSlides(), getDealOfDay(), getNearestStore(), getServices(3)]);
+    const [slides, deal, geo, services] = await Promise.all([getHeroSlides(), getDealOfDay(), getNearestStoreWithGeo(), getServices(6)]);
     const p = w.props as { intervalMs?: number };
     // Save-Data: a single static slide, no slideshow.
     const shown = ctx.saveData ? slides.slice(0, 1) : slides;
-    return <BentoHero key={w.id} slides={shown} deal={deal} store={store} services={services.map((s) => s.title)} intervalMs={p.intervalMs} zoneNo={w.zoneNo} />;
+    return <BentoHero key={w.id} slides={shown} deal={deal} store={geo.store} geoCity={geo.city} geoSource={geo.source} services={services.map((s) => ({ title: s.title, blurb: s.blurb }))} intervalMs={p.intervalMs} zoneNo={w.zoneNo} />;
   },
   ticker: async (w) => <Ticker key={w.id} items={(w.props as { items: string[] }).items} zoneNo={w.zoneNo} />,
   "category-grid": async (w) => <CategoryGrid key={w.id} categories={await getCategories()} featured={(w.props as { featured?: string }).featured} zoneNo={w.zoneNo} />,

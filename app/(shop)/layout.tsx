@@ -14,6 +14,7 @@ import { MySpaceProvider } from "@/components/space/MySpaceProvider";
 import { MySpaceSheet } from "@/components/space/MySpaceSheet";
 import { AdvisorProvider } from "@/components/advisor/AdvisorContext";
 import { AdvisorOrb } from "@/components/advisor/AdvisorOrb";
+import { AdvisorGreeting } from "@/components/advisor/AdvisorGreeting";
 import { SnapSheet } from "@/components/snap/SnapSheet";
 import { AutoReveal } from "@/components/motion/AutoReveal";
 import { ExitIntent } from "@/components/site/ExitIntent";
@@ -53,6 +54,7 @@ export default async function ShopLayout({ children }: LayoutProps<"/">) {
           <CookieConsent />
           <MySpaceSheet />
           <AdvisorOrb />
+          <AdvisorGreeting />
           <SnapSheet />
           <AutoReveal />
           <ExitIntent />
